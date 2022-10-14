@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package workbot_jobtn;
+package workbot_jobtn.tests;
 
 import workbot_jobtn.utils.MyDB;
 

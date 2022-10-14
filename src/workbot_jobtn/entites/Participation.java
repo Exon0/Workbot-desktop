@@ -2,27 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package workbot_jobtn;
+package workbot_jobtn.entites;
 
 /**
  *
  * @author hp
  */
-public class H_participation {
+public class Participation {
     private int id;
     private int id_userP;
     private int id_event;
 
     
-    public H_participation() {
+    public Participation() {
     }
 
-    public H_participation(int id_userP, int id_event) {
+    public Participation(int id_userP, int id_event) {
         this.id_userP = id_userP;
         this.id_event = id_event;
     }
 
-    public H_participation(int id, int id_userP, int id_event) {
+    public Participation(int id, int id_userP, int id_event) {
         this.id = id;
         this.id_userP = id_userP;
         this.id_event = id_event;

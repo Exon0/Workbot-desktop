@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package workbot_jobtn;
+package workbot_jobtn.entites;
 
 /**
  *
  * @author hp
  */
-public class H_evennement {
+public class Evenement {
 private int id;
 private int id_user;
 private int nbPlaces;
@@ -22,10 +22,10 @@ private String prix;
 private String flyer;
 
     
-    public H_evennement() {
+    public Evenement() {
     }
 
-    public H_evennement(int id_user, int nbPlaces, String dateDebut, String dateFin, String heureDebut, String heureFin, String libelle, String video, String prix, String flyer) {
+    public Evenement(int id_user, int nbPlaces, String dateDebut, String dateFin, String heureDebut, String heureFin, String libelle, String video, String prix, String flyer) {
         this.id_user = id_user;
         this.nbPlaces = nbPlaces;
         this.dateDebut = dateDebut;
@@ -38,7 +38,7 @@ private String flyer;
         this.flyer = flyer;
     }
 
-    public H_evennement(int id, int id_user, int nbPlaces, String dateDebut, String dateFin, String heureDebut, String heureFin, String libelle, String video, String prix, String flyer) {
+    public Evenement(int id, int id_user, int nbPlaces, String dateDebut, String dateFin, String heureDebut, String heureFin, String libelle, String video, String prix, String flyer) {
         this.id = id;
         this.id_user = id_user;
         this.nbPlaces = nbPlaces;

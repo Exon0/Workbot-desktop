@@ -2,28 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package workbot_jobtn;
+package workbot_jobtn.entites;
 
 /**
  *
  * @author hp
  */
-public class H_sponsor {
+public class Sponsor {
 private int id;
 private String nom;
 private String logo;
 private int id_evenement;
 
-    public H_sponsor() {
+    public Sponsor() {
     }
 
-    public H_sponsor(String nom, String logo, int id_evenement) {
+    public Sponsor(String nom, String logo, int id_evenement) {
         this.nom = nom;
         this.logo = logo;
         this.id_evenement = id_evenement;
     }
 
-    public H_sponsor(int id, String nom, String logo, int id_evenement) {
+    public Sponsor(int id, String nom, String logo, int id_evenement) {
         this.id = id;
         this.nom = nom;
         this.logo = logo;
