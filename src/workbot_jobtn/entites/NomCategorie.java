@@ -6,8 +6,9 @@ package workbot_jobtn.entites;
 
 /**
  *
- * @author Exon
+ * @author youcef
  */
-public enum TypeOffre {
-    Stage,Emploi,Alternanace,Freelancer
+public enum NomCategorie {
+    Reclamation,Avis
+    
 }
