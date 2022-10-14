@@ -9,7 +9,7 @@ package workbot_jobtn.entites;
  *
  * @author fnmoh
  */
-public class Candidat {
+public class Candidat extends User {
     private int id;
     private String diplome;
     private String experience;

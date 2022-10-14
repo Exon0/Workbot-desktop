@@ -9,7 +9,7 @@ package workbot_jobtn.entites;
  *
  * @author fnmoh
  */
-public class Societe {
+public class Societe extends User {
     
 private int id;
     private String formeJuridique;
