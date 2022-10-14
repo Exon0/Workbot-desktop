@@ -6,8 +6,8 @@ package workbot_jobtn.services;
 
 /**
  *
- * @author Exon
+ * @author youcef
  */
-public class OffreService {
+public class ReclamationAvisService {
     
 }
