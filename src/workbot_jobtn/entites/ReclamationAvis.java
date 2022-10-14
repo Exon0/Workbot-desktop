@@ -4,6 +4,7 @@
  */
 package workbot_jobtn.entites;
 
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,22 +13,22 @@ import java.util.Objects;
  * @author youcef
  */
 public class ReclamationAvis {
-    private Integer id;
+    private int id;
     private String objet;
     private Date date;      
     private String description;
     private String image;
-    private Integer note;
+    private int note;
     private Categorie categorie;      
-    private Compte compte;
-    private Compte societe;
+    private User user;
+    private Societe societe;
     private Offre offre;
     private Evennement evennement;
 
     public ReclamationAvis() {
     }
 
-    public ReclamationAvis(Integer id, String objet, Date date, String description, String image, Integer note, Categorie categorie, Compte compte, Compte societe, Offre offre, Evennement evennement) {
+    public ReclamationAvis(int id, String objet, Date date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evennement evennement) {
         this.id = id;
         this.objet = objet;
         this.date = date;
@@ -35,30 +36,30 @@ public class ReclamationAvis {
         this.image = image;
         this.note = note;
         this.categorie = categorie;
-        this.compte = compte;
+        this.user = user;
         this.societe = societe;
         this.offre = offre;
         this.evennement = evennement;
     }
 
-    public ReclamationAvis(String objet, Date date, String description, String image, Integer note, Categorie categorie, Compte compte, Compte societe, Offre offre, Evennement evennement) {
+    public ReclamationAvis(String objet, Date date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evennement evennement) {
         this.objet = objet;
         this.date = date;
         this.description = description;
         this.image = image;
         this.note = note;
         this.categorie = categorie;
-        this.compte = compte;
+        this.user = user;
         this.societe = societe;
         this.offre = offre;
         this.evennement = evennement;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -94,11 +95,11 @@ public class ReclamationAvis {
         this.image = image;
     }
 
-    public Integer getNote() {
+    public int getNote() {
         return note;
     }
 
-    public void setNote(Integer note) {
+    public void setNote(int note) {
         this.note = note;
     }
 
@@ -110,19 +111,19 @@ public class ReclamationAvis {
         this.categorie = categorie;
     }
 
-    public Compte getCompte() {
-        return compte;
+    public User getUser() {
+        return user;
     }
 
-    public void setCompte(Compte compte) {
-        this.compte = compte;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Compte getSociete() {
+    public Societe getSociete() {
         return societe;
     }
 
-    public void setSociete(Compte societe) {
+    public void setSociete(Societe societe) {
         this.societe = societe;
     }
 
@@ -145,17 +146,17 @@ public class ReclamationAvis {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 19 * hash + Objects.hashCode(this.id);
-        hash = 19 * hash + Objects.hashCode(this.objet);
-        hash = 19 * hash + Objects.hashCode(this.date);
-        hash = 19 * hash + Objects.hashCode(this.description);
-        hash = 19 * hash + Objects.hashCode(this.image);
-        hash = 19 * hash + Objects.hashCode(this.note);
-        hash = 19 * hash + Objects.hashCode(this.categorie);
-        hash = 19 * hash + Objects.hashCode(this.compte);
-        hash = 19 * hash + Objects.hashCode(this.societe);
-        hash = 19 * hash + Objects.hashCode(this.offre);
-        hash = 19 * hash + Objects.hashCode(this.evennement);
+        hash = 47 * hash + this.id;
+        hash = 47 * hash + Objects.hashCode(this.objet);
+        hash = 47 * hash + Objects.hashCode(this.date);
+        hash = 47 * hash + Objects.hashCode(this.description);
+        hash = 47 * hash + Objects.hashCode(this.image);
+        hash = 47 * hash + this.note;
+        hash = 47 * hash + Objects.hashCode(this.categorie);
+        hash = 47 * hash + Objects.hashCode(this.user);
+        hash = 47 * hash + Objects.hashCode(this.societe);
+        hash = 47 * hash + Objects.hashCode(this.offre);
+        hash = 47 * hash + Objects.hashCode(this.evennement);
         return hash;
     }
 
@@ -171,6 +172,12 @@ public class ReclamationAvis {
             return false;
         }
         final ReclamationAvis other = (ReclamationAvis) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.note != other.note) {
+            return false;
+        }
         if (!Objects.equals(this.objet, other.objet)) {
             return false;
         }
@@ -180,19 +187,13 @@ public class ReclamationAvis {
         if (!Objects.equals(this.image, other.image)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
         if (!Objects.equals(this.date, other.date)) {
-            return false;
-        }
-        if (!Objects.equals(this.note, other.note)) {
             return false;
         }
         if (!Objects.equals(this.categorie, other.categorie)) {
             return false;
         }
-        if (!Objects.equals(this.compte, other.compte)) {
+        if (!Objects.equals(this.user, other.user)) {
             return false;
         }
         if (!Objects.equals(this.societe, other.societe)) {
@@ -206,9 +207,8 @@ public class ReclamationAvis {
 
     @Override
     public String toString() {
-        return "ReclamationAvis{" + "id=" + id + ", objet=" + objet + ", date=" + date + ", description=" + description + ", image=" + image + ", note=" + note + ", categorie=" + categorie + ", compte=" + compte + ", societe=" + societe + ", offre=" + offre + ", evennement=" + evennement + '}';
+        return "ReclamationAvis{" + "id=" + id + ", objet=" + objet + ", date=" + date + ", description=" + description + ", image=" + image + ", note=" + note + ", categorie=" + categorie + ", user=" + user + ", societe=" + societe + ", offre=" + offre + ", evennement=" + evennement + '}';
     }
     
-    
-    
+
 }

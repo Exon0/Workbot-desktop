@@ -12,14 +12,15 @@ import java.util.Objects;
  */
 public class Categorie {
 
-    private Integer id;
+    private int id;
     
     private NomCategorie nomCategorie;
 
     public Categorie() {
     }
 
-    public Categorie(Integer id, NomCategorie nomCategorie) {
+    
+    public Categorie(int id, NomCategorie nomCategorie) {
         this.id = id;
         this.nomCategorie = nomCategorie;
     }
@@ -28,11 +29,11 @@ public class Categorie {
         this.nomCategorie = nomCategorie;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -47,8 +48,8 @@ public class Categorie {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.id);
-        hash = 47 * hash + Objects.hashCode(this.nomCategorie);
+        hash = 73 * hash + this.id;
+        hash = 73 * hash + Objects.hashCode(this.nomCategorie);
         return hash;
     }
 
@@ -64,7 +65,7 @@ public class Categorie {
             return false;
         }
         final Categorie other = (Categorie) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (this.id != other.id) {
             return false;
         }
         return this.nomCategorie == other.nomCategorie;
@@ -74,8 +75,7 @@ public class Categorie {
     public String toString() {
         return "Categorie{" + "id=" + id + ", nomCategorie=" + nomCategorie + '}';
     }
-
-
+    
+    
     
 }
-
