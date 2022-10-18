@@ -43,6 +43,8 @@ public class Offre {
     private Integer id_test;
     
     private TypeOffre typeOffre;
+    
+    private String dateAjout;
 
     public Offre() {
     }
@@ -102,7 +104,7 @@ public class Offre {
         this.typeOffre = typeOffre;
     }
 
-    public Offre(int id, String titre, String description, String domaine, String dateExpiration, String modeTravail, Integer id_soc, TypeOffre typeOffre) {
+    public Offre(int id, String titre, String description, String domaine, String dateExpiration, String modeTravail, Integer id_soc, TypeOffre typeOffre,String dateAjout) {
         this.id = id;
         this.titre = titre;
         this.description = description;
@@ -111,7 +113,29 @@ public class Offre {
         this.modeTravail = modeTravail;
         this.id_soc = id_soc;
         this.typeOffre = typeOffre;
+        this.dateAjout=dateAjout;
     }
+
+    public Offre(String titre, String Salaire, String description, String domaine, String dateExpiration, String dureeStage, String typeStage, String typeContrat, String dureeContrat, String anneeExperience, String modeTravail, String lieu, Integer id_soc, Integer id_test, TypeOffre typeOffre, String dateAjout) {
+        this.titre = titre;
+        this.Salaire = Salaire;
+        this.description = description;
+        this.domaine = domaine;
+        this.dateExpiration = dateExpiration;
+        this.dureeStage = dureeStage;
+        this.typeStage = typeStage;
+        this.typeContrat = typeContrat;
+        this.dureeContrat = dureeContrat;
+        this.anneeExperience = anneeExperience;
+        this.modeTravail = modeTravail;
+        this.lieu = lieu;
+        this.id_soc = id_soc;
+        this.id_test = id_test;
+        this.typeOffre = typeOffre;
+        this.dateAjout = dateAjout;
+    }
+
+
 
  
 

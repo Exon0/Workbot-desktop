@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Button;
 import workbot_jobtn.entites.Offre;
 import workbot_jobtn.entites.TypeOffre;
 import workbot_jobtn.utils.MyDB;
@@ -99,8 +100,9 @@ public class OffreService implements ICrud_Interface<Offre>{
                    String modeTravail= r.getString(13);
                    String typeOffre= r.getString(16);
                    TypeOffre tp= TypeOffre.valueOf(typeOffre);
-                  
-                   Offre O= new Offre(id, titre, desc, domaine, dateExp, modeTravail, id_soc, tp);
+                   String dateAjout=r.getString(17);
+                   //Button bt=new Button("test");
+                   Offre O= new Offre(id, titre, desc, domaine, dateExp, modeTravail, id_soc, tp,dateAjout);
                    
                    listeOffre.add(O);
                    
