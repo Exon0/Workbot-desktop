@@ -153,7 +153,7 @@
                <children>
                   <Pane fx:id="slide1" prefHeight="422.0" prefWidth="661.0" style="-fx-background-color: ffffff;">
                      <children>
-                        <Button fx:id="btnSuivantStage" layoutX="106.0" layoutY="337.0" mnemonicParsing="false" onAction="#onclickSuivantStage" prefHeight="25.0" prefWidth="98.0" styleClass="btnAjouter" stylesheets="@homesociete.css" text="Suivant">
+                        <Button fx:id="btnSuivantStage" layoutX="529.0" layoutY="365.0" mnemonicParsing="false" onAction="#onclickSuivantStage" prefHeight="25.0" prefWidth="98.0" styleClass="btnAjouter" stylesheets="@homesociete.css" text="Suivant">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
@@ -175,10 +175,16 @@
                            </image>
                         </ImageView>
                         <Label fx:id="choice" layoutX="126.0" layoutY="100.0" opacity="0.0" prefHeight="17.0" prefWidth="16.0" />
+                        <Button fx:id="btnRetour" layoutX="28.0" layoutY="365.0" mnemonicParsing="false" onAction="#OnclickRetour" prefHeight="25.0" prefWidth="98.0" styleClass="btnAjouter" stylesheets="@homesociete.css" text="Suivant">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                      </children>
                   </Pane>
                </children>
             </Pane>
+            <Label fx:id="id_offre" layoutX="133.0" layoutY="98.0" opacity="0.0" />
          </children>
       </Pane>
    </children>

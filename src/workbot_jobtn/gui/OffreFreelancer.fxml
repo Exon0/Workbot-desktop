@@ -151,7 +151,7 @@
             </Pane>
             <Pane fx:id="slide1" layoutX="23.0" layoutY="128.0" prefHeight="422.0" prefWidth="634.0" style="-fx-background-color: ffffff;">
                <children>
-                  <ComboBox fx:id="combobox" layoutX="55.0" layoutY="182.0" onAction="#selectModeTravail" prefHeight="33.0" prefWidth="204.0" promptText="Présentiel" />
+                  <ComboBox fx:id="combobox" layoutX="55.0" layoutY="182.0" onAction="#selectModeTravail" prefHeight="33.0" prefWidth="204.0" />
                   <TextField fx:id="inputTitre" layoutX="57.0" layoutY="108.0" prefHeight="33.0" prefWidth="204.0" />
                   <Label layoutX="58.0" layoutY="83.0" prefHeight="25.0" prefWidth="61.0" text="Sujet *">
                      <font>
@@ -180,14 +180,14 @@
                   </Label>
                   <TextArea fx:id="inputDescription" layoutX="330.0" layoutY="251.0" prefHeight="91.0" prefWidth="215.0" />
                   <Label layoutX="330.0" layoutY="223.0" prefHeight="33.0" prefWidth="89.0" text="Description" />
-                  <TextField fx:id="inputDuree1" layoutX="335.0" layoutY="182.0" prefHeight="33.0" prefWidth="204.0" />
+                  <TextField fx:id="inputSalaire" layoutX="335.0" layoutY="182.0" prefHeight="33.0" prefWidth="204.0" />
                   <Label layoutX="335.0" layoutY="157.0" prefHeight="25.0" prefWidth="113.0" text="Renumeration *">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <Label layoutX="55.0" layoutY="280.0" prefHeight="33.0" prefWidth="113.0" text="Date d'expiration *" />
-                  <DatePicker fx:id="calender" layoutX="57.0" layoutY="309.0" prefHeight="33.0" prefWidth="204.0" />
+                  <DatePicker fx:id="calender" editable="false" layoutX="57.0" layoutY="309.0" prefHeight="33.0" prefWidth="204.0" />
                </children>
             </Pane>
          </children>

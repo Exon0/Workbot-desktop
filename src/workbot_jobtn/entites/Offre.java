@@ -4,6 +4,8 @@
  */
 package workbot_jobtn.entites;
 
+import static java.lang.String.valueOf;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -46,19 +48,20 @@ public class Offre {
     
     private String dateAjout;
 
+    public String getDateAjout() {
+        return dateAjout;
+    }
+
+    public void setDateAjout(String dateAjout) {
+        this.dateAjout = dateAjout;
+    }
+
     public Offre() {
     }
 
-    public Offre(String titre, String description, String domaine, String dateExpiration, TypeOffre typeOffre,Integer id_soc) {
-        this.titre = titre;
-        this.description = description;
-        this.domaine = domaine;
-        this.dateExpiration = dateExpiration;
-        this.typeOffre = typeOffre;
-        this.id_soc=id_soc;
-    }
-
-    public Offre(String titre, String description, String domaine, String dateExpiration, String modeTravail, Integer id_soc, TypeOffre typeOffre) {
+    //non null
+    public Offre(int id,String titre, String description, String domaine, String dateExpiration, String modeTravail, Integer id_soc, TypeOffre typeOffre) {
+        this.id=id;
         this.titre = titre;
         this.description = description;
         this.domaine = domaine;
@@ -68,76 +71,55 @@ public class Offre {
         this.typeOffre = typeOffre;
     }
     
-
-    public Offre(int id, String titre, String Salaire, String description, String domaine, String dateExpiration, String dureeStage, String typeStage, String dureeContrat, String anneeExperience, String modeTravail, String lieu, Integer id_soc, Integer id_test, TypeOffre typeOffre) {
-        this.id = id;
+   
+    public Offre(String titre, String Salaire_duree, String description, String domaine, String dateExpiration, String typeContrat, String modeTravail, String lieu, Integer id_soc, TypeOffre typeOffre) {
+         //Offre d'emlpoi
+        if("Emploi".equals(valueOf(typeOffre))){
         this.titre = titre;
-        this.Salaire = Salaire;
+        this.Salaire = Salaire_duree;
         this.description = description;
         this.domaine = domaine;
         this.dateExpiration = dateExpiration;
-        this.dureeStage = dureeStage;
-        this.typeStage = typeStage;
-        this.dureeContrat = dureeContrat;
-        this.anneeExperience = anneeExperience;
-        this.modeTravail = modeTravail;
-        this.lieu = lieu;
-        this.id_soc = id_soc;
-        this.id_test = id_test;
-        this.typeOffre = typeOffre;
-    }
-
-    public Offre(String titre, String Salaire, String description, String domaine, String dateExpiration, String dureeStage, String typeStage, String dureeContrat, String anneeExperience, String modeTravail, String lieu, Integer id_soc, Integer id_test, TypeOffre typeOffre) {
-        this.titre = titre;
-        this.Salaire = Salaire;
-        this.description = description;
-        this.domaine = domaine;
-        this.dateExpiration = dateExpiration;
-        this.dureeStage = dureeStage;
-        this.typeStage = typeStage;
-        this.dureeContrat = dureeContrat;
-        this.anneeExperience = anneeExperience;
-        this.modeTravail = modeTravail;
-        this.lieu = lieu;
-        this.id_soc = id_soc;
-        this.id_test = id_test;
-        this.typeOffre = typeOffre;
-    }
-
-    public Offre(int id, String titre, String description, String domaine, String dateExpiration, String modeTravail, Integer id_soc, TypeOffre typeOffre,String dateAjout) {
-        this.id = id;
-        this.titre = titre;
-        this.description = description;
-        this.domaine = domaine;
-        this.dateExpiration = dateExpiration;
-        this.modeTravail = modeTravail;
-        this.id_soc = id_soc;
-        this.typeOffre = typeOffre;
-        this.dateAjout=dateAjout;
-    }
-
-    public Offre(String titre, String Salaire, String description, String domaine, String dateExpiration, String dureeStage, String typeStage, String typeContrat, String dureeContrat, String anneeExperience, String modeTravail, String lieu, Integer id_soc, Integer id_test, TypeOffre typeOffre, String dateAjout) {
-        this.titre = titre;
-        this.Salaire = Salaire;
-        this.description = description;
-        this.domaine = domaine;
-        this.dateExpiration = dateExpiration;
-        this.dureeStage = dureeStage;
-        this.typeStage = typeStage;
         this.typeContrat = typeContrat;
-        this.dureeContrat = dureeContrat;
-        this.anneeExperience = anneeExperience;
         this.modeTravail = modeTravail;
         this.lieu = lieu;
         this.id_soc = id_soc;
-        this.id_test = id_test;
         this.typeOffre = typeOffre;
-        this.dateAjout = dateAjout;
-    }
+        this.dateAjout=new Date().toString(); }  
+        
+       
+        //Offre de stage
+      if("Stage".equals(valueOf(typeOffre))){
+        this.titre = titre;
+        this.dureeStage = Salaire_duree;
+        this.description = description;
+        this.domaine = domaine;
+        this.dateExpiration = dateExpiration;
+        this.typeStage = typeContrat;
+        this.modeTravail = modeTravail;
+        this.lieu = lieu;
+        this.id_soc = id_soc;
+        this.typeOffre = typeOffre;
+        this.dateAjout=new Date().toString(); } 
+    
+    //Offre d'alternance
+          if("Freelancer".equals(valueOf(typeOffre))){
+        this.titre = titre;
+        this.dureeStage = Salaire_duree;
+        this.description = description;
+        this.domaine = domaine;
+        this.dateExpiration = dateExpiration;
+        this.Salaire = typeContrat;
+        this.modeTravail = modeTravail;
+        this.lieu = lieu;
+        this.id_soc = id_soc;
+        this.typeOffre = typeOffre;
+        this.dateAjout=new Date().toString(); } }
+   
+     
 
 
 
- 
 
   
     public Integer getId() {

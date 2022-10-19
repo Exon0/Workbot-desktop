@@ -31,13 +31,14 @@ public class TestService implements ICrud_Interface<Test>{
     }
     @Override
     public void ajouter(Test t) throws SQLException {
- PreparedStatement prep = connection.prepareStatement("INSERT INTO `test`(`titre`, `domaine`, `description`, `lien`, `categorie`) "
-         + "                                            VALUES (?,?,?,?,?)");
+ PreparedStatement prep = connection.prepareStatement("INSERT INTO `test`(`titre`, `domaine`, `description`, `lien`, `categorie`, `id_soc`) "
+         + "                                            VALUES (?,?,?,?,?,?)");
             prep.setString(1, t.getTitre());
             prep.setString(2, t.getDomaine());
              prep.setString(3, t.getDescription());
             prep.setString(4, t.getLien());
             prep.setString(5, t.getCategorie());
+            prep.setInt(6, t.getId_soc());
           
             
             prep.executeUpdate();
@@ -96,6 +97,26 @@ public class TestService implements ICrud_Interface<Test>{
             Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listeTests;    }
+    
+     public Test selectLast() throws SQLException {
+        try {
+               Statement=connection.createStatement();
+               ResultSet r=Statement.executeQuery("SELECT * from `test` where id_soc=1 ORDER BY id DESC LIMIT 1");
+               while(r.next()){
+                   int id = r.getInt(1);
+                   String titre= r.getString(2);
+                   String lien= r.getString(5);
+
+   
+                  Test test = new Test(id, titre, lien);
+                  return test;
+
+               }
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;    }
+
 
 
     

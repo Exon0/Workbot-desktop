@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox fx:id="rootAjoutOffre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="900.0" stylesheets="@homesociete.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workbot_jobtn.gui.OffreStageController">
+<HBox fx:id="rootAjoutOffre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="900.0" stylesheets="@homesociete.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="workbot_jobtn.gui.OffreStageController">
    <children>
       <VBox fx:id="menu" prefHeight="572.0" prefWidth="192.0">
          <children>

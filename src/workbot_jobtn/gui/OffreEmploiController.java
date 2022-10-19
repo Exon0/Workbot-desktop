@@ -6,8 +6,14 @@ package workbot_jobtn.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +36,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import workbot_jobtn.entites.Offre;
+import workbot_jobtn.entites.TypeOffre;
+import workbot_jobtn.services.OffreService;
 
 /**
  * FXML Controller class
@@ -79,13 +88,13 @@ public class OffreEmploiController implements Initializable {
     @FXML
     private TextField inputLieu;
     @FXML
-    private TextField inputDuree;
-    @FXML
     private ComboBox combobox1;
     @FXML
     private TextArea inputDescription;
     @FXML
     private DatePicker input_calendrier;
+    @FXML
+    private TextField salaire;
 
     /**
      * Initializes the controller class.
@@ -94,6 +103,7 @@ public class OffreEmploiController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> list = FXCollections.observableArrayList("Présentiel","Hybrid","Teletravail");
                 ObservableList<String> list2 = FXCollections.observableArrayList("CDI","CDD","CIVP");
+                    input_calendrier.setValue(LocalDate.now());
 
         combobox.setItems(list);
         combobox1.setItems(list2);    }    
@@ -113,7 +123,7 @@ public class OffreEmploiController implements Initializable {
             else
                 Atc.close();
     }
-
+    OffreService offerservice= new OffreService();
     @FXML
     private void onClicked_menuOffre(ActionEvent event) throws IOException {
        Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
@@ -121,13 +131,15 @@ public class OffreEmploiController implements Initializable {
             Atc.setContentText("Votre avancement sera perdu");
            Optional<ButtonType> result= Atc.showAndWait();
                if(result.get()== ButtonType.OK){
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
+      
+                    
+                    Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+                    Scene stage=new Scene(fXMLLoader);
+                    Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+                    window.setScene(stage);
+                    window.show();}
             else
-                Atc.close();
+                     Atc.close();
     }
 
     @FXML
@@ -201,24 +213,69 @@ public class OffreEmploiController implements Initializable {
 
     @FXML
     private void onclickSuivantStage(ActionEvent event) throws IOException {
-     
+        
+                    String titre = inputTitre.getText();
+                    String modeTravail = (String)combobox.getSelectionModel().getSelectedItem();
+                    String lieu=inputLieu.getText();
+                    String dateExp = input_calendrier.getValue().format(DateTimeFormatter.ISO_DATE);
+                    String salary = salaire.getText();
+                    String typeContrat =(String) combobox1.getSelectionModel().getSelectedItem();
+                    String desc = inputDescription.getText();
+                    int id_soc = 1;
+                    String domaine = "Info";
+                    
+                      if(titre.length()==0 || combobox.getSelectionModel().getSelectedIndex() ==-1 || dateExp.length()==0 || salary.length()==0 || combobox1.getSelectionModel().getSelectedIndex() ==-1 || desc.length()==0 )
+                    {  Alert error=new Alert(Alert.AlertType.WARNING);
+                    error.setHeaderText("Alert");
+                    error.setContentText("Veuillez remplir tous les champs");
+                    error.showAndWait();
+                    return;}
+                 if(modeTravail.equals("Présentiel") ||modeTravail.equals("Hybrid") )
+                    {if(lieu.length()==0){
+                               Alert error=new Alert(Alert.AlertType.WARNING);
+                    error.setHeaderText("Alert");
+                    error.setContentText("En Présentiel ou Hybrid vous devez entrer le lieu!!");
+                    error.showAndWait();
+                        return;}}
+                    if(dateExp.compareTo(LocalDate.now().toString())<=0){
+                         Alert error=new Alert(Alert.AlertType.WARNING);
+                    error.setHeaderText("Alert");
+                    error.setContentText("Date invalide");
+                    error.showAndWait();
+                    return;
+                    }
+                     Offre o= new Offre( titre,  salary,  desc,  domaine,  dateExp,  typeContrat, modeTravail, lieu,  id_soc,  TypeOffre.Emploi) ;
+
          Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
             Atc.setHeaderText("Alert");
             Atc.setContentText("Verifier bien les informations saisi, vous ne pouvez pas revenir en arriére!! Cliquez OK pour passer");
            Optional<ButtonType> result= Atc.showAndWait();
             if(result.get()== ButtonType.OK){
           
-         FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("test.fxml"));
-         Parent root=fXMLLoader.load();
-                TestController testController=fXMLLoader.getController();
-       
-        Scene stage=new Scene(root);
-         testController.setChoice("Emploi");
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
+           try {
+                  offerservice.ajouter(o);
+                
+                   FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("test.fxml"));
+                   Parent root=fXMLLoader.load();
+                   TestController testController=fXMLLoader.getController();
+                   Offre Of =offerservice.readLast();
+                   System.out.println(Of.getId());
+                   testController.setIdOffre(Of.getId());
+                   Scene stage=new Scene(root);
+                   testController.setChoice("Emploi");
+                   
+                   Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+                   window.setScene(stage);
+                   window.show();
+                         } catch (SQLException ex) {
+                    Alert error=new Alert(Alert.AlertType.WARNING);
+                    Atc.setHeaderText("Alert");
+                    Atc.setContentText("erreur");
+                    Atc.showAndWait();
+                }
+            }
             else
-                Atc.close();
+                     Atc.close();
             }
          
     

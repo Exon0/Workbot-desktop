@@ -7,8 +7,11 @@ package workbot_jobtn.gui;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -35,6 +38,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
+import workbot_jobtn.entites.Offre;
+import workbot_jobtn.entites.Test;
+import workbot_jobtn.services.OffreService;
+import workbot_jobtn.services.TestService;
 
 /**
  * FXML Controller class
@@ -74,8 +81,6 @@ public class AjouterTestController implements Initializable {
     @FXML
     private Pane slide1;
     @FXML
-    private Button btn_retourStage;
-    @FXML
     private Button btnSuivantStage;
     @FXML
     private Label choice;
@@ -83,6 +88,10 @@ public class AjouterTestController implements Initializable {
     private Button btnFile;
     @FXML
     private Pane root;
+    @FXML
+    private Label id_offre;
+    @FXML
+    private TextField inputUrl;
 
     /**
      * Initializes the controller class.
@@ -99,6 +108,8 @@ public class AjouterTestController implements Initializable {
             Atc.setContentText("Votre avancement sera perdu");
            Optional<ButtonType> result= Atc.showAndWait();
                if(result.get()== ButtonType.OK){
+                    int id= Integer.parseInt(id_offre.getText());
+                    offreservice.deleteById(id);
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
         Scene stage=new Scene(fXMLLoader);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -107,15 +118,18 @@ public class AjouterTestController implements Initializable {
             else
                 Atc.close();
     }
-
+    
+    OffreService offreservice=new OffreService();
     @FXML
     private void onClicked_menuOffre(ActionEvent event) throws IOException {
         
-       Alert Atc=new Alert(AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
+             Alert Atc=new Alert(AlertType.CONFIRMATION);
+             Atc.setHeaderText("Alert");
+             Atc.setContentText("Votre avancement sera perdu");
+             Optional<ButtonType> result= Atc.showAndWait();
                if(result.get()== ButtonType.OK){
+                     int id= Integer.parseInt(id_offre.getText());
+                     offreservice.deleteById(id);
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
         Scene stage=new Scene(fXMLLoader);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -132,6 +146,8 @@ public class AjouterTestController implements Initializable {
             Atc.setContentText("Votre avancement sera perdu");
            Optional<ButtonType> result= Atc.showAndWait();
                if(result.get()== ButtonType.OK){
+                   int id= Integer.parseInt(id_offre.getText());
+                    offreservice.deleteById(id);
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
         Scene stage=new Scene(fXMLLoader);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -148,6 +164,8 @@ public class AjouterTestController implements Initializable {
             Atc.setContentText("Votre avancement sera perdu");
            Optional<ButtonType> result= Atc.showAndWait();
                if(result.get()== ButtonType.OK){
+                   int id= Integer.parseInt(id_offre.getText());
+                    offreservice.deleteById(id);
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
         Scene stage=new Scene(fXMLLoader);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -174,44 +192,67 @@ public class AjouterTestController implements Initializable {
     private void OnClick_settings(ActionEvent event) {
     }
 
-    @FXML
-    private void OnclickRetour(ActionEvent event) throws IOException {
-                   Parent fXMLLoader = FXMLLoader.load(getClass().getResource("test.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-    }
 
     @FXML
     private void onclickSuivantStage(ActionEvent event) throws IOException {
-         FXMLLoader fxml=new  FXMLLoader(getClass().getResource("SuccesOffre.fxml"));
-          Parent root1 = fxml.load();
         
-        Scene scene = btnSuivantStage.getScene();
-        
-        root1.translateYProperty().set(scene.getHeight());
-        root.getChildren().add(root1);
-    
-        Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(root1.translateYProperty(),0, Interpolator.EASE_IN);
-        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.setOnFinished(event1 -> root.getChildren().remove(slide1));
-        timeline.play();
-    }
-
-    @FXML
-    private void Onclic_btnFile(ActionEvent event) {
-        FileChooser fc = new FileChooser();
-        File SelectedFile =fc.showOpenDialog(null);
-        if (SelectedFile != null)
-             choice.setText(SelectedFile.getName());
-        else
-        {Alert Atc=new Alert(AlertType.WARNING);
+         if (SelectedFile != null && inputUrl.getText().length()==0){
+            //choice n'existe plus ,il afut l'enlever et remplacer par methode crud
+            path=SelectedFile.getAbsolutePath();
+            
+           
+            
+        }
+        else if(inputUrl.getText().length()!=0 && SelectedFile == null){
+                path=inputUrl.getText();
+        }
+        else{
+         Alert Atc=new Alert(AlertType.WARNING);
             Atc.setHeaderText("Alert");
-            Atc.setContentText("vous devez selectionnez un fichier");
-            Atc.showAndWait(); }
+            Atc.setContentText("vous ne pouvez pas deposer un ficher et mettre un url en meme temps");
+           Atc.showAndWait();
+            return;}
+        try {
+            Offre O1=offreService.readLast();
+            Test t=new Test(O1.getTitre(), path);
+            t.setId_soc(1);
+            testservice.ajouter(t);
+            O1.setId_test(testservice.selectLast().getId());
+            offreService.update(O1);
+            
+            FXMLLoader fxml=new  FXMLLoader(getClass().getResource("SuccesOffre.fxml"));
+            Parent root1 = fxml.load();
+            Scene scene = btnSuivantStage.getScene();
+            root1.translateYProperty().set(scene.getHeight());
+            root.getChildren().add(root1);
+            
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root1.translateYProperty(),0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+            timeline.getKeyFrames().add(kf);
+            timeline.setOnFinished(event1 -> root.getChildren().remove(slide1));
+            timeline.play();
+        } catch (SQLException ex) {
+            Logger.getLogger(AjouterTestController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    OffreService offreService=new OffreService();
+    TestService testservice=new TestService();
     
+            String path="";
+            File SelectedFile;
+    @FXML
+    private void Onclic_btnFile(ActionEvent event) throws SQLException {
+        FileChooser fc = new FileChooser();
+         SelectedFile =fc.showOpenDialog(null);
+        if (SelectedFile != null ){
+            //choice n'existe plus ,il afut l'enlever et remplacer par methode crud
+            path=SelectedFile.getAbsolutePath();
+   
+    }
+    }
+        public void  setIdOffre(String id){
+          
+            id_offre.setText(id);   
+    }
 }

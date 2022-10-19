@@ -6,8 +6,14 @@ package workbot_jobtn.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +36,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import workbot_jobtn.entites.Offre;
+import workbot_jobtn.entites.TypeOffre;
+import workbot_jobtn.services.OffreService;
 
 /**
  * FXML Controller class
@@ -83,9 +92,9 @@ public class OffreFreelancerController implements Initializable {
     @FXML
     private TextArea inputDescription;
     @FXML
-    private TextField inputDuree1;
-    @FXML
     private DatePicker calender;
+    @FXML
+    private TextField inputSalaire;
 
     /**
      * Initializes the controller class.
@@ -93,6 +102,8 @@ public class OffreFreelancerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> list = FXCollections.observableArrayList("Présentiel","Hybrid","Teletravail");
+                    combobox.setPromptText("Choisir un mode");
+                    calender.setValue(LocalDate.now());
 
         combobox.setItems(list);
            }           
@@ -197,26 +208,80 @@ public class OffreFreelancerController implements Initializable {
             else
                 Atc.close();
     }
-
+OffreService offerservice=new OffreService();
     @FXML
-    private void onclickSuivantStage(ActionEvent event) throws IOException {
+    private void onclickSuivantStage(ActionEvent event)  {
+        
+                    String titre = inputTitre.getText();
+                    String modeTravail = (String) combobox.getSelectionModel().getSelectedItem();
+                    String lieu=inputLieu.getText();
+                    String dateExp = calender.getValue().format(DateTimeFormatter.ISO_DATE);
+
+                    String duree = inputDuree.getText();
+                    String renumeration = inputSalaire.getText();
+                    String desc = inputDescription.getText();
+                    int id_soc = 1;
+                    String domaine = "Info";
+                    
+                    if(titre.length()==0 || combobox.getSelectionModel().getSelectedIndex() ==-1 || dateExp.length()==0 || duree.length()==0 || renumeration.length()==0 || desc.length()==0 )
+                    {  Alert error=new Alert(Alert.AlertType.WARNING);
+                    error.setHeaderText("Alert");
+                    error.setContentText("Veuillez remplir tous les champs");
+                    error.showAndWait();
+                    return;}
+    if(modeTravail.equals("Présentiel") ||modeTravail.equals("Hybrid") )
+                    {if(lieu.length()==0){
+                               Alert error=new Alert(Alert.AlertType.WARNING);
+                    error.setHeaderText("Alert");
+                    error.setContentText("En Présentiel ou Hybrid vous devez entrer le lieu!!");
+                    error.showAndWait();
+                        return;}}
+                    
+                    if(dateExp.compareTo(LocalDate.now().toString())<=0){
+                         Alert error=new Alert(Alert.AlertType.WARNING);
+                    error.setHeaderText("Alert");
+                    error.setContentText("Date invalide");
+                    error.showAndWait();
+                    return;
+                    }
+           
+                     Offre o= new Offre( titre,  duree,  desc,  domaine,  dateExp,  renumeration, modeTravail, lieu,  id_soc,  TypeOffre.Freelancer) ;
+
           Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
             Atc.setHeaderText("Alert");
             Atc.setContentText("Verifier bien les informations saisi, vous ne pouvez pas revenir en arriére!! Cliquez OK pour passer");
            Optional<ButtonType> result= Atc.showAndWait();
             if(result.get()== ButtonType.OK){
+          Atc.close();
+           try {
+               
+                  offerservice.ajouter(o);
+                
           
-         FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("test.fxml"));
-         Parent root=fXMLLoader.load();
-                TestController testController=fXMLLoader.getController();
-       
-        Scene stage=new Scene(root);
-         testController.setChoice("Freelancer");
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
+                   FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("test.fxml"));
+                   Parent root=fXMLLoader.load();
+                   TestController testController=fXMLLoader.getController();
+                   Offre Of =offerservice.readLast();
+                   System.out.println(Of.getId());
+                   testController.setIdOffre(Of.getId());
+                   Scene stage=new Scene(root);
+                   testController.setChoice("Freelancer");
+                   
+                   Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+                   window.setScene(stage);
+                   window.show();
+                    } catch (SQLException ex) {
+                        
+                                     Logger.getLogger(OffreFreelancerController.class.getName()).log(Level.SEVERE, null, ex);
+
+                } catch (IOException ex) {
+                  Logger.getLogger(OffreFreelancerController.class.getName()).log(Level.SEVERE, null, ex);
+              }
+                    
+           }
             else
-                Atc.close();
+                     Atc.close();
+            }
     }
     
-}
+

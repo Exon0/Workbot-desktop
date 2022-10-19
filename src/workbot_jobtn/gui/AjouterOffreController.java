@@ -163,5 +163,9 @@ public class AjouterOffreController implements Initializable {
         window.show();
     }
 
+    void setIdOffre(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
    
 }

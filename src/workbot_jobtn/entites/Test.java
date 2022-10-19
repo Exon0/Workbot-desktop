@@ -23,9 +23,26 @@ public class Test {
     private String lien;
     
     private String categorie;
+    
+    private int id_soc;
+
+    public int getId_soc() {
+        return id_soc;
+    }
+
+    public void setId_soc(int id_soc) {
+        this.id_soc = id_soc;
+    }
 
     public Test() {
     }
+
+    public Test(String titre, String lien) {
+        this.titre = titre;
+        this.lien = lien;
+    }
+    
+    
 
     public Test(Integer id, String titre, String domaine, String description, String lien, String categorie) {
         this.id = id;
@@ -43,6 +60,11 @@ public class Test {
         this.lien = lien;
         this.categorie = categorie;
     }
+
+    public Test(int id, String titre, String lien) {
+        this.id = id;
+        this.titre = titre;
+        this.lien = lien;    }
 
     public Integer getId() {
         return id;

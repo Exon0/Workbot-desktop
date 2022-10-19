@@ -153,11 +153,7 @@
                <children>
                   <Pane fx:id="slide1" prefHeight="422.0" prefWidth="661.0" style="-fx-background-color: ffffff;">
                      <children>
-                        <Button fx:id="btn_retourStage" layoutX="6.0" layoutY="383.0" mnemonicParsing="false" onAction="#OnclickRetour" prefHeight="25.0" prefWidth="98.0" styleClass="btnAjouter" text="Retour">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="btnSuivantStage" layoutX="518.0" layoutY="383.0" mnemonicParsing="false" onAction="#onclickSuivantStage" prefHeight="25.0" prefWidth="98.0" styleClass="btnAjouter" stylesheets="@homesociete.css" text="Terminer">
+                        <Button fx:id="btnSuivantStage" layoutX="100.0" layoutY="351.0" mnemonicParsing="false" onAction="#onclickSuivantStage" prefHeight="25.0" prefWidth="98.0" styleClass="btnAjouter" stylesheets="@homesociete.css" text="Terminer">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
@@ -175,11 +171,12 @@
                         <Button fx:id="btnFile" layoutX="100.0" layoutY="169.0" mnemonicParsing="false" onAction="#Onclic_btnFile" prefHeight="25.0" prefWidth="123.0" text="Select file" />
                         <Label layoutX="28.0" layoutY="134.0" prefHeight="17.0" prefWidth="287.0" text="Vous pouvez uploader un test FORMAT PDF * ici :" />
                         <Label layoutX="28.0" layoutY="237.0" prefHeight="17.0" prefWidth="287.0" text="Ou ajouter un lien de test (exp : GoogleForm) ici :" />
-                        <TextField layoutX="87.0" layoutY="266.0" />
+                        <TextField fx:id="inputUrl" layoutX="87.0" layoutY="266.0" />
                      </children>
                   </Pane>
                </children>
             </Pane>
+            <Label fx:id="id_offre" layoutX="120.0" layoutY="100.0" opacity="0.0" />
          </children>
       </Pane>
    </children>

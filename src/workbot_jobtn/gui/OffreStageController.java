@@ -6,6 +6,10 @@ package workbot_jobtn.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -21,6 +25,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -29,6 +34,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import workbot_jobtn.entites.Offre;
+import workbot_jobtn.entites.TypeOffre;
+import workbot_jobtn.services.OffreService;
 
 /**
  * FXML Controller class
@@ -83,6 +91,8 @@ public class OffreStageController implements Initializable {
     private ComboBox combobox1;
     @FXML
     private TextArea inputDescription;
+    @FXML
+    private DatePicker input_calendrier;
 
     /**
      * Initializes the controller class.
@@ -91,6 +101,7 @@ public class OffreStageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> list = FXCollections.observableArrayList("Présentiel","Hybrid","Teletravail");
                 ObservableList<String> list2 = FXCollections.observableArrayList("PFE","Stage d'été","Alternance");
+                    input_calendrier.setValue(LocalDate.now());
 
         combobox.setItems(list);
         combobox1.setItems(list2);
@@ -202,26 +213,74 @@ public class OffreStageController implements Initializable {
     @FXML
     private void selectTypeStage(ActionEvent event) {
     }
+    OffreService offerservice= new OffreService();
 
     @FXML
     private void onclickSuivantStage(ActionEvent event) throws IOException {
-         Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
+                    
+        String titre = inputTitre.getText();
+                    String modeTravail = (String)combobox.getSelectionModel().getSelectedItem();
+                    String lieu=inputLieu.getText();
+                    String dateExp = input_calendrier.getValue().format(DateTimeFormatter.ISO_DATE);
+                    String duree = inputDuree.getText();
+                    String typeStage = (String)combobox1.getSelectionModel().getSelectedItem();
+                    String desc = inputDescription.getText();
+                    int id_soc = 1;
+                    String domaine = "Info";
+                     Offre o= new Offre( titre,  duree,  desc,  domaine,  dateExp,  typeStage, modeTravail, lieu,  id_soc,  TypeOffre.Stage) ;
+
+                    if(titre.length()==0 || combobox.getSelectionModel().getSelectedIndex() ==-1 || dateExp.length()==0 || duree.length()==0 || combobox1.getSelectionModel().getSelectedIndex() ==-1 || desc.length()==0 )
+                    {  Alert error=new Alert(Alert.AlertType.WARNING);
+                    error.setHeaderText("Alert");
+                    error.setContentText("Veuillez remplir tous les champs");
+                    error.showAndWait();
+                    return;}
+                       if(modeTravail.equals("Présentiel") ||modeTravail.equals("Hybrid") )
+                    {if(lieu.length()==0){
+                               Alert error=new Alert(Alert.AlertType.WARNING);
+                    error.setHeaderText("Alert");
+                    error.setContentText("En Présentiel ou Hybrid vous devez entrer le lieu!!");
+                    error.showAndWait();
+                        return;}}
+                    if(dateExp.compareTo(LocalDate.now().toString())<=0){
+                         Alert error=new Alert(Alert.AlertType.WARNING);
+                    error.setHeaderText("Alert");
+                    error.setContentText("Date invalide");
+                    error.showAndWait();
+                    return;
+                    }
+        
+            Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
             Atc.setHeaderText("Alert");
             Atc.setContentText("Verifier bien les informations saisi, vous ne pouvez pas revenir en arriére!! Cliquez OK pour passer");
-           Optional<ButtonType> result= Atc.showAndWait();
+            Optional<ButtonType> result= Atc.showAndWait();
             if(result.get()== ButtonType.OK){
           
-         FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("test.fxml"));
-         Parent root=fXMLLoader.load();
-                TestController testController=fXMLLoader.getController();
-       
-        Scene stage=new Scene(root);
-         testController.setChoice("Stage");
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
+           try {
+                  offerservice.ajouter(o);
+                
+          
+                   FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("test.fxml"));
+                   Parent root=fXMLLoader.load();
+                   TestController testController=fXMLLoader.getController();
+                   Offre Of =offerservice.readLast();
+                   System.out.println(Of.getId());
+                   testController.setIdOffre(Of.getId());
+                   Scene stage=new Scene(root);
+                   testController.setChoice("Emploi");
+                   
+                   Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+                   window.setScene(stage);
+                   window.show();
+                    } catch (SQLException ex) {
+                    Alert error=new Alert(Alert.AlertType.WARNING);
+                    Atc.setHeaderText("Alert");
+                    Atc.setContentText("erreur");
+                    Atc.showAndWait();
+                }
+                    
+           }
             else
-                Atc.close();
-    }
-    
+                     Atc.close();
+            }
 }

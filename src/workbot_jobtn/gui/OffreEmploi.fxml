@@ -143,7 +143,7 @@
             </Pane>
             <Pane fx:id="slide1" layoutX="34.0" layoutY="128.0" prefHeight="422.0" prefWidth="640.0" style="-fx-background-color: ffffff;">
                <children>
-                  <ComboBox fx:id="combobox" layoutX="55.0" layoutY="182.0" onAction="#selectModeTravail" prefHeight="25.0" prefWidth="204.0" promptText="Présentiel" />
+                  <ComboBox fx:id="combobox" layoutX="55.0" layoutY="182.0" onAction="#selectModeTravail" prefHeight="25.0" prefWidth="204.0" promptText="Choisir un mode" />
                   <TextField fx:id="inputTitre" layoutX="57.0" layoutY="108.0" prefHeight="33.0" prefWidth="204.0" />
                   <Label layoutX="58.0" layoutY="83.0" prefHeight="25.0" prefWidth="61.0" text="Sujet *">
                      <font>
@@ -170,7 +170,7 @@
                   </Label>
                   <TextField fx:id="inputLieu" layoutX="57.0" layoutY="256.0" prefHeight="33.0" prefWidth="204.0" />
                   <Label layoutX="60.0" layoutY="223.0" prefHeight="33.0" prefWidth="89.0" text="Lieu" />
-                  <TextField fx:id="inputDuree" layoutX="335.0" layoutY="108.0" prefHeight="33.0" prefWidth="204.0" promptText="Entre x et y " />
+                  <TextField fx:id="salaire" layoutX="335.0" layoutY="108.0" prefHeight="33.0" prefWidth="204.0" promptText="Entre x et y " />
                   <Label layoutX="335.0" layoutY="83.0" prefHeight="25.0" prefWidth="120.0" text="Salaire proposé *">
                      <font>
                         <Font size="14.0" />
@@ -181,7 +181,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="combobox1" layoutX="335.0" layoutY="182.0" onAction="#selectTypeStage" prefHeight="25.0" prefWidth="204.0" promptText="CDI" />
+                  <ComboBox fx:id="combobox1" layoutX="335.0" layoutY="182.0" onAction="#selectTypeStage" prefHeight="25.0" prefWidth="204.0" promptText="CDI/CDD/CIVP" />
                   <TextArea fx:id="inputDescription" layoutX="330.0" layoutY="256.0" prefHeight="95.0" prefWidth="215.0" />
                   <Label layoutX="335.0" layoutY="223.0" prefHeight="33.0" prefWidth="89.0" text="Description *" />
                   <DatePicker fx:id="input_calendrier" layoutX="58.0" layoutY="318.0" prefHeight="33.0" prefWidth="204.0" />

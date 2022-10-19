@@ -6,6 +6,7 @@ package workbot_jobtn.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +19,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -154,9 +157,42 @@ public class OffreController implements Initializable {
     @FXML
     private void modifierOffre(ActionEvent event) {
     }
-
+    
+    
     @FXML
     private void supprimerOffre(ActionEvent event) {
+         Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
+            Atc.setHeaderText("Alert");
+            Atc.setContentText("Confirmerla suppression");
+           Optional<ButtonType> result= Atc.showAndWait();
+               if(result.get()== ButtonType.OK){
+        ObservableList<Offre> offreSelected=table.getSelectionModel().getSelectedItems();
+        offreService.delete(offreSelected.get(0));
+            ObservableList<Offre> list = FXCollections.observableArrayList(offreService.readAll());
+    OffreTab.setCellValueFactory(new PropertyValueFactory<>("titre"));
+       dateTab.setCellValueFactory(new PropertyValueFactory<>("domaine"));
+       typeTab.setCellValueFactory(new PropertyValueFactory<>("modeTravail"));
+      // nbTab.setCellValueFactory(new PropertyValueFactory<Offre,String>("titre"));
+     
+        FilteredList<Offre> filteredList = new FilteredList<>(list, b -> true);
+        
+        inputsearch.textProperty().addListener((observable, oldValue, newValue) ->{
+            filteredList.setPredicate(Offre -> {
+                   if(newValue == null ||  newValue.isEmpty()) return true;
+         String lowerCaseFilter = newValue.toLowerCase(); 
+         if(       Offre.getTitre().toLowerCase().contains(lowerCaseFilter)) return true;
+         else return false;
+            });
+    });
+        
+        SortedList<Offre> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(table.comparatorProperty());
+        
+        table.setItems(sortedList);
+               }
+               else
+                   Atc.close();
+        
     }
 
 
