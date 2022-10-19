@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Rd/Login.png" />
+                  <Image url="@../Rd/Page%201%20-%20Login%20Screen%20(5).png" />
                </image>
             </ImageView>
             <TextField fx:id="M_Mail" layoutX="525.0" layoutY="307.0" promptText="E-mail" />
@@ -56,6 +56,21 @@
             <TextField fx:id="passwordText_M" layoutX="525.0" layoutY="376.0" prefHeight="31.0" prefWidth="142.0" />
             <PasswordField fx:id="M_password" layoutX="525.0" layoutY="376.0" prefHeight="31.0" prefWidth="142.0" promptText="Password" />
             <CheckBox fx:id="M_Monterpa" layoutX="643.0" layoutY="381.0" mnemonicParsing="false" onAction="#MonterPassword" onMouseClicked="#MonterPassword1" prefHeight="21.0" prefWidth="14.0" />
+            <ImageView fx:id="eclipse" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Rd/Ellipse%203.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagedour" fitHeight="82.0" fitWidth="82.0" layoutX="55.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Rd/Vector.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="124.0" fitWidth="158.0" layoutX="25.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Rd/undraw_world_re_768g%201.png" />
+               </image>
+            </ImageView>
          </children>
     </AnchorPane>
   </children>

@@ -22,13 +22,15 @@
             <TextField fx:id="Rec_Nom" layoutX="444.0" layoutY="89.0" prefHeight="31.0" prefWidth="99.0" />
             <TextField fx:id="Rec_Role" layoutX="444.0" layoutY="51.0" prefHeight="31.0" prefWidth="99.0" />
             <TextField fx:id="Rec_datenaisss" layoutX="444.0" layoutY="457.0" prefHeight="31.0" prefWidth="99.0" />
-            <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="600.0" fitWidth="900.0" layoutX="-14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Rd/Signup5confer.png" />
                </image>
             </ImageView>
-            <Button fx:id="M_finaliser" layoutX="584.0" layoutY="394.0" mnemonicParsing="false" onAction="#M_finaliser" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #6C63FF;" text="Finaliser" textFill="WHITE" />
-            <Button fx:id="M_Back" layoutX="612.0" layoutY="441.0" mnemonicParsing="false" onAction="#M_Back" style="-fx-background-color: #FFFFFF;" text="Revinir" textFill="#6c63ff" />
+            <Button fx:id="M_finaliser" layoutX="571.0" layoutY="390.0" mnemonicParsing="false" onAction="#M_finaliser" prefHeight="46.0" prefWidth="120.0" style="-fx-background-color: #6C63FF;" text="Finaliser" textFill="WHITE" />
+            <Button fx:id="M_Back" layoutX="595.0" layoutY="442.0" mnemonicParsing="false" onAction="#M_Back" style="-fx-background-color: #FFFFFF;" text="Log out" textFill="#6c63ff" />
+            <TextField fx:id="checkcodee" layoutX="676.0" layoutY="527.0" prefHeight="31.0" prefWidth="127.0" />
+            <Button fx:id="M_finaliser1" layoutX="543.0" layoutY="527.0" mnemonicParsing="false" onAction="#M_checKcode" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #6C63FF;" text="Check Code " textFill="WHITE" />
          </children>
     </AnchorPane>
   </children>

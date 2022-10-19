@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-
+package workbot_jobtn.gui;
 import java.sql.Connection;
 import java.sql.Statement;
 import javafx.event.ActionEvent;
@@ -54,7 +54,7 @@ public class NewPassRparSmsController {
          }
 ///////////////////////////////////
   private void updateRecord(){
-        String query = "UPDATE  user SET  mdp = '" + SmsNewPass.getText() + "' WHERE email = '" + SmSMaiL.getText() + "' ";
+        String query = "UPDATE  utilisateur SET  mdp = '" + SmsNewPass.getText() + "' WHERE email = '" + SmSMaiL.getText() + "' ";
         executeQuery(query);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                      alert.setTitle("JobTn :: Information correct");

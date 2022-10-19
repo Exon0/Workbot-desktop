@@ -5,14 +5,19 @@
  */
 
 package workbot_jobtn.gui;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -20,8 +25,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import workbot_jobtn.utils.MyDB;
 
 
@@ -29,7 +36,7 @@ import workbot_jobtn.utils.MyDB;
  *
  * @author fnmoh
  */
-public class M_LoginUser {
+public class M_LoginUser implements Initializable {
     
     @FXML
     private Button M_loginidb;
@@ -47,6 +54,10 @@ public class M_LoginUser {
     private CheckBox M_Monterpa;
     @FXML
     private TextField passwordText_M;
+    @FXML
+    private ImageView imagedour;
+    @FXML
+    private ImageView eclipse;
 
     @FXML
     void M_creecompteactionB(ActionEvent event) {
@@ -127,6 +138,14 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
                      alert.setContentText("Vous etes connecté societe");
                      alert.showAndWait(); 
             }
+            else if(role.equals("Admin"))
+            {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                     alert.setTitle("Job TN:: Success Message");
+                     alert.setHeaderText(null);
+                     alert.setContentText("Vous etes connecté Administrateur");
+                     alert.showAndWait(); 
+            }
             else 
             {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -178,6 +197,31 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        RotateTransition rotate = new RotateTransition();
+       /* rotate.setDuration(Duration.millis(1000));
+        rotate.setNode(imagedour);
+        rotate.setAutoReverse(false);
+        rotate.setToAngle(360);
+        rotate.setCycleCount(100);
+        rotate.play();*/
+        rotate.setDuration(Duration.millis(10000));
+        rotate.setNode(eclipse);
+        rotate.setAutoReverse(false);
+        rotate.setToAngle(360);
+        rotate.setCycleCount(100);
+        rotate.play();
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(imagedour);
+        scale.setByY(0.1);
+        scale.setByX(0.1);
+        scale.setCycleCount(1000);
+        scale.setAutoReverse(true);
+        scale.play();
+        
     }
     
         }

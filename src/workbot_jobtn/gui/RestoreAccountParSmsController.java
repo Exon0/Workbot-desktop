@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
+package workbot_jobtn.gui;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -78,7 +78,7 @@ private Parent root;
              public void login(){
     
             
-            String query2="select * from user where email=?  and reponseSecu=?";
+            String query2="select * from utilisateur where email=?  and reponseSecu=?";
             on =  MyDB.getInstance().getConnection();
            try{
               PreparedStatement smt = on.prepareStatement(query2);

@@ -10,6 +10,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.Properties;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,9 +19,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import workbot_jobtn.utils.MyDB;
 
 
@@ -57,6 +67,10 @@ public class Signupetape5ConController implements Initializable {
     @FXML
     private TextField Rec_datenaisss;
     private String rolee;
+    @FXML
+    private TextField checkcodee;
+    @FXML
+    private Button M_finaliser1;
 
     /**
      * Initializes the controller class.
@@ -74,33 +88,20 @@ public class Signupetape5ConController implements Initializable {
 
     @FXML
     private void M_finaliser(ActionEvent event) {
-        EnvoyerEmail test = new EnvoyerEmail();
-        test.envoyer();
-        if(event.getSource() == M_finaliser){
-         insertuser();
-             insertRoleee(rolee);
+        
+        message();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                     alert.setTitle("Job TN:: Succes");
+                     alert.setHeaderText(null);
+                     alert.setContentText("Check votre email ");
+                     alert.showAndWait();
        
-        }
-       
-             try {
-Stage stage = (Stage) Rec_numero.getScene().getWindow();
-                        stage.close();
-                        
-          Parent root=FXMLLoader.load(getClass().getResource("M_Login.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+             
     }
 
     @FXML
     private void M_Back(ActionEvent event) {
-       
-
+      
     }
     
     
@@ -124,6 +125,56 @@ Stage stage = (Stage) Rec_numero.getScene().getWindow();
      
      
      }
+     
+     
+    int randomCode;
+
+    public void message(){
+        
+        
+        Random rand=new Random();
+         randomCode = rand.nextInt(999999);
+         System.out.println(randomCode);
+       
+        
+        
+ String nom10000 =  Rec_Email.getText();
+ String username = "mohsen.fennira@esprit.tn";
+ String password = "moh20100";
+// Etape 1 : Création de la session
+Properties props = new Properties();
+ props.setProperty("mail.transport.protocol", "smtp");     
+    props.setProperty("mail.host", "smtp.gmail.com"); 
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.auth", "true");  
+    props.put("mail.smtp.port", "465");  
+    props.put("mail.debug", "true");  
+    props.put("mail.smtp.socketFactory.port", "465");  
+    props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");  
+    props.put("mail.smtp.socketFactory.fallback", "false"); 
+Session session = Session.getInstance(props,
+new javax.mail.Authenticator() {
+protected PasswordAuthentication getPasswordAuthentication() {
+return new PasswordAuthentication(username, password);
+}
+});
+try {
+// Etape 2 : Création de l'objet Message
+Message message = new MimeMessage(session);
+message.setFrom(new InternetAddress(username));
+message.setRecipients(Message.RecipientType.TO,
+InternetAddress.parse(nom10000));
+message.setSubject("Test email");
+message.setText("Bonjour, ce message est un test ..."+randomCode);
+// Etape 3 : Envoyer le message
+Transport.send(message);
+System.out.println("Message_envoye");
+} catch (MessagingException e) {
+throw new RuntimeException(e);
+}
+}
+     
+     
         //////////////////////////////
 
 
@@ -211,6 +262,47 @@ Stage stage = (Stage) Rec_numero.getScene().getWindow();
         }catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    private void M_checKcode(ActionEvent event) {
+        
+          if (Integer.valueOf(checkcodee.getText())== randomCode)
+        {
+           Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                     alert.setTitle("Job TN:: Succes");
+                     alert.setHeaderText(null);
+                     alert.setContentText("votre account est verifier");
+                     alert.showAndWait(); 
+                     insertuser();
+                     try {
+Stage stage = (Stage) Rec_numero.getScene().getWindow();
+                        stage.close();
+                        
+          Parent root=FXMLLoader.load(getClass().getResource("M_Login.fxml"));
+			Scene scene = new Scene(root,840,600);
+		
+			stage.setScene(scene);
+			stage.show();
+                        
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+            
+        }else if(Integer.valueOf(checkcodee.getText())!= randomCode)
+            {Alert alert = new Alert(Alert.AlertType.ERROR);
+                     alert.setTitle("Job TN:: Error Message");
+                     alert.setHeaderText(null);
+                     alert.setContentText("Verifier votre code  ");
+                     alert.showAndWait(); }
+        else {
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+                     alert.setTitle("Job TN:: Error Message");
+                     alert.setHeaderText(null);
+                     alert.setContentText("Verifier votre code  ");
+                     alert.showAndWait(); 
+        }
+        
     }
      
             

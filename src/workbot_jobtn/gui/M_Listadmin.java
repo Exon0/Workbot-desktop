@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -274,13 +275,35 @@ String role ="Admin";
     ////////////////////////////////////////////
  private void insertRecord() {
         
+     
+      if(  M_prenomLCtextfuild.getText().isEmpty()
+                    |M_nomLCtextfuild.getText().isEmpty()
+                   
+                    | M_mailLCtextfuild.getText().isEmpty() 
+              | M_passwordLCtextfuild.getText().length() < 8
+                   
+                 
+                     
+                    
+                  ){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Job Tn :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Verifier fields !!");
+                alert.showAndWait();}
+             
+          else{
+               {
+        
+        
+     
         String query = "INSERT INTO utilisateur (prenom,nom,email,mdp,role) VALUES ('" + M_prenomLCtextfuild.getText() + "','" + M_nomLCtextfuild.getText() + "','" + M_mailLCtextfuild.getText() + "','"
                 + M_passwordLCtextfuild.getText() + "','" + role + "')";
         
         executeQuery(query);
         showAdmin();
         
-    }
+    }}}
 
  ///////////////////////////////////////////
     
@@ -296,17 +319,36 @@ String role ="Admin";
     //////////////////////////////////////////
     String prenom ;
       private void deleteButton(){
-      
+      if( M_id.getText().isEmpty() )
+      {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Job Tn :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Verifier l'operation !!");
+                alert.showAndWait();
+      }
+      else{
         String query = "DELETE FROM utilisateur WHERE id =" + M_id.getText() + "";
         executeQuery(query);
         showAdmin();
+      }
     }
       ///////////////////////////////////
   private void updateRecord(){
+      if( M_id.getText().isEmpty() )
+      {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Job Tn :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Verifier l'operation !!");
+                alert.showAndWait();
+      }
+      else{
         String query = "UPDATE  utilisateur SET id ="+ M_id.getText()+",prenom = '" +M_prenomLCtextfuild .getText() + "', nom = '" + M_nomLCtextfuild.getText() + "', email = '" +
                 M_mailLCtextfuild.getText() + "', mdp = '" +  M_passwordLCtextfuild.getText() + "' WHERE id = " + M_id.getText() + " ";
         executeQuery(query);
         showAdmin();
+      }
     }
   //////////////////////////////////////////////////////////////
   
