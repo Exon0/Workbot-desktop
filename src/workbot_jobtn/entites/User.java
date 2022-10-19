@@ -102,4 +102,32 @@ public class User {
         this.reponseSecu = reponseSecu;
         this.methode = methode;
     }
+
+    public User(int id, String nom, String prenom, String email, String mdp) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.mdp = mdp;
+    }
+
+    public User(int id, String nom, String prenom, String role, String tel, String email, String adresse) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.role = role;
+        this.tel = tel;
+        this.email = email;
+        this.adresse = adresse;
+    }
+
+    public User(String nom, String prenom, String role, String tel, String email, String adresse) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.role = role;
+        this.tel = tel;
+        this.email = email;
+        this.adresse = adresse;
+    }
+    
 }

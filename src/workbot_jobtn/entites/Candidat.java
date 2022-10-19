@@ -21,6 +21,22 @@ public class Candidat extends User {
     private String bio;
     private String typeCandidat;
     private String note;
+    private String domaine;
+
+    public Candidat(String domaine, String nom, String prenom, String role, String tel, String email, String adresse) {
+        super(nom, prenom, role, tel, email, adresse);
+        this.domaine = domaine;
+    }
+
+    public Candidat(String domaine, int id, String nom, String prenom, String role, String tel, String email, String adresse) {
+        super(id, nom, prenom, role, tel, email, adresse);
+        this.domaine = domaine;
+    }
+
+    public String getDomaine() {
+        return domaine;
+    }
+     
 
     public String getDiplome() {
         return diplome;
@@ -78,6 +94,7 @@ public class Candidat extends User {
         this.bio = bio;
         this.typeCandidat = typeCandidat;
         this.note = note;
+        
     }
 
     public Candidat(String diplome, String experience, String niveauFr, String niveauAng, String competance, String cv, String portfolio, String bio, String typeCandidat, String note) {
