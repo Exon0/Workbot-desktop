@@ -71,8 +71,7 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
    
     @FXML
     private void M_loginidb(ActionEvent event) throws SQLException {
-         EnvoyerEmail test = new EnvoyerEmail();
-        test.envoyer();
+         
         ////////////5dhena 2 string w gatina fiha el textfuild
         String umail=M_Mail.getText();
         String password=M_password.getText();
@@ -103,7 +102,7 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
         else {
             //
             on =  MyDB.getInstance().getConnection();
-            String query="select role from user where email='"+M_Mail.getText()+"' and mdp='"+M_password.getText()+"'"; 
+            String query="select role from utilisateur where email='"+M_Mail.getText()+"' and mdp='"+M_password.getText()+"'"; 
             System.out.println(query);
             PreparedStatement smt = on.prepareStatement(query);
             ResultSet rs= smt.executeQuery();

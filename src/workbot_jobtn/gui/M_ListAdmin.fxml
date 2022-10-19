@@ -26,7 +26,7 @@
             <Button fx:id="M_ImprimerLa" layoutX="732.0" layoutY="64.0" mnemonicParsing="false" onAction="#M_ImprimerLA" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #6c63ff; -fx-border-radius: 5;" text="Imprimer" textFill="#6c63ff" />
             <TableView fx:id="M_tableLC" layoutX="539.0" layoutY="104.0" onMouseClicked="#getSelected" prefHeight="387.0" prefWidth="281.0">
               <columns>
-                <TableColumn fx:id="M_idLC" prefWidth="49.0" text="ID" />
+                <TableColumn fx:id="M_idLC" prefWidth="49.0" text="ID" visible="false" />
                 <TableColumn fx:id="M_prenomLC" prefWidth="72.0" text="Prenom" />
                   <TableColumn fx:id="M_nomLC" prefWidth="47.0" text="Nom" />
                   <TableColumn fx:id="M_emailLC" prefWidth="116.0" text="E-mail" />

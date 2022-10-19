@@ -74,6 +74,8 @@ public class Signupetape5ConController implements Initializable {
 
     @FXML
     private void M_finaliser(ActionEvent event) {
+        EnvoyerEmail test = new EnvoyerEmail();
+        test.envoyer();
         if(event.getSource() == M_finaliser){
          insertuser();
              insertRoleee(rolee);
@@ -196,14 +198,7 @@ Stage stage = (Stage) Rec_numero.getScene().getWindow();
              
         }
           private void insertRoleee(String rolee) {
-    
-           
-              
-               String query = "INSERT INTO utilisateur (role) VALUES ('" + Rec_Role.getText() + "')";
-        
-        executeQuery(query);
-
-              
+         
         }
          
          ///////////////////

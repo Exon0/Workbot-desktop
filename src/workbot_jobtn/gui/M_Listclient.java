@@ -41,6 +41,10 @@ import workbot_jobtn.utils.MyDB;
 public class M_Listclient implements Initializable {
       @FXML
     private TextField M_id;
+      
+      
+    @FXML
+    private TableColumn<User, Integer> colid;
     @FXML
     private Button M_listclientLS;
     @FXML
@@ -63,6 +67,9 @@ public class M_Listclient implements Initializable {
     private Button M_rechercheLAA;
     @FXML
     private Button M_supprimLCC;
+    @FXML
+    private TextField M_mailLCtextfuild;
+    
     
     
      void M_rechercheLAAA(ActionEvent event) {
@@ -80,7 +87,7 @@ public M_Listclient (){
      public ObservableList<User> getClientList(){
     ObservableList<User> userList= FXCollections.observableArrayList();
  
-    String query = "SELECT * FROM utilisateur where role = 'sociéte' ";
+    String query = "SELECT * FROM utilisateur where role = 'sociéte' || role = 'candidat'";
     Statement st;
     ResultSet rs;
     try{
@@ -100,14 +107,14 @@ public M_Listclient (){
      }
     public void showUser(){
         ObservableList<User> list = getClientList();
+        M_nomLCC.setCellValueFactory (new PropertyValueFactory<User, String>("domaine"));
+        M_roleLCC.setCellValueFactory (new PropertyValueFactory<User, String>("adresse"));
+      M_preLCC .setCellValueFactory (new PropertyValueFactory<User, String>("nom"));
         
-        M_roleLCC.setCellValueFactory (new PropertyValueFactory<User, String>("role"));
-      M_preLCC .setCellValueFactory (new PropertyValueFactory<User, String>("prenom"));
-        M_nomLCC.setCellValueFactory (new PropertyValueFactory<User, String>("nom"));
-        M_emailLCC.setCellValueFactory ( new PropertyValueFactory<User, String>("email"));
-        M_telLCC.setCellValueFactory (new PropertyValueFactory<User, String>("tel"));
-        M_adresseLCC.setCellValueFactory (new PropertyValueFactory<User, String>("adresse"));
-        M_domaineCC.setCellValueFactory (new PropertyValueFactory<User, String>("domaine"));
+        M_emailLCC.setCellValueFactory ( new PropertyValueFactory<User, String>("role"));
+        M_telLCC.setCellValueFactory (new PropertyValueFactory<User, String>("prenom"));
+        M_adresseLCC.setCellValueFactory (new PropertyValueFactory<User, String>("tel"));
+        M_domaineCC.setCellValueFactory (new PropertyValueFactory<User, String>("email"));
         M_tableLC.setItems(list);
         
 }
@@ -128,6 +135,21 @@ public M_Listclient (){
 			e.printStackTrace();
 		}
     }
+    private void executeQuery(String query) {
+        Statement st;
+        try{
+            st = on.createStatement();
+            st.executeUpdate(query);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+     private void deleteButton(){
+      
+        String query = "DELETE FROM utilisateur WHERE email ='" + M_mailLCtextfuild.getText() + "'";
+        executeQuery(query);
+        showUser();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -137,10 +159,17 @@ public M_Listclient (){
 
     @FXML
     private void M_supprimLCC(ActionEvent event) {
+        deleteButton();
     }
-
+int index=-1;
     @FXML
     private void getSelected(MouseEvent event) {
+        index =  M_tableLC.getSelectionModel().getSelectedIndex();
+        if(index <= -1){
+            return;
+        }
+        M_mailLCtextfuild.setText(M_emailLCC.getCellData(index).toString());
+         
     }
     
        void M_rechercheL() {
@@ -189,6 +218,6 @@ ObservableList<User> list = getClientList();
                
         
     }    
+       
 }
-    
 

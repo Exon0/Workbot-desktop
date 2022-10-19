@@ -78,7 +78,7 @@ private Parent root;
         
         
          if(event.getSource() == M_Suiv1SD){
-            insertRoleee(rolee);
+           
             
        
         }
@@ -108,16 +108,7 @@ private Parent root;
         /////////////////
        
     
-        private void insertRoleee(String rolee) {
-        
-           
-              rolee=(String) M_choixBoxRole.getValue();
-               String query = "INSERT INTO utilisateur (role) VALUES ('" + rolee + "')";
-        
-        executeQuery(query);
-
-             
-        }
+       
         //////////////////////
          private void executeQuery(String query) {
         Statement st;

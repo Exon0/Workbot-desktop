@@ -13,6 +13,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="502.0" prefWidth="720.0" VBox.vgrow="ALWAYS">
          <children>
+            <TextField fx:id="M_mailLCtextfuild" layoutX="287.0" layoutY="511.0" />
             <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Listclientt.png" />
@@ -27,6 +28,7 @@
                   <TableColumn fx:id="M_telLCC" prefWidth="94.0" text="Telephone" />
                   <TableColumn fx:id="M_adresseLCC" prefWidth="102.0" text="Adresse" />
                   <TableColumn fx:id="M_domaineCC" minWidth="0.0" prefWidth="126.0" text="Domaine" />
+                  <TableColumn fx:id="colid" prefWidth="75.0" text="id" visible="false" />
               </columns>
             </TableView>
             <Button layoutX="140.0" layoutY="81.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="99.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #6c63ff; -fx-border-radius: 5;" text="Edit profile" textFill="#6c63ff" />
