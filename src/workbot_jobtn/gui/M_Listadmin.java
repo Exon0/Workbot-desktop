@@ -56,7 +56,7 @@ public class M_Listadmin implements Initializable{
     private Button M_modifier;
 
     @FXML
-    private TableView<User> M_tableLC;
+    private TableView<User> M_tableLCC;
 
     @FXML
     private TableColumn<User, Integer> M_idLC;
@@ -157,10 +157,10 @@ ObservableList<User> list = getAdminList();
 		
 		// 4. Bind the SortedList comparator to the TableView comparator.
 		// 	  Otherwise, sorting the TableView would have no effect.
-		sortedData.comparatorProperty().bind(M_tableLC.comparatorProperty());
+		sortedData.comparatorProperty().bind(M_tableLCC.comparatorProperty());
 		
 		// 5. Add sorted (and filtered) data to the table.
-		M_tableLC.setItems(sortedData);
+		M_tableLCC.setItems(sortedData);
                
         
     }    
@@ -198,7 +198,7 @@ if(event.getSource() == M_modifier){
     ////////select user ////////
     @FXML
     void getSelected(MouseEvent event){
-        index =  M_tableLC.getSelectionModel().getSelectedIndex();
+        index =  M_tableLCC.getSelectionModel().getSelectedIndex();
         if(index <= -1){
             return;
         }
@@ -268,7 +268,7 @@ String role ="Admin";
         M_emailLC.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
         m_passwordLC.setCellValueFactory(new PropertyValueFactory<User, String>("mdp"));
         
-        M_tableLC.setItems(list);
+        M_tableLCC.setItems(list);
         
 }
     
@@ -319,7 +319,7 @@ String role ="Admin";
     //////////////////////////////////////////
     String prenom ;
       private void deleteButton(){
-      if( M_id.getText().isEmpty() )
+      if(  M_prenomLCtextfuild.getText().isEmpty()  )
       {
           Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Job Tn :: Error Message");
@@ -335,7 +335,7 @@ String role ="Admin";
     }
       ///////////////////////////////////
   private void updateRecord(){
-      if( M_id.getText().isEmpty() )
+      if( M_prenomLCtextfuild.getText().isEmpty() )
       {
           Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Job Tn :: Error Message");

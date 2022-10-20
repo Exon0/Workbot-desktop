@@ -30,6 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import workbot_jobtn.utils.MyDB;
+import workbot_jobtn.utils.SessionManager;
 
 
 /**
@@ -86,6 +87,9 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
         ////////////5dhena 2 string w gatina fiha el textfuild
         String umail=M_Mail.getText();
         String password=M_password.getText();
+        SessionManager.setEmail(umail);
+
+        
         //////////
         /////////////ken el umail mt3 admin el kbir y7elo toul el application
         if (umail.equals("Job.tn@gmail.com") && password.equals("Admin"))
@@ -113,22 +117,44 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
         else {
             //
             on =  MyDB.getInstance().getConnection();
-            String query="select role from utilisateur where email='"+M_Mail.getText()+"' and mdp='"+M_password.getText()+"'"; 
+            String query="select id,role,nom,prenom,tel,photo from utilisateur where email='"+M_Mail.getText()+"' and mdp='"+M_password.getText()+"'"; 
             System.out.println(query);
             PreparedStatement smt = on.prepareStatement(query);
             ResultSet rs= smt.executeQuery();
             String role="";
+            int ids=0;
+            String noms="";
+            String prenoms="";
+            String tels="";
+            String photos="";
             while(rs.next())
             {
                 role=rs.getString("role");
+                ids=rs.getInt("id");
+                noms=rs.getString("nom");
+                prenoms=rs.getString("prenom");
+                tels=rs.getString("tel");
+                photos=rs.getString("photo");
             }
+            SessionManager.setId(ids);
+            SessionManager.setNom(noms);
+            SessionManager.setPhoto(photos);
+            SessionManager.setTel(tels);
+            SessionManager.setPrenom(prenoms);
+            
+            System.out.println(SessionManager.getId()+" "+
+            SessionManager.getNom()+" "+
+            SessionManager.getPhoto()+" "+
+            SessionManager.getTel()+" "+
+            SessionManager.getPrenom());
             
             if (role.equals("candidat")){
                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                      alert.setTitle("Job TN:: Success Message");
                      alert.setHeaderText(null);
                      alert.setContentText("Vous etes connecté condidat");
-                     alert.showAndWait(); 
+                     alert.showAndWait();
+                     SessionManager.setRole("candidat");
             }
             else if(role.equals("sociéte"))
             {
@@ -137,14 +163,29 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
                      alert.setHeaderText(null);
                      alert.setContentText("Vous etes connecté societe");
                      alert.showAndWait(); 
+                     SessionManager.setRole("sociéte");
             }
             else if(role.equals("Admin"))
             {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    SessionManager.setRole("Admin");
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                      alert.setTitle("Job TN:: Success Message");
                      alert.setHeaderText(null);
                      alert.setContentText("Vous etes connecté Administrateur");
                      alert.showAndWait(); 
+                      try {
+			Stage stage = (Stage) M_creecompte.getScene().getWindow();
+                        stage.close();
+                        
+          Parent root=FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
+			Scene scene = new Scene(root,840,600);
+		
+			stage.setScene(scene);
+			stage.show();
+                        
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
             }
             else 
             {
@@ -156,7 +197,7 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
             }
         
         }
-
+        System.out.println(SessionManager.getRole());
             }
 
     @FXML
@@ -216,8 +257,8 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
         rotate.play();
         ScaleTransition scale = new ScaleTransition();
         scale.setNode(imagedour);
-        scale.setByY(0.1);
-        scale.setByX(0.1);
+        scale.setByY(0.06);
+        scale.setByX(0.06);
         scale.setCycleCount(1000);
         scale.setAutoReverse(true);
         scale.play();

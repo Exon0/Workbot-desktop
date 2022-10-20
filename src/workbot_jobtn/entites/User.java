@@ -10,7 +10,7 @@ package workbot_jobtn.entites;
  * @author fnmoh
  */
 public class User {
- private int id;
+    private int id;
     private String nom;
     private String prenom;
     private String role;
