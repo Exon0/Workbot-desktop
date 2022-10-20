@@ -71,6 +71,16 @@
                   <Image url="@../Rd/undraw_world_re_768g%201.png" />
                </image>
             </ImageView>
+            <Button fx:id="m_map" layoutX="43.0" layoutY="551.0" mnemonicParsing="false" onAction="#m_map" prefHeight="31.0" prefWidth="72.0" style="-fx-background-color: #6C63FF;" text="Map" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="15.0" fitWidth="23.0" layoutX="43.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Rd/map-removebg-preview.png" />
+               </image>
+            </ImageView>
          </children>
     </AnchorPane>
   </children>

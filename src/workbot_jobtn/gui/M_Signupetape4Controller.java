@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -91,8 +92,24 @@ public class M_Signupetape4Controller implements Initializable {
          
          String numero100 =  M_NTLF.getText();
          
-         
-        
+            if(  domaine100.isEmpty()
+                    |adresse100.isEmpty()
+                   
+                    | reponce100.isEmpty() 
+            
+                   
+                 
+                     
+                    
+                  ){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Job Tn :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Verifier fields !!");
+                alert.showAndWait();}
+             
+          else{
+     
         try {
 			Stage stage = (Stage) M_adresseSD.getScene().getWindow();
                         stage.close();
@@ -119,5 +136,6 @@ public class M_Signupetape4Controller implements Initializable {
 			e.printStackTrace();
     }
     
+
 }
-}
+    }}

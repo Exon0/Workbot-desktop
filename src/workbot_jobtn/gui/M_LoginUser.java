@@ -39,8 +39,6 @@ import workbot_jobtn.utils.SessionManager;
  */
 public class M_LoginUser implements Initializable {
     
-    @FXML
-    private Button M_loginidb;
 
     @FXML
     private Button M_restorepassword;
@@ -59,6 +57,10 @@ public class M_LoginUser implements Initializable {
     private ImageView imagedour;
     @FXML
     private ImageView eclipse;
+    @FXML
+    private Button M_loginidb;
+    @FXML
+    private Button m_map;
 
     @FXML
     void M_creecompteactionB(ActionEvent event) {
@@ -117,7 +119,7 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
         else {
             //
             on =  MyDB.getInstance().getConnection();
-            String query="select id,role,nom,prenom,tel,photo from utilisateur where email='"+M_Mail.getText()+"' and mdp='"+M_password.getText()+"'"; 
+            String query="select id,role,nom,prenom,tel,photo from utilisateur where email='"+M_Mail.getText()+"' and mdp='"+M_password.getText()+ "'or mdp='"+passwordText_M.getText()+ "'"; 
             System.out.println(query);
             PreparedStatement smt = on.prepareStatement(query);
             ResultSet rs= smt.executeQuery();
@@ -217,11 +219,6 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
     
     }
 
-    @FXML
-    private void MonterPassword1(MouseEvent event) {
-        
-        
-    }
 
     @FXML
     private void M_restorepasswordMethode(ActionEvent event) {
@@ -263,6 +260,27 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
         scale.setAutoReverse(true);
         scale.play();
         
+    }
+
+    @FXML
+    private void MonterPassword1(MouseEvent event) {
+    }
+
+    @FXML
+    private void m_map(ActionEvent event) {
+        try {
+			Stage stage = (Stage) M_Mail.getScene().getWindow();
+                        stage.close();
+                        
+          Parent root=FXMLLoader.load(getClass().getResource("mappa.fxml"));
+			Scene scene = new Scene(root,840,600);
+		
+			stage.setScene(scene);
+			stage.show();
+                        
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
     }
     
         }

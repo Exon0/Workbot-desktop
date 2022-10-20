@@ -6,12 +6,30 @@
 package workbot_jobtn.gui;
 
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -398,7 +416,107 @@ Stage stage = (Stage) M_passwordLCtextfuild.getScene().getWindow();
     
     //////////////////////
         @FXML
-    void M_ImprimerLA(ActionEvent event)  {
+    void M_ImprimerLA(ActionEvent event) throws IOException, SQLException  {
+        Document doc = new Document();
+        
+        
+        String query = "Select * from utilisateur";
+        
+       
+        Statement st;
+    ResultSet rs;
+    
+         
+                try{
+            st=on.createStatement();
+        rs=st.executeQuery(query);
+            
+            
+            
+            PdfWriter.getInstance(doc , new FileOutputStream("C:\\Users\\fnmoh\\Desktop\\admin.pdf"));
+            doc.open();
+            
+            
+            Image img= Image.getInstance("C:\\Users\\fnmoh\\Desktop\\Pdf Emplacement JavaFx\\logo.png");
+            img.scaleAbsoluteWidth(100);
+            img.scaleAbsoluteHeight(100);
+            img.setAlignment(Image.ALIGN_CENTER);
+            
+            doc.add(img);
+             doc.add(new Paragraph (" "));
+            doc.add(new Paragraph ("Liste Admin"));
+            doc.add(new Paragraph (" "));
+            
+            PdfPTable table = new PdfPTable(4);
+            table.setWidthPercentage(100);
+               /////////////////////////////
+               PdfPCell cell ;
+             
+               ////////////
+         
+         cell = new PdfPCell (new Phrase("Prenom", FontFactory.getFont("arial")));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            
+              cell = new PdfPCell (new Phrase("Nom", FontFactory.getFont("arial")));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            
+              cell = new PdfPCell (new Phrase("Email", FontFactory.getFont("arial")));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+            
+              cell = new PdfPCell (new Phrase("Password", FontFactory.getFont("arial")));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(cell);
+        
+        
+        
+        
+        //////////////////////////////////////
+          while (rs.next()){
+               cell = new PdfPCell (new Phrase(rs.getString("prenom").toString(), FontFactory.getFont("arial")));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            
+            table.addCell(cell);
+            
+              cell = new PdfPCell (new Phrase(rs.getString("nom").toString(), FontFactory.getFont("arial")));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            
+            table.addCell(cell);
+            
+              cell = new PdfPCell (new Phrase(rs.getString("email").toString(), FontFactory.getFont("arial")));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            
+            table.addCell(cell);
+            
+              cell = new PdfPCell (new Phrase(rs.getString("mdp").toString(), FontFactory.getFont("arial")));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            
+            table.addCell(cell);
+               }
+               
+   ////////////////////////         
+           
+            
+            
+     
+        doc.add(table);
+            
+            
+            
+            doc.close();
+            Desktop.getDesktop().open(new File("C:\\Users\\fnmoh\\Desktop\\admin.pdf"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(M_Listadmin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(M_Listadmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         }
             
