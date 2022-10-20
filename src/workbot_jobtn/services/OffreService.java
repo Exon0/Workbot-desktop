@@ -11,9 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import workbot_jobtn.entites.Candidat;
+import workbot_jobtn.entites.Candidature;
+import workbot_jobtn.entites.DTOCandidature_Offre;
 import workbot_jobtn.entites.Offre;
 import workbot_jobtn.entites.TypeOffre;
 import workbot_jobtn.utils.MyDB;
@@ -35,8 +41,8 @@ public class OffreService implements ICrud_Interface<Offre>{
     public void ajouter(Offre O) throws SQLException {
        
             PreparedStatement prep = connection.prepareStatement("INSERT INTO `offre`( `titre`, `description`, `domaine`, `dateExpiration`, "
-                    + "  `id_Soc`, `modeTravail`, `typeOffre`, `salaire`, `typeContrat`, `dureeStage`, `typeStage`) "
-                    + " VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+                    + "  `id_Soc`, `modeTravail`, `typeOffre`, `salaire`, `typeContrat`, `dureeStage`, `typeStage`,`dateAjout`) "
+                    + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
             prep.setString(1, O.getTitre());
             prep.setString(2, O.getDescription());
             prep.setString(3, O.getDomaine());
@@ -48,7 +54,7 @@ public class OffreService implements ICrud_Interface<Offre>{
             prep.setString(9,O.getTypeContrat());
             prep.setString(10, O.getSalaire());    
             prep.setString(11,O.getTypeStage());
-            //prep.setString(12,O.getDateAjout());
+            prep.setString(12,new Date().toString());
            
             prep.executeUpdate();
 
@@ -106,9 +112,12 @@ public class OffreService implements ICrud_Interface<Offre>{
         List<Offre> listeOffre = new ArrayList<>();
         try {
                Statement=connection.createStatement();
+               
+
                ResultSet r=Statement.executeQuery("SELECT * from `offre`");
                while(r.next()){
                    int id = r.getInt("id");
+                   int nbCand=nbCandidature(id);
                    String titre= r.getString(2);
                    String desc= r.getString(4);
                    String domaine= r.getString(5);
@@ -117,9 +126,9 @@ public class OffreService implements ICrud_Interface<Offre>{
                    String modeTravail= r.getString(13);
                    String typeOffre= r.getString(16);
                    TypeOffre tp= TypeOffre.valueOf(typeOffre);
-                   //String dateAjout=r.getString(17);
-                   //Button bt=new Button("test");
-                   Offre O= new Offre(id, titre, desc, domaine, dateExp, modeTravail, id_soc, tp);
+                   String dateAjout=r.getString(17);
+                  // Button bt=new Button("test");
+                   Offre O= new Offre(id, titre, desc, domaine, dateExp, modeTravail, id_soc, tp,dateAjout,nbCand);
                    
                    listeOffre.add(O);
                    
@@ -204,5 +213,52 @@ public class OffreService implements ICrud_Interface<Offre>{
             Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+     
+    public ObservableList<DTOCandidature_Offre> candidatures_Offre(int id_off){
+        
+         ObservableList<DTOCandidature_Offre> candidatures = FXCollections.observableArrayList();
+        try {
+               Statement=connection.createStatement();
+               ResultSet r=Statement.executeQuery("SELECT c.id,u.email, u.nom ,c.dateAjout,c.noteTest,c.lettreMotivation,c.statut,o.titre "
+                       + "from `candidature` c join `offre` o on c.id_offre=o.id JOIN `utilisateur` u ON u.id=c.id_user where o.id="+id_off);
+               while(r.next()){
+                   DTOCandidature_Offre cand= new DTOCandidature_Offre();
+                   cand.setNomCandidat(r.getString("u.nom"));
+                   cand.setDateAjout(r.getString("c.dateAjout"));
+                   cand.setNoteTest(r.getString("c.noteTest"));
+                   cand.setLettreMotivation(r.getString("c.lettreMotivation"));
+                   cand.setStatut(r.getString("c.statut"));
+                   cand.setTitreOffre(r.getString("o.titre"));
+                   cand.setId_cand(r.getInt("c.id"));
+                   cand.setEmail(r.getString("u.email"));
+
+                   candidatures.add(cand);
+                   
+
+               }
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return candidatures;
+        
+    }
+    
+    public int nbCandidature(int idO){
+        int nb=-1;
+         try {
+               Statement=connection.createStatement();
+               ResultSet r=Statement.executeQuery("SELECT count(*) from `offre` o join `candidature` c on o.id=c.id_offre where o.id="+idO);
+               r.next();    
+               nb=r.getInt(1);
+                   return nb;
+                   
+
+               
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return nb;
+
     }
 }

@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -32,6 +35,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import workbot_jobtn.entites.Offre;
 import workbot_jobtn.services.OffreService;
 
@@ -73,9 +77,9 @@ public class OffreController implements Initializable {
     @FXML
     private TableColumn<Offre, String> typeTab;
     @FXML
-    private TableColumn<Offre, String> totCandTab;
+    private TableColumn<Offre, Integer> totCandTab;
     @FXML
-    private TableColumn<Offre,Button> btnsTab;
+    private TableColumn<Offre,String> btnsTab;
     
       OffreService offreService= new OffreService();
     
@@ -92,6 +96,10 @@ public class OffreController implements Initializable {
     private Button fb1;
     @FXML
     private Button fb2;
+    @FXML
+    private TableColumn<Offre, Integer> id_disabled;
+    
+    
 
     /**
      * Initializes the controller class.
@@ -100,10 +108,61 @@ public class OffreController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
        OffreTab.setCellValueFactory(new PropertyValueFactory<>("titre"));
-       dateTab.setCellValueFactory(new PropertyValueFactory<>("domaine"));
-       typeTab.setCellValueFactory(new PropertyValueFactory<>("modeTravail"));
-      // nbTab.setCellValueFactory(new PropertyValueFactory<Offre,String>("titre"));
-     
+       dateTab.setCellValueFactory(new PropertyValueFactory<>("typeOffre"));
+       typeTab.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
+      id_disabled.setCellValueFactory(new PropertyValueFactory<>("id"));
+      totCandTab.setCellValueFactory(new PropertyValueFactory<>("btn"));
+       // ObservableList<Offre> offreSelected=table.getSelectionModel().getSelectedItems();
+           Callback<TableColumn<Offre, String>, TableCell<Offre, String>> cellFactory
+                =                 //
+       (final TableColumn<Offre, String> param) -> {
+           final TableCell<Offre, String> cell = new TableCell<Offre, String>() {
+               
+                        final Button btn = new Button("Voir candidatures");
+
+               @Override
+               public void updateItem(String item, boolean empty) {
+                   super.updateItem(item, empty);
+                   if (empty) {
+                       setGraphic(null);
+                       setText(null);
+                   } else {
+                       btn.setOnAction(event -> {
+                           Offre offre = getTableView().getItems().get(getIndex());
+                           
+                           try {
+                              //  ResourceBundle resources = ResourceBundle.getBundle("Language/lang_pt");
+
+                    FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("CandOffre.fxml"));
+                    Parent root=fXMLLoader.load();
+                     CandOffreController liste=fXMLLoader.getController();
+                               System.out.println(offre.getId());
+                    liste.setId_offre(offre.getId());
+                                                   System.out.println("2");
+
+            
+                    Scene stage=new Scene(root);
+                      
+           
+            
+            Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(OffreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                           
+                       });
+                       setGraphic(btn);
+                       setText(null);
+                   }
+               }
+           };
+           return cell;
+       };
+              btnsTab.setCellFactory(cellFactory);
+
+      
         FilteredList<Offre> filteredList = new FilteredList<>(list, b -> true);
         
         inputsearch.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -127,10 +186,14 @@ public class OffreController implements Initializable {
 
     @FXML
     private void OnClicked_menuEvent(ActionEvent event) {
-    }
+      
+        }
+        
+    
 
     @FXML
     private void OnClicked_menuEntretiens(ActionEvent event) {
+        
     }
 
     @FXML
@@ -139,6 +202,7 @@ public class OffreController implements Initializable {
 
     @FXML
     private void OnClick_UserIcon(ActionEvent event) {
+        
     }
 
     @FXML
@@ -161,16 +225,20 @@ public class OffreController implements Initializable {
     
     @FXML
     private void supprimerOffre(ActionEvent event) {
+                ObservableList<Offre> offreSelected=table.getSelectionModel().getSelectedItems();
+
+                if(!offreSelected.isEmpty()){
+
          Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
             Atc.setHeaderText("Alert");
             Atc.setContentText("Confirmerla suppression");
            Optional<ButtonType> result= Atc.showAndWait();
                if(result.get()== ButtonType.OK){
-        ObservableList<Offre> offreSelected=table.getSelectionModel().getSelectedItems();
+                  
         offreService.delete(offreSelected.get(0));
             ObservableList<Offre> list = FXCollections.observableArrayList(offreService.readAll());
     OffreTab.setCellValueFactory(new PropertyValueFactory<>("titre"));
-       dateTab.setCellValueFactory(new PropertyValueFactory<>("domaine"));
+       dateTab.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
        typeTab.setCellValueFactory(new PropertyValueFactory<>("modeTravail"));
       // nbTab.setCellValueFactory(new PropertyValueFactory<Offre,String>("titre"));
      
@@ -191,7 +259,12 @@ public class OffreController implements Initializable {
         table.setItems(sortedList);
                }
                else
-                   Atc.close();
+                   Atc.close();}
+                else{
+                     Alert alert=new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Alert");
+            alert.setContentText("Vous devez selectionnez une offre!!");
+           Optional<ButtonType> result= alert.showAndWait();}
         
     }
 
@@ -209,5 +282,7 @@ public class OffreController implements Initializable {
     @FXML
     private void Onclicked_fb(ActionEvent event) {
     }
+
+
     
 }

@@ -7,6 +7,7 @@ package workbot_jobtn.entites;
 import static java.lang.String.valueOf;
 import java.util.Date;
 import java.util.Objects;
+import javafx.scene.control.Button;
 
 /**
  *
@@ -47,6 +48,28 @@ public class Offre {
     private TypeOffre typeOffre;
     
     private String dateAjout;
+    
+    private int btn;
+
+    public int getBtn() {
+        return btn;
+    }
+
+    public void setBtn(int btn) {
+        this.btn = btn;
+    }
+
+    public Offre(int id, String titre, String desc, String domaine, String dateExp, String modeTravail, int id_soc, TypeOffre tp, String dateAjout, int btn) {
+        this.id=id;
+        this.titre = titre;
+        this.description = desc;
+        this.domaine = domaine;
+        this.dateExpiration = dateExp;
+        this.modeTravail = modeTravail;
+        this.id_soc = id_soc;
+        this.typeOffre = tp;
+        this.dateAjout=dateAjout; 
+        this.btn=btn;}
 
     public String getDateAjout() {
         return dateAjout;
@@ -69,6 +92,7 @@ public class Offre {
         this.modeTravail = modeTravail;
         this.id_soc = id_soc;
         this.typeOffre = typeOffre;
+        //this.dateAjout=new Date().toString();
     }
     
    
@@ -85,7 +109,8 @@ public class Offre {
         this.lieu = lieu;
         this.id_soc = id_soc;
         this.typeOffre = typeOffre;
-        this.dateAjout=new Date().toString(); }  
+       // this.dateAjout=new Date().toString(); 
+        }  
         
        
         //Offre de stage
@@ -100,7 +125,8 @@ public class Offre {
         this.lieu = lieu;
         this.id_soc = id_soc;
         this.typeOffre = typeOffre;
-        this.dateAjout=new Date().toString(); } 
+        //this.dateAjout=new Date().toString(); 
+      } 
     
     //Offre d'alternance
           if("Freelancer".equals(valueOf(typeOffre))){
@@ -114,7 +140,13 @@ public class Offre {
         this.lieu = lieu;
         this.id_soc = id_soc;
         this.typeOffre = typeOffre;
-        this.dateAjout=new Date().toString(); } }
+        //this.dateAjout=new Date().toString(); 
+          }
+          }
+
+  
+
+    
    
      
 
