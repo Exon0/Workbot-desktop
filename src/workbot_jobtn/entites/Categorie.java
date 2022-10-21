@@ -5,6 +5,9 @@
 package workbot_jobtn.entites;
 
 import java.util.Objects;
+import workbot_jobtn.entites.*;
+import static workbot_jobtn.entites.NomCategorie.*;
+
 
 /**
  *
@@ -27,6 +30,14 @@ public class Categorie {
 
     public Categorie(NomCategorie nomCategorie) {
         this.nomCategorie = nomCategorie;
+    }
+
+    public Categorie(int id, String nomCategorie) {
+        
+        this.id = id;
+        if (nomCategorie.equals("Reclamation")){this.nomCategorie = Reclamation;}
+        else if (nomCategorie.equals("Avis")){this.nomCategorie = Avis;}
+        
     }
 
     public int getId() {
@@ -74,6 +85,10 @@ public class Categorie {
     @Override
     public String toString() {
         return "Categorie{" + "id=" + id + ", nomCategorie=" + nomCategorie + '}';
+    }
+
+    public void setNomCategorie(String reclamation) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

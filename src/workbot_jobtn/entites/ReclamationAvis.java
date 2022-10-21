@@ -55,6 +55,14 @@ public class ReclamationAvis {
         this.evennement = evennement;
     }
 
+    public ReclamationAvis(int id, String objet, Date date, String description,Categorie categorie) {
+        this.id = id;
+        this.objet = objet;
+        this.date = date;
+        this.description = description;
+        this.categorie = categorie;
+    }
+
     public int getId() {
         return id;
     }

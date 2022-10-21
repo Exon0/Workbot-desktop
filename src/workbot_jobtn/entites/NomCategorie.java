@@ -9,6 +9,14 @@ package workbot_jobtn.entites;
  * @author youcef
  */
 public enum NomCategorie {
-    Reclamation,Avis
-    
+    Reclamation,Avis;
+
+    public static NomCategorie getReclamation() {
+        return Reclamation;
+    }
+
+    public static NomCategorie getAvis() {
+        return Avis;
+    }
+
 }
