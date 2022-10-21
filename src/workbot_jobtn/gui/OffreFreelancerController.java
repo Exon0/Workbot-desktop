@@ -247,6 +247,17 @@ OffreService offerservice=new OffreService();
            
                      Offre o= new Offre( titre,  duree,  desc,  domaine,  dateExp,  renumeration, modeTravail, lieu,  id_soc,  TypeOffre.Freelancer) ;
 
+                          List<Offre> listOffre= offerservice.readAll();
+                   for(Offre o1:listOffre){
+                   if((o1.getTitre().equals(o.getTitre())) && (o1.getDescription().equals(o.getDescription())))
+                   {
+                        Alert error=new Alert(Alert.AlertType.ERROR);
+                    error.setHeaderText("ERREUR");
+                    error.setContentText("Cette Offre existe deja");
+                    error.showAndWait();
+                    return;
+                   }
+                   }
           Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
             Atc.setHeaderText("Alert");
             Atc.setContentText("Verifier bien les informations saisi, vous ne pouvez pas revenir en arriére!! Cliquez OK pour passer");

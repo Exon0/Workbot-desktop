@@ -24,7 +24,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -37,7 +36,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javax.swing.JOptionPane;
 import workbot_jobtn.entites.Offre;
 import workbot_jobtn.entites.Test;
 import workbot_jobtn.services.OffreService;
@@ -48,7 +46,7 @@ import workbot_jobtn.services.TestService;
  *
  * @author Exon
  */
-public class AjouterTestController implements Initializable {
+public class ModifTestController implements Initializable {
 
     @FXML
     private HBox rootAjoutOffre;
@@ -79,6 +77,8 @@ public class AjouterTestController implements Initializable {
     @FXML
     private Button settings;
     @FXML
+    private Pane root;
+    @FXML
     private Pane slide1;
     @FXML
     private Button btnSuivantStage;
@@ -87,12 +87,38 @@ public class AjouterTestController implements Initializable {
     @FXML
     private Button btnFile;
     @FXML
-    private Pane root;
+    private TextField inputUrl;
+    @FXML
+    private Button supprimerTest;
+    @FXML
+    private Button btnRetour;
+    @FXML
+    private Label changeme;
     @FXML
     private Label id_offre;
+    int idtest;
+         OffreService offreService=new OffreService();
     @FXML
-    private TextField inputUrl;
+    private Pane root12;
 
+      void setId_offre(Integer id) {
+          System.out.println("first");
+              Offre O1=offreService.selectById(id);
+                        System.out.println("second");
+        id_offre.setText(String.valueOf(O1.getId()));
+          idtest=O1.getId_test();
+              if(O1.getId_test()== 0)
+              {
+                                    changeme.setText("Ajoutez un test a votre offre! Ca vous permet de faire une préselection des candidats!");
+
+              }
+              else
+                                changeme.setText("Votre Offre contient deja un test Modifie le en ajoutant un test ou vous pouvez le supprimer simplement");
+
+              
+
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -103,77 +129,32 @@ public class AjouterTestController implements Initializable {
 
     @FXML
     private void onclick_dash(ActionEvent event) throws IOException {
-       Alert Atc=new Alert(AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-                    int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
+       
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
         Scene stage=new Scene(fXMLLoader);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(stage);
         window.show();}
-            else
-                Atc.close();
-    }
+        
     
-    OffreService offreservice=new OffreService();
+
     @FXML
     private void onClicked_menuOffre(ActionEvent event) throws IOException {
-        
-             Alert Atc=new Alert(AlertType.CONFIRMATION);
-             Atc.setHeaderText("Alert");
-             Atc.setContentText("Votre avancement sera perdu");
-             Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-                     int id= Integer.parseInt(id_offre.getText());
-                     offreservice.deleteById(id);
+           
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
         Scene stage=new Scene(fXMLLoader);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(stage);
         window.show();}
-            else
-                Atc.close();
+         
+    
+
+    @FXML
+    private void OnClicked_menuEvent(ActionEvent event) {
     }
 
     @FXML
-    private void OnClicked_menuEvent(ActionEvent event) throws IOException {
-         Alert Atc=new Alert(AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-                   int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
-    }
-
-    @FXML
-    private void OnClicked_menuEntretiens(ActionEvent event) throws IOException {
-         Alert Atc=new Alert(AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-                   int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
-        
+    private void OnClicked_menuEntretiens(ActionEvent event) {
     }
 
     @FXML
@@ -191,7 +172,8 @@ public class AjouterTestController implements Initializable {
     @FXML
     private void OnClick_settings(ActionEvent event) {
     }
-
+    
+    TestService testservice=new TestService();
 
     @FXML
     private void onclickSuivantStage(ActionEvent event) throws IOException {
@@ -199,59 +181,107 @@ public class AjouterTestController implements Initializable {
          if (SelectedFile != null && inputUrl.getText().length()==0){
             //choice n'existe plus ,il afut l'enlever et remplacer par methode crud
             path=SelectedFile.getAbsolutePath();
-            
-           
-            
         }
         else if(inputUrl.getText().length()!=0 && SelectedFile == null){
                 path=inputUrl.getText();
         }
-        else{
-         Alert Atc=new Alert(AlertType.WARNING);
+        else if(inputUrl.getText().length()!=0 && SelectedFile != null) {
+         Alert Atc=new Alert(Alert.AlertType.WARNING);
             Atc.setHeaderText("Alert");
             Atc.setContentText("vous ne pouvez pas deposer un ficher et mettre un url en meme temps");
            Atc.showAndWait();
             return;}
-        try {
-            Offre O1=offreService.readLast();
+           else  {
+         Alert Atc=new Alert(Alert.AlertType.WARNING);
+            Atc.setHeaderText("Alert");
+            Atc.setContentText("Vous devez remplir un champ");
+           Atc.showAndWait();
+            return;}
+               try {
+            Offre O1=offreService.selectById(Integer.parseInt(id_offre.getText()));
+                   System.out.println(id_offre.getText());
+                                      System.out.println(O1.getTitre());
+                                                         System.out.println("modif test " +O1.getId_soc());
+
+
             Test t=new Test(O1.getTitre(), path);
             t.setId_soc(1);
             testservice.ajouter(t);
             O1.setId_test(testservice.selectLast().getId());
+                   System.out.println(O1.getId_soc());
             offreService.update(O1);
             
-            FXMLLoader fxml=new  FXMLLoader(getClass().getResource("SuccesOffre.fxml"));
+            FXMLLoader fxml=new  FXMLLoader(getClass().getResource("SuccesTest.fxml"));
             Parent root1 = fxml.load();
             Scene scene = btnSuivantStage.getScene();
             root1.translateYProperty().set(scene.getHeight());
-            root.getChildren().add(root1);
+            root12.getChildren().add(root1);
             
             Timeline timeline = new Timeline();
             KeyValue kv = new KeyValue(root1.translateYProperty(),0, Interpolator.EASE_IN);
             KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
             timeline.getKeyFrames().add(kf);
-            timeline.setOnFinished(event1 -> root.getChildren().remove(slide1));
+            timeline.setOnFinished(event1 -> root12.getChildren().remove(slide1));
             timeline.play();
         } catch (SQLException ex) {
             Logger.getLogger(AjouterTestController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    OffreService offreService=new OffreService();
-    TestService testservice=new TestService();
-    
-            String path="";
+  String path="";
             File SelectedFile;
     @FXML
-    private void Onclic_btnFile(ActionEvent event) throws SQLException {
-        FileChooser fc = new FileChooser();
+    private void Onclic_btnFile(ActionEvent event) {
+                FileChooser fc = new FileChooser();
          SelectedFile =fc.showOpenDialog(null);
         if (SelectedFile != null ){
             path=SelectedFile.getAbsolutePath();
    
     }
     }
-        public void  setIdOffre(String id){
-          
-            id_offre.setText(id);   
-    }
+
+    @FXML
+    private void OnclickSuppTest(ActionEvent event) throws SQLException, IOException {
+        if(idtest == 0){ Alert Atc=new Alert(Alert.AlertType.ERROR);
+            Atc.setHeaderText("Erreur");
+            Atc.setContentText("Aucun test a supprimer");
+                    Atc.showAndWait();
+                    return;}
+        else{
+        Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
+            Atc.setHeaderText("Confirmation");
+            Atc.setContentText("êtes vous sur de vouloir supprimer le test?");
+       Optional<ButtonType> result= Atc.showAndWait();
+                       if(result.get()== ButtonType.OK){
+              Offre O1=offreService.selectById(Integer.parseInt(id_offre.getText()));
+                           System.out.println(O1.getId_test());
+                    Test t=    testservice.selectById(O1.getId_test());
+                           System.out.println(t.getId());
+                           if(testservice.delete(t))
+                           {  Alert a=new Alert(Alert.AlertType.INFORMATION);
+            a.setHeaderText("Succes");
+            a.setContentText("Votre Offre ne contient plus de test");
+                           a.showAndWait();
+                             Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+        Scene stage=new Scene(fXMLLoader);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();}
+                           
+                       }        
+                       else 
+                           Atc.close();
+        
+    }}
+
+    @FXML
+    private void onclickRetour(ActionEvent event) throws IOException {
+       
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+        Scene stage=new Scene(fXMLLoader);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();}
+
+
+  
 }

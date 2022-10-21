@@ -50,6 +50,69 @@ public class Offre {
     private String dateAjout;
     
     private int btn;
+    
+
+    public Offre(int id1, String titre, String Salaire, String desc, String domaine, String dateExp , String lieu, String modeTravail, String typeContrat,String tp) {
+     //Offre d'emlpoi
+     if(tp.equals("Emploi")){
+       this.id=id1;
+        this.titre = titre;
+        this.Salaire = Salaire;
+        this.description = desc;
+        this.domaine = domaine;
+        this.dateExpiration = dateExp;
+        this.typeContrat = typeContrat;
+        this.modeTravail = modeTravail;
+        this.lieu = lieu;
+        this.typeOffre = TypeOffre.Emploi;}
+     
+         if(tp.equals("Stage")){
+       this.id=id1;
+        this.titre = titre;
+        this.dureeStage = Salaire;
+        this.description = desc;
+        this.domaine = domaine;
+        this.dateExpiration = dateExp;
+        this.typeStage = typeContrat;
+        this.modeTravail = modeTravail;
+        this.lieu = lieu;
+        this.typeOffre = TypeOffre.Emploi;}
+         
+                  if(tp.equals("Freelancer")){
+       this.id=id1;
+        this.titre = titre;
+        this.dureeStage = Salaire;
+        this.description = desc;
+        this.domaine = domaine;
+        this.dateExpiration = dateExp;
+        this.Salaire = typeContrat;
+        this.modeTravail = modeTravail;
+        this.lieu = lieu;
+        this.typeOffre = TypeOffre.Emploi;}
+
+        
+        
+    }
+
+    public Offre(int id1, String titre, String Salaire, String desc, String domaine, String dateExp, String dureeStage, String typeStage, String lieu, int id_test, String dateAjout, String modeTravail, String duree, String typeContrat, int id_soc, String tp) {
+               this.id=id1;
+        this.titre = titre;
+        this.Salaire = Salaire;
+        this.description = desc;
+        this.domaine = domaine;
+        this.dateExpiration = dateExp;
+        this.typeContrat = typeContrat;
+        this.dureeStage=dureeStage;
+        this.typeStage=typeStage;
+        this.modeTravail = modeTravail;
+        this.id_soc=id_soc;
+        this.id_test=id_test;
+        this.lieu = lieu;
+        this.dateAjout=dateAjout;
+        this.typeOffre = TypeOffre.valueOf(tp);
+    }
+
+  
 
     public int getBtn() {
         return btn;

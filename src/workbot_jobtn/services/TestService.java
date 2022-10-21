@@ -72,6 +72,17 @@ public class TestService implements ICrud_Interface<Test>{
                         return true;
         } catch (SQLException ex) {
                         return false;        }    }
+    
+    
+            public boolean deleteById(int id) {
+        try {
+            PreparedStatement prep = connection.prepareStatement("DELETE FROM `test` WHERE id=?");
+            prep.setInt(1, id);
+                        prep.executeUpdate();
+                        return true;
+        } catch (SQLException ex) {
+                        return false;        }
+    }
 
     @Override
     public List<Test> readAll() throws SQLException {
@@ -117,7 +128,13 @@ public class TestService implements ICrud_Interface<Test>{
         }
         return null;    }
 
-
+public Test selectById(int id) throws SQLException{
+    Statement=connection.createStatement();
+            ResultSet r=Statement.executeQuery("SELECT * from `test` where id="+id);
+            r.next();
+            Test t=new Test(id, r.getString("titre"), r.getString("lien"));
+            return t;
+}
 
     
 }

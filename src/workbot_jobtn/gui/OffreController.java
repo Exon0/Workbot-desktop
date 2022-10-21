@@ -5,6 +5,7 @@
 package workbot_jobtn.gui;
 
 import java.io.IOException;
+import static java.lang.String.valueOf;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -98,6 +99,8 @@ public class OffreController implements Initializable {
     private Button fb2;
     @FXML
     private TableColumn<Offre, Integer> id_disabled;
+    @FXML
+    private TableColumn<Offre, String> testtab;
     
     
 
@@ -108,10 +111,12 @@ public class OffreController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
        OffreTab.setCellValueFactory(new PropertyValueFactory<>("titre"));
-       dateTab.setCellValueFactory(new PropertyValueFactory<>("typeOffre"));
-       typeTab.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
+       dateTab.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
+       typeTab.setCellValueFactory(new PropertyValueFactory<>("typeOffre"));
       id_disabled.setCellValueFactory(new PropertyValueFactory<>("id"));
       totCandTab.setCellValueFactory(new PropertyValueFactory<>("btn"));
+            testtab.setCellValueFactory(new PropertyValueFactory<>("btn2"));
+
        // ObservableList<Offre> offreSelected=table.getSelectionModel().getSelectedItems();
            Callback<TableColumn<Offre, String>, TableCell<Offre, String>> cellFactory
                 =                 //
@@ -161,6 +166,58 @@ public class OffreController implements Initializable {
            return cell;
        };
               btnsTab.setCellFactory(cellFactory);
+              
+              
+              
+               Callback<TableColumn<Offre, String>, TableCell<Offre, String>> cellFactory2
+                =                 //
+       (final TableColumn<Offre, String> param) -> {
+           final TableCell<Offre, String> cell = new TableCell<Offre, String>() {
+               
+                        final Button btn2 = new Button("Modifier test");
+
+               @Override
+               public void updateItem(String item, boolean empty) {
+                   super.updateItem(item, empty);
+                   if (empty) {
+                       setGraphic(null);
+                       setText(null);
+                   } else {
+                       btn2.setOnAction(event -> {
+                           Offre offre = getTableView().getItems().get(getIndex());
+                           
+                           try {
+                              //  ResourceBundle resources = ResourceBundle.getBundle("Language/lang_pt");
+
+                    FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("ModifTest.fxml"));
+                    Parent root=fXMLLoader.load();
+                     ModifTestController liste1=fXMLLoader.getController();
+                               System.out.println(offre.getId());
+                    liste1.setId_offre(offre.getId());
+                                                   System.out.println("2");
+
+            
+                    Scene stage=new Scene(root);
+                      
+           
+            
+            Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } catch (IOException ex) {
+            Logger.getLogger(OffreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                           
+                       });
+                       setGraphic(btn2);
+                       setText(null);
+                   }
+               }
+           };
+           return cell;
+       };
+              testtab.setCellFactory(cellFactory2);
+
 
       
         FilteredList<Offre> filteredList = new FilteredList<>(list, b -> true);
@@ -219,7 +276,49 @@ public class OffreController implements Initializable {
     }
 
     @FXML
-    private void modifierOffre(ActionEvent event) {
+    private void modifierOffre(ActionEvent event) throws IOException {
+           ObservableList<Offre> offreSelected=table.getSelectionModel().getSelectedItems();
+           String type = valueOf(offreSelected.get(0).getTypeOffre());
+           if("Emploi".equals(type)){
+    FXMLLoader loader=new FXMLLoader(getClass().getResource("ModifierOffreEmploi.fxml"));
+         Parent root=loader.load();
+                 ModifierOffreEmploiController modifEmploi=loader.getController();
+            
+               System.out.println("id : " +offreSelected.get(0).getId());
+            modifEmploi.setId(offreSelected.get(0).getId());
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+        }
+                      if("Stage".equals(type)){
+                          
+                           FXMLLoader loader=new FXMLLoader(getClass().getResource("ModifierOffreStage.fxml"));
+         Parent root=loader.load();
+                 ModifierOffreStageController modifStage=loader.getController();
+            
+               System.out.println("id : " +offreSelected.get(0).getId());
+            modifStage.setId(offreSelected.get(0).getId());
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+                      }
+                      
+                        if("Freelancer".equals(type)){
+                          
+                           FXMLLoader loader=new FXMLLoader(getClass().getResource("ModifierOffreFreelancer.fxml"));
+         Parent root=loader.load();
+                 ModifierOffreFreelancerController modifFreelancer=loader.getController();
+            
+               System.out.println("id : " +offreSelected.get(0).getId());
+            modifFreelancer.setId(offreSelected.get(0).getId());
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+                      }
+      
     }
     
     

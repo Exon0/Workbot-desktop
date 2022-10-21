@@ -4,6 +4,7 @@
  */
 package workbot_jobtn.services;
 
+import static java.lang.String.valueOf;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -41,8 +42,8 @@ public class OffreService implements ICrud_Interface<Offre>{
     public void ajouter(Offre O) throws SQLException {
        
             PreparedStatement prep = connection.prepareStatement("INSERT INTO `offre`( `titre`, `description`, `domaine`, `dateExpiration`, "
-                    + "  `id_Soc`, `modeTravail`, `typeOffre`, `salaire`, `typeContrat`, `dureeStage`, `typeStage`,`dateAjout`) "
-                    + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+                    + "  `id_Soc`, `modeTravail`, `typeOffre`, `salaire`, `typeContrat`, `dureeStage`, `typeStage`,`dateAjout`,`lieu`) "
+                    + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
             prep.setString(1, O.getTitre());
             prep.setString(2, O.getDescription());
             prep.setString(3, O.getDomaine());
@@ -52,9 +53,10 @@ public class OffreService implements ICrud_Interface<Offre>{
             prep.setString(7,O.getTypeOffre().name());
             prep.setString(8, O.getSalaire());    
             prep.setString(9,O.getTypeContrat());
-            prep.setString(10, O.getSalaire());    
+            prep.setString(10, O.getDureeStage());    
             prep.setString(11,O.getTypeStage());
             prep.setString(12,new Date().toString());
+            prep.setString(13, O.getLieu());
            
             prep.executeUpdate();
 
@@ -73,14 +75,85 @@ public class OffreService implements ICrud_Interface<Offre>{
             prep.setInt(5, O.getId_soc());
             prep.setString(6, O.getModeTravail());    
             prep.setString(7,O.getTypeOffre().name());
+            
                         prep.setInt(8,O.getId_test());
 
+            prep.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+           
+        }
+         return false;
+    }
+      public boolean updateEmploi(Offre O){
+        try {
+
+            PreparedStatement prep = connection.prepareStatement("UPDATE `offre` SET `titre`=?,`description`=?,`dateExpiration`=?,`modeTravail`=?, `typeContrat`=?,`lieu`=?,`salaire`=? WHERE id=?");
+
+            prep.setInt(8, O.getId());
+            prep.setString(1, O.getTitre());
+            prep.setString(2, O.getDescription());
+            prep.setString(3, O.getDateExpiration());
+            prep.setString(4, O.getModeTravail());   
+            prep.setString(5, O.getTypeContrat());
+            prep.setString(6, O.getLieu());
+             prep.setString(7, O.getSalaire());
+
+
+            
             prep.executeUpdate();
             return true;
         } catch (SQLException ex) {
             return false;
         }
     }
+      
+       public boolean updateStage(Offre O){
+        try {
+
+            PreparedStatement prep = connection.prepareStatement("UPDATE `offre` SET `titre`=?,`description`=?,`dateExpiration`=?,`modeTravail`=?, `typeStage`=?,`lieu`=?,`dureeStage`=? WHERE id=?");
+
+            prep.setInt(8, O.getId());
+            prep.setString(1, O.getTitre());
+            prep.setString(2, O.getDescription());
+            prep.setString(3, O.getDateExpiration());
+            prep.setString(4, O.getModeTravail());   
+            prep.setString(5, O.getTypeStage());
+            prep.setString(6, O.getLieu());
+                        prep.setString(7, O.getDureeStage());
+
+
+            
+            prep.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            
+        }
+        return false;
+    }
+       
+         public boolean updateFreelancer(Offre O) {
+             try {
+
+            PreparedStatement prep = connection.prepareStatement("UPDATE `offre` SET `titre`=?,`description`=?,`dateExpiration`=?,`modeTravail`=?, `salaire`=?,`lieu`=?,`dureeStage`=? WHERE id=?");
+
+            prep.setInt(8, O.getId());
+            prep.setString(1, O.getTitre());
+            prep.setString(2, O.getDescription());
+            prep.setString(3, O.getDateExpiration());
+            prep.setString(4, O.getModeTravail());   
+            prep.setString(5, O.getSalaire());
+            prep.setString(6, O.getLieu());
+                        prep.setString(7, O.getDureeStage());
+
+
+            
+            prep.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            
+        }   return false; }
+
 
     @Override
     public boolean delete(Offre O) {
@@ -102,6 +175,8 @@ public class OffreService implements ICrud_Interface<Offre>{
         } catch (SQLException ex) {
                         return false;        }
     }
+        
+ 
 
     /**
      *
@@ -139,55 +214,46 @@ public class OffreService implements ICrud_Interface<Offre>{
         }
         return listeOffre;
     }
-       /* public Offre selectById(int id){
+        public Offre selectById(int id){
         try {
             Statement=connection.createStatement();
-            ResultSet r=Statement.executeQuery("SELECT * from `offre` where id=?");
-            int id1 = r.getInt("id");
-            String titre= r.getString(2);
-            String desc= r.getString(4);
-            String domaine= r.getString(5);
-            String dateExp= r.getString(6);
-            int id_soc= r.getInt(12);
-            String modeTravail= r.getString(13);
-            String typeOffre= r.getString(16);
-            TypeOffre tp= TypeOffre.valueOf(typeOffre);
-            Offre O= new Offre(id1, titre, desc, domaine, dateExp, modeTravail, id_soc, tp);
+            ResultSet r=Statement.executeQuery("SELECT * from `offre` where id="+id);
+                      
+                    r.next();
+            int id1 = r.getInt(1);
+            System.out.println("hello"+id);
+            String titre= r.getString("titre");
+            String Salaire= r.getString("salaire");
+            String desc= r.getString("description");
+            String domaine= r.getString("domaine");
+            String dateExp= r.getString("dateExpiration");
+            System.out.println("ici1 "+dateExp);
+            String duree= r.getString("dureeStage");
+
+            //String dureeStage= r.getString("lieu");
+            String typeStage= r.getString("typeStage");
+            
+            System.out.println("ici "+duree);
+            
+            String typeContrat= r.getString("typeContrat");
+            int id_soc= r.getInt("id_Soc");
+            System.out.println("selectby  " +id_soc);
+            String modeTravail= r.getString("modeTravail");
+            String lieu= r.getString("lieu");  
+            int id_test=r.getInt("id_test");
+            String typeOffre= r.getString("typeOffre");
+            String dateAjout= r.getString("dateAjout");  
+            String tp= valueOf(typeOffre);
+            Offre O= new Offre(id1, titre,Salaire, desc, domaine, dateExp,duree,typeStage,lieu,id_test,dateAjout, modeTravail,duree,typeContrat, id_soc, tp);
             
             return O;
         } catch (SQLException ex) {
             Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-        }*/
-    /* public List<Offre> readLast() {
-        List<Offre> listeOffre = new ArrayList<>();
-        try {
-               Statement=connection.createStatement();
-               ResultSet r=Statement.executeQuery("SELECT * from `offre` where id_soc=1 ORDER BY id DESC LIMIT 1");
-               while(r.next()){
-                   int id = r.getInt("id");
-                   String titre= r.getString(2);
-                   String desc= r.getString(4);
-                   String domaine= r.getString(5);
-                   String dateExp= r.getString(6);
-                   int id_soc= r.getInt(12);
-                   String modeTravail= r.getString(13);
-                   String typeOffre= r.getString(16);
-                   TypeOffre tp= TypeOffre.valueOf(typeOffre);
-                   //String dateAjout=r.getString(17);
-                   //Button bt=new Button("test");
-                   Offre O= new Offre(id, titre, desc, domaine, dateExp, modeTravail, id_soc, tp);
-                   
-                   listeOffre.add(O);
-                   
-
-               }
-        } catch (SQLException ex) {
-            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listeOffre;
-    }*/
+   
+    
      public Offre readLast() {
         try {
                Statement=connection.createStatement();
@@ -261,4 +327,6 @@ public class OffreService implements ICrud_Interface<Offre>{
          return nb;
 
     }
+
+  
 }

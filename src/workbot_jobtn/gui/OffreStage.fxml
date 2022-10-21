@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox fx:id="rootAjoutOffre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="900.0" stylesheets="@homesociete.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="workbot_jobtn.gui.OffreStageController">
+<HBox fx:id="rootAjoutOffre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="900.0" stylesheets="@homesociete.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workbot_jobtn.gui.OffreStageController">
    <children>
       <VBox fx:id="menu" prefHeight="572.0" prefWidth="192.0">
          <children>
@@ -184,7 +184,7 @@
                   <Label layoutX="335.0" layoutY="223.0" prefHeight="33.0" prefWidth="89.0" text="Description *" />
                   <DatePicker fx:id="input_calendrier" layoutX="57.0" layoutY="319.0" prefHeight="33.0" prefWidth="204.0" />
                   <Label layoutX="59.0" layoutY="288.0" prefHeight="33.0" prefWidth="132.0" text="Date d'expiration *" />
-                  <Button fx:id="btn_retourStage" layoutX="27.0" layoutY="383.0" mnemonicParsing="false" onAction="#OnclickRetour" prefHeight="25.0" prefWidth="98.0" styleClass="btnAjouter" text="Suivant" />
+                  <Button fx:id="btn_retourStage" layoutX="27.0" layoutY="383.0" mnemonicParsing="false" onAction="#OnclickRetour" prefHeight="25.0" prefWidth="98.0" styleClass="btnAjouter" text="Retour" />
                </children>
             </Pane>
          </children>
