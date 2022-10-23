@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import workbot_jobtn.utils.Mail;
 
 /**
  * FXML Controller class
@@ -40,7 +41,9 @@ public class SuccesOffreController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+             Mail mail=new Mail();
+                        mail.envoyer();
+  
     }    
 
     @FXML
@@ -50,6 +53,7 @@ public class SuccesOffreController implements Initializable {
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(stage);
         window.show();
+      
     }
 
     @FXML

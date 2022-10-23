@@ -34,6 +34,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import workbot_jobtn.services.OffreService;
+import workbot_jobtn.utils.Mail;
 
 /**
  * FXML Controller class
@@ -215,7 +216,7 @@ public class TestController implements Initializable {
         }
                if (choice.getText().equals("Freelancer"))
       {
-                 Parent fXMLLoader = FXMLLoader.load(getClass().getResource("OffreFreelancer.fxml"));
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("OffreFreelancer.fxml"));
         Scene stage=new Scene(fXMLLoader);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(stage);
@@ -241,6 +242,7 @@ public class TestController implements Initializable {
                     }
               else{
                     FXMLLoader fxml=new  FXMLLoader(getClass().getResource("SuccesOffre.fxml"));
+                    
                     Parent root1 = fxml.load();
 
                     Scene scene = btnSuivantStage.getScene();

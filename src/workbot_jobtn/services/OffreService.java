@@ -154,6 +154,24 @@ public class OffreService implements ICrud_Interface<Offre>{
             
         }   return false; }
 
+         
+          public boolean updateNoteTest(DTOCandidature_Offre c) {
+             try {
+
+            PreparedStatement prep = connection.prepareStatement("UPDATE `candidature` SET `noteTest`=? WHERE id=?");
+
+            prep.setInt(2, c.getId_cand());
+            prep.setString(1, c.getNoteTest());
+         
+
+
+            
+            prep.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            
+        }   return false; }
+
 
     @Override
     public boolean delete(Offre O) {
@@ -286,7 +304,7 @@ public class OffreService implements ICrud_Interface<Offre>{
          ObservableList<DTOCandidature_Offre> candidatures = FXCollections.observableArrayList();
         try {
                Statement=connection.createStatement();
-               ResultSet r=Statement.executeQuery("SELECT c.id,u.email, u.nom ,c.dateAjout,c.noteTest,c.lettreMotivation,c.statut,o.titre "
+               ResultSet r=Statement.executeQuery("SELECT u.tel,o.id,o.salaire,u.id,c.id,u.email, u.nom ,c.dateAjout,c.noteTest,c.lettreMotivation,c.statut,o.titre "
                        + "from `candidature` c join `offre` o on c.id_offre=o.id JOIN `utilisateur` u ON u.id=c.id_user where o.id="+id_off);
                while(r.next()){
                    DTOCandidature_Offre cand= new DTOCandidature_Offre();
@@ -298,6 +316,12 @@ public class OffreService implements ICrud_Interface<Offre>{
                    cand.setTitreOffre(r.getString("o.titre"));
                    cand.setId_cand(r.getInt("c.id"));
                    cand.setEmail(r.getString("u.email"));
+                    cand.setId_user(r.getInt("u.id"));
+                    cand.setSalaire(r.getString("o.salaire"));
+                    cand.setId_off(r.getInt("o.id"));
+                    cand.setSalaire(r.getString("u.tel"));
+
+                   
 
                    candidatures.add(cand);
                    
@@ -327,6 +351,9 @@ public class OffreService implements ICrud_Interface<Offre>{
          return nb;
 
     }
+    
+    
+    
 
   
 }

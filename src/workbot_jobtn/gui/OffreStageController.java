@@ -285,9 +285,9 @@ public class OffreStageController implements Initializable {
                    window.show();
                     } catch (SQLException ex) {
                     Alert error=new Alert(Alert.AlertType.WARNING);
-                    Atc.setHeaderText("Alert");
-                    Atc.setContentText("erreur");
-                    Atc.showAndWait();
+                    error.setHeaderText("Alert");
+                    error.setContentText("erreur");
+                    error.showAndWait();
                 }
                     
            }

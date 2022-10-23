@@ -4,6 +4,9 @@
  */
 package workbot_jobtn.gui;
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -210,7 +213,15 @@ public class ModifTestController implements Initializable {
             O1.setId_test(testservice.selectLast().getId());
                    System.out.println(O1.getId_soc());
             offreService.update(O1);
-            
+             String ACCOUNT_SID = "AC915cfd330fe7a8b2cacdd031af356e39";
+                            String AUTH_TOKEN = "7f567885b19a9f20b7ceada26b115be3";
+                            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+                            String titre=O1.getTitre();
+                            //num Mohsen : +21626662264
+                            Message message = Message.creator(new PhoneNumber(""),
+                                                                new PhoneNumber("+13854062174"), 
+                               "Vous avez modifier avec succes le test de l'offre : "+titre).create();
+                               System.out.println(message.getSid());
             FXMLLoader fxml=new  FXMLLoader(getClass().getResource("SuccesTest.fxml"));
             Parent root1 = fxml.load();
             Scene scene = btnSuivantStage.getScene();

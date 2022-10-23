@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -27,6 +28,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -78,7 +80,7 @@ public class OffreController implements Initializable {
     @FXML
     private TableColumn<Offre, String> typeTab;
     @FXML
-    private TableColumn<Offre, Integer> totCandTab;
+    private TableColumn<Offre, Button> totCandTab;
     @FXML
     private TableColumn<Offre,String> btnsTab;
     
@@ -106,16 +108,20 @@ public class OffreController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+         
+     
+        
        OffreTab.setCellValueFactory(new PropertyValueFactory<>("titre"));
        dateTab.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
        typeTab.setCellValueFactory(new PropertyValueFactory<>("typeOffre"));
-      id_disabled.setCellValueFactory(new PropertyValueFactory<>("id"));
-      totCandTab.setCellValueFactory(new PropertyValueFactory<>("btn"));
-            testtab.setCellValueFactory(new PropertyValueFactory<>("btn2"));
+       id_disabled.setCellValueFactory(new PropertyValueFactory<>("id"));
+       totCandTab.setCellValueFactory(new PropertyValueFactory<>("btn"));
+       testtab.setCellValueFactory(new PropertyValueFactory<>("btn2"));
 
        // ObservableList<Offre> offreSelected=table.getSelectionModel().getSelectedItems();
            Callback<TableColumn<Offre, String>, TableCell<Offre, String>> cellFactory
@@ -131,9 +137,18 @@ public class OffreController implements Initializable {
                    if (empty) {
                        setGraphic(null);
                        setText(null);
-                   } else {
+                       
+                   }
+                   else {
                        btn.setOnAction(event -> {
                            Offre offre = getTableView().getItems().get(getIndex());
+                      if (offreService.nbCandidature(offre.getId())<1){
+                            Alert Atc=new Alert(Alert.AlertType.WARNING);
+                        Atc.setHeaderText("Erreur");
+                    Atc.setContentText("Aucune candidature trouvée");
+                     Atc.showAndWait();return;
+                      }
+
                            
                            try {
                               //  ResourceBundle resources = ResourceBundle.getBundle("Language/lang_pt");
@@ -185,6 +200,7 @@ public class OffreController implements Initializable {
                    } else {
                        btn2.setOnAction(event -> {
                            Offre offre = getTableView().getItems().get(getIndex());
+                           
                            
                            try {
                               //  ResourceBundle resources = ResourceBundle.getBundle("Language/lang_pt");
