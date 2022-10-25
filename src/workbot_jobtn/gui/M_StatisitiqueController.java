@@ -19,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import workbot_jobtn.utils.MyDB;
 
@@ -40,16 +39,18 @@ public class M_StatisitiqueController implements Initializable {
      */
     private java.sql.Connection on;
     private Statement ste;
-    String role ="Admin";
+    String role = "Admin";
     @FXML
     private Button M_logoutLAid;
+
     public M_StatisitiqueController() {
         on = MyDB.getInstance().getConnection();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         chart();
-    }    
+    }
 
     @FXML
     private void M_listclientLS(ActionEvent event) {
@@ -65,45 +66,44 @@ public class M_StatisitiqueController implements Initializable {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-        */
-      try {
-    
-                        Parent root = FXMLLoader.load(getClass().getResource("M_ListClient.fxml"));
-                        
-        Scene stage=new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+         */
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("M_ListClient.fxml"));
+
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    public void chart(){
-    
-    String query ="select role ,count(id)    from utilisateur GROUP BY role ORDER BY ROLE";
-    
-    try {
-        XYChart.Series chartData = new XYChart.Series();
-        PreparedStatement smt = on.prepareStatement(query);
-            ResultSet rs= smt.executeQuery();
-             while(rs.next())
-             {
-             chartData.getData().add(new XYChart.Data(rs.getString(1), rs.getInt(2)));
-             }
-             batChart.getData().add(chartData);
-        
-        
-    }catch (Exception e)
-    {
-        
+
+    public void chart() {
+
+        String query = "select role ,count(id)    from utilisateur GROUP BY role ORDER BY ROLE";
+
+        try {
+            XYChart.Series chartData = new XYChart.Series();
+            PreparedStatement smt = on.prepareStatement(query);
+            ResultSet rs = smt.executeQuery();
+            while (rs.next()) {
+                chartData.getData().add(new XYChart.Data(rs.getString(1), rs.getInt(2)));
+            }
+            batChart.getData().add(chartData);
+
+        } catch (Exception e) {
+
+        }
     }
-    }
-     private void executeQuery(String query) {
+
+    private void executeQuery(String query) {
         Statement st;
-        try{
+        try {
             st = on.createStatement();
             st.executeUpdate(query);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -122,20 +122,20 @@ public class M_StatisitiqueController implements Initializable {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-        */
-        
-           try {
-    
-                        Parent root = FXMLLoader.load(getClass().getResource("M_LoginUser.fxml"));
-                        
-        Scene stage=new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-        
+         */
+
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("M_LoginUser.fxml"));
+
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -152,17 +152,17 @@ public class M_StatisitiqueController implements Initializable {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-        */
-            try {
-    
-                        Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
-                        
-        Scene stage=new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+         */
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
+
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

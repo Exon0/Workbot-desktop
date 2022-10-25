@@ -2,9 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-
 package workbot_jobtn.gui;
-
 
 import java.net.URL;
 import java.sql.Connection;
@@ -25,54 +23,47 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import workbot_jobtn.utils.MyDB;
 
-
 /**
  * FXML Controller class
  *
  * @author fnmoh
  */
-public class M_signupEmailnomController  implements Initializable {
+public class M_signupEmailnomController implements Initializable {
 
     static void RetourRoleItc(String username) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
-
- 
     ///////////////
-    
-         @FXML
+    @FXML
     private TextField M_rolc;
     @FXML
     private TextField M_rolle;
     @FXML
     private Label namelabel;
-          public void RetourRoleItcc(String username){
-            M_rolc.setText(username);
-         }
-   
+
+    public void RetourRoleItcc(String username) {
+        M_rolc.setText(username);
+    }
+
     @FXML
     private TextField M_pomSD1;
     @FXML
     private TextField M_mailmSD2;
-    
-     private Connection on;
+
+    private Connection on;
     private Statement ste;
 
-    public  M_signupEmailnomController (){
-       on =  MyDB.getInstance().getConnection();
+    public M_signupEmailnomController() {
+        on = MyDB.getInstance().getConnection();
     }
     /////////////////////////////////////////
-    
-    
-    
+
     @FXML
     private Button M_Suivant;
-  
+
     @FXML
     private TextField M_NomSD;
-   
 
     /**
      * Initializes the controller class.
@@ -80,105 +71,82 @@ public class M_signupEmailnomController  implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
     private Parent root;
-    
+
     @FXML
     public void M_SuivantSD(ActionEvent event) {
-        boolean dataValid =true;
-        
-        
+        boolean dataValid = true;
+
         String roleee = M_rolc.getText();
-         String nomm = M_NomSD.getText();
-         String prenommm = M_pomSD1.getText();
-         String emailll = M_mailmSD2.getText();
-       
-                     
-                     
-                
-        
-          if( nomm.isEmpty()
-                    |nomm.isEmpty()
-                    | prenommm.isEmpty()
-                    | emailll.isEmpty()
-                  | emailll.length() < 8
-                     
-                    
-                  ){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Job Tn :: Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Verifier fields !!");
-                alert.showAndWait();}
-             
-                
-          
-               else{
-               if(isValid(emailll)){
-    
-        try {
-			Stage stage = (Stage) M_NomSD.getScene().getWindow();
-                        stage.close();
-                        
-        
-          
-          FXMLLoader loader=new FXMLLoader(getClass().getResource("M_SignupPassword.fxml"));
-          root = loader.load();
-          
-          
-          
-          /////////////tawa wala 3ana acces lel controller kif 3malna instance of controller
-           M_SignupPasswordController M_SignupPasswordController = loader.getController();
-          /////////tawa najmo n3ayto lel methode
-          M_SignupPasswordController.RetouremailIttt(roleee, nomm, prenommm, emailll);
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
-		} catch(Exception e) {
-			e.printStackTrace();
+        String nomm = M_NomSD.getText();
+        String prenommm = M_pomSD1.getText();
+        String emailll = M_mailmSD2.getText();
+
+        if (nomm.isEmpty()
+                | nomm.isEmpty()
+                | prenommm.isEmpty()
+                | emailll.isEmpty()
+                | emailll.length() < 8) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Job Tn :: Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier fields !!");
+            alert.showAndWait();
+        } else {
+            if (isValid(emailll)) {
+
+                try {
+                    Stage stage = (Stage) M_NomSD.getScene().getWindow();
+                    stage.close();
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("M_SignupPassword.fxml"));
+                    root = loader.load();
+
+                    /////////////tawa wala 3ana acces lel controller kif 3malna instance of controller
+                    M_SignupPasswordController M_SignupPasswordController = loader.getController();
+                    /////////tawa najmo n3ayto lel methode
+                    M_SignupPasswordController.RetouremailIttt(roleee, nomm, prenommm, emailll);
+                    Scene scene = new Scene(root, 840, 600);
+
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-             }
-}
-    }
-        
-    
-        
-        
-        
-         
-        
-         
-        private void insertRoleee() {
-        
-            
-              String nomm =M_NomSD.getText();
-             String prenommm =M_pomSD1.getText();
-             String emailll =M_mailmSD2.getText();
-              
-              
+            }
         }
-        /////////////////mail 
-      
-String emailll=null;
+    }
+
+    private void insertRoleee() {
+
+        String nomm = M_NomSD.getText();
+        String prenommm = M_pomSD1.getText();
+        String emailll = M_mailmSD2.getText();
+
+    }
+    /////////////////mail 
+
+    String emailll = null;
+
     @FXML
     private void checkFIELD(KeyEvent event) {
-            emailll = M_mailmSD2.getText();
-         if (isValid (emailll)){
-             M_mailmSD2.setStyle("-fx-border-color:blue");
-         }else{
-         M_mailmSD2.setStyle("-fx-border-color:red");
-         }
-         
+        emailll = M_mailmSD2.getText();
+        if (isValid(emailll)) {
+            M_mailmSD2.setStyle("-fx-border-color:blue");
+        } else {
+            M_mailmSD2.setStyle("-fx-border-color:red");
+        }
+
     }
-           private boolean isValid(String emailll ){
-        String M_mailm ="[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9._]+([.][a-zA-Z0-9]+)+";
+
+    private boolean isValid(String emailll) {
+        String M_mailm = "[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9._]+([.][a-zA-Z0-9]+)+";
         Pattern pat = Pattern.compile(M_mailm);
-        if (M_mailmSD2 ==null){
+        if (M_mailmSD2 == null) {
             return false;
         }
-        return pat.matcher(emailll ).matches();
-        }
-         }
-
+        return pat.matcher(emailll).matches();
+    }
+}

@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package workbot_jobtn.gui;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,6 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
-import static javafx.collections.FXCollections.rotate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,13 +33,11 @@ import javafx.util.Duration;
 import workbot_jobtn.utils.MyDB;
 import workbot_jobtn.utils.SessionManager;
 
-
 /**
  *
  * @author fnmoh
  */
 public class M_LoginUser implements Initializable {
-    
 
     @FXML
     private Button M_restorepassword;
@@ -76,207 +73,191 @@ public class M_LoginUser implements Initializable {
 
     @FXML
     void M_creecompteactionB(ActionEvent event) {
-        
+
         try {
-    
-                        Parent root = FXMLLoader.load(getClass().getResource("M_Signup.fxml"));
-                        
-        Scene stage=new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+
+            Parent root = FXMLLoader.load(getClass().getResource("M_Signup.fxml"));
+
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         /*
         Parent root = FXMLLoader.load(getClass().getResource("M_Signup.fxml"));
         Scene stage=new Scene(root,840,600);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(stage);
         window.show();
-        */
+         */
     }
-       private Connection on;
+    private Connection on;
     private Statement ste;
 
-   
     @FXML
     private void M_loginidb(ActionEvent event) throws SQLException {
-         
+
         ////////////5dhena 2 string w gatina fiha el textfuild
-        String umail=M_Mail.getText();
-        String password=M_password.getText();
+        String umail = M_Mail.getText();
+        String password = M_password.getText();
         SessionManager.setEmail(umail);
 
-        
         //////////
         /////////////ken el umail mt3 admin el kbir y7elo toul el application
-        if (umail.equals("Job.tn@gmail.com") && password.equals("Admin"))
-        {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                     alert.setTitle("Job tn :: Success Message");
-                     alert.setHeaderText(null);
-                     alert.setContentText("Bienvenu Admin");
-                     alert.showAndWait();
-                     
-                     try {
-    
-                        Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
-                        
-        Scene stage=new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-                   
-        }
-        ///////////////ken el email wel password mawjoud fel data base y7elo el interface mmt3h 7aseb e role
+        if (umail.equals("Job.tn@gmail.com") && password.equals("Admin")) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Job tn :: Success Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Bienvenu Admin");
+            alert.showAndWait();
+
+            try {
+
+                Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
+
+                Scene stage = new Scene(root);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(stage);
+                window.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } ///////////////ken el email wel password mawjoud fel data base y7elo el interface mmt3h 7aseb e role
         else {
             //
-            on =  MyDB.getInstance().getConnection();
-            String query="select id,role,nom,prenom,tel,photo from utilisateur where email='"+M_Mail.getText()+"' and mdp='"+M_password.getText()+ "'or mdp='"+passwordText_M.getText()+ "'"; 
+            on = MyDB.getInstance().getConnection();
+            String query = "select id,role,nom,prenom,tel,photo from utilisateur where email='" + M_Mail.getText() + "' and mdp='" + M_password.getText() + "'or mdp='" + passwordText_M.getText() + "'";
             System.out.println(query);
             PreparedStatement smt = on.prepareStatement(query);
-            ResultSet rs= smt.executeQuery();
-            String role="";
-            int ids=0;
-            String noms="";
-            String prenoms="";
-            String tels="";
-            String photos="";
-            while(rs.next())
-            {
-                role=rs.getString("role");
-                ids=rs.getInt("id");
-                noms=rs.getString("nom");
-                prenoms=rs.getString("prenom");
-                tels=rs.getString("tel");
-                photos=rs.getString("photo");
+            ResultSet rs = smt.executeQuery();
+            String role = "";
+            int ids = 0;
+            String noms = "";
+            String prenoms = "";
+            String tels = "";
+            String photos = "";
+            while (rs.next()) {
+                role = rs.getString("role");
+                ids = rs.getInt("id");
+                noms = rs.getString("nom");
+                prenoms = rs.getString("prenom");
+                tels = rs.getString("tel");
+                photos = rs.getString("photo");
             }
             SessionManager.setId(ids);
             SessionManager.setNom(noms);
             SessionManager.setPhoto(photos);
             SessionManager.setTel(tels);
             SessionManager.setPrenom(prenoms);
-            
-            System.out.println(SessionManager.getId()+" "+
-            SessionManager.getNom()+" "+
-            SessionManager.getPhoto()+" "+
-            SessionManager.getTel()+" "+
-            SessionManager.getPrenom());
-            
-            if (role.equals("candidat")){
-               Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                     alert.setTitle("Job TN:: Success Message");
-                     alert.setHeaderText(null);
-                     alert.setContentText("Vous etes connecté condidat");
-                     alert.showAndWait();
-                     SessionManager.setRole("candidat");
-            }
-            else if(role.equals("sociéte"))
-            {
+
+            System.out.println(SessionManager.getId() + " "
+                    + SessionManager.getNom() + " "
+                    + SessionManager.getPhoto() + " "
+                    + SessionManager.getTel() + " "
+                    + SessionManager.getPrenom());
+
+            if (role.equals("candidat")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                     alert.setTitle("Job TN:: Success Message");
-                     alert.setHeaderText(null);
-                     alert.setContentText("Vous etes connecté societe");
-                     alert.showAndWait(); 
-                     SessionManager.setRole("sociéte");
-            }
-            else if(role.equals("Admin"))
-            {
-                    SessionManager.setRole("Admin");
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                     alert.setTitle("Job TN:: Success Message");
-                     alert.setHeaderText(null);
-                     alert.setContentText("Vous etes connecté Administrateur");
-                     alert.showAndWait(); 
-                     
-                     try {
-    
-                        Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
-                        
-        Scene stage=new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-                    
-                     
-            }
-            else 
-            {
+                alert.setTitle("Job TN:: Success Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Vous etes connecté condidat");
+                alert.showAndWait();
+                SessionManager.setRole("candidat");
+            } else if (role.equals("sociéte")) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Job TN:: Success Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Vous etes connecté societe");
+                alert.showAndWait();
+                SessionManager.setRole("sociéte");
+            } else if (role.equals("Admin")) {
+                SessionManager.setRole("Admin");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Job TN:: Success Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Vous etes connecté Administrateur");
+                alert.showAndWait();
+
+                try {
+
+                    Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
+
+                    Scene stage = new Scene(root);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(stage);
+                    window.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                     alert.setTitle("Job TN:: Error Message");
-                     alert.setHeaderText(null);
-                     alert.setContentText("Verifier Email et Password");
-                     alert.showAndWait(); 
+                alert.setTitle("Job TN:: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Verifier Email et Password");
+                alert.showAndWait();
             }
-        
+
         }
         System.out.println(SessionManager.getRole());
-            }
+    }
 
     @FXML
     private void MonterPassword(ActionEvent event) {
-        if (M_Monterpa.isSelected())
-        {
-            
-             passwordText_M.setText(M_password.getText());
+        if (M_Monterpa.isSelected()) {
+
+            passwordText_M.setText(M_password.getText());
             passwordText_M.setVisible(true);
             M_password.setVisible(false);
             return;
         }
         M_password.setText(passwordText_M.getText());
-            M_password.setVisible(true);
-            passwordText_M.setVisible(false);
-            
-    
-    }
+        M_password.setVisible(true);
+        passwordText_M.setVisible(false);
 
+    }
 
     @FXML
     private void M_restorepasswordMethode(ActionEvent event) {
-        
+
         try {
-    
-                        Parent root = FXMLLoader.load(getClass().getResource("ForgotPasswordMethode.fxml"));
-                        
-        Scene stage=new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-        
-         
+
+            Parent root = FXMLLoader.load(getClass().getResource("ForgotPasswordMethode.fxml"));
+
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         RotateTransition rotate = new RotateTransition();
-       /* rotate.setDuration(Duration.millis(1000));
+        /* rotate.setDuration(Duration.millis(1000));
         rotate.setNode(imagedour);
         rotate.setAutoReverse(false);
         rotate.setToAngle(360);
         rotate.setCycleCount(100);
         rotate.play();*/
-       eclipse2();
-       eclipse3();
-       icon1();
-       icon();
-       icon2();
+        eclipse2();
+        eclipse3();
+        icon1();
+        icon();
+        icon2();
         rotate.setDuration(Duration.millis(10000));
         rotate.setNode(eclipse);
         rotate.setAutoReverse(false);
         rotate.setToAngle(360);
         rotate.setCycleCount(100);
         rotate.play();
-        
+
         ScaleTransition scale = new ScaleTransition();
         scale.setNode(imagedour);
         scale.setByY(0.06);
@@ -284,9 +265,10 @@ public class M_LoginUser implements Initializable {
         scale.setCycleCount(1000);
         scale.setAutoReverse(true);
         scale.play();
-        
+
     }
-   public void eclipse2(){
+
+    public void eclipse2() {
         RotateTransition rotate = new RotateTransition();
         rotate.setDuration(Duration.millis(10000));
         rotate.setNode(eclipse2);
@@ -294,8 +276,9 @@ public class M_LoginUser implements Initializable {
         rotate.setToAngle(360);
         rotate.setCycleCount(100);
         rotate.play();
-   }
-   public void eclipse3(){
+    }
+
+    public void eclipse3() {
         RotateTransition rotate = new RotateTransition();
         rotate.setDuration(Duration.millis(10000));
         rotate.setNode(eclipse3);
@@ -303,8 +286,9 @@ public class M_LoginUser implements Initializable {
         rotate.setToAngle(360);
         rotate.setCycleCount(100);
         rotate.play();
-   }
-    public void icon1(){
+    }
+
+    public void icon1() {
         ScaleTransition scale = new ScaleTransition();
         scale.setNode(icon1);
         scale.setByY(0.02);
@@ -312,8 +296,9 @@ public class M_LoginUser implements Initializable {
         scale.setCycleCount(1000);
         scale.setAutoReverse(true);
         scale.play();
-   }
-     public void icon2(){
+    }
+
+    public void icon2() {
         ScaleTransition scale = new ScaleTransition();
         scale.setNode(icon2);
         scale.setByY(0.02);
@@ -321,8 +306,9 @@ public class M_LoginUser implements Initializable {
         scale.setCycleCount(1000);
         scale.setAutoReverse(true);
         scale.play();
-   }
-      public void icon(){
+    }
+
+    public void icon() {
         ScaleTransition scale = new ScaleTransition();
         scale.setNode(icon);
         scale.setByY(0.02);
@@ -330,7 +316,8 @@ public class M_LoginUser implements Initializable {
         scale.setCycleCount(1000);
         scale.setAutoReverse(true);
         scale.play();
-   }
+    }
+
     @FXML
     private void MonterPassword1(MouseEvent event) {
     }
@@ -338,31 +325,18 @@ public class M_LoginUser implements Initializable {
     @FXML
     private void m_map(ActionEvent event) {
         try {
-			Stage stage = (Stage) M_Mail.getScene().getWindow();
-                        stage.close();
-                        
-          Parent root=FXMLLoader.load(getClass().getResource("mappa.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-    }
-    
+            Stage stage = (Stage) M_Mail.getScene().getWindow();
+            stage.close();
+
+            Parent root = FXMLLoader.load(getClass().getResource("mappa.fxml"));
+            Scene scene = new Scene(root, 840, 600);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    
-             
+    }
 
-
-
-
-
-
-
-
-
-    
-
+}

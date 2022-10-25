@@ -50,92 +50,77 @@ public class M_Signupetape4Controller implements Initializable {
     @FXML
     private TextField eponse3;
 
-     public void RetourinformItc(String role10,String nom10,String prenom10,String mail10,String password10,String reponce10,String question10){
-     
-     role3.setText(role10);
-             nom3.setText(nom10);
-             prenom3.setText(prenom10);
-             
-             email3.setText(mail10);
-             password3.setText(password10);
-             questionsec3.setText(reponce10);
-             eponse3.setText(question10);
-             
-             
-     
-     
-     
-     }
+    public void RetourinformItc(String role10, String nom10, String prenom10, String mail10, String password10, String reponce10, String question10) {
+
+        role3.setText(role10);
+        nom3.setText(nom10);
+        prenom3.setText(prenom10);
+
+        email3.setText(mail10);
+        password3.setText(password10);
+        questionsec3.setText(reponce10);
+        eponse3.setText(question10);
+
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     private Parent root;
+
     @FXML
     private void M_Suivanetape4(ActionEvent event) {
-        
-        
-         String question100 = (String)  questionsec3.getText();
-         String role100 =  role3.getText();
-         String nom100 =  nom3.getText();
-         String prenom100 =  prenom3.getText();
-         String mail100 =  email3.getText();
-         String password100 =  password3.getText();
-         
-         String reponce100 =  eponse3.getText();
-         String domaine100 =  M_DomaineSD.getText();
-         String adresse100 =  M_adresseSD.getText();
-         
-         String numero100 =  M_NTLF.getText();
-         
-            if(  domaine100.isEmpty()
-                    |adresse100.isEmpty()
-                   
-                    | reponce100.isEmpty() 
-            
-                   
-                 
-                     
-                    
-                  ){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Job Tn :: Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Verifier fields !!");
-                alert.showAndWait();}
-             
-          else{
-     
-        try {
-			Stage stage = (Stage) M_adresseSD.getScene().getWindow();
-                        stage.close();
-                        
-        
-          
-          
-          FXMLLoader loader=new FXMLLoader(getClass().getResource("Signupetape5Con.fxml"));
-          root = loader.load();
-          /////////////tawa wala 3ana acces lel controller kif 3malna instance of controller
-        /*  Signupetape5ConController Signupetape5ConController = loader.getController();*/
-       
-        Signupetape5ConController Signupetape5ConController = loader.getController();
-          /////////tawa najmo n3ayto lel methode
-          Signupetape5ConController.Retourintous(role100, nom100, prenom100, mail100, password100, reponce100, question100, domaine100, adresse100, numero100);
-          
-          
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
-		} catch(Exception e) {
-			e.printStackTrace();
-    }
-    
 
+        String question100 = (String) questionsec3.getText();
+        String role100 = role3.getText();
+        String nom100 = nom3.getText();
+        String prenom100 = prenom3.getText();
+        String mail100 = email3.getText();
+        String password100 = password3.getText();
+
+        String reponce100 = eponse3.getText();
+        String domaine100 = M_DomaineSD.getText();
+        String adresse100 = M_adresseSD.getText();
+
+        String numero100 = M_NTLF.getText();
+
+        if (domaine100.isEmpty()
+                | adresse100.isEmpty()
+                | reponce100.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Job Tn :: Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier fields !!");
+            alert.showAndWait();
+        } else {
+
+            try {
+                Stage stage = (Stage) M_adresseSD.getScene().getWindow();
+                stage.close();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Signupetape5Con.fxml"));
+                root = loader.load();
+                /////////////tawa wala 3ana acces lel controller kif 3malna instance of controller
+                /*  Signupetape5ConController Signupetape5ConController = loader.getController();*/
+
+                Signupetape5ConController Signupetape5ConController = loader.getController();
+                /////////tawa najmo n3ayto lel methode
+                Signupetape5ConController.Retourintous(role100, nom100, prenom100, mail100, password100, reponce100, question100, domaine100, adresse100, numero100);
+
+                Scene scene = new Scene(root, 840, 600);
+
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 }
-    }}

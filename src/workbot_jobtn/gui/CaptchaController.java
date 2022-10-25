@@ -1,4 +1,4 @@
-/*
+/*  
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.web.WebView;
 
 /**
@@ -17,12 +16,10 @@ import javafx.scene.web.WebView;
  *
  * @author fnmoh
  */
-
 public class CaptchaController implements Initializable {
 
     @FXML
     private WebView webView;
-
 
     /**
      * Initializes the controller class.
@@ -30,10 +27,10 @@ public class CaptchaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void Login(ActionEvent event) {
     }
-    
+
 }

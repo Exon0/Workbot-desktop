@@ -4,8 +4,6 @@
  */
 package workbot_jobtn.gui;
 
-
-
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -31,14 +29,14 @@ import javafx.stage.Stage;
 
 import workbot_jobtn.utils.MyDB;
 
-
 /**
  * FXML Controller class
  *
  * @author fnmoh
  */
 public class SmsmethodeRestoreController implements Initializable {
-int randomCode;
+
+    int randomCode;
     @FXML
     private TextField SmSReponseL;
     @FXML
@@ -52,120 +50,98 @@ int randomCode;
     @FXML
     private Button SendMail;
 
-    
-    
-    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-  private Connection on;
+    }
+    private Connection on;
     private Statement ste;
 
-    public SmsmethodeRestoreController(){
-       on =  MyDB.getInstance().getConnection();
+    public SmsmethodeRestoreController() {
+        on = MyDB.getInstance().getConnection();
     }
-    ResultSet rs=null;
-    PreparedStatement pst=null;
-    
-    
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+
     private Parent root;
+
     @FXML
-    
+
     private void ConfirmerSms(ActionEvent event) {
-        
-        if (Integer.valueOf(SmsNewPass1.getText())==randomCode)
-        {
-           Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                     alert.setTitle("Job TN:: Succes");
-                     alert.setHeaderText(null);
-                     alert.setContentText("on peut changer ton password");
-                     alert.showAndWait(); 
-                    
-                
-                     
-                     try {
-                         String ReponseSms =  SmsNewPass.getText();
-Stage stage = (Stage)  SmsNewPass.getScene().getWindow();
-                        stage.close();
-                        
-                        
-                         FXMLLoader loader=new FXMLLoader(getClass().getResource("passwordapiSms_M.fxml"));
-         root = loader.load();
-          PasswordapiSmsMController passwordapiSms_MController = loader.getController();
-          passwordapiSms_MController.RetourPassword(ReponseSms);
-                        
-                        Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
-        
-                        
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-        
-            
-        } 
-        else  {
-         Alert alert = new Alert(Alert.AlertType.ERROR);
-                     alert.setTitle("Job TN:: Error Message");
-                     alert.setHeaderText(null);
-                     alert.setContentText("Verifier votre numero ");
-                     alert.showAndWait(); 
+
+        if (Integer.valueOf(SmsNewPass1.getText()) == randomCode) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Job TN:: Succes");
+            alert.setHeaderText(null);
+            alert.setContentText("on peut changer ton password");
+            alert.showAndWait();
+
+            try {
+                String ReponseSms = SmsNewPass.getText();
+                Stage stage = (Stage) SmsNewPass.getScene().getWindow();
+                stage.close();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("passwordapiSms_M.fxml"));
+                root = loader.load();
+                PasswordapiSmsMController passwordapiSms_MController = loader.getController();
+                passwordapiSms_MController.RetourPassword(ReponseSms);
+
+                Scene scene = new Scene(root, 840, 600);
+
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Job TN:: Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier votre numero ");
+            alert.showAndWait();
         }
     }
 
-    
     @FXML
     private void SendMail(ActionEvent event) {
-        
-        
-        if(SmsNewPass.getText().isEmpty()   ){
-              Alert alert = new Alert(Alert.AlertType.ERROR);
-                     alert.setTitle("Job TN:: Error Message");
-                     alert.setHeaderText(null);
-                     alert.setContentText("Verifier votre numero ");
-                     alert.showAndWait(); 
+
+        if (SmsNewPass.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Job TN:: Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier votre numero ");
+            alert.showAndWait();
+        } else {
+            String ACCOUNT_SID = "AC915cfd330fe7a8b2cacdd031af356e39";
+            String AUTH_TOKEN = "7f567885b19a9f20b7ceada26b115be3";
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            String getf = SmsNewPass.getText();
+            Random rand = new Random();
+            randomCode = rand.nextInt(999999);
+            System.out.println(randomCode);
+
+            Message message = Message.creator(new PhoneNumber(getf),
+                    new PhoneNumber("(+13854062174"),
+                    "Your reset code is " + randomCode).create();
+            System.out.println(message.getSid());
         }
-            else{  String ACCOUNT_SID = "AC915cfd330fe7a8b2cacdd031af356e39";
-   String AUTH_TOKEN = "7f567885b19a9f20b7ceada26b115be3";
-     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-    String getf=SmsNewPass.getText();
-        Random rand=new Random();
-        randomCode=rand.nextInt(999999);
-         System.out.println(randomCode);
-       
-    Message message = Message.creator(new PhoneNumber(getf),
-        new PhoneNumber("(+13854062174"), 
-       "Your reset code is "+randomCode).create();
-        System.out.println(message.getSid());
-        }
-        
-        }
-        private void executeQuery(String query) {
+
+    }
+
+    private void executeQuery(String query) {
         Statement st;
-        try{
+        try {
             st = on.createStatement();
             st.executeUpdate(query);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-        /////////////////////////Sms
-    
-    
-    
-    }
-    
-    
-    
-    
-       
-       
-    
-    
+    /////////////////////////Sms
+
+}

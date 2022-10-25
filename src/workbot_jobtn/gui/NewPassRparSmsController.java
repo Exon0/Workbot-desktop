@@ -39,63 +39,63 @@ public class NewPassRparSmsController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
-    public void RetourPassword(String ReponseSms,String SmSMaill){
-     SmSMaiL.setText(SmSMaill);
-             SmSReponseL.setText(ReponseSms);
+    public void RetourPassword(String ReponseSms, String SmSMaill) {
+        SmSMaiL.setText(SmSMaill);
+        SmSReponseL.setText(ReponseSms);
     }
-           private Connection on;
+    private Connection on;
     private Statement ste;
 
-    public  NewPassRparSmsController(){
-       on =  MyDB.getInstance().getConnection();
-    }  
-             
+    public NewPassRparSmsController() {
+        on = MyDB.getInstance().getConnection();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void ConfirmerPassparSMSM(ActionEvent event) {
         updateRecord();
     }
-     private void updateRecord(){
-         System.out.println(SmSReponseL.getText());
-         System.out.println(SmsNewPass.getText());
-        String query = "UPDATE  utilisateur SET  mdp = '" + SmsNewPass.getText() + "' WHERE email = '" +  SmSReponseL.getText() + "'  ";
-        
+
+    private void updateRecord() {
+        System.out.println(SmSReponseL.getText());
+        System.out.println(SmsNewPass.getText());
+        String query = "UPDATE  utilisateur SET  mdp = '" + SmsNewPass.getText() + "' WHERE email = '" + SmSReponseL.getText() + "'  ";
+
         executeQuery(query);
         System.out.println(SmsNewPass.getText());
-       
-        
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                     alert.setTitle("JobTn :: Information correct");
-                     alert.setHeaderText(null);
-                     alert.setContentText("ton motpasse changée avec succes");
-                     alert.showAndWait();
-                     try {
-Stage stage = (Stage)  SmsNewPass.getScene().getWindow();
-                        stage.close();
-                        
-          Parent root=FXMLLoader.load(getClass().getResource("M_Login.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-        
+        alert.setTitle("JobTn :: Information correct");
+        alert.setHeaderText(null);
+        alert.setContentText("ton motpasse changée avec succes");
+        alert.showAndWait();
+        try {
+            Stage stage = (Stage) SmsNewPass.getScene().getWindow();
+            stage.close();
+
+            Parent root = FXMLLoader.load(getClass().getResource("M_Login.fxml"));
+            Scene scene = new Scene(root, 840, 600);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
-  //////////////////////////////////////////////////////////////
-   private void executeQuery(String query) {
+    //////////////////////////////////////////////////////////////
+
+    private void executeQuery(String query) {
         Statement st;
-        try{
+        try {
             st = on.createStatement();
             st.executeUpdate(query);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

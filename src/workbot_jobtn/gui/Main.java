@@ -5,9 +5,6 @@
  */
 package workbot_jobtn.gui;
 
-	
-
-	
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -19,26 +16,26 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
-	@Override
-	public void start(Stage stage) {
-           
-		try {
-			Parent root=FXMLLoader.load(getClass().getResource("M_Login.fxml"));
-                       // Parent root=FXMLLoader.load(getClass().getResource("Captcha.fxml"));
-                        
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
 
-	}
-       
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
+    @Override
+    public void start(Stage stage) {
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("M_Login.fxml"));
+            // Parent root=FXMLLoader.load(getClass().getResource("Captcha.fxml"));
+
+            Scene scene = new Scene(root, 840, 600);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
