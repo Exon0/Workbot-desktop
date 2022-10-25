@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entities;
+package workbot_jobtn.entites;
 
 /**
  *
@@ -11,6 +11,19 @@ package entities;
 public class Certif_Badge {
     private int id_user,id_certif,id_badge;
 
+    public Certif_Badge() {
+    }
+
+    public Certif_Badge(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public Certif_Badge(int id_certif, int id_badge) {
+        this.id_certif = id_certif;
+        this.id_badge = id_badge;
+    }
+
+    
     public Certif_Badge(int id_user, int id_certif, int id_badge) {
         this.id_user = id_user;
         this.id_certif = id_certif;

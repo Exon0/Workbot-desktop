@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entities;
+package workbot_jobtn.entites;
 
 /**
  *
@@ -12,6 +12,17 @@ public class Badge {
     
     private int id;
     private String nom;
+
+    public Badge() {
+    }
+
+    public Badge(int id) {
+        this.id = id;
+    }
+
+    public Badge(String nom) {
+        this.nom = nom;
+    }
 
     public Badge(int id, String nom) {
         this.id = id;

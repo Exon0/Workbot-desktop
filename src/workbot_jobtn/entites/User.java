@@ -23,8 +23,19 @@ public class User {
     private String reponseSecu;
     private String methode;
 
+    public User(int id) {
+        this.id = id;
+    }
+
+   
+
     public int getId() {
         return id;
+    }
+
+    public User(int id, String email) {
+        this.id = id;
+        this.email = email;
     }
 
     public String getNom() {
