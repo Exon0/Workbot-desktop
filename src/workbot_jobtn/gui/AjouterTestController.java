@@ -99,81 +99,86 @@ public class AjouterTestController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onclick_dash(ActionEvent event) throws IOException {
-       Alert Atc=new Alert(AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-                    int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
+        Alert Atc = new Alert(AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            int id = Integer.parseInt(id_offre.getText());
+            offreservice.deleteById(id);
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            Atc.close();
+        }
     }
-    
-    OffreService offreservice=new OffreService();
+
+    OffreService offreservice = new OffreService();
+
     @FXML
     private void onClicked_menuOffre(ActionEvent event) throws IOException {
-        
-             Alert Atc=new Alert(AlertType.CONFIRMATION);
-             Atc.setHeaderText("Alert");
-             Atc.setContentText("Votre avancement sera perdu");
-             Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-                     int id= Integer.parseInt(id_offre.getText());
-                     offreservice.deleteById(id);
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
+
+        Alert Atc = new Alert(AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            int id = Integer.parseInt(id_offre.getText());
+            offreservice.deleteById(id);
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            Atc.close();
+        }
     }
 
     @FXML
     private void OnClicked_menuEvent(ActionEvent event) throws IOException {
-         Alert Atc=new Alert(AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-                   int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
+        Alert Atc = new Alert(AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            int id = Integer.parseInt(id_offre.getText());
+            offreservice.deleteById(id);
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            Atc.close();
+        }
     }
 
     @FXML
     private void OnClicked_menuEntretiens(ActionEvent event) throws IOException {
-         Alert Atc=new Alert(AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-                   int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
-        
+        Alert Atc = new Alert(AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            int id = Integer.parseInt(id_offre.getText());
+            offreservice.deleteById(id);
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("DisplayEntretiens.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            Atc.close();
+        }
+
     }
 
     @FXML
@@ -192,42 +197,38 @@ public class AjouterTestController implements Initializable {
     private void OnClick_settings(ActionEvent event) {
     }
 
-
     @FXML
     private void onclickSuivantStage(ActionEvent event) throws IOException {
-        
-         if (SelectedFile != null && inputUrl.getText().length()==0){
+
+        if (SelectedFile != null && inputUrl.getText().length() == 0) {
             //choice n'existe plus ,il afut l'enlever et remplacer par methode crud
-            path=SelectedFile.getAbsolutePath();
-            
-           
-            
-        }
-        else if(inputUrl.getText().length()!=0 && SelectedFile == null){
-                path=inputUrl.getText();
-        }
-        else{
-         Alert Atc=new Alert(AlertType.WARNING);
+            path = SelectedFile.getAbsolutePath();
+
+        } else if (inputUrl.getText().length() != 0 && SelectedFile == null) {
+            path = inputUrl.getText();
+        } else {
+            Alert Atc = new Alert(AlertType.WARNING);
             Atc.setHeaderText("Alert");
             Atc.setContentText("vous ne pouvez pas deposer un ficher et mettre un url en meme temps");
-           Atc.showAndWait();
-            return;}
+            Atc.showAndWait();
+            return;
+        }
         try {
-            Offre O1=offreService.readLast();
-            Test t=new Test(O1.getTitre(), path);
+            Offre O1 = offreService.readLast();
+            Test t = new Test(O1.getTitre(), path);
             t.setId_soc(1);
             testservice.ajouter(t);
             O1.setId_test(testservice.selectLast().getId());
             offreService.update(O1);
-            
-            FXMLLoader fxml=new  FXMLLoader(getClass().getResource("SuccesOffre.fxml"));
+
+            FXMLLoader fxml = new FXMLLoader(getClass().getResource("SuccesOffre.fxml"));
             Parent root1 = fxml.load();
             Scene scene = btnSuivantStage.getScene();
             root1.translateYProperty().set(scene.getHeight());
             root.getChildren().add(root1);
-            
+
             Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(root1.translateYProperty(),0, Interpolator.EASE_IN);
+            KeyValue kv = new KeyValue(root1.translateYProperty(), 0, Interpolator.EASE_IN);
             KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
             timeline.getKeyFrames().add(kf);
             timeline.setOnFinished(event1 -> root.getChildren().remove(slide1));
@@ -236,22 +237,24 @@ public class AjouterTestController implements Initializable {
             Logger.getLogger(AjouterTestController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    OffreService offreService=new OffreService();
-    TestService testservice=new TestService();
-    
-            String path="";
-            File SelectedFile;
+    OffreService offreService = new OffreService();
+    TestService testservice = new TestService();
+
+    String path = "";
+    File SelectedFile;
+
     @FXML
     private void Onclic_btnFile(ActionEvent event) throws SQLException {
         FileChooser fc = new FileChooser();
-         SelectedFile =fc.showOpenDialog(null);
-        if (SelectedFile != null ){
-            path=SelectedFile.getAbsolutePath();
-   
+        SelectedFile = fc.showOpenDialog(null);
+        if (SelectedFile != null) {
+            path = SelectedFile.getAbsolutePath();
+
+        }
     }
-    }
-        public void  setIdOffre(String id){
-          
-            id_offre.setText(id);   
+
+    public void setIdOffre(String id) {
+
+        id_offre.setText(id);
     }
 }

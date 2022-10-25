@@ -13,12 +13,13 @@ import java.sql.SQLException;
  * @param <T>
  */
 public interface ICrud_Interface<T> {
+
     public void ajouter(T t) throws SQLException;
-    public boolean update(T t)throws SQLException;
-        public boolean delete(T t)throws SQLException;
-            public List<T> readAll()throws SQLException;
 
+    public boolean update(T t) throws SQLException;
 
-    
-    
+    public boolean delete(T t) throws SQLException;
+
+    public List<T> readAll() throws SQLException;
+
 }

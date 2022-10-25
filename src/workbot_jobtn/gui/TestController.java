@@ -34,7 +34,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import workbot_jobtn.services.OffreService;
-import workbot_jobtn.utils.Mail;
 
 /**
  * FXML Controller class
@@ -96,79 +95,81 @@ public class TestController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onclick_dash(ActionEvent event) throws IOException {
-             Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Alert");
-            alert.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= alert.showAndWait();
-               if(result.get()== ButtonType.OK){
-                   int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
-                      Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-               else 
-                   alert.close();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Alert");
+        alert.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            int id = Integer.parseInt(id_offre.getText());
+            offreservice.deleteById(id);
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            alert.close();
+        }
     }
 
     @FXML
     private void onClicked_menuOffre(ActionEvent event) throws IOException {
-         
-                Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Alert");
-            alert.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= alert.showAndWait();
-               if(result.get()== ButtonType.OK){
-                   int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
-                      Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-               else 
-                   alert.close();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Alert");
+        alert.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            int id = Integer.parseInt(id_offre.getText());
+            offreservice.deleteById(id);
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            alert.close();
+        }
     }
 
     @FXML
     private void OnClicked_menuEvent(ActionEvent event) throws IOException {
-                Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Alert");
-            alert.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= alert.showAndWait();
-               if(result.get()== ButtonType.OK){
-                   int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
-                      Parent fXMLLoader = FXMLLoader.load(getClass().getResource(""));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-               else 
-                   alert.close();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Alert");
+        alert.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            int id = Integer.parseInt(id_offre.getText());
+            offreservice.deleteById(id);
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource(""));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            alert.close();
+        }
     }
 
     @FXML
     private void OnClicked_menuEntretiens(ActionEvent event) throws IOException {
-            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Alert");
-            alert.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= alert.showAndWait();
-               if(result.get()== ButtonType.OK){
-                   int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
-                      Parent fXMLLoader = FXMLLoader.load(getClass().getResource(""));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-               else 
-                   alert.close();
+        Alert Atc = new Alert(Alert.AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("DisplayEntretiens.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            Atc.close();
+        }
     }
 
     @FXML
@@ -186,86 +187,84 @@ public class TestController implements Initializable {
     @FXML
     private void OnClick_settings(ActionEvent event) {
     }
-    OffreService offreservice= new OffreService();
+    OffreService offreservice = new OffreService();
+
     @FXML
     private void OnclickRetour(ActionEvent event) throws IOException {
-             Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Alert");
-            alert.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= alert.showAndWait();
-               if(result.get()== ButtonType.OK){
-                   int id= Integer.parseInt(id_offre.getText());
-                    offreservice.deleteById(id);
-       
-               
-               if (choice.getText().equals("Stage"))
- {
-                     Parent fXMLLoader = FXMLLoader.load(getClass().getResource("OffreStage.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Alert");
+        alert.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            int id = Integer.parseInt(id_offre.getText());
+            offreservice.deleteById(id);
+
+            if (choice.getText().equals("Stage")) {
+                Parent fXMLLoader = FXMLLoader.load(getClass().getResource("OffreStage.fxml"));
+                Scene stage = new Scene(fXMLLoader);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(stage);
+                window.show();
+            }
+            if (choice.getText().equals("Emploi")) {
+                Parent fXMLLoader = FXMLLoader.load(getClass().getResource("OffreEmploi.fxml"));
+                Scene stage = new Scene(fXMLLoader);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(stage);
+                window.show();
+            }
+            if (choice.getText().equals("Freelancer")) {
+                Parent fXMLLoader = FXMLLoader.load(getClass().getResource("OffreFreelancer.fxml"));
+                Scene stage = new Scene(fXMLLoader);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(stage);
+                window.show();
+            }
+        } else {
+            alert.close();
         }
-               if (choice.getText().equals("Emploi"))
-      {
-                 Parent fXMLLoader = FXMLLoader.load(getClass().getResource("OffreEmploi.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-        }
-               if (choice.getText().equals("Freelancer"))
-      {
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("OffreFreelancer.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-        }}
-               else 
-                   alert.close();
     }
 
     @FXML
     private void onclickSuivantStage(ActionEvent event) throws IOException {
-        if(radio_oui.isSelected()){
-                   FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("ajouterTest.fxml"));
-                   Parent root=fXMLLoader.load();
-                    Scene stage=new Scene(root);
-                    AjouterTestController ajoutContr=fXMLLoader.getController();
-                    ajoutContr.setIdOffre(id_offre.getText());
-                                       System.out.println(id_offre.getText());
+        if (radio_oui.isSelected()) {
+            FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("ajouterTest.fxml"));
+            Parent root = fXMLLoader.load();
+            Scene stage = new Scene(root);
+            AjouterTestController ajoutContr = fXMLLoader.getController();
+            ajoutContr.setIdOffre(id_offre.getText());
+            System.out.println(id_offre.getText());
 
-                    Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-                    window.setScene(stage);
-                    window.show();
-                    }
-              else{
-                    FXMLLoader fxml=new  FXMLLoader(getClass().getResource("SuccesOffre.fxml"));
-                    
-                    Parent root1 = fxml.load();
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            FXMLLoader fxml = new FXMLLoader(getClass().getResource("SuccesOffre.fxml"));
 
-                    Scene scene = btnSuivantStage.getScene();
+            Parent root1 = fxml.load();
 
-                    root1.translateYProperty().set(scene.getHeight());
-                    root.getChildren().add(root1);
+            Scene scene = btnSuivantStage.getScene();
 
-                    Timeline timeline = new Timeline();
-                    KeyValue kv = new KeyValue(root1.translateYProperty(),0, Interpolator.EASE_IN);
-                    KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
-                    timeline.getKeyFrames().add(kf);
-                    timeline.setOnFinished(event1 -> root.getChildren().remove(slide1));
-                    timeline.play();
+            root1.translateYProperty().set(scene.getHeight());
+            root.getChildren().add(root1);
+
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root1.translateYProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+            timeline.getKeyFrames().add(kf);
+            timeline.setOnFinished(event1 -> root.getChildren().remove(slide1));
+            timeline.play();
         }
-        
+
     }
 
-    public void  setChoice(String choix){
-        
-            choice.setText(choix);   
+    public void setChoice(String choix) {
+
+        choice.setText(choix);
     }
-        public void  setIdOffre(int id){
-            String StringId=String.valueOf(id);
-            id_offre.setText(StringId);   
+
+    public void setIdOffre(int id) {
+        String StringId = String.valueOf(id);
+        id_offre.setText(StringId);
     }
 }

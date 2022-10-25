@@ -100,64 +100,64 @@ public class ModifTestController implements Initializable {
     @FXML
     private Label id_offre;
     int idtest;
-         OffreService offreService=new OffreService();
+    OffreService offreService = new OffreService();
     @FXML
     private Pane root12;
 
-      void setId_offre(Integer id) {
-          System.out.println("first");
-              Offre O1=offreService.selectById(id);
-                        System.out.println("second");
+    void setId_offre(Integer id) {
+        System.out.println("first");
+        Offre O1 = offreService.selectById(id);
+        System.out.println("second");
         id_offre.setText(String.valueOf(O1.getId()));
-          idtest=O1.getId_test();
-              if(O1.getId_test()== 0)
-              {
-                                    changeme.setText("Ajoutez un test a votre offre! Ca vous permet de faire une préselection des candidats!");
+        idtest = O1.getId_test();
+        if (O1.getId_test() == 0) {
+            changeme.setText("Ajoutez un test a votre offre! Ca vous permet de faire une préselection des candidats!");
 
-              }
-              else
-                                changeme.setText("Votre Offre contient deja un test Modifie le en ajoutant un test ou vous pouvez le supprimer simplement");
-
-              
+        } else {
+            changeme.setText("Votre Offre contient deja un test Modifie le en ajoutant un test ou vous pouvez le supprimer simplement");
+        }
 
     }
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onclick_dash(ActionEvent event) throws IOException {
-       
+
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(stage);
-        window.show();}
-        
-    
+        window.show();
+    }
 
     @FXML
     private void onClicked_menuOffre(ActionEvent event) throws IOException {
-           
+
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(stage);
-        window.show();}
-         
-    
+        window.show();
+    }
 
     @FXML
     private void OnClicked_menuEvent(ActionEvent event) {
     }
 
     @FXML
-    private void OnClicked_menuEntretiens(ActionEvent event) {
+    private void OnClicked_menuEntretiens(ActionEvent event) throws IOException {
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("DisplayEntretiens.fxml"));
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
     }
 
     @FXML
@@ -175,61 +175,59 @@ public class ModifTestController implements Initializable {
     @FXML
     private void OnClick_settings(ActionEvent event) {
     }
-    
-    TestService testservice=new TestService();
+
+    TestService testservice = new TestService();
 
     @FXML
     private void onclickSuivantStage(ActionEvent event) throws IOException {
-        
-         if (SelectedFile != null && inputUrl.getText().length()==0){
+
+        if (SelectedFile != null && inputUrl.getText().length() == 0) {
             //choice n'existe plus ,il afut l'enlever et remplacer par methode crud
-            path=SelectedFile.getAbsolutePath();
-        }
-        else if(inputUrl.getText().length()!=0 && SelectedFile == null){
-                path=inputUrl.getText();
-        }
-        else if(inputUrl.getText().length()!=0 && SelectedFile != null) {
-         Alert Atc=new Alert(Alert.AlertType.WARNING);
+            path = SelectedFile.getAbsolutePath();
+        } else if (inputUrl.getText().length() != 0 && SelectedFile == null) {
+            path = inputUrl.getText();
+        } else if (inputUrl.getText().length() != 0 && SelectedFile != null) {
+            Alert Atc = new Alert(Alert.AlertType.WARNING);
             Atc.setHeaderText("Alert");
             Atc.setContentText("vous ne pouvez pas deposer un ficher et mettre un url en meme temps");
-           Atc.showAndWait();
-            return;}
-           else  {
-         Alert Atc=new Alert(Alert.AlertType.WARNING);
+            Atc.showAndWait();
+            return;
+        } else {
+            Alert Atc = new Alert(Alert.AlertType.WARNING);
             Atc.setHeaderText("Alert");
             Atc.setContentText("Vous devez remplir un champ");
-           Atc.showAndWait();
-            return;}
-               try {
-            Offre O1=offreService.selectById(Integer.parseInt(id_offre.getText()));
-                   System.out.println(id_offre.getText());
-                                      System.out.println(O1.getTitre());
-                                                         System.out.println("modif test " +O1.getId_soc());
+            Atc.showAndWait();
+            return;
+        }
+        try {
+            Offre O1 = offreService.selectById(Integer.parseInt(id_offre.getText()));
+            System.out.println(id_offre.getText());
+            System.out.println(O1.getTitre());
+            System.out.println("modif test " + O1.getId_soc());
 
-
-            Test t=new Test(O1.getTitre(), path);
+            Test t = new Test(O1.getTitre(), path);
             t.setId_soc(1);
             testservice.ajouter(t);
             O1.setId_test(testservice.selectLast().getId());
-                   System.out.println(O1.getId_soc());
+            System.out.println(O1.getId_soc());
             offreService.update(O1);
-             String ACCOUNT_SID = "AC915cfd330fe7a8b2cacdd031af356e39";
-                            String AUTH_TOKEN = "7f567885b19a9f20b7ceada26b115be3";
-                            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-                            String titre=O1.getTitre();
-                            //num Mohsen : +21626662264
-                            Message message = Message.creator(new PhoneNumber(""),
-                                                                new PhoneNumber("+13854062174"), 
-                               "Vous avez modifier avec succes le test de l'offre : "+titre).create();
-                               System.out.println(message.getSid());
-            FXMLLoader fxml=new  FXMLLoader(getClass().getResource("SuccesTest.fxml"));
+            String ACCOUNT_SID = "AC915cfd330fe7a8b2cacdd031af356e39";
+            String AUTH_TOKEN = "7f567885b19a9f20b7ceada26b115be3";
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            String titre = O1.getTitre();
+            //num Mohsen : +21626662264
+            Message message = Message.creator(new PhoneNumber("+21626662264"),
+                    new PhoneNumber("+13854062174"),
+                    "Vous avez modifier avec succes le test de l'offre : " + titre).create();
+            System.out.println(message.getSid());
+            FXMLLoader fxml = new FXMLLoader(getClass().getResource("SuccesTest.fxml"));
             Parent root1 = fxml.load();
             Scene scene = btnSuivantStage.getScene();
             root1.translateYProperty().set(scene.getHeight());
             root12.getChildren().add(root1);
-            
+
             Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(root1.translateYProperty(),0, Interpolator.EASE_IN);
+            KeyValue kv = new KeyValue(root1.translateYProperty(), 0, Interpolator.EASE_IN);
             KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
             timeline.getKeyFrames().add(kf);
             timeline.setOnFinished(event1 -> root12.getChildren().remove(slide1));
@@ -238,61 +236,64 @@ public class ModifTestController implements Initializable {
             Logger.getLogger(AjouterTestController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-  String path="";
-            File SelectedFile;
+    String path = "";
+    File SelectedFile;
+
     @FXML
     private void Onclic_btnFile(ActionEvent event) {
-                FileChooser fc = new FileChooser();
-         SelectedFile =fc.showOpenDialog(null);
-        if (SelectedFile != null ){
-            path=SelectedFile.getAbsolutePath();
-   
-    }
+        FileChooser fc = new FileChooser();
+        SelectedFile = fc.showOpenDialog(null);
+        if (SelectedFile != null) {
+            path = SelectedFile.getAbsolutePath();
+
+        }
     }
 
     @FXML
     private void OnclickSuppTest(ActionEvent event) throws SQLException, IOException {
-        if(idtest == 0){ Alert Atc=new Alert(Alert.AlertType.ERROR);
+        if (idtest == 0) {
+            Alert Atc = new Alert(Alert.AlertType.ERROR);
             Atc.setHeaderText("Erreur");
             Atc.setContentText("Aucun test a supprimer");
-                    Atc.showAndWait();
-                    return;}
-        else{
-        Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
+            Atc.showAndWait();
+            return;
+        } else {
+            Alert Atc = new Alert(Alert.AlertType.CONFIRMATION);
             Atc.setHeaderText("Confirmation");
             Atc.setContentText("êtes vous sur de vouloir supprimer le test?");
-       Optional<ButtonType> result= Atc.showAndWait();
-                       if(result.get()== ButtonType.OK){
-              Offre O1=offreService.selectById(Integer.parseInt(id_offre.getText()));
-                           System.out.println(O1.getId_test());
-                    Test t=    testservice.selectById(O1.getId_test());
-                           System.out.println(t.getId());
-                           if(testservice.delete(t))
-                           {  Alert a=new Alert(Alert.AlertType.INFORMATION);
-            a.setHeaderText("Succes");
-            a.setContentText("Votre Offre ne contient plus de test");
-                           a.showAndWait();
-                             Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-                           
-                       }        
-                       else 
-                           Atc.close();
-        
-    }}
+            Optional<ButtonType> result = Atc.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                Offre O1 = offreService.selectById(Integer.parseInt(id_offre.getText()));
+                System.out.println(O1.getId_test());
+                Test t = testservice.selectById(O1.getId_test());
+                System.out.println(t.getId());
+                if (testservice.delete(t)) {
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setHeaderText("Succes");
+                    a.setContentText("Votre Offre ne contient plus de test");
+                    a.showAndWait();
+                    Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+                    Scene stage = new Scene(fXMLLoader);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(stage);
+                    window.show();
+                }
+
+            } else {
+                Atc.close();
+            }
+
+        }
+    }
 
     @FXML
     private void onclickRetour(ActionEvent event) throws IOException {
-       
+
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(stage);
-        window.show();}
+        window.show();
+    }
 
-
-  
 }

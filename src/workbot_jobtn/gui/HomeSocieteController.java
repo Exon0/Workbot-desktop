@@ -7,10 +7,7 @@ package workbot_jobtn.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +23,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import workbot_jobtn.services.OffreService;
 
 /**
  * FXML Controller class
@@ -86,32 +85,44 @@ public class HomeSocieteController implements Initializable {
     private Label tot_part;
     @FXML
     private Label semaine_part;
+    private WebView N_AdsView;
+
+    private WebEngine e;
+    OffreService offreservice = new OffreService();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        int nbTot = offreservice.totNbOffres(1);
+        int nbSemaine = offreservice.totNbOffresParSemaine(1);
+        tot_offre.setText(String.valueOf(nbTot));
+        semaine_offre.setText(String.valueOf(nbSemaine));
+
+    }
 
     @FXML
     private void onClicked_menuOffre(ActionEvent event) throws IOException {
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(stage);
         window.show();
     }
 
     @FXML
     private void OnClicked_menuEvent(ActionEvent event) throws IOException {
-  
-              
+
     }
 
     @FXML
-    private void OnClicked_menuEntretiens(ActionEvent event) {
+    private void OnClicked_menuEntretiens(ActionEvent event) throws IOException {
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("DisplayEntretiens.fxml"));
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
     }
 
     @FXML
@@ -125,5 +136,5 @@ public class HomeSocieteController implements Initializable {
     @FXML
     private void OnClick_settings(ActionEvent event) {
     }
-    
+
 }

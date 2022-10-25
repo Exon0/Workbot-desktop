@@ -19,20 +19,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import workbot_jobtn.entites.TypeOffre;
 
 /**
  * FXML Controller class
@@ -90,16 +86,16 @@ public class AjouterOffreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onClicked_menuOffre(ActionEvent event) throws IOException {
-                Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(stage);
         window.show();
-        
+
     }
 
     @FXML
@@ -107,7 +103,12 @@ public class AjouterOffreController implements Initializable {
     }
 
     @FXML
-    private void OnClicked_menuEntretiens(ActionEvent event) {
+    private void OnClicked_menuEntretiens(ActionEvent event) throws IOException {
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("DisplayEntretiens.fxml"));
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
     }
 
     @FXML
@@ -126,28 +127,28 @@ public class AjouterOffreController implements Initializable {
     private void OnClick_settings(ActionEvent event) {
     }
 
-   public Scene getSceneprop(){
+    public Scene getSceneprop() {
         Scene scene = btn_start_ajouter.getScene();
         return scene;
-     
-   }
-   public Pane getPane(){
-       return this.slide1;
-   }
 
+    }
+
+    public Pane getPane() {
+        return this.slide1;
+    }
 
     @FXML
     private void onclick_startAjout(ActionEvent event) throws IOException {
-         FXMLLoader fxml=new  FXMLLoader(getClass().getResource("ChoixOffre.fxml"));
-          Parent root1 = fxml.load();
-        
+        FXMLLoader fxml = new FXMLLoader(getClass().getResource("ChoixOffre.fxml"));
+        Parent root1 = fxml.load();
+
         Scene scene = btn_start_ajouter.getScene();
-        
+
         root1.translateYProperty().set(scene.getHeight());
         slide1.getChildren().add(root1);
-    
+
         Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(root1.translateYProperty(),0, Interpolator.EASE_IN);
+        KeyValue kv = new KeyValue(root1.translateYProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(event1 -> slide1.getChildren().remove(creerOffre));
@@ -156,9 +157,9 @@ public class AjouterOffreController implements Initializable {
 
     @FXML
     private void onclick_dash(ActionEvent event) throws IOException {
-                Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(stage);
         window.show();
     }
@@ -167,5 +168,4 @@ public class AjouterOffreController implements Initializable {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-   
 }

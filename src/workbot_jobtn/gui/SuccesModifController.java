@@ -41,24 +41,24 @@ public class SuccesModifController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
-      @FXML
+    @FXML
     private void onClick_Dash(ActionEvent event) throws IOException {
-                     Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(stage);
         window.show();
     }
 
     @FXML
     private void OnclickAjouterOffre(ActionEvent event) throws IOException {
-            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(stage);
         window.show();
     }
-    
+
 }

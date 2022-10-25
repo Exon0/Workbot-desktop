@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="900.0" stylesheets="@homesociete.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="workbot_jobtn.gui.HomeSocieteController">
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="900.0" stylesheets="@homesociete.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workbot_jobtn.gui.HomeSocieteController">
    <children>
       <VBox fx:id="menu" prefHeight="572.0" prefWidth="192.0">
          <children>
@@ -105,22 +105,22 @@
                         <Font name="Consolas Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="tot_offre" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="86.0" layoutY="49.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="35.0" text="20" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                  <Label fx:id="tot_offre" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="86.0" layoutY="49.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="35.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font name="Lucida Sans Unicode" size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="11.0" layoutY="100.0" prefHeight="19.0" prefWidth="87.0" text="Cette semaine" textFill="WHITE">
+                  <Label layoutX="5.0" layoutY="102.0" prefHeight="19.0" prefWidth="87.0" text="Cette semaine" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label layoutX="32.0" layoutY="54.0" prefHeight="17.0" prefWidth="46.0" text="Total" textFill="WHITE">
+                  <Label layoutX="26.0" layoutY="54.0" prefHeight="17.0" prefWidth="46.0" text="Total" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="semaine_offre" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="95.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="35.0" text="20" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                  <Label fx:id="semaine_offre" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="95.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="35.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font name="Lucida Sans Unicode" size="17.0" />
                      </font>

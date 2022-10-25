@@ -33,10 +33,10 @@ public class NoteTestController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onclickOkbtn(ActionEvent event) {
     }
-    
+
 }

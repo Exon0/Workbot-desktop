@@ -24,21 +24,21 @@
 .dash_offre , .dash_cand , .dash_event ,.dash_part {
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
-        -fx-background-color: #afaaff;
+    -fx-background-color: #afaaff;
 
 }
 .btnAjouter{
-        -fx-background-color: #6c63ff;
+    -fx-background-color: #6c63ff;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
 }
 .btnSupp   {
-         -fx-background-color: #6c63ff;
+    -fx-background-color: #6c63ff;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
 }
 .btnModif {
-     -fx-background-color: #6c63ff;
+    -fx-background-color: #6c63ff;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
 }

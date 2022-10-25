@@ -99,76 +99,80 @@ public class OffreStageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> list = FXCollections.observableArrayList("Présentiel","Hybrid","Teletravail");
-                ObservableList<String> list2 = FXCollections.observableArrayList("PFE","Stage d'été","Alternance");
-                    input_calendrier.setValue(LocalDate.now());
+        ObservableList<String> list = FXCollections.observableArrayList("Présentiel", "Hybrid", "Teletravail");
+        ObservableList<String> list2 = FXCollections.observableArrayList("PFE", "Stage d'été", "Alternance");
+        input_calendrier.setValue(LocalDate.now());
 
         combobox.setItems(list);
         combobox1.setItems(list2);
-    }    
+    }
 
     @FXML
     private void onclick_dash(ActionEvent event) throws IOException {
-     Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
+        Alert Atc = new Alert(Alert.AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            Atc.close();
+        }
     }
 
     @FXML
     private void onClicked_menuOffre(ActionEvent event) throws IOException {
-    Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
+        Alert Atc = new Alert(Alert.AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            Atc.close();
+        }
     }
 
     @FXML
     private void OnClicked_menuEvent(ActionEvent event) throws IOException {
- Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
+        Alert Atc = new Alert(Alert.AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            Atc.close();
+        }
     }
 
     @FXML
     private void OnClicked_menuEntretiens(ActionEvent event) throws IOException {
-         Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
+        Alert Atc = new Alert(Alert.AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("DisplayEntretiens.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            Atc.close();
+        }
     }
 
     @FXML
@@ -189,109 +193,112 @@ public class OffreStageController implements Initializable {
 
     @FXML
     private void OnclickRetour(ActionEvent event) throws IOException {
-       
-         Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Votre avancement sera perdu");
-           Optional<ButtonType> result= Atc.showAndWait();
-               if(result.get()== ButtonType.OK){
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("AjouterOffre.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();}
-            else
-                Atc.close();
+
+        Alert Atc = new Alert(Alert.AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Votre avancement sera perdu");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("AjouterOffre.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        } else {
+            Atc.close();
+        }
     }
     String ModeTravail;
+
     @FXML
     private void selectModeTravail(ActionEvent event) {
         String s = combobox.getSelectionModel().getSelectedItem().toString();
-        this.ModeTravail=s;
+        this.ModeTravail = s;
     }
 
     @FXML
     private void selectTypeStage(ActionEvent event) {
     }
-    OffreService offerservice= new OffreService();
+    OffreService offerservice = new OffreService();
 
     @FXML
     private void onclickSuivantStage(ActionEvent event) throws IOException {
-                    
-        String titre = inputTitre.getText();
-                    String modeTravail = (String)combobox.getSelectionModel().getSelectedItem();
-                    String lieu=inputLieu.getText();
-                    String dateExp = input_calendrier.getValue().format(DateTimeFormatter.ISO_DATE);
-                    String duree = inputDuree.getText();
-                    String typeStage = (String)combobox1.getSelectionModel().getSelectedItem();
-                    String desc = inputDescription.getText();
-                    int id_soc = 1;
-                    String domaine = "Info";
-                     Offre o= new Offre( titre,  duree,  desc,  domaine,  dateExp,  typeStage, modeTravail, lieu,  id_soc,  TypeOffre.Stage) ;
 
-                    if(titre.length()==0 || combobox.getSelectionModel().getSelectedIndex() ==-1 || dateExp.length()==0 || duree.length()==0 || combobox1.getSelectionModel().getSelectedIndex() ==-1 || desc.length()==0 )
-                    {  Alert error=new Alert(Alert.AlertType.WARNING);
-                    error.setHeaderText("Alert");
-                    error.setContentText("Veuillez remplir tous les champs");
-                    error.showAndWait();
-                    return;}
-                       if(modeTravail.equals("Présentiel") ||modeTravail.equals("Hybrid") )
-                    {if(lieu.length()==0){
-                               Alert error=new Alert(Alert.AlertType.WARNING);
-                    error.setHeaderText("Alert");
-                    error.setContentText("En Présentiel ou Hybrid vous devez entrer le lieu!!");
-                    error.showAndWait();
-                        return;}}
-                    if(dateExp.compareTo(LocalDate.now().toString())<=0){
-                         Alert error=new Alert(Alert.AlertType.WARNING);
-                    error.setHeaderText("Alert");
-                    error.setContentText("Date invalide");
-                    error.showAndWait();
-                    return;
-                    }
-        
-                     List<Offre> listOffre= offerservice.readAll();
-                   for(Offre o1:listOffre){
-                   if((o1.getTitre().equals(o.getTitre())) && (o1.getDescription().equals(o.getDescription())))
-                   {
-                        Alert error=new Alert(Alert.AlertType.ERROR);
-                    error.setHeaderText("ERREUR");
-                    error.setContentText("Cette Offre existe deja");
-                    error.showAndWait();
-                    return;
-                   }
-                   }
-            Alert Atc=new Alert(Alert.AlertType.CONFIRMATION);
-            Atc.setHeaderText("Alert");
-            Atc.setContentText("Verifier bien les informations saisi, vous ne pouvez pas revenir en arriére!! Cliquez OK pour passer");
-            Optional<ButtonType> result= Atc.showAndWait();
-            if(result.get()== ButtonType.OK){
-                  
-           try {
-                  offerservice.ajouter(o);
-                
-          
-                   FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("test.fxml"));
-                   Parent root=fXMLLoader.load();
-                   TestController testController=fXMLLoader.getController();
-                   Offre Of =offerservice.readLast();
-                   System.out.println(Of.getId());
-                   testController.setIdOffre(Of.getId());
-                   Scene stage=new Scene(root);
-                   testController.setChoice("Emploi");
-                   
-                   Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-                   window.setScene(stage);
-                   window.show();
-                    } catch (SQLException ex) {
-                    Alert error=new Alert(Alert.AlertType.WARNING);
-                    error.setHeaderText("Alert");
-                    error.setContentText("erreur");
-                    error.showAndWait();
-                }
-                    
-           }
-            else
-                     Atc.close();
+        String titre = inputTitre.getText();
+        String modeTravail = (String) combobox.getSelectionModel().getSelectedItem();
+        String lieu = inputLieu.getText();
+        String dateExp = input_calendrier.getValue().format(DateTimeFormatter.ISO_DATE);
+        String duree = inputDuree.getText();
+        String typeStage = (String) combobox1.getSelectionModel().getSelectedItem();
+        String desc = inputDescription.getText();
+        int id_soc = 1;
+        String domaine = "Info";
+        Offre o = new Offre(titre, duree, desc, domaine, dateExp, typeStage, modeTravail, lieu, id_soc, TypeOffre.Stage);
+
+        if (titre.length() == 0 || combobox.getSelectionModel().getSelectedIndex() == -1 || dateExp.length() == 0 || duree.length() == 0 || combobox1.getSelectionModel().getSelectedIndex() == -1 || desc.length() == 0) {
+            Alert error = new Alert(Alert.AlertType.WARNING);
+            error.setHeaderText("Alert");
+            error.setContentText("Veuillez remplir tous les champs");
+            error.showAndWait();
+            return;
+        }
+        if (modeTravail.equals("Présentiel") || modeTravail.equals("Hybrid")) {
+            if (lieu.length() == 0) {
+                Alert error = new Alert(Alert.AlertType.WARNING);
+                error.setHeaderText("Alert");
+                error.setContentText("En Présentiel ou Hybrid vous devez entrer le lieu!!");
+                error.showAndWait();
+                return;
             }
+        }
+        if (dateExp.compareTo(LocalDate.now().toString()) <= 0) {
+            Alert error = new Alert(Alert.AlertType.WARNING);
+            error.setHeaderText("Alert");
+            error.setContentText("Date invalide");
+            error.showAndWait();
+            return;
+        }
+
+        List<Offre> listOffre = offerservice.readAll();
+        for (Offre o1 : listOffre) {
+            if ((o1.getTitre().equals(o.getTitre())) && (o1.getDescription().equals(o.getDescription()))) {
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setHeaderText("ERREUR");
+                error.setContentText("Cette Offre existe deja");
+                error.showAndWait();
+                return;
+            }
+        }
+        Alert Atc = new Alert(Alert.AlertType.CONFIRMATION);
+        Atc.setHeaderText("Alert");
+        Atc.setContentText("Verifier bien les informations saisi, vous ne pouvez pas revenir en arriére!! Cliquez OK pour passer");
+        Optional<ButtonType> result = Atc.showAndWait();
+        if (result.get() == ButtonType.OK) {
+
+            try {
+                offerservice.ajouter(o);
+
+                FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("test.fxml"));
+                Parent root = fXMLLoader.load();
+                TestController testController = fXMLLoader.getController();
+                Offre Of = offerservice.readLast();
+                System.out.println(Of.getId());
+                testController.setIdOffre(Of.getId());
+                Scene stage = new Scene(root);
+                testController.setChoice("Emploi");
+
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(stage);
+                window.show();
+            } catch (SQLException ex) {
+                Alert error = new Alert(Alert.AlertType.WARNING);
+                error.setHeaderText("Alert");
+                error.setContentText("erreur");
+                error.showAndWait();
+            }
+
+        } else {
+            Atc.close();
+        }
+    }
 }

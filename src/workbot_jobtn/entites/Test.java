@@ -11,19 +11,19 @@ import java.util.Objects;
  * @author Exon
  */
 public class Test {
-    
+
     private int id;
-    
+
     private String titre;
-    
+
     private String domaine;
-    
+
     private String description;
-    
+
     private String lien;
-    
+
     private String categorie;
-    
+
     private int id_soc;
 
     public int getId_soc() {
@@ -41,8 +41,6 @@ public class Test {
         this.titre = titre;
         this.lien = lien;
     }
-    
-    
 
     public Test(Integer id, String titre, String domaine, String description, String lien, String categorie) {
         this.id = id;
@@ -64,7 +62,8 @@ public class Test {
     public Test(int id, String titre, String lien) {
         this.id = id;
         this.titre = titre;
-        this.lien = lien;    }
+        this.lien = lien;
+    }
 
     public Integer getId() {
         return id;
@@ -148,9 +147,5 @@ public class Test {
     public String toString() {
         return "I_Test{" + "id=" + id + ", titre=" + titre + ", domaine=" + domaine + ", description=" + description + ", lien=" + lien + ", categorie=" + categorie + '}';
     }
-    
-    
-    
-    
-    
+
 }
