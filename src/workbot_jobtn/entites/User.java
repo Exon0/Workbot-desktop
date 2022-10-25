@@ -22,6 +22,15 @@ public class User {
     private String questionSecu;
     private String reponseSecu;
     private String methode;
+    private String domaine;
+
+    public String getDomaine() {
+        return domaine;
+    }
+
+    public void setDomaine(String domaine) {
+        this.domaine = domaine;
+    }
 
     public int getId() {
         return id;
@@ -71,7 +80,7 @@ public class User {
         return methode;
     }
 
-    public User(int id, String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode) {
+    public User(int id, String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode, String domaine) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -84,6 +93,7 @@ public class User {
         this.questionSecu = questionSecu;
         this.reponseSecu = reponseSecu;
         this.methode = methode;
+        this.domaine = domaine;
     }
 
     public User() {

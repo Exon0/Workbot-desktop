@@ -25,29 +25,27 @@ import workbot_jobtn.utils.MyDB;
  *
  * @author fnmoh
  */
-public class NewPassRparSmsController implements Initializable {
+public class PasswordapiSmsMController implements Initializable {
 
     @FXML
     private TextField SmSReponseL;
     @FXML
     private TextField SmsNewPass;
     @FXML
-    private Button ConfirmerPassparSMS;
-    @FXML
-    private TextField SmSMaiL;
+   
 
     /**
      * Initializes the controller class.
      */
     
-    public void RetourPassword(String ReponseSms,String SmSMaill){
-     SmSMaiL.setText(SmSMaill);
-             SmSReponseL.setText(ReponseSms);
+    public void RetourPassword(String ReponseSms){
+     SmSReponseL.setText(ReponseSms);
+             
     }
            private Connection on;
     private Statement ste;
 
-    public  NewPassRparSmsController(){
+    public  PasswordapiSmsMController(){
        on =  MyDB.getInstance().getConnection();
     }  
              
@@ -61,14 +59,13 @@ public class NewPassRparSmsController implements Initializable {
         updateRecord();
     }
      private void updateRecord(){
+         String a =SmSReponseL.getText();
+         String b= a.substring(4,12);
          System.out.println(SmSReponseL.getText());
          System.out.println(SmsNewPass.getText());
-        String query = "UPDATE  utilisateur SET  mdp = '" + SmsNewPass.getText() + "' WHERE email = '" +  SmSReponseL.getText() + "'  ";
-        
+        String query = "UPDATE  utilisateur SET  mdp = '" + SmsNewPass.getText() + "' WHERE tel = '" +  b + "'   ";
+        System.out.println(b);
         executeQuery(query);
-        System.out.println(SmsNewPass.getText());
-       
-        
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                      alert.setTitle("JobTn :: Information correct");
                      alert.setHeaderText(null);
@@ -100,3 +97,4 @@ Stage stage = (Stage)  SmsNewPass.getScene().getWindow();
         }
     }
 }
+

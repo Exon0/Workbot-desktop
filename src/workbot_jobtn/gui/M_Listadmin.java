@@ -24,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -38,6 +39,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -50,6 +52,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import workbot_jobtn.entites.User;
+import workbot_jobtn.services.M_AdminService;
 import workbot_jobtn.utils.MyDB;
 
 
@@ -119,14 +122,17 @@ public class M_Listadmin implements Initializable{
     private Button M_listclientLS;
     @FXML
     private Button M_actualiser;
+    @FXML
+    private Button Stat;
     
    public void initialize(URL url,ResourceBundle rb){
       showAdmin();
       M_rechercheL();
  }
     @FXML
-    void Add(ActionEvent event) {
+    void Add(ActionEvent event) throws SQLException  {
  if(event.getSource() == M_ajouter){
+     
             insertRecord();
        
         }
@@ -291,9 +297,18 @@ String role ="Admin";
 }
     
     ////////////////////////////////////////////
- private void insertRecord() {
-        
+ private void insertRecord() throws SQLException  {
      
+     String email = null;
+                    String queryy="select email from utilisateur where email='"+M_mailLCtextfuild.getText()+"'"; 
+on =  MyDB.getInstance().getConnection();
+     PreparedStatement smt = on.prepareStatement(queryy);
+            ResultSet rs= smt.executeQuery();
+             while(rs.next())
+            {
+                        email = rs.getString("email");
+            }
+             
       if(  M_prenomLCtextfuild.getText().isEmpty()
                     |M_nomLCtextfuild.getText().isEmpty()
                    
@@ -304,24 +319,42 @@ String role ="Admin";
                      
                     
                   ){
+          
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Job Tn :: Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Verifier fields !!");
                 alert.showAndWait();}
-             
-          else{
-               {
-        
-        
-     
+     /*
+      else if (email.equals(M_mailLCtextfuild.getText())==true){
+         
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Job Tn :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Verifier email  !!");
+                alert.showAndWait();
+      }
+      */
+      else
+      {   
+          /*
+        M_prenomLCtextfuild.setText(u.getPrenom());
+        M_nomLCtextfuild.setText(u.getNom());
+        M_mailLCtextfuild.setText(u.getEmail());
+        M_passwordLCtextfuild.setText(u.getMdp());
+          M_AdminService mds= new M_AdminService ();
+          */
+         /*
+          description.setText(r.getDescriptionR());
+          */
+          
         String query = "INSERT INTO utilisateur (prenom,nom,email,mdp,role) VALUES ('" + M_prenomLCtextfuild.getText() + "','" + M_nomLCtextfuild.getText() + "','" + M_mailLCtextfuild.getText() + "','"
                 + M_passwordLCtextfuild.getText() + "','" + role + "')";
-        
+
         executeQuery(query);
-        showAdmin();
-        
-    }}}
+        showAdmin();;}
+       
+ }
 
  ///////////////////////////////////////////
     
@@ -372,19 +405,20 @@ String role ="Admin";
   
  @FXML
     void  ListClient(ActionEvent event) { 
-  try {
-			Stage stage = (Stage) M_passwordLCtextfuild.getScene().getWindow();
-                        stage.close();
+        
+        try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_ListClient.fxml"));
                         
-          Parent root=FXMLLoader.load(getClass().getResource("M_ListClient.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+        
+  
     }
     
     
@@ -399,16 +433,17 @@ String role ="Admin";
     
     @FXML
     void M_logoutLAaction(ActionEvent event) {
-        try {
-Stage stage = (Stage) M_passwordLCtextfuild.getScene().getWindow();
-                        stage.close();
+        /*
+          
+        */
+  try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_Login.fxml"));
                         
-          Parent root=FXMLLoader.load(getClass().getResource("M_Login.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -521,6 +556,24 @@ Stage stage = (Stage) M_passwordLCtextfuild.getScene().getWindow();
         }
             
             //////////////////////
+
+    @FXML
+    private void M_statbutton(ActionEvent event) {
+        /*
+       
+        */
+        try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_Statistique.fxml"));
+                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+    }
     
  
 }

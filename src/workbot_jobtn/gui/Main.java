@@ -23,7 +23,9 @@ public class Main extends Application {
 	public void start(Stage stage) {
            
 		try {
-			Parent root=FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
+			Parent root=FXMLLoader.load(getClass().getResource("M_Login.fxml"));
+                       // Parent root=FXMLLoader.load(getClass().getResource("Captcha.fxml"));
+                        
 			Scene scene = new Scene(root,840,600);
 		
 			stage.setScene(scene);

@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Rd/Page%201%20-%20Login%20Screen%20(5).png" />
+                  <Image url="@../Rd/Page%201%20-%20Login%20Screen%20(6).png" />
                </image>
             </ImageView>
             <TextField fx:id="M_Mail" layoutX="525.0" layoutY="307.0" promptText="E-mail" />
@@ -66,7 +66,7 @@
                   <Image url="@../Rd/Vector.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="124.0" fitWidth="158.0" layoutX="25.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="icon" fitHeight="124.0" fitWidth="158.0" layoutX="25.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Rd/undraw_world_re_768g%201.png" />
                </image>
@@ -79,6 +79,26 @@
             <ImageView fitHeight="15.0" fitWidth="23.0" layoutX="43.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Rd/map-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="eclipse2" fitHeight="139.0" fitWidth="121.0" layoutX="246.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Rd/Ellipse%202.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="icon1" fitHeight="109.0" fitWidth="121.0" layoutX="234.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Rd/undraw_advanced_customization_re_wo6h%201%20(3).png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="eclipse3" fitHeight="139.0" fitWidth="121.0" layoutX="40.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Rd/Ellipse%203.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="icon2" fitHeight="109.0" fitWidth="142.0" layoutX="25.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Rd/undraw_pay_online_re_aqe6%201.png" />
                </image>
             </ImageView>
          </children>

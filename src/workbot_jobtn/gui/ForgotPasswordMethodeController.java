@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -47,21 +48,18 @@ public class ForgotPasswordMethodeController implements Initializable {
     @FXML
     private void SuivantMethodePass(ActionEvent event) {
         
-        /*
-         try {
-			Stage stage = (Stage) Choisemethodepassword.getScene().getWindow();
-                        stage.close();
+  try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_Login.fxml"));
                         
-          Parent root=FXMLLoader.load(getClass().getResource("RestoreAccountParSms.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-*/
+    
     }
 
 
@@ -71,16 +69,27 @@ public class ForgotPasswordMethodeController implements Initializable {
 
     @FXML
     private void B_ParSms(ActionEvent event) {
-try {
-			Stage stage = (Stage) B_ParSms.getScene().getWindow();
-                        stage.close();
+        /*
+         try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("smsmethodeRestore.fxml"));
                         
-          Parent root=FXMLLoader.load(getClass().getResource("smsmethodeRestore.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+        */
+ try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("smsmethodeRestore.fxml"));
                         
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -88,22 +97,33 @@ try {
 
     @FXML
     private void B_PQueSec(ActionEvent event) {
-    try {
-			Stage stage = (Stage) B_ParSms.getScene().getWindow();
-                        stage.close();
+        /*
+         try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("RestoreAccountParSms.fxml"));
                         
-          Parent root=FXMLLoader.load(getClass().getResource("RestoreAccountParSms.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
     }
-
+        */
+    try {
     
+                        Parent root = FXMLLoader.load(getClass().getResource("RestoreAccountParSms.fxml"));
+                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
+    }
 }
     
 

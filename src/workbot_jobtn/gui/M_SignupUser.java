@@ -82,6 +82,10 @@ private Parent root;
             
        
         }
+         /*
+         
+          
+         */
         try {
 			Stage stage = (Stage) M_choixBoxRole.getScene().getWindow();
                         stage.close();

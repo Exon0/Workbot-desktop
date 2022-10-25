@@ -100,11 +100,11 @@ private Parent root;
                         
      
                         
-                            String mailSms=  Sms_Email_RPASS.getText();
+                            String SmSMaill=  Sms_Email_RPASS.getText();
          String ReponseSms =  Reponse_Email_RPASS.getText();
            FXMLLoader loader=new FXMLLoader(getClass().getResource("NewPassRparSms.fxml"));
          root = loader.load();
-          NewPassRparSmsController NewPassRparSmsController = loader.getController();
+           NewPassRparSmsController NewPassRparSmsController = loader.getController();
           NewPassRparSmsController.RetourPassword(Sms_Email_RPASS.getText(), Reponse_Email_RPASS.getText());
                       
           

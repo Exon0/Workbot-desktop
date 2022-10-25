@@ -86,6 +86,8 @@ public class M_signupEmailnomController  implements Initializable {
     @FXML
     public void M_SuivantSD(ActionEvent event) {
         boolean dataValid =true;
+        
+        
         String roleee = M_rolc.getText();
          String nomm = M_NomSD.getText();
          String prenommm = M_pomSD1.getText();

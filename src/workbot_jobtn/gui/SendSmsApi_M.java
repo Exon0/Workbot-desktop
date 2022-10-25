@@ -4,14 +4,12 @@
  */
 package workbot_jobtn.gui;
 
-
-import javafx.collections.ObservableList;
-
-
 /**
  *
  * @author fnmoh
  */
-public class PdfGeneration {
-   
+public class SendSmsApi_M {
+    public static final String ACCOUNT_SID = System.getenv("RWILIO_ACCOUNT_SID");
+    public static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
+    
 }

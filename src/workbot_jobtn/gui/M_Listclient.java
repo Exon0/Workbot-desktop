@@ -38,6 +38,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -90,6 +91,8 @@ public class M_Listclient implements Initializable {
     private TextField M_mailLCtextfuild;
     @FXML
     private Button imprimer_LC;
+    @FXML
+    private Button M_logoutLAid;
     
     
     
@@ -142,16 +145,27 @@ public M_Listclient (){
     
     @FXML
     void M_listclientLS(ActionEvent event) {
+        /*
+        try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
+                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+        */
       try {
-			Stage stage = (Stage) M_listclientLS.getScene().getWindow();
-                        stage.close();
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
                         
-          Parent root=FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -344,6 +358,36 @@ ObservableList<User> list = getClientList();
         
         
         }
+
+    @FXML
+    private void statiquem(ActionEvent event) {
+          try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_Statistique.fxml"));
+                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    private void M_logoutLAaction(ActionEvent event) {
+         try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_Login.fxml"));
+                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+    }
     }
        
 

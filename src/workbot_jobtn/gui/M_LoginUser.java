@@ -14,10 +14,12 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
+import static javafx.collections.FXCollections.rotate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -61,23 +63,38 @@ public class M_LoginUser implements Initializable {
     private Button M_loginidb;
     @FXML
     private Button m_map;
+    @FXML
+    private ImageView eclipse2;
+    @FXML
+    private ImageView eclipse3;
+    @FXML
+    private ImageView icon1;
+    @FXML
+    private ImageView icon2;
+    @FXML
+    private ImageView icon;
 
     @FXML
     void M_creecompteactionB(ActionEvent event) {
         
         try {
-Stage stage = (Stage) M_restorepassword.getScene().getWindow();
-                        stage.close();
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_Signup.fxml"));
                         
-          Parent root=FXMLLoader.load(getClass().getResource("M_Signup.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+        /*
+        Parent root = FXMLLoader.load(getClass().getResource("M_Signup.fxml"));
+        Scene stage=new Scene(root,840,600);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+        */
     }
        private Connection on;
     private Statement ste;
@@ -101,19 +118,19 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
                      alert.setHeaderText(null);
                      alert.setContentText("Bienvenu Admin");
                      alert.showAndWait();
-               try {
-			Stage stage = (Stage) M_Mail.getScene().getWindow();
-                        stage.close();
+                     
+                     try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
                         
-          Parent root=FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+                   
         }
         ///////////////ken el email wel password mawjoud fel data base y7elo el interface mmt3h 7aseb e role
         else {
@@ -175,19 +192,20 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
                      alert.setHeaderText(null);
                      alert.setContentText("Vous etes connecté Administrateur");
                      alert.showAndWait(); 
-                      try {
-			Stage stage = (Stage) M_creecompte.getScene().getWindow();
-                        stage.close();
+                     
+                     try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
                         
-          Parent root=FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+                    
+                     
             }
             else 
             {
@@ -222,19 +240,20 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
 
     @FXML
     private void M_restorepasswordMethode(ActionEvent event) {
-         try {
-			Stage stage = (Stage) M_Mail.getScene().getWindow();
-                        stage.close();
+        
+        try {
+    
+                        Parent root = FXMLLoader.load(getClass().getResource("ForgotPasswordMethode.fxml"));
                         
-          Parent root=FXMLLoader.load(getClass().getResource("ForgotPasswordMethode.fxml"));
-			Scene scene = new Scene(root,840,600);
-		
-			stage.setScene(scene);
-			stage.show();
-                        
+        Scene stage=new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+        
+         
     }
 
     @Override
@@ -246,12 +265,18 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
         rotate.setToAngle(360);
         rotate.setCycleCount(100);
         rotate.play();*/
+       eclipse2();
+       eclipse3();
+       icon1();
+       icon();
+       icon2();
         rotate.setDuration(Duration.millis(10000));
         rotate.setNode(eclipse);
         rotate.setAutoReverse(false);
         rotate.setToAngle(360);
         rotate.setCycleCount(100);
         rotate.play();
+        
         ScaleTransition scale = new ScaleTransition();
         scale.setNode(imagedour);
         scale.setByY(0.06);
@@ -261,7 +286,51 @@ Stage stage = (Stage) M_restorepassword.getScene().getWindow();
         scale.play();
         
     }
-
+   public void eclipse2(){
+        RotateTransition rotate = new RotateTransition();
+        rotate.setDuration(Duration.millis(10000));
+        rotate.setNode(eclipse2);
+        rotate.setAutoReverse(false);
+        rotate.setToAngle(360);
+        rotate.setCycleCount(100);
+        rotate.play();
+   }
+   public void eclipse3(){
+        RotateTransition rotate = new RotateTransition();
+        rotate.setDuration(Duration.millis(10000));
+        rotate.setNode(eclipse3);
+        rotate.setAutoReverse(false);
+        rotate.setToAngle(360);
+        rotate.setCycleCount(100);
+        rotate.play();
+   }
+    public void icon1(){
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(icon1);
+        scale.setByY(0.02);
+        scale.setByX(0.02);
+        scale.setCycleCount(1000);
+        scale.setAutoReverse(true);
+        scale.play();
+   }
+     public void icon2(){
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(icon2);
+        scale.setByY(0.02);
+        scale.setByX(0.02);
+        scale.setCycleCount(1000);
+        scale.setAutoReverse(true);
+        scale.play();
+   }
+      public void icon(){
+        ScaleTransition scale = new ScaleTransition();
+        scale.setNode(icon);
+        scale.setByY(0.02);
+        scale.setByX(0.02);
+        scale.setCycleCount(1000);
+        scale.setAutoReverse(true);
+        scale.play();
+   }
     @FXML
     private void MonterPassword1(MouseEvent event) {
     }
