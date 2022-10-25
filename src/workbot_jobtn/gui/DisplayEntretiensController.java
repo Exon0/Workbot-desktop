@@ -4,6 +4,11 @@
  */
 package workbot_jobtn.gui;
 
+import java.awt.Desktop;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -31,6 +36,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
+import workbot_jobtn.entites.DTOCandidature_Offre;
 import workbot_jobtn.entites.DTOEntretien;
 import workbot_jobtn.entites.Entretien;
 import workbot_jobtn.entites.Offre;
@@ -83,6 +91,8 @@ public class DisplayEntretiensController implements Initializable {
     private TableColumn<DTOEntretien, String> heure;
     @FXML
     private TableColumn<DTOEntretien, String> lienM;
+    @FXML
+    private Button QRcode;
 
     /**
      * Initializes the controller class.
@@ -159,6 +169,22 @@ public class DisplayEntretiensController implements Initializable {
 
     @FXML
     private void OnClick_settings(ActionEvent event) {
+    }
+
+    @FXML
+    private void OnclickQrCode(ActionEvent event) throws FileNotFoundException, IOException {
+        
+          ObservableList<DTOEntretien> offreSelected = table.getSelectionModel().getSelectedItems();
+        DTOEntretien dto = offreSelected.get(0);
+        String detailsCand = dto.getLien();
+        ByteArrayOutputStream out = QRCode.from(detailsCand).to(ImageType.PNG).stream();
+        File f = new File("C:\\PDFapi\\QRgenerator.PNG");
+
+        FileOutputStream fos = new FileOutputStream(f);
+        fos.write(out.toByteArray());
+        fos.flush();
+        fos.close();
+        Desktop.getDesktop().open(new File("C:\\PDFapi\\QRgenerator.PNG"));
     }
 
 }
