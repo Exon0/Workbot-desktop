@@ -80,6 +80,11 @@ public class User {
         return methode;
     }
 
+    public User(int id, String email) {
+        this.id = id;
+        this.email = email;
+    }
+
     public User(int id, String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode, String domaine) {
         this.id = id;
         this.nom = nom;

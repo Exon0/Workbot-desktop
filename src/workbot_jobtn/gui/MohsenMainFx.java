@@ -15,7 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
-public class Main extends Application {
+public class MohsenMainFx extends Application {
 
     @Override
     public void start(Stage stage) {
