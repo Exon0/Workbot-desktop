@@ -10,7 +10,7 @@ package workbot_jobtn.entites;
  * @author fnmoh
  */
 public class User {
- private int id;
+    private int id;
     private String nom;
     private String prenom;
     private String role;
@@ -22,6 +22,15 @@ public class User {
     private String questionSecu;
     private String reponseSecu;
     private String methode;
+    private String domaine;
+
+    public String getDomaine() {
+        return domaine;
+    }
+
+    public void setDomaine(String domaine) {
+        this.domaine = domaine;
+    }
 
     public int getId() {
         return id;
@@ -71,7 +80,12 @@ public class User {
         return methode;
     }
 
-    public User(int id, String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode) {
+    public User(int id, String email) {
+        this.id = id;
+        this.email = email;
+    }
+
+    public User(int id, String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode, String domaine) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -84,6 +98,7 @@ public class User {
         this.questionSecu = questionSecu;
         this.reponseSecu = reponseSecu;
         this.methode = methode;
+        this.domaine = domaine;
     }
 
     public User() {
@@ -102,4 +117,32 @@ public class User {
         this.reponseSecu = reponseSecu;
         this.methode = methode;
     }
+
+    public User(int id, String nom, String prenom, String email, String mdp) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.mdp = mdp;
+    }
+
+    public User(int id, String nom, String prenom, String role, String tel, String email, String adresse) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.role = role;
+        this.tel = tel;
+        this.email = email;
+        this.adresse = adresse;
+    }
+
+    public User(String nom, String prenom, String role, String tel, String email, String adresse) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.role = role;
+        this.tel = tel;
+        this.email = email;
+        this.adresse = adresse;
+    }
+    
 }

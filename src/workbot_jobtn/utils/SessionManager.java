@@ -123,7 +123,7 @@ public final class SessionManager {
     public static void setRole(String role) {
         SessionManager.role = role;
     }
-    
+
     public static void cleanUserSession() {
     id=0;
     nom="";
@@ -146,6 +146,4 @@ public final class SessionManager {
                 
             '}';
     }
- 
-}
-    
+
