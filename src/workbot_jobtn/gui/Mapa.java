@@ -11,9 +11,9 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author Exon
+ * @author fnmoh
  */
-public class TestFXMLController implements Initializable {
+public class Mapa implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -21,6 +21,6 @@ public class TestFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }
