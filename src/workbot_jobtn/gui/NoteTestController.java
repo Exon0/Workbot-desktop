@@ -6,14 +6,26 @@ package workbot_jobtn.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author Exon
  */
-public class TestFXMLController implements Initializable {
+public class NoteTestController implements Initializable {
+
+    @FXML
+    private AnchorPane rootnote;
+    @FXML
+    private TextField text;
+    @FXML
+    private Button Okbtn;
 
     /**
      * Initializes the controller class.
@@ -21,6 +33,10 @@ public class TestFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
+    @FXML
+    private void onclickOkbtn(ActionEvent event) {
+    }
+
 }

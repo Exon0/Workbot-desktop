@@ -11,29 +11,41 @@ import java.util.Objects;
  * @author Exon
  */
 public class Entretien {
-    
+
     private int id;
-    
+
     private String date;
-    
+
     private String lienMeet;
-    
+
     private Integer id_Candidature;
+
+    private Integer heure;
 
     public Entretien() {
     }
 
-    public Entretien(Integer id, String date, String lienMeet, Integer id_Candidature) {
+    public Entretien(Integer id, String date, String lienMeet, Integer id_Candidature, Integer heure) {
         this.id = id;
         this.date = date;
         this.lienMeet = lienMeet;
         this.id_Candidature = id_Candidature;
+        this.heure = heure;
     }
 
-    public Entretien(String date, String lienMeet, Integer id_Candidature) {
+    public Entretien(String date, String lienMeet, Integer id_Candidature, Integer heure) {
         this.date = date;
         this.lienMeet = lienMeet;
         this.id_Candidature = id_Candidature;
+        this.heure = heure;
+    }
+
+    public Integer getHeure() {
+        return heure;
+    }
+
+    public void setHeure(Integer heure) {
+        this.heure = heure;
     }
 
     public Integer getId() {
@@ -106,7 +118,5 @@ public class Entretien {
     public String toString() {
         return "I_entretien{" + "id=" + id + ", date=" + date + ", lienMeet=" + lienMeet + ", id_Candidature=" + id_Candidature + '}';
     }
-    
-    
-}
 
+}
