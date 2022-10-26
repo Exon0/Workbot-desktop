@@ -146,5 +146,22 @@ i+=1;
         }
         
         return arr;
-    }
+ 
+   }
+    
+        public List<Cours> stat_Cours() throws SQLException {
+    List<Cours> arr=new ArrayList();
+        Statement stm = connexion.createStatement();
+        String req="select count(*) nb ,domaine from cours group by domaine";
+        ResultSet r=stm.executeQuery(req);
+        
+        while (r.next()) {
+            Cours c = new Cours(r.getInt("nb")
+                    , r.getString("domaine"));
+            arr.add(c);
+        }
+        
+        return arr;
+   }
+    
 }

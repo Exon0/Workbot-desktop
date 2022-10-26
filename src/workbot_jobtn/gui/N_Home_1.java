@@ -144,8 +144,14 @@ int i=0;
     }
 
     @FXML
-    private void logout(ActionEvent event) {
-        SessionManager.cleanUserSession();
+    private void logout(ActionEvent event) throws IOException {
+              SessionManager.cleanUserSession();
+           
+            Parent root = FXMLLoader.load(getClass().getResource("M_Login.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
     }
 
     @FXML

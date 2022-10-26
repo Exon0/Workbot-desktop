@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
@@ -34,6 +35,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import workbot_jobtn.entites.StatCertif;
 import workbot_jobtn.services.N_Services_Certification;
+import workbot_jobtn.services.N_Services_Cours;
 import workbot_jobtn.services.N_Services_Stat;
 import workbot_jobtn.utils.SessionManager;
 
@@ -72,6 +74,8 @@ public class N_Home_Admin implements Initializable {
      * Initializes the controller class.
      */
     Connection connexion;
+    @FXML
+    private PieChart chart_cours;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -95,11 +99,26 @@ public class N_Home_Admin implements Initializable {
 
             }
             stat.getData().addAll(s1, s);
+            
+            
+                     N_Services_Cours nsc=new N_Services_Cours();
+        stat.setTitle("Les statistiques sur les Cours par Domaine ");
+              int nb1=0;
+                      
+                      nb1=nsc.stat_Cours().size();
+    for(int j=0;j<nb1;j++)
+    {
+        chart_cours.getData().add(new PieChart.Data(nsc.stat_Cours().get(j).getDomaine(),nsc.stat_Cours().get(j).getNb()));
+    }
+            
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(N_Home_Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
+    
 
     public void show() {
         e = N_AdsView.getEngine();
@@ -144,8 +163,17 @@ public class N_Home_Admin implements Initializable {
     }
 
     @FXML
-    private void logout(ActionEvent event) {
+    private void logout(ActionEvent event) throws IOException {
+        
+        
         SessionManager.cleanUserSession();
+           
+            Parent root = FXMLLoader.load(getClass().getResource("M_Login.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+
     }
 
     @FXML

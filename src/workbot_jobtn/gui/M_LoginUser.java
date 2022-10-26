@@ -77,7 +77,7 @@ public class M_LoginUser implements Initializable {
 
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("M_Signup.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Captcha.fxml"));
 
             Scene stage = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -337,7 +337,7 @@ public class M_LoginUser implements Initializable {
         try {
             Stage stage=new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("mappa.fxml"));
-            Scene scene = new Scene(root, 840, 600);
+            Scene scene = new Scene(root, 900, 550);
 
             stage.setScene(scene);
             stage.show();

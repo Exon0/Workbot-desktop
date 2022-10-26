@@ -95,13 +95,17 @@ public class CaptchaController implements Initializable {
                             Stage stage = new Stage();
                     
                     //Parent rootcaptcha = FXMLLoader.load(getClass().getResource("Captcha.fxml"));
-                    Parent root = FXMLLoader.load(getClass().getResource("menubar.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("M_Signup.fxml"));
+                    
+                    
+                    
+                    
                     
                    // stagecaptcha.setTitle("Captcha Verify");
-                    stage.setTitle("TechShop");
+                    stage.setTitle("Role");
                     
                    // Scene scenecaptcha = new Scene(root, 1280, 720);
-                    Scene scene = new Scene(root, 1280, 720);
+            Scene scene = new Scene(root, 840, 600);
 
                     /////////stage.initOwner(stage);
                     //stagecaptcha.setScene(scenecaptcha);
