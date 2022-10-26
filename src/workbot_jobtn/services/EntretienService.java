@@ -36,13 +36,13 @@ public class EntretienService implements ICrud_Interface<Entretien> {
 
     @Override
     public void ajouter(Entretien e) throws SQLException {
-        PreparedStatement prep = connection.prepareStatement("INSERT INTO `entretien`( `date`, `lienMeet`, `id_candidature`,`heure`)"
+        PreparedStatement prep = connection.prepareStatement("INSERT INTO `entretien`( `date`, `lienMeet`, `id_candidature`, `heure`)"
                 +" VALUES (?,?,?,?)");
         prep.setString(1, e.getDate());
         prep.setString(2, e.getLienMeet());
         prep.setInt(3, e.getId_Candidature());
         prep.setInt(4, e.getHeure());
-
+        System.out.println("2-" +e.getId_Candidature());
         prep.executeUpdate();
     }
 

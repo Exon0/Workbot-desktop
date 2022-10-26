@@ -130,7 +130,7 @@ public class EntretienController implements Initializable {
         alert.setContentText("Vous etes sur des information saisie?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-
+            System.out.println("1-"+e1.getLienMeet());
             es.ajouter(e1);
             System.out.println("!!!!!!!!!!!!lol  " + Dfinal.getEmail());
             Mail mail = new Mail();

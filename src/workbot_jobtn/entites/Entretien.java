@@ -34,6 +34,7 @@ public class Entretien {
     }
 
     public Entretien(String date, String lienMeet, Integer id_Candidature, Integer heure) {
+        
         this.date = date;
         this.lienMeet = lienMeet;
         this.id_Candidature = id_Candidature;

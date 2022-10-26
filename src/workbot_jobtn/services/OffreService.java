@@ -306,7 +306,7 @@ public class OffreService implements ICrud_Interface<Offre> {
             while (r.next()) {
                 DTOCandidature_Offre cand = new DTOCandidature_Offre();
                 cand.setNomCandidat(r.getString("u.nom"));
-                cand.setDateAjout(r.getString("c.dateAjout"));
+                cand.setDateAjout(r.getDate("c.dateAjout").toString());
                 cand.setNoteTest(r.getString("c.noteTest"));
                 cand.setLettreMotivation(r.getString("c.lettreMotivation"));
                 cand.setStatut(r.getString("c.statut"));
