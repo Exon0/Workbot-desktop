@@ -154,4 +154,13 @@ public class N_Home_Admin implements Initializable {
 
     }
 
+    @FXML
+    private void retour_Admin(ActionEvent event) throws IOException {
+            Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+    }
+
 }

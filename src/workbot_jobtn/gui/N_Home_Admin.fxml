@@ -99,7 +99,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <StackedBarChart fx:id="stat" layoutX="183.0" layoutY="196.0" prefHeight="322.0" prefWidth="662.0" stylesheets="@style.css">
+      <StackedBarChart fx:id="stat" layoutX="192.0" layoutY="196.0" prefHeight="287.0" prefWidth="646.0" stylesheets="@style.css">
         <xAxis>
           <CategoryAxis fx:id="AxeX_Stat" label="name" side="BOTTOM" />
         </xAxis>
@@ -107,5 +107,10 @@
           <NumberAxis fx:id="AxeY_Stat" label="nombre des utilisateur certifier" side="LEFT" />
         </yAxis>
       </StackedBarChart>
+      <Button layoutX="161.0" layoutY="493.0" mnemonicParsing="false" onAction="#retour_Admin" prefHeight="34.0" prefWidth="78.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #242526; -fx-border-color: #FFFFFF; -fx-border-width: 1;" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

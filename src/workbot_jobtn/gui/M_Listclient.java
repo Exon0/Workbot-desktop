@@ -367,4 +367,13 @@ public class M_Listclient implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void cours_open(ActionEvent event) throws IOException {
+             Parent root = FXMLLoader.load(getClass().getResource("N_Home_Admin.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+    }
 }

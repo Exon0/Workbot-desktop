@@ -141,12 +141,20 @@
             </Button>
          </buttons>
       </ButtonBar>
-      <TextField fx:id="N_add_certif_lien" layoutX="206.0" layoutY="343.0" prefHeight="26.0" prefWidth="266.0" style="-fx-background-radius: 20;" />
       <Text layoutX="215.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lien :">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
       <Label fx:id="tE" layoutX="592.0" layoutY="389.0" prefHeight="18.0" prefWidth="198.0" textFill="#009630" />
+      <Button id="BUTTON" layoutX="303.0" layoutY="336.0" mnemonicParsing="false" onAction="#path_certif" prefHeight="70.0" prefWidth="63.0" style="-fx-background-color: #FFFFF; -fx-border-radius: 80; -fx-background-radius: 80; -fx-border-color: #242526; -fx-border-width: 1;" stylesheets="@Button.css">
+         <graphic>
+            <ImageView fitHeight="62.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@cours/icons/telecharger%20(2).png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

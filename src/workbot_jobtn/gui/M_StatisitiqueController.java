@@ -4,6 +4,7 @@
  */
 package workbot_jobtn.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -164,5 +165,16 @@ public class M_StatisitiqueController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void cours_open(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("N_Home_Admin.fxml"));
+
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+
     }
 }

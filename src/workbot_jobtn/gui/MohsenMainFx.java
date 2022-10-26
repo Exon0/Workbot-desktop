@@ -11,9 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 
 public class MohsenMainFx extends Application {
 
@@ -22,7 +19,7 @@ public class MohsenMainFx extends Application {
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("M_Login.fxml"));
-            // Parent root=FXMLLoader.load(getClass().getResource("Captcha.fxml"));
+            //Parent root=FXMLLoader.load(getClass().getResource("Captcha.fxml"));
 
             Scene scene = new Scene(root, 840, 600);
 

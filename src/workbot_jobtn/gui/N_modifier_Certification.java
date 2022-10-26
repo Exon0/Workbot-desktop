@@ -5,6 +5,7 @@
 package workbot_jobtn.gui;
 
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,8 +29,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import workbot_jobtn.entites.Certification;
+import static workbot_jobtn.gui.N_ajouter_Certification.path;
 import workbot_jobtn.services.N_Services_Certification;
 
 /**
@@ -49,7 +52,6 @@ public class N_modifier_Certification implements Initializable {
     private Button N_retourne_to_N_menu;
     @FXML
     private Button N_add_certif_Breset;
-    @FXML
     private TextField N_add_certif_lien;
 
     /**
@@ -65,7 +67,7 @@ public class N_modifier_Certification implements Initializable {
          
          N_add_certif_cours.setText(N_Afficher_Certif_Liste.co1.getTitreCours());
          N_add_certif_test.setText(N_Afficher_Certif_Liste.co1.getTitreTest());           
-         N_add_certif_lien.setText(N_Afficher_Certif_Liste.co1.getLien());
+         path1=(N_Afficher_Certif_Liste.co1.getLien());
     }    
 
 @FXML
@@ -106,9 +108,8 @@ public class N_modifier_Certification implements Initializable {
     private void Modifer_Certif_Button_Clicked(ActionEvent event) throws SQLException {
          String titrec=N_add_certif_cours.getText();
          String titret=N_add_certif_test.getText();           
-         String lien=N_add_certif_lien.getText();
         
-          if(titret.length()==0 || titrec.length()==0 || lien.length()==0)
+          if(titret.length()==0 || titrec.length()==0 || path1.length()==0)
             {
             Alert Atc=new Alert(Alert.AlertType.WARNING);
             Atc.setHeaderText("Alert");
@@ -121,7 +122,7 @@ public class N_modifier_Certification implements Initializable {
             DateFormat df = new SimpleDateFormat(pattern);
             java.util.Date today = Calendar.getInstance().getTime();
             String DateS = df.format(today);
-        Certification C1=new Certification(N_Afficher_Certif_Liste.co1.getId(),titrec,titret,DateS,lien);
+        Certification C1=new Certification(N_Afficher_Certif_Liste.co1.getId(),titrec,titret,DateS,path1);
         N_Services_Certification sc=new N_Services_Certification();
         sc.modifierCertif(C1);
         tE.setText("Modification effectuée avec succès ");
@@ -140,6 +141,16 @@ public class N_modifier_Certification implements Initializable {
     private void Browser(MouseEvent event) throws URISyntaxException, IOException {
                 Desktop.getDesktop().browse(new URI("https://www.profitablegatetocontent.com/d38ziwqqhm?key=833e83d5b619c6162602e331d6104cd1"));
 
+    }
+static public String path1="";
+    @FXML
+    private void path_certif(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        File SelectedFile = fc.showOpenDialog(null);
+        if (SelectedFile != null ){
+            path1=SelectedFile.getAbsolutePath();
+    }
+        System.out.println(path1);
     }
     
 }

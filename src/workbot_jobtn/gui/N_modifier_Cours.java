@@ -6,6 +6,7 @@ package workbot_jobtn.gui;
 
 
 import java.awt.Desktop;
+import java.io.File;
 import workbot_jobtn.entites.Cours;
 import java.net.URL;
 import java.sql.SQLException;
@@ -29,7 +30,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import static workbot_jobtn.gui.N_ajouter_Cours.path;
 import workbot_jobtn.services.N_Services_Cours;
 /**
  *
@@ -56,7 +59,6 @@ public class N_modifier_Cours implements Initializable {
     @FXML
     private ChoiceBox<String> N_add_cours_categorie;
 
-    @FXML
     private TextField N_add_cours_chemin;
 
     @FXML
@@ -89,7 +91,7 @@ public class N_modifier_Cours implements Initializable {
         //N_Afficher_Cours_Liste.co.getId();
         N_add_cours_titre.setText(N_Afficher_Cours_Liste.co.getTitre().toString());
         N_add_cours_matiere.setText(N_Afficher_Cours_Liste.co.getMatiere().toString());
-        N_add_cours_chemin.setText(N_Afficher_Cours_Liste.co.getChemin().toString());       
+        path=(N_Afficher_Cours_Liste.co.getChemin().toString());       
         String categorie=N_Afficher_Cours_Liste.co.getCategorie();          
         N_add_cours_categorie.setValue(categorie);
         
@@ -131,7 +133,7 @@ public class N_modifier_Cours implements Initializable {
                 domaine=(domaine+" resau");
  
             String categorie=N_add_cours_categorie.getValue().toString();   
-          if(titre.length()==0 || matiere.length()==0 || chemin.length()==0 || domaine.length()==0 || categorie.equals(" "))
+          if(titre.length()==0 || matiere.length()==0  || domaine.length()==0 || categorie.equals(" ") || path1.equals(""))
             {
             Alert Atc=new Alert(Alert.AlertType.WARNING);
             Atc.setHeaderText("Alert");
@@ -140,7 +142,7 @@ public class N_modifier_Cours implements Initializable {
             }
             else
             {
-         Cours C1=new Cours(N_Afficher_Cours_Liste.co.getId(),titre,matiere,domaine,categorie,chemin);
+         Cours C1=new Cours(N_Afficher_Cours_Liste.co.getId(),titre,matiere,domaine,categorie,path1);
         N_Services_Cours sc=new N_Services_Cours();
         sc.modifierCours(C1);
         erreur_msg.setText("Modification validé !!");
@@ -187,17 +189,19 @@ public class N_modifier_Cours implements Initializable {
     private void reset(ActionEvent event) {
         N_add_cours_titre.setText("");
         N_add_cours_matiere.setText("");
-        N_add_cours_chemin.setText("");  
+        N_add_cours_chemin.setText(""); 
+        path1="";
     }
-
+public static String path1="";
     @FXML
-    private void recuperer(ActionEvent event) {   
-        /*
-        fileChooser.setName("");
-        File selection = fileChooser.getSelectedFile();
-        String completeFileName =  selection.getAbsolutePath();
-*/
-      //  FileChooser 
+    private void path_cours(ActionEvent event) {   
+        
+        FileChooser fc = new FileChooser();
+        File SelectedFile = fc.showOpenDialog(null);
+        if (SelectedFile != null ){
+            path1=SelectedFile.getAbsolutePath();
+    }
+        System.out.println(path1);
     }
 
 }

@@ -504,4 +504,13 @@ public class M_Listadmin implements Initializable {
         }
     }
 
+    @FXML
+    private void cours_open(ActionEvent event) throws IOException {
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Home_Admin.fxml"));
+        Scene stage=new Scene(fXMLLoader);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+    }
+
 }

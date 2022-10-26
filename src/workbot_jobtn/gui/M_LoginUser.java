@@ -169,6 +169,11 @@ public class M_LoginUser implements Initializable {
                 alert.setContentText("Vous etes connecté condidat");
                 alert.showAndWait();
                 SessionManager.setRole("candidat");
+                    Parent root = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+                    Scene stage = new Scene(root);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(stage);
+                    window.show();
             } else if (role.equals("sociéte")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Job TN:: Success Message");
@@ -330,9 +335,7 @@ public class M_LoginUser implements Initializable {
     @FXML
     private void m_map(ActionEvent event) {
         try {
-            Stage stage = (Stage) M_Mail.getScene().getWindow();
-            stage.close();
-
+            Stage stage=new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("mappa.fxml"));
             Scene scene = new Scene(root, 840, 600);
 

@@ -152,12 +152,11 @@
       <CheckBox fx:id="N_B_reseau_Ajout" layoutX="245.0" layoutY="303.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Réseau" />
       <CheckBox fx:id="N_B_electro_Ajout" layoutX="245.0" layoutY="256.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Eléctronique" />
       <CheckBox fx:id="N_B_meca_Ajout" layoutX="245.0" layoutY="280.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Mécanique" />
-      <Text layoutX="530.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emplacement :">
+      <Text layoutX="530.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emplacement :">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="N_add_cours_chemin" layoutX="524.0" layoutY="363.0" prefHeight="26.0" prefWidth="269.0" style="-fx-background-radius: 20;" />
       <TextField fx:id="N_add_cours_matiere" layoutX="524.0" layoutY="294.0" prefHeight="26.0" prefWidth="269.0" style="-fx-background-radius: 20;" />
       <Text layoutX="528.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre :">
          <font>
@@ -176,6 +175,15 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+      </Button>
+      <Button id="BUTTON" layoutX="633.0" layoutY="338.0" mnemonicParsing="false" onAction="#path_cours" prefHeight="70.0" prefWidth="63.0" style="-fx-background-color: #FFFFF; -fx-border-radius: 80; -fx-background-radius: 80; -fx-border-color: #242526; -fx-border-width: 1;" stylesheets="@Button.css">
+         <graphic>
+            <ImageView fitHeight="62.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@cours/icons/telecharger%20(2).png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>
