@@ -410,10 +410,10 @@ public class M_Listadmin implements Initializable {
             st = on.createStatement();
             rs = st.executeQuery(query);
 
-            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\fnmoh\\Desktop\\admin.pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream("C:\\pdfMohsen\\admin.pdf"));
             doc.open();
 
-            Image img = Image.getInstance("C:\\Users\\fnmoh\\Desktop\\Pdf Emplacement JavaFx\\logo.png");
+            Image img = Image.getInstance("C:\\pdfMohsen\\logo.png");
             img.scaleAbsoluteWidth(100);
             img.scaleAbsoluteHeight(100);
             img.setAlignment(Image.ALIGN_CENTER);
@@ -476,7 +476,7 @@ public class M_Listadmin implements Initializable {
             doc.add(table);
 
             doc.close();
-            Desktop.getDesktop().open(new File("C:\\Users\\fnmoh\\Desktop\\admin.pdf"));
+            Desktop.getDesktop().open(new File("C:\\pdfMohsen\\admin.pdf"));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(M_Listadmin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {

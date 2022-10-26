@@ -5,6 +5,7 @@
  */
 package workbot_jobtn.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -97,16 +98,18 @@ public class M_LoginUser implements Initializable {
     private Statement ste;
 
     @FXML
-    private void M_loginidb(ActionEvent event) throws SQLException {
+    private void M_loginidb(ActionEvent event) throws SQLException, IOException {
 
+            
         ////////////5dhena 2 string w gatina fiha el textfuild
         String umail = M_Mail.getText();
         String password = M_password.getText();
         SessionManager.setEmail(umail);
 
+        
         //////////
         /////////////ken el umail mt3 admin el kbir y7elo toul el application
-        if (umail.equals("Job.tn@gmail.com") && password.equals("Admin")) {
+        if (umail.equals("Job.tn@gmail.com") && (password.equals("Admin") || passwordText_M.getText().equals("Admin"))) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Job tn :: Success Message");
             alert.setHeaderText(null);
@@ -203,6 +206,8 @@ public class M_LoginUser implements Initializable {
 
         }
         System.out.println(SessionManager.getRole());
+        
+ 
     }
 
     @FXML

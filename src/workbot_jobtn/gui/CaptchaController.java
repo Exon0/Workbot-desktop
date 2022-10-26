@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 /**
@@ -20,6 +21,7 @@ public class CaptchaController implements Initializable {
 
     @FXML
     private WebView webView;
+    private WebEngine e;
 
     /**
      * Initializes the controller class.
@@ -27,6 +29,8 @@ public class CaptchaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        e=webView.getEngine();    
+         e.load("file:///C:/xampp/htdocs/captcha/index.html");
     }
 
     @FXML

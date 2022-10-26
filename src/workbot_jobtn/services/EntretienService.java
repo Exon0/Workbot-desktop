@@ -37,7 +37,7 @@ public class EntretienService implements ICrud_Interface<Entretien> {
     @Override
     public void ajouter(Entretien e) throws SQLException {
         PreparedStatement prep = connection.prepareStatement("INSERT INTO `entretien`( `date`, `lienMeet`, `id_candidature`,`heure`)"
-                + "                                         VALUES (?,?,?,?)");
+                +" VALUES (?,?,?,?)");
         prep.setString(1, e.getDate());
         prep.setString(2, e.getLienMeet());
         prep.setInt(3, e.getId_Candidature());
@@ -104,7 +104,7 @@ public class EntretienService implements ICrud_Interface<Entretien> {
         Statement = connection.createStatement();
 
         ResultSet r = Statement.executeQuery("SELECT e.lienMeet,e.date,e.heure,u.nom from `entretien` e join `candidature` c on e.id_candidature=c.id"
-                + " join `utilisateur` u on u.id=c.id_user");
+                + " join `utilisateur` u on u.id=c.idcondidat");
         while (r.next()) {
             DTOEntretien dTOEntretien = new DTOEntretien();
 

@@ -302,7 +302,7 @@ public class OffreService implements ICrud_Interface<Offre> {
         try {
             Statement = connection.createStatement();
             ResultSet r = Statement.executeQuery("SELECT u.tel,o.id,o.salaire,u.id,c.id,u.email, u.nom ,c.dateAjout,c.noteTest,c.lettreMotivation,c.statut,o.titre "
-                    + "from `candidature` c join `offre` o on c.id_offre=o.id JOIN `utilisateur` u ON u.id=c.id_user where o.id=" + id_off);
+                    + "from `candidature` c join `offre` o on c.id_offre=o.id JOIN `utilisateur` u ON u.id=c.idcondidat where o.id=" + id_off);
             while (r.next()) {
                 DTOCandidature_Offre cand = new DTOCandidature_Offre();
                 cand.setNomCandidat(r.getString("u.nom"));
