@@ -5,8 +5,10 @@
 package workbot_jobtn.entites;
 
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -15,20 +17,38 @@ import java.util.Objects;
 public class ReclamationAvis {
     private int id;
     private String objet;
-    private Date date;      
+    private String date;      
     private String description;
     private String image;
     private int note;
     private Categorie categorie;      
     private User user;
-    private Societe societe;
+    private User societe;
     private Offre offre;
     private Evenement evennement;
+    private ImageView img;
+
+    public ReclamationAvis(int id, String objet, String date, String description, Categorie categorie, String image) {
+        this.id = id;
+        this.objet = objet;
+        this.date = date;
+        this.description = description;
+        this.categorie = categorie;
+        this.image = image;
+        
+    }
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
 
     public ReclamationAvis() {
     }
 
-    public ReclamationAvis(int id, String objet, Date date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evenement evennement) {
+    public ReclamationAvis(int id, String objet, String date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evenement evennement) {
         this.id = id;
         this.objet = objet;
         this.date = date;
@@ -42,7 +62,7 @@ public class ReclamationAvis {
         this.evennement = evennement;
     }
 
-    public ReclamationAvis(String objet, Date date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evenement evennement) {
+    public ReclamationAvis(String objet, String date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evenement evennement) {
         this.objet = objet;
         this.date = date;
         this.description = description;
@@ -55,7 +75,7 @@ public class ReclamationAvis {
         this.evennement = evennement;
     }
 
-    public ReclamationAvis(int id, String objet, Date date, String description,Categorie categorie) {
+    public ReclamationAvis(int id, String objet, String date, String description,Categorie categorie) {
         this.id = id;
         this.objet = objet;
         this.date = date;
@@ -79,11 +99,11 @@ public class ReclamationAvis {
         this.objet = objet;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -127,11 +147,11 @@ public class ReclamationAvis {
         this.user = user;
     }
 
-    public Societe getSociete() {
+    public User getSociete() {
         return societe;
     }
 
-    public void setSociete(Societe societe) {
+    public void setSociete(User societe) {
         this.societe = societe;
     }
 

@@ -6,10 +6,12 @@ package workbot_jobtn.tests;
 
 import java.sql.SQLException;
 import java.util.List;
+import javafx.collections.ObservableList;
 import workbot_jobtn.entites.*;
 import static workbot_jobtn.entites.NomCategorie.*;
 import workbot_jobtn.services.*;
 import workbot_jobtn.utils.MyDB;
+import java.sql.Date;
 
 /**
  *
@@ -52,14 +54,15 @@ public class Workbot_JobTn {
         //av1.setDescription("exemple");
         //serv2.ajouter(av1);
         //rec1.setId(1);
-        //rec1.setObjet("exemplemodifie");
-        //rec1.setDescription("exemplemodifie");
+        //rec1.setObjet("reclamation_cours");
+        //rec1.setDescription("pas de cours");
         //serv2.modifier(rec1);
         //serv2.supprimer(rec1);
         
+        //ObservableList<ReclamationAvis> r=serv2.afficherTout();
+        
         ReclamationAvis r=serv2.afficher(3);
         System.out.println(r);
-        
         
         
         

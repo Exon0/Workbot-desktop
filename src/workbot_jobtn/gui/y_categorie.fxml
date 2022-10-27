@@ -4,13 +4,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workbot_jobtn.gui.Y_categorieController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="550.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="321.0" layoutY="52.0" text="Reclamations et Avis">
          <font>
             <Font size="30.0" />
@@ -23,5 +25,15 @@
          </toggleGroup></RadioButton>
       <RadioButton fx:id="reclamation" layoutX="424.0" layoutY="213.0" mnemonicParsing="false" onAction="#getcategorie" text="Reclamation" toggleGroup="$categorie" />
       <Button layoutX="321.0" layoutY="281.0" mnemonicParsing="false" onAction="#continuer" text="continuer" />
+      <Pane prefHeight="550.0" prefWidth="95.0" style="-fx-background-color: #6c63ff;">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="64.0" layoutX="20.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane prefHeight="18.0" prefWidth="900.0" style="-fx-background-color: #6c63ff;" />
    </children>
 </AnchorPane>

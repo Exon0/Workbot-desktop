@@ -23,6 +23,31 @@ public class User {
     private String reponseSecu;
     private String methode;
 
+    public String getDomaine() {
+        return domaine;
+    }
+
+    public User(int id, String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode, String domaine) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.role = role;
+        this.tel = tel;
+        this.email = email;
+        this.mdp = mdp;
+        this.adresse = adresse;
+        this.photo = photo;
+        this.questionSecu = questionSecu;
+        this.reponseSecu = reponseSecu;
+        this.methode = methode;
+        this.domaine = domaine;
+    }
+
+    public void setDomaine(String domaine) {
+        this.domaine = domaine;
+    }
+    private String domaine;
+
     public int getId() {
         return id;
     }

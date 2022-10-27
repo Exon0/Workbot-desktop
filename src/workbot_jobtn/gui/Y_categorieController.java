@@ -63,7 +63,8 @@ public class Y_categorieController implements Initializable {
    @FXML
     private void getcategorie(ActionEvent event) {
         if(avis.isSelected()){x=1;}
-        if(reclamation.isSelected()) {x=2;}
+        else if(reclamation.isSelected()) {x=2;}
+        else {x=0;}
     }
 
     @FXML
@@ -71,6 +72,13 @@ public class Y_categorieController implements Initializable {
        
       if(x==2){
   root = FXMLLoader.load(getClass().getResource("y_reclamationtechnique.fxml"));
+  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+  scene = new Scene(root);
+  stage.setScene(scene);
+  stage.show();
+      }
+      if(x==1){
+          root = FXMLLoader.load(getClass().getResource("y_avissociete.fxml"));
   stage = (Stage)((Node)event.getSource()).getScene().getWindow();
   scene = new Scene(root);
   stage.setScene(scene);

@@ -5,6 +5,7 @@
 package workbot_jobtn.services;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.collections.ObservableList;
 /**
  *
  * @author youcef
@@ -14,6 +15,6 @@ public interface InterfaceServiceReclamationAvis<T> {
     void ajouter(T t) throws SQLException;
     boolean modifier(T t) throws SQLException;
     boolean supprimer(T t) throws SQLException;
-    List<T> afficherTout() throws SQLException;
+    ObservableList<T> afficherTout() throws SQLException;
     T afficher(int i) throws SQLException;
 }
