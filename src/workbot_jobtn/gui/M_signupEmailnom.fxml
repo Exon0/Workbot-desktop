@@ -26,7 +26,7 @@
             <Label fx:id="namelabel" layoutX="453.0" layoutY="290.0" />
             <TextField fx:id="M_mailmSD2" layoutX="537.0" layoutY="423.0" onKeyPressed="#checkFIELD" />
             <TextField fx:id="M_pomSD1" layoutX="536.0" layoutY="369.0" prefHeight="26.0" prefWidth="150.0" />
-            <AnchorPane fx:id="panne" layoutX="513.0" layoutY="345.0" prefHeight="54.0" prefWidth="226.0">
+            <AnchorPane fx:id="panne" layoutX="513.0" layoutY="345.0" prefHeight="54.0" prefWidth="226.0" visible="false">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="62.0" stroke="WHITE" strokeType="INSIDE" width="204.0" />
                   <Line endX="49.2000732421875" layoutX="126.0" layoutY="28.0" startX="-100.0" />

@@ -379,5 +379,72 @@ public class OffreService implements ICrud_Interface<Offre> {
         return nb;
 
     }
+     public List<Offre> AfficherAllOffre() throws SQLException {
+        Statement st = connection.createStatement();
+        /*  String typeOffre = r.getString(16);
+                TypeOffre tp = TypeOffre.valueOf(typeOffre);*/
+
+        List<Offre> assu = new ArrayList<>();
+        String req = "select * from offre where typeOffre != 'Freelancer'";
+       // String req = "select * from offre ";
+        Statement stm = connection.createStatement();
+        ResultSet rst = stm.executeQuery(req);
+        
+        while (rst.next()) {
+            Offre u = new Offre(rst.getInt("id"),
+                     rst.getString("titre"),
+                     rst.getString("salaire"),
+                     rst.getString("description"),
+                     rst.getString("domaine"),
+                     rst.getString("dateExpiration"),
+                     rst.getString("dureeStage"),
+                     rst.getString("typeStage"),
+                     rst.getString("dureeContrat"),
+                     rst.getString("typeContrat"),
+                     rst.getString("anneeExperience"),
+                     rst.getInt("id_Soc"),
+                     rst.getString("modeTravail"),
+                     rst.getString("lieu"),
+                     rst.getInt("id_test"),
+                    TypeOffre.valueOf(rst.getString("typeOffre"))
+            );
+            assu.add(u);
+        }
+        return assu;
+    }
+  
+ 
+    public List<Offre> AfficherAllTaches() throws SQLException {
+
+        List<Offre> assu = new ArrayList<>();
+        
+       
+        String req = "select * from offre where typeOffre = 'Freelancer'";
+       // String req = "select * from offre ";
+        Statement stm = connection.createStatement();
+        ResultSet rst = stm.executeQuery(req);
+        
+        while (rst.next()) {
+            Offre u = new Offre(rst.getInt("id"),
+                     rst.getString("titre"),
+                     rst.getString("salaire"),
+                     rst.getString("description"),
+                     rst.getString("domaine"),
+                     rst.getString("dateExpiration"),
+                     rst.getString("dureeStage"),
+                     rst.getString("typeStage"),
+                     rst.getString("dureeContrat"),
+                     rst.getString("typeContrat"),
+                     rst.getString("anneeExperience"),
+                     rst.getInt("id_Soc"),
+                     rst.getString("modeTravail"),
+                     rst.getString("lieu"),
+                     rst.getInt("id_test"),
+                    TypeOffre.valueOf(rst.getString(16))
+            );
+            assu.add(u);
+        }
+        return assu;
+    }
 
 }

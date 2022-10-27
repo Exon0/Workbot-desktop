@@ -203,6 +203,32 @@ public class Offre {
             //this.dateAjout=new Date().toString(); 
         }
     }
+        public Offre( int id,String titre, String salaire, String description, String domaine, String dateExpiration, String dureeStage, String typeStage, String dureeContrat, String typeContrat, String anneeExperience, int id_Soc, String modeTravail, String lieu, int id_test /*String type*/,TypeOffre typeOffre) {
+       this.id=id;
+        this.titre = titre;
+        this.Salaire = salaire;
+        this.description = description;
+        this.domaine = domaine;
+        this.dateExpiration = dateExpiration;
+        this.dureeStage = dureeStage;
+        this.typeStage = typeStage;
+        this.dureeContrat = dureeContrat;
+        this.typeContrat = typeContrat;
+        this.anneeExperience = anneeExperience;
+        this.id_soc = id_Soc;
+        this.modeTravail = modeTravail;
+        this.lieu = lieu;
+        this.id_test = id_test;
+        this.typeOffre = typeOffre;
+    }
+          public Offre(int id, String titre, String salaire, String description, String domaine) {
+        this.id = id;
+        this.titre = titre;
+        this.Salaire = salaire;
+        this.description = description;
+        this.domaine = domaine;
+    }
+           
 
     public Integer getId() {
         return id;

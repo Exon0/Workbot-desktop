@@ -173,6 +173,12 @@ public class M_LoginUser implements Initializable {
                 alert.setContentText("Vous etes connecté condidat");
                 alert.showAndWait();
                 SessionManager.setRole("candidat");
+   
+                    Parent root = FXMLLoader.load(getClass().getResource("Offre_1.fxml"));
+                    Scene stage = new Scene(root);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(stage);
+                    window.show();
                     
             } else if (role.equals("sociéte")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
