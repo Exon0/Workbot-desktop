@@ -39,6 +39,7 @@ import javafx.stage.Stage;
 import workbot_jobtn.entites.Offre;
 import workbot_jobtn.entites.TypeOffre;
 import workbot_jobtn.services.OffreService;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -228,8 +229,8 @@ public class OffreFreelancerController implements Initializable {
         String duree = inputDuree.getText();
         String renumeration = inputSalaire.getText();
         String desc = inputDescription.getText();
-        int id_soc = 1;
-        String domaine = "Info";
+        int id_soc = SessionManager.getId();
+        String domaine = SessionManager.getDomaine();
 
         if (titre.length() == 0 || combobox.getSelectionModel().getSelectedIndex() == -1 || dateExp.length() == 0 || duree.length() == 0 || renumeration.length() == 0 || desc.length() == 0) {
             Alert error = new Alert(Alert.AlertType.WARNING);

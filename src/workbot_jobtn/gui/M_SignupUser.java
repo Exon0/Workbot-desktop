@@ -49,6 +49,7 @@ public class M_SignupUser implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         M_choixBoxRole.setValue("sociéte");
         M_choixBoxRole.setItems(choixBoxRole);
+        ro="sociéte";
     }
     ///////////////
     private Connection on;
@@ -62,11 +63,11 @@ public class M_SignupUser implements Initializable {
     //////////////
     @FXML
     private Parent root;
-
+static public String ro;
     public void M_Suiv1S(ActionEvent event) {
         ///// username bech ya5o el valeur mt3 role bech najmo n3adouh lel controller e thani fel textfluid
         String username = (String) M_choixBoxRole.getValue();
-
+        ro=(String) M_choixBoxRole.getValue();
         if (event.getSource() == M_Suiv1SD) {
 
         }
@@ -83,6 +84,7 @@ public class M_SignupUser implements Initializable {
             /////////////tawa wala 3ana acces lel controller kif 3malna instance of controller
             M_signupEmailnomController M_signupEmailnomController = loader.getController();
             /////////tawa najmo n3ayto lel methode
+            System.out.println(username);
             M_signupEmailnomController.RetourRoleItcc(username);
 
             Scene scene = new Scene(root, 840, 600);

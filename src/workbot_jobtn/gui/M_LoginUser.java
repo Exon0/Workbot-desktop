@@ -132,7 +132,7 @@ public class M_LoginUser implements Initializable {
         else {
             //
             on = MyDB.getInstance().getConnection();
-            String query = "select id,role,nom,prenom,tel,photo from utilisateur where email='" + M_Mail.getText() + "' and mdp='" + M_password.getText() + "'or mdp='" + passwordText_M.getText() + "'";
+            String query = "select id,role,nom,prenom,tel,photo,domaine from utilisateur where email='" + M_Mail.getText() + "' and mdp='" + M_password.getText() + "'or mdp='" + passwordText_M.getText() + "'";
             System.out.println(query);
             PreparedStatement smt = on.prepareStatement(query);
             ResultSet rs = smt.executeQuery();
@@ -142,6 +142,7 @@ public class M_LoginUser implements Initializable {
             String prenoms = "";
             String tels = "";
             String photos = "";
+            String domaine="";
             while (rs.next()) {
                 role = rs.getString("role");
                 ids = rs.getInt("id");
@@ -149,18 +150,21 @@ public class M_LoginUser implements Initializable {
                 prenoms = rs.getString("prenom");
                 tels = rs.getString("tel");
                 photos = rs.getString("photo");
+                 domaine=rs.getString("domaine");
             }
             SessionManager.setId(ids);
             SessionManager.setNom(noms);
             SessionManager.setPhoto(photos);
             SessionManager.setTel(tels);
             SessionManager.setPrenom(prenoms);
+            SessionManager.setDomaine(domaine);
 
             System.out.println(SessionManager.getId() + " "
                     + SessionManager.getNom() + " "
                     + SessionManager.getPhoto() + " "
                     + SessionManager.getTel() + " "
-                    + SessionManager.getPrenom());
+                    + SessionManager.getPrenom()+" "
+                    + SessionManager.getDomaine());
 
             if (role.equals("candidat")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -169,11 +173,7 @@ public class M_LoginUser implements Initializable {
                 alert.setContentText("Vous etes connecté condidat");
                 alert.showAndWait();
                 SessionManager.setRole("candidat");
-                    Parent root = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-                    Scene stage = new Scene(root);
-                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    window.setScene(stage);
-                    window.show();
+                    
             } else if (role.equals("sociéte")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Job TN:: Success Message");
@@ -181,6 +181,11 @@ public class M_LoginUser implements Initializable {
                 alert.setContentText("Vous etes connecté societe");
                 alert.showAndWait();
                 SessionManager.setRole("sociéte");
+                    Parent root = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+                    Scene stage = new Scene(root);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(stage);
+                    window.show();
             } else if (role.equals("Admin")) {
                 SessionManager.setRole("Admin");
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

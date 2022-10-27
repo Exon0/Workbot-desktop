@@ -40,6 +40,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import workbot_jobtn.entites.Offre;
 import workbot_jobtn.services.OffreService;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -250,8 +251,8 @@ public class ModifierOffreEmploiController implements Initializable {
         String salary1 = salaire.getText();
         String typeContrat = (String) combobox1.getSelectionModel().getSelectedItem();
         String desc2 = inputDescription.getText();
-        int id_soc = 1;
-        String domaine = "Info";
+        int id_soc = SessionManager.getId();
+        String domaine = SessionManager.getDomaine();
 
         if (titre1.equals(titre) && desc.equals(desc2) && dateExp.equals(date)
                 && salary.equals(salary1) && mdTravail.equals(modeTravail)

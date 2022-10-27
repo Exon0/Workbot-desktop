@@ -25,6 +25,7 @@ import workbot_jobtn.entites.DTOCandidature_Offre;
 import workbot_jobtn.entites.Offre;
 import workbot_jobtn.entites.TypeOffre;
 import workbot_jobtn.utils.MyDB;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  *
@@ -41,7 +42,7 @@ public class OffreService implements ICrud_Interface<Offre> {
 
     @Override
     public void ajouter(Offre O) throws SQLException {
-
+        System.out.println("hellooooooo");
         PreparedStatement prep = connection.prepareStatement("INSERT INTO `offre`( `titre`, `description`, `domaine`, `dateExpiration`, "
                 + "  `id_Soc`, `modeTravail`, `typeOffre`, `salaire`, `typeContrat`, `dureeStage`, `typeStage`,`dateAjout`,`lieu`) "
                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
@@ -56,6 +57,7 @@ public class OffreService implements ICrud_Interface<Offre> {
         prep.setString(9, O.getTypeContrat());
         prep.setString(10, O.getDureeStage());
         prep.setString(11, O.getTypeStage());
+        System.out.println(prep);
         Date d = new Date();
         int year = d.getYear() + 1900;
         int month = d.getMonth() + 1;
@@ -273,7 +275,7 @@ public class OffreService implements ICrud_Interface<Offre> {
     public Offre readLast() {
         try {
             Statement = connection.createStatement();
-            ResultSet r = Statement.executeQuery("SELECT * from `offre` where id_soc=1 ORDER BY id DESC LIMIT 1");
+            ResultSet r = Statement.executeQuery("SELECT * from `offre` where id_soc="+SessionManager.getId()+" ORDER BY id DESC LIMIT 1");
             while (r.next()) {
                 int id = r.getInt("id");
                 String titre = r.getString(2);
@@ -366,7 +368,7 @@ public class OffreService implements ICrud_Interface<Offre> {
         int nb = -1;
         try {
             Statement = connection.createStatement();
-            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `offre` WHERE id_Soc=1 and DATEDIFF(CURRENT_DATE(),dateAjout)<7");
+            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `offre` WHERE id_Soc="+SessionManager.getId()+" and DATEDIFF(CURRENT_DATE(),dateAjout)<7");
             r.next();
             nb = r.getInt(1);
             return nb;

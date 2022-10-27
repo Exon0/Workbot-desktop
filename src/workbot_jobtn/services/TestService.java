@@ -17,6 +17,7 @@ import workbot_jobtn.entites.Offre;
 import workbot_jobtn.entites.Test;
 import workbot_jobtn.entites.TypeOffre;
 import workbot_jobtn.utils.MyDB;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  *
@@ -113,7 +114,7 @@ public class TestService implements ICrud_Interface<Test> {
     public Test selectLast() throws SQLException {
         try {
             Statement = connection.createStatement();
-            ResultSet r = Statement.executeQuery("SELECT * from `test` where id_soc=1 ORDER BY id DESC LIMIT 1");
+            ResultSet r = Statement.executeQuery("SELECT * from `test` where id_soc="+SessionManager.getId()+" ORDER BY id DESC LIMIT 1");
             while (r.next()) {
                 int id = r.getInt(1);
                 String titre = r.getString(2);

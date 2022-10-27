@@ -40,6 +40,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import workbot_jobtn.entites.Offre;
 import workbot_jobtn.services.OffreService;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -248,8 +249,8 @@ public class ModifierOffreFreelancerController implements Initializable {
         String dureeStage = inputDuree.getText();
         String renum = inputSalaire.getText();
         String desc2 = inputDescription.getText();
-        int id_soc = 1;
-        String domaine = "Info";
+        int id_soc = SessionManager.getId();
+        String domaine = SessionManager.getDomaine();
         System.out.println("dur  !!! " + duree2);
 
         if (titre1.equals(titre) && desc2.equals(desc3) && date.equals(dateExp)

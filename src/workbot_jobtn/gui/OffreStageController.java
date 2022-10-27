@@ -37,6 +37,7 @@ import javafx.stage.Stage;
 import workbot_jobtn.entites.Offre;
 import workbot_jobtn.entites.TypeOffre;
 import workbot_jobtn.services.OffreService;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -231,8 +232,8 @@ public class OffreStageController implements Initializable {
         String duree = inputDuree.getText();
         String typeStage = (String) combobox1.getSelectionModel().getSelectedItem();
         String desc = inputDescription.getText();
-        int id_soc = 1;
-        String domaine = "Info";
+        int id_soc = SessionManager.getId();
+        String domaine = SessionManager.getDomaine();
         Offre o = new Offre(titre, duree, desc, domaine, dateExp, typeStage, modeTravail, lieu, id_soc, TypeOffre.Stage);
 
         if (titre.length() == 0 || combobox.getSelectionModel().getSelectedIndex() == -1 || dateExp.length() == 0 || duree.length() == 0 || combobox1.getSelectionModel().getSelectedIndex() == -1 || desc.length() == 0) {

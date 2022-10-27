@@ -27,6 +27,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import workbot_jobtn.services.OffreService;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -62,8 +63,6 @@ public class HomeSocieteController implements Initializable {
     @FXML
     private Button btnUser;
     @FXML
-    private Button settings;
-    @FXML
     private Label Bonjour;
     @FXML
     private Label nomSociete;
@@ -89,6 +88,10 @@ public class HomeSocieteController implements Initializable {
 
     private WebEngine e;
     OffreService offreservice = new OffreService();
+    @FXML
+    private Pane menu_profile;
+    @FXML
+    private Button N_BDeconnecter;
 
     /**
      * Initializes the controller class.
@@ -133,8 +136,34 @@ public class HomeSocieteController implements Initializable {
     private void OnClick_UserIcon(ActionEvent event) {
     }
 
+    int i=0;
     @FXML
     private void OnClick_settings(ActionEvent event) {
+        if(i%2==0)
+        {
+        menu_profile.setVisible(true);
+        }
+        else
+        menu_profile.setVisible(false);
+        i++;
+    }
+
+    @FXML
+    private void profile(ActionEvent event) {
+    }
+
+    @FXML
+    private void compte(ActionEvent event) {
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+            SessionManager.cleanUserSession();      
+            Parent root = FXMLLoader.load(getClass().getResource("M_Login.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
     }
 
 }

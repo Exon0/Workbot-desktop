@@ -23,6 +23,7 @@ public final class SessionManager {
     private static String tel;
     private static String photo;
     private static String role;
+    private static String domaine;
 
     public static boolean getRoles(String admin) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -31,9 +32,10 @@ public final class SessionManager {
     public SessionManager() {
     }
 
+
    
   //SessionManager.getInstace(rs.getInt("id"),rs.getInt("cin"),rs.getString("user_name"),rs.getInt("numero"),rs.getString("email"),rs.getString("adresse"),rs.getString("roles"));
-    private SessionManager(int id , String nom , String prenom , String email , String tel ,String photo,String role ) {
+    private SessionManager(int id , String nom , String prenom , String email , String tel ,String photo,String role,String domaine ) {
     SessionManager.id=id;
     SessionManager.nom=nom;
     SessionManager.prenom=prenom;
@@ -41,6 +43,7 @@ public final class SessionManager {
     SessionManager.tel=tel;
     SessionManager.photo=photo;
     SessionManager.role=role;
+    SessionManager.domaine=domaine;
     }
    
     /**
@@ -50,9 +53,9 @@ public final class SessionManager {
     * @param privileges
     * @return
     */
-    public static SessionManager getInstace(int id , String nom , String prenom , String email , String tel ,String photo,String role) {
+    public static SessionManager getInstace(int id , String nom , String prenom , String email , String tel ,String photo,String role,String domaine) {
         if(instance == null) {
-            instance = new SessionManager( id , nom ,  prenom , email ,tel ,photo, role);
+            instance = new SessionManager( id , nom ,  prenom , email ,tel ,photo, role,domaine);
         }
         return instance;
     }
@@ -121,6 +124,16 @@ public final class SessionManager {
         SessionManager.role = role;
     }
 
+    public static String getDomaine() {
+        return domaine;
+    }
+
+    public static void setDomaine(String domaine) {
+        SessionManager.domaine = domaine;
+    }
+    
+   
+
     public static void cleanUserSession() {
     id=0;
     nom="";
@@ -129,19 +142,9 @@ public final class SessionManager {
      tel="";
      photo="";
      role="";
+     domaine="";
     }
  
-    @Override
-    public String toString() {
-        return "UserSession{" +
-                "Name='" + nom + '\'' +
-                "email='" + email + '\'' +
-               
-                "id = '" + id + '\'' +
-           
-                ", privileges=" + role +
-                
-            '}';
-    }
+    
 }
 

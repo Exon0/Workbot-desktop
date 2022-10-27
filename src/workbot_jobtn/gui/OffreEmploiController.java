@@ -37,6 +37,7 @@ import javafx.stage.Stage;
 import workbot_jobtn.entites.Offre;
 import workbot_jobtn.entites.TypeOffre;
 import workbot_jobtn.services.OffreService;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -227,8 +228,8 @@ public class OffreEmploiController implements Initializable {
         String salary = salaire.getText();
         String typeContrat = (String) combobox1.getSelectionModel().getSelectedItem();
         String desc = inputDescription.getText();
-        int id_soc = 1;
-        String domaine = "Info";
+        int id_soc = SessionManager.getId();
+        String domaine = SessionManager.getDomaine();
 
         if (titre.length() == 0 || combobox.getSelectionModel().getSelectedIndex() == -1 || dateExp.length() == 0 || salary.length() == 0 || combobox1.getSelectionModel().getSelectedIndex() == -1 || desc.length() == 0) {
             Alert error = new Alert(Alert.AlertType.WARNING);
@@ -269,7 +270,10 @@ public class OffreEmploiController implements Initializable {
         Atc.setHeaderText("Alert");
         Atc.setContentText("Verifier bien les informations saisi, vous ne pouvez pas revenir en arriére!! Cliquez OK pour passer");
         Optional<ButtonType> result = Atc.showAndWait();
+                        System.out.println("-----fghjnk,jghgfdfstdfgh"+o.getId_soc());
+
         if (result.get() == ButtonType.OK) {
+                System.out.println("-----"+o.getId_soc());
 
             try {
                 offerservice.ajouter(o);

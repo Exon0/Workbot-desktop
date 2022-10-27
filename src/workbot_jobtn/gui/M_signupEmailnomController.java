@@ -20,9 +20,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import workbot_jobtn.utils.MyDB;
-
 /**
  * FXML Controller class
  *
@@ -30,8 +30,20 @@ import workbot_jobtn.utils.MyDB;
  */
 public class M_signupEmailnomController implements Initializable {
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+       
+        System.out.println(M_SignupUser.ro);
+        if(M_SignupUser.ro.equals("sociéte"))
+        {
+            panne.setVisible(true);
+            
+        }
+        
+    }
     static void RetourRoleItc(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     ///////////////
@@ -41,6 +53,8 @@ public class M_signupEmailnomController implements Initializable {
     private TextField M_rolle;
     @FXML
     private Label namelabel;
+    @FXML
+    private AnchorPane panne;
 
     public void RetourRoleItcc(String username) {
         M_rolc.setText(username);
@@ -68,19 +82,20 @@ public class M_signupEmailnomController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
+    
     private Parent root;
 
     @FXML
     public void M_SuivantSD(ActionEvent event) {
         boolean dataValid = true;
-
+        String prenommm=M_pomSD1.getText();
         String roleee = M_rolc.getText();
+        if(M_rolc.getText().equals("sociéte"))
+        {
+         prenommm =" ";   
+        }
         String nomm = M_NomSD.getText();
-        String prenommm = M_pomSD1.getText();
+         
         String emailll = M_mailmSD2.getText();
 
         if (nomm.isEmpty()

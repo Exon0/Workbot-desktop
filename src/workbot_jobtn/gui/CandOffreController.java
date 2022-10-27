@@ -4,12 +4,17 @@
  */
 package workbot_jobtn.gui;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Header;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -372,11 +377,15 @@ public class CandOffreController implements Initializable {
                 DTOCandidature_Offre candOffre = offreService.candidatures_Offre(offreSelected.get(0).getId_off()).get(0);
                 Document doc = new Document();
                 try {
-                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\PDFapi\\" + candOffre.getNomCandidat()));
+                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\PDFapi\\" + candOffre.getNomCandidat()+".pdf"));
                     doc.open();
+ 
                     doc.add(new Header("Contrat", "Contrat"));
                     doc.add(new Paragraph("Contrat"));
-
+                   Image image1 = Image.getInstance(getClass().getResource("temp.png"));
+                      image1.scaleToFit(2000,840);
+                     image1.setAbsolutePosition(0f, 450f);
+                     doc.add(image1);
                     PdfPTable table1 = new PdfPTable(4);
                     table1.setWidthPercentage(100);
                     /////////////////////////////
@@ -426,7 +435,7 @@ public class CandOffreController implements Initializable {
                     doc.add(table1);
 
                     doc.close();
-                    Desktop.getDesktop().open(new File("C:\\PDFapi\\contrat.pdf"));
+                    Desktop.getDesktop().open(new File("C:\\PDFapi\\" + candOffre.getNomCandidat()+".pdf"));
 
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(CandOffreController.class.getName()).log(Level.SEVERE, null, ex);
