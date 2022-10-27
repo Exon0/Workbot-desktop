@@ -24,7 +24,8 @@
 .dash_offre , .dash_cand , .dash_event ,.dash_part {
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
-    -fx-background-color: #afaaff;
+    -fx-background-color: #4a4Be2;
+    -fx-border-color: black;
 
 }
 .btnAjouter{

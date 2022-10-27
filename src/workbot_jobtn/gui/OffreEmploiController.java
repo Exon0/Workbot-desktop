@@ -65,8 +65,6 @@ public class OffreEmploiController implements Initializable {
     @FXML
     private Button fb1;
     @FXML
-    private Button fb2;
-    @FXML
     private Pane s;
     @FXML
     private TextField inputsearch;
@@ -151,7 +149,7 @@ public class OffreEmploiController implements Initializable {
         Atc.setContentText("Votre avancement sera perdu");
         Optional<ButtonType> result = Atc.showAndWait();
         if (result.get() == ButtonType.OK) {
-            Parent fXMLLoader = FXMLLoader.load(getClass().getResource(""));
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("firstevent.fxml"));
             Scene stage = new Scene(fXMLLoader);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(stage);

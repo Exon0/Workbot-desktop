@@ -151,7 +151,7 @@ public class AjouterTestController implements Initializable {
         if (result.get() == ButtonType.OK) {
             int id = Integer.parseInt(id_offre.getText());
             offreservice.deleteById(id);
-            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("Offre.fxml"));
+            Parent fXMLLoader = FXMLLoader.load(getClass().getResource("firstevent.fxml"));
             Scene stage = new Scene(fXMLLoader);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(stage);

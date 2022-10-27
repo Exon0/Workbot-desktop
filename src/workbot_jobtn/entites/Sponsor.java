@@ -9,25 +9,13 @@ package workbot_jobtn.entites;
  * @author hp
  */
 public class Sponsor {
-private int id;
-private String nom;
-private String logo;
-private int id_evenement;
+    private int id;
+    private String nom;
+    private String logo;
+    private int id_evenement;
 
-    public Sponsor() {
-    }
-
-    public Sponsor(String nom, String logo, int id_evenement) {
-        this.nom = nom;
-        this.logo = logo;
-        this.id_evenement = id_evenement;
-    }
-
-    public Sponsor(int id, String nom, String logo, int id_evenement) {
+    public Sponsor(int id) {
         this.id = id;
-        this.nom = nom;
-        this.logo = logo;
-        this.id_evenement = id_evenement;
     }
 
     public int getId() {
@@ -61,5 +49,20 @@ private int id_evenement;
     public void setId_evenement(int id_evenement) {
         this.id_evenement = id_evenement;
     }
-}
 
+    public Sponsor() {
+    }
+
+    public Sponsor(String nom, String logo, int id_evenement) {
+        this.nom = nom;
+        this.logo = logo;
+        this.id_evenement = id_evenement;
+    }
+
+    public Sponsor(int id, String nom, String logo, int id_evenement) {
+        this.id = id;
+        this.nom = nom;
+        this.logo = logo;
+        this.id_evenement = id_evenement;
+    }
+}

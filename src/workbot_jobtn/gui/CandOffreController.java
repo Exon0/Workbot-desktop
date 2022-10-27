@@ -88,8 +88,6 @@ public class CandOffreController implements Initializable {
     @FXML
     private Button fb1;
     @FXML
-    private Button fb2;
-    @FXML
     private Pane s;
     @FXML
     private TextField inputsearch;
@@ -126,12 +124,6 @@ public class CandOffreController implements Initializable {
 //     int idOff=Integer.parseInt(offreLab.getText());
     @FXML
     private Pane test;
-    @FXML
-    private Pane paneDisabled;
-    @FXML
-    private Button btndisabled;
-    @FXML
-    private Pane disbaled22;
     int id2;
 
     public void setId_offre(int id) {
@@ -336,7 +328,12 @@ public class CandOffreController implements Initializable {
     }
 
     @FXML
-    private void OnClicked_menuEvent(ActionEvent event) {
+    private void OnClicked_menuEvent(ActionEvent event) throws IOException {
+          Parent fXMLLoader = FXMLLoader.load(getClass().getResource("firstevent.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
     }
 
     @FXML

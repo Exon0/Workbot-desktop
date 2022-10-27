@@ -275,7 +275,7 @@ public class OffreService implements ICrud_Interface<Offre> {
     public Offre readLast() {
         try {
             Statement = connection.createStatement();
-            ResultSet r = Statement.executeQuery("SELECT * from `offre` where id_soc="+SessionManager.getId()+" ORDER BY id DESC LIMIT 1");
+            ResultSet r = Statement.executeQuery("SELECT * from `offre` where id_soc=" + SessionManager.getId() + " ORDER BY id DESC LIMIT 1");
             while (r.next()) {
                 int id = r.getInt("id");
                 String titre = r.getString(2);
@@ -352,9 +352,10 @@ public class OffreService implements ICrud_Interface<Offre> {
         int nb = -1;
         try {
             Statement = connection.createStatement();
-            ResultSet r = Statement.executeQuery("SELECT count(*) from `offre` where id_Soc=" + id_soc);
+            ResultSet r = Statement.executeQuery("SELECT count(*) from `offre` where id_Soc=" + SessionManager.getId());
             r.next();
             nb = r.getInt(1);
+
             return nb;
 
         } catch (SQLException ex) {
@@ -368,9 +369,10 @@ public class OffreService implements ICrud_Interface<Offre> {
         int nb = -1;
         try {
             Statement = connection.createStatement();
-            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `offre` WHERE id_Soc="+SessionManager.getId()+" and DATEDIFF(CURRENT_DATE(),dateAjout)<7");
+            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `offre` WHERE id_Soc=" + SessionManager.getId() + " and DATEDIFF(CURRENT_DATE(),dateAjout)<7");
             r.next();
             nb = r.getInt(1);
+
             return nb;
 
         } catch (SQLException ex) {
@@ -379,67 +381,66 @@ public class OffreService implements ICrud_Interface<Offre> {
         return nb;
 
     }
-     public List<Offre> AfficherAllOffre() throws SQLException {
+
+    public List<Offre> AfficherAllOffre() throws SQLException {
         Statement st = connection.createStatement();
         /*  String typeOffre = r.getString(16);
                 TypeOffre tp = TypeOffre.valueOf(typeOffre);*/
 
         List<Offre> assu = new ArrayList<>();
         String req = "select * from offre where typeOffre != 'Freelancer'";
-       // String req = "select * from offre ";
+        // String req = "select * from offre ";
         Statement stm = connection.createStatement();
         ResultSet rst = stm.executeQuery(req);
-        
+
         while (rst.next()) {
             Offre u = new Offre(rst.getInt("id"),
-                     rst.getString("titre"),
-                     rst.getString("salaire"),
-                     rst.getString("description"),
-                     rst.getString("domaine"),
-                     rst.getString("dateExpiration"),
-                     rst.getString("dureeStage"),
-                     rst.getString("typeStage"),
-                     rst.getString("dureeContrat"),
-                     rst.getString("typeContrat"),
-                     rst.getString("anneeExperience"),
-                     rst.getInt("id_Soc"),
-                     rst.getString("modeTravail"),
-                     rst.getString("lieu"),
-                     rst.getInt("id_test"),
+                    rst.getString("titre"),
+                    rst.getString("salaire"),
+                    rst.getString("description"),
+                    rst.getString("domaine"),
+                    rst.getString("dateExpiration"),
+                    rst.getString("dureeStage"),
+                    rst.getString("typeStage"),
+                    rst.getString("dureeContrat"),
+                    rst.getString("typeContrat"),
+                    rst.getString("anneeExperience"),
+                    rst.getInt("id_Soc"),
+                    rst.getString("modeTravail"),
+                    rst.getString("lieu"),
+                    rst.getInt("id_test"),
                     TypeOffre.valueOf(rst.getString("typeOffre"))
             );
             assu.add(u);
         }
         return assu;
     }
-  
- 
+
     public List<Offre> AfficherAllTaches() throws SQLException {
 
         List<Offre> assu = new ArrayList<>();
-        
-       
+
         String req = "select * from offre where typeOffre = 'Freelancer'";
-       // String req = "select * from offre ";
+        // String req = "select * from offre ";
         Statement stm = connection.createStatement();
         ResultSet rst = stm.executeQuery(req);
-        
+
         while (rst.next()) {
             Offre u = new Offre(rst.getInt("id"),
-                     rst.getString("titre"),
-                     rst.getString("salaire"),
-                     rst.getString("description"),
-                     rst.getString("domaine"),
-                     rst.getString("dateExpiration"),
-                     rst.getString("dureeStage"),
-                     rst.getString("typeStage"),
-                     rst.getString("dureeContrat"),
-                     rst.getString("typeContrat"),
-                     rst.getString("anneeExperience"),
-                     rst.getInt("id_Soc"),
-                     rst.getString("modeTravail"),
-                     rst.getString("lieu"),
-                     rst.getInt("id_test"),
+                    rst.getString("titre"),
+                    rst.getString("salaire"),
+                    rst.getString("description"),
+                    rst.getString("domaine"),
+                    rst.getString("dateExpiration"),
+                    rst.getString("dureeStage"),
+                    rst.getString("typeStage"),
+                    rst.getString("dureeContrat"),
+                    rst.getString("typeContrat"),
+                    rst.getString("anneeExperience"),
+                    rst.getInt("id_Soc"),
+                    rst.getString("modeTravail"),
+                    rst.getString("lieu"),
+                    rst.getInt("id_test"),
                     TypeOffre.valueOf(rst.getString(16))
             );
             assu.add(u);

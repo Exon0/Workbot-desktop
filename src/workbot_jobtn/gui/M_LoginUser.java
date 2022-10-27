@@ -174,7 +174,7 @@ public class M_LoginUser implements Initializable {
                 alert.showAndWait();
                 SessionManager.setRole("candidat");
    
-                    Parent root = FXMLLoader.load(getClass().getResource("Offre_1.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
                     Scene stage = new Scene(root);
                     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     window.setScene(stage);

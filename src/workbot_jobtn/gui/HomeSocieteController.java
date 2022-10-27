@@ -92,6 +92,10 @@ public class HomeSocieteController implements Initializable {
     private Pane menu_profile;
     @FXML
     private Button N_BDeconnecter;
+    @FXML
+    private Button twitter;
+    @FXML
+    private Button fb;
 
     /**
      * Initializes the controller class.
@@ -116,6 +120,11 @@ public class HomeSocieteController implements Initializable {
 
     @FXML
     private void OnClicked_menuEvent(ActionEvent event) throws IOException {
+          Parent fXMLLoader = FXMLLoader.load(getClass().getResource("firstevent.fxml"));
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 
     }
 
@@ -164,6 +173,14 @@ public class HomeSocieteController implements Initializable {
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(stage);
             window.show();
+    }
+
+    @FXML
+    private void ontwitter(ActionEvent event) {
+    }
+
+    @FXML
+    private void onfacebook(ActionEvent event) {
     }
 
 }

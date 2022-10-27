@@ -102,7 +102,12 @@ public class ModifierOffreController implements Initializable {
     }
 
     @FXML
-    private void OnClicked_menuEvent(ActionEvent event) {
+    private void OnClicked_menuEvent(ActionEvent event) throws IOException {
+          Parent fXMLLoader = FXMLLoader.load(getClass().getResource("firstevent.fxml"));
+            Scene stage = new Scene(fXMLLoader);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
     }
 
     @FXML

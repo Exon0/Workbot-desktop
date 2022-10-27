@@ -23,12 +23,12 @@ public class ReclamationAvis {
     private User user;
     private Societe societe;
     private Offre offre;
-    private Evenement evennement;
+    private Evennement evennement;
 
     public ReclamationAvis() {
     }
 
-    public ReclamationAvis(int id, String objet, Date date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evenement evennement) {
+    public ReclamationAvis(int id, String objet, Date date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evennement evennement) {
         this.id = id;
         this.objet = objet;
         this.date = date;
@@ -42,7 +42,7 @@ public class ReclamationAvis {
         this.evennement = evennement;
     }
 
-    public ReclamationAvis(String objet, Date date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evenement evennement) {
+    public ReclamationAvis(String objet, Date date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evennement evennement) {
         this.objet = objet;
         this.date = date;
         this.description = description;
@@ -135,11 +135,11 @@ public class ReclamationAvis {
         this.offre = offre;
     }
 
-    public Evenement getEvennement() {
+    public Evennement getEvennement() {
         return evennement;
     }
 
-    public void setEvennement(Evenement evennement) {
+    public void setEvennement(Evennement evennement) {
         this.evennement = evennement;
     }
 

@@ -8,71 +8,59 @@ package workbot_jobtn.entites;
  *
  * @author hp
  */
-public class Evenement {
-private int id;
-private int id_user;
-private int nbPlaces;
+public class Evennement {
+    private int id;
 private String dateDebut;
 private String dateFin;
+private String libelle;
 private String heureDebut;
 private String heureFin;
-private String libelle;
-private String video;
+private int nbPlaces;
 private String prix;
 private String flyer;
+private String video;
+private int id_user;
 
-    
-    public Evenement() {
+    public Evennement() {
     }
 
-    public Evenement(int id_user, int nbPlaces, String dateDebut, String dateFin, String heureDebut, String heureFin, String libelle, String video, String prix, String flyer) {
-        this.id_user = id_user;
-        this.nbPlaces = nbPlaces;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.heureDebut = heureDebut;
-        this.heureFin = heureFin;
-        this.libelle = libelle;
-        this.video = video;
-        this.prix = prix;
-        this.flyer = flyer;
-    }
-
-    public Evenement(int id, int id_user, int nbPlaces, String dateDebut, String dateFin, String heureDebut, String heureFin, String libelle, String video, String prix, String flyer) {
+    public Evennement(int id) {
         this.id = id;
-        this.id_user = id_user;
-        this.nbPlaces = nbPlaces;
+    }
+
+    public Evennement(String dateDebut, String dateFin, String libelle, String heureDebut, String heureFin, int nbPlaces, String prix, String flyer, String video, int id_user) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
+        this.libelle = libelle;
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
-        this.libelle = libelle;
-        this.video = video;
+        this.nbPlaces = nbPlaces;
         this.prix = prix;
         this.flyer = flyer;
+        this.video = video;
+        this.id_user = id_user;
     }
-public int getId() {
+
+    public Evennement(int id, String dateDebut, String dateFin, String libelle, String heureDebut, String heureFin, int nbPlaces, String prix, String flyer, String video, int id_user) {
+        this.id = id;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.libelle = libelle;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        this.nbPlaces = nbPlaces;
+        this.prix = prix;
+        this.flyer = flyer;
+        this.video = video;
+        this.id_user = id_user;
+    }
+
+    public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
-    }
-
-    public int getNbPlaces() {
-        return nbPlaces;
-    }
-
-    public void setNbPlaces(int nbPlaces) {
-        this.nbPlaces = nbPlaces;
     }
 
     public String getDateDebut() {
@@ -91,6 +79,14 @@ public int getId() {
         this.dateFin = dateFin;
     }
 
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
     public String getHeureDebut() {
         return heureDebut;
     }
@@ -107,20 +103,12 @@ public int getId() {
         this.heureFin = heureFin;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public int getNbPlaces() {
+        return nbPlaces;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
-    public String getVideo() {
-        return video;
-    }
-
-    public void setVideo(String video) {
-        this.video = video;
+    public void setNbPlaces(int nbPlaces) {
+        this.nbPlaces = nbPlaces;
     }
 
     public String getPrix() {
@@ -139,4 +127,19 @@ public int getId() {
         this.flyer = flyer;
     }
 
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
 }
