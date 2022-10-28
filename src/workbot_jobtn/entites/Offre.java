@@ -120,6 +120,15 @@ public class Offre {
         this.btn = btn;
     }
 
+    public Offre(int id, String titre, String Salaire, String description, String domaine, String dateExpiration) {
+        this.id = id;
+        this.titre = titre;
+        this.Salaire = Salaire;
+        this.description = description;
+        this.domaine = domaine;
+        this.dateExpiration = dateExpiration;
+    }
+
     public Offre(int id, String titre, String desc, String domaine, String dateExp, String modeTravail, int id_soc, TypeOffre tp, String dateAjout, int btn) {
         this.id = id;
         this.titre = titre;

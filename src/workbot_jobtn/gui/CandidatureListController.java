@@ -92,6 +92,8 @@ private Label label;
     private Button gotocontact1;
     @FXML
     private Button Supprimer2;
+    @FXML
+    private TableColumn<?, ?> dateexp;
 
     /**
      * Initializes the controller class.

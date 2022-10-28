@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,7 +70,8 @@ public class TacheDetailController implements Initializable {
         labelsalaire.setText(OffreController_1.connectedOffre.getSalaire());
     }
  public static void sendMail(String recipient,String Subject,String Text) throws MessagingException {
-        System.out.println("Preparing to send email");
+       Thread th = new Thread(() -> {
+     System.out.println("Preparing to send email");
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -85,8 +88,16 @@ public class TacheDetailController implements Initializable {
             
         Message message = prepareMessage(session, myAccountEmail, recipient,Subject,Text);
 
-        javax.mail.Transport.send(message);
+           try {
+               javax.mail.Transport.send(message);
+           } catch (MessagingException ex) {
+               Logger.getLogger(TacheDetailController.class.getName()).log(Level.SEVERE, null, ex);
+           }
         System.out.println("Message sent successfully");
+                        });
+        th.setDaemon(true);
+        th.start();  
+        
     }  
    
     
@@ -110,8 +121,8 @@ public class TacheDetailController implements Initializable {
             java.sql.Date d2 = new java.sql.Date(date.getTime());
             String sqlDate2=d2.toString();
 
-        Candidature ccc = new Candidature(null, null, null, sqlDate2,SessionManager.getId(), OffreController_1.connectedOffre.getId(), null,
-                 null, null, null, "tache", null,OffreController_1.connectedOffre.getDomaine()
+        Candidature ccc = new Candidature("non traité", " ", " ", sqlDate2, OffreController_1.connectedOffre.getId(),SessionManager.getId(), " ",
+                 " ", " ", " ", "tache", " ",OffreController_1.connectedOffre.getDomaine()
                 ,OffreController_1.connectedOffre.getTitre(),OffreController_1.connectedOffre.getDateExpiration());
 
         Alert a = new Alert(Alert.AlertType.CONFIRMATION);

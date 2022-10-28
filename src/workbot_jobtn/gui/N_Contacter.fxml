@@ -64,7 +64,7 @@
             <Image url="@cours/1664023543357.png" />
          </image>
       </ImageView>
-      <Button fx:id="N_BMHome" layoutX="12.0" layoutY="149.0" mnemonicParsing="false" onAction="#N_B_Home" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #8D87F0; -fx-border-width: 2; -fx-border-color: #FFFFFF;" text="ACCEUILLE" textFill="WHITE">
+      <Button fx:id="N_BMHome" layoutX="12.0" layoutY="149.0" mnemonicParsing="false" onAction="#N_B_Home" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #8D87F0; -fx-border-width: 2; -fx-border-color: #FFFFFF;" text="ACCUEIL" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -73,12 +73,12 @@
       <Separator layoutX="148.0" layoutY="-4.0" orientation="VERTICAL" prefHeight="543.0" prefWidth="7.0" />
       <WebView fx:id="N_AdsView" layoutX="5.0" layoutY="319.0" onMousePressed="#Browser" prefHeight="215.0" prefWidth="138.0" />
       <WebView fx:id="maps_view" layoutX="150.0" layoutY="55.0" prefHeight="481.0" prefWidth="734.0" />
-      <Text fill="#266a91" layoutX="155.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact : " wrappingWidth="80.80001831054682">
+      <Text fill="#266a91" layoutX="165.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact : " wrappingWidth="80.80001831054682">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="239.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JOB.TN@esprit.tn" />
+      <Text layoutX="249.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JOB.TN@esprit.tn" />
       <Text fill="#266a91" layoutX="573.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse :" wrappingWidth="80.80001831054682">
          <font>
             <Font name="System Bold" size="18.0" />

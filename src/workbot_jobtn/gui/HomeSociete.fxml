@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
 
 <HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" stylesheets="@homesociete.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workbot_jobtn.gui.HomeSocieteController">
    <children>
@@ -107,6 +108,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <WebView fx:id="N_AdsView" layoutX="10.0" layoutY="381.0" prefHeight="115.0" prefWidth="172.0" />
                </children>
             </AnchorPane>
          </children>

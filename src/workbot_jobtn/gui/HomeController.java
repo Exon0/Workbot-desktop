@@ -15,8 +15,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import workbot_jobtn.services.OffreService;
 
 /**
  * FXML Controller class
@@ -33,12 +37,23 @@ public class HomeController implements Initializable {
     private Button N_BMHome1;
     @FXML
     private Button gotocontrats;
-
+    @FXML
+    private PieChart tabchart;
+    @FXML
+    private WebView N_AdsView;
+    private WebEngine e;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // TODO Auto-generated method stub  
+         e=N_AdsView.getEngine();
+         e.load("https://www.profitablegatetocontent.com/d38ziwqqhm?key=833e83d5b619c6162602e331d6104cd1");
+        OffreService of=new OffreService();
+        tabchart.getData().add(new PieChart.Data("Offres",of.totNbCandOfrre()));
+        tabchart.getData().add(new PieChart.Data("Taches ",of.totNbCandbyCandidat()));
+        
         // TODO
     }    
 

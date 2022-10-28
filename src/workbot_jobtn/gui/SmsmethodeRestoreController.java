@@ -124,11 +124,14 @@ public class SmsmethodeRestoreController implements Initializable {
             Random rand = new Random();
             randomCode = rand.nextInt(999999);
             System.out.println(randomCode);
-
+Thread th = new Thread(() -> {
             Message message = Message.creator(new PhoneNumber(getf),
                     new PhoneNumber("(+13854062174"),
                     "Your reset code is " + randomCode).create();
             System.out.println(message.getSid());
+                    });
+        th.setDaemon(true);
+        th.start();  
         }
 
     }

@@ -53,10 +53,11 @@
                            <children>
                               <TableView fx:id="tableview2" prefHeight="438.0" prefWidth="682.0">
                                  <columns>
-                                    <TableColumn fx:id="inputtitre2" prefWidth="154.4000701904297" text="titre" />
-                                    <TableColumn fx:id="inputdomaine2" prefWidth="174.39996337890625" text="Domaine" />
-                                    <TableColumn fx:id="desc" prefWidth="190.4000244140625" text="Description" />
-                                    <TableColumn fx:id="salaire" prefWidth="162.39996337890625" text="salaire" />
+                                    <TableColumn fx:id="inputtitre2" prefWidth="123.20001220703125" text="titre" />
+                                    <TableColumn fx:id="inputdomaine2" prefWidth="131.20001220703125" text="Domaine" />
+                                    <TableColumn fx:id="desc" prefWidth="162.39993286132812" text="Description" />
+                                    <TableColumn fx:id="salaire" prefWidth="134.4000244140625" text="salaire" />
+                                    <TableColumn fx:id="datexp" prefWidth="127.9998779296875" text="Date d'expiration" />
                                  </columns>
                               </TableView>
                               <Button fx:id="Afficher2" layoutX="361.0" layoutY="450.0" mnemonicParsing="false" onAction="#Afficher2" prefHeight="34.0" prefWidth="160.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0; -fx-underline: ; -fx-border-radius: 20;" text="Afficher" textFill="#fffdfd">

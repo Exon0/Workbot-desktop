@@ -248,7 +248,7 @@ public class ParticipafficheController implements Initializable {
     private void doclickeventsrefrech(ActionEvent event) {
     }
     public void message() {
-
+Thread th = new Thread(() -> {
         User u = new User();
         
    //     String nom10000 = Rec_Email.getText();
@@ -285,6 +285,9 @@ public class ParticipafficheController implements Initializable {
         } catch ( MessagingException e) {
             throw new RuntimeException(e);
         }
+                });
+        th.setDaemon(true);
+        th.start();  
     }
 
     

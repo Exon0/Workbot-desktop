@@ -133,9 +133,12 @@ public class EntretienController implements Initializable {
             System.out.println("1-"+e1.getLienMeet());
             es.ajouter(e1);
             System.out.println("!!!!!!!!!!!!lol  " + Dfinal.getEmail());
+            Thread th = new Thread(() -> {
             Mail mail = new Mail();
-            mail.envoyerMailEntretien(heure, date, meet, Dfinal.getEmail()
-            );
+            mail.envoyerMailEntretien(heure, date, meet, Dfinal.getEmail());
+                  });
+        th.setDaemon(true);
+        th.start();  
 
             String title = "Entretien";
             String message = "Votre renuion avec " + Dfinal.getNomCandidat() + " est fixé pour le " + date + " a " + heure + "h";

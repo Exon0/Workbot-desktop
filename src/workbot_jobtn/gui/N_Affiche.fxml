@@ -38,6 +38,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -64,7 +65,7 @@
                      </image>
                   </ImageView>
                   <TextField fx:id="N_cours_recherche_input" layoutX="63.0" layoutY="147.0" prefHeight="34.0" prefWidth="551.0" style="-fx-background-radius: 20;" />
-                  <ChoiceBox id="BUTTON" fx:id="N_categorie" layoutX="19.0" layoutY="454.0" prefHeight="26.0" prefWidth="102.0" style="-fx-background-radius: 20; -fx-background-color: #242526;" stylesheets="@Button.css" value=" " />
+                  <ChoiceBox id="BUTTON" fx:id="N_categorie" layoutX="19.0" layoutY="454.0" prefHeight="26.0" prefWidth="102.0" style="-fx-background-radius: 20; -fx-background-color: #6C63FF;" stylesheets="@Button.css" value=" " />
                   <Text fill="#565555" fontSmoothingType="LCD" layoutX="51.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtre" underline="true">
                      <font>
                         <Font size="21.0" />
@@ -151,10 +152,13 @@
             <Image url="@cours/Rectangle%202.png" />
          </image>
       </ImageView>
-      <Button layoutX="13.0" layoutY="199.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #242526; -fx-border-radius: 20; -fx-border-width: 1; -fx-border-color: #FFFFFF;" text="COURS" textFill="#fffdfd">
+      <Button layoutX="13.0" layoutY="199.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-radius: 20; -fx-border-width: 1; -fx-border-color: #FFFFFF;" text="COURS" textFill="#fffdfd">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </Button>
       <Button id="BUTTON" layoutX="13.0" layoutY="244.0" mnemonicParsing="false" onAction="#certif" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0; -fx-border-color: #FFFFFF; -fx-border-radius: 20; -fx-border-width: 2;" stylesheets="@Button.css" text="CERTIFICATION" textFill="#fff7f7">
          <font>
@@ -166,7 +170,7 @@
             <Image url="@cours/1664023543357.png" />
          </image>
       </ImageView>
-      <Button id="BUTTON" layoutX="13.0" layoutY="154.0" mnemonicParsing="false" onAction="#home" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #8D87F0; -fx-border-width: 2; -fx-border-color: #FFFFFF;" stylesheets="@Button.css" text="ACCEUIL" textFill="WHITE">
+      <Button id="BUTTON" layoutX="13.0" layoutY="154.0" mnemonicParsing="false" onAction="#home" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #8D87F0; -fx-border-width: 2; -fx-border-color: #FFFFFF;" stylesheets="@Button.css" text="ACCUEIL" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

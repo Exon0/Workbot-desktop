@@ -71,7 +71,7 @@ public class CondidatureService {
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
         System.out.println("!!!11111"+req);
         PreparedStatement ps = connexion.prepareStatement(req);
-        ps.setString(1, u.getStatut());
+        ps.setString(1, "non traité");
          ps.setString(2,  u.getLettreMotivation());
         ps.setString(3, u.getNoteTest());
    ps.setString(4,  u.getDateAjout());

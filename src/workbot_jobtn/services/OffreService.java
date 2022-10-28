@@ -553,7 +553,7 @@ public class OffreService implements ICrud_Interface<Offre> {
         int nb = -1;
         try {
             Statement = connection.createStatement();
-            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `participation` p join evennement e on e.id=p.id_event WHERE id_userP=" + SessionManager.getId() + " and DATEDIFF(CURRENT_DATE(),e.dateAjout)>0");
+            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `participation` p join evennement e on e.id=p.id_event WHERE id_userP=" + SessionManager.getId() + " and DATEDIFF(CURRENT_DATE(),e.dateDebut)>0");
             r.next();
             nb = r.getInt(1);
 
@@ -565,5 +565,37 @@ public class OffreService implements ICrud_Interface<Offre> {
         return nb;
 
     }
+       public int totNbCandbyCandidat() {
+        int nb = -1;
+        try {
+            Statement = connection.createStatement();
+            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `candidature` WHERE idcondidat=" + SessionManager.getId()+" TypeCondidature ='Freelancer'");
+            r.next();
+            nb = r.getInt(1);
 
+            return nb;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nb;
+
+    }
+       
+       public int totNbCandOfrre() {
+        int nb = -1;
+        try {
+            Statement = connection.createStatement();
+            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `candidature` WHERE idcondidat=" + SessionManager.getId()+" and TypeCondidature !='Freelancer'");
+            r.next();
+            nb = r.getInt(1);
+
+            return nb;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nb;
+
+    }
 }

@@ -40,6 +40,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -70,10 +71,13 @@
             <Image url="@cours/1664023543357.png" />
          </image>
       </ImageView>
-      <Button fx:id="N_BMHome" layoutX="12.0" layoutY="149.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #242526; -fx-border-color: #FFFFFF; -fx-border-width: 1;" text="ACCEUIL" textFill="WHITE">
+      <Button fx:id="N_BMHome" layoutX="12.0" layoutY="149.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #FFFFFF; -fx-border-width: 1;" text="ACCUEIL" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
 
       </Button>
       <Separator layoutX="148.0" layoutY="-4.0" orientation="VERTICAL" prefHeight="543.0" prefWidth="7.0" />
@@ -102,7 +106,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="161.0" layoutY="493.0" mnemonicParsing="false" onAction="#retour_Admin" prefHeight="34.0" prefWidth="78.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #242526; -fx-border-color: #FFFFFF; -fx-border-width: 1;" text="Retour" textFill="WHITE">
+      <Button layoutX="161.0" layoutY="493.0" mnemonicParsing="false" onAction="#retour_Admin" prefHeight="34.0" prefWidth="78.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #FFFFFF; -fx-border-width: 1;" text="Retour" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

@@ -88,9 +88,10 @@ public class HomeSocieteController implements Initializable {
     private Label tot_part;
     @FXML
     private Label semaine_part;
+    @FXML
     private WebView N_AdsView;
-
     private WebEngine e;
+    
     OffreService offreservice = new OffreService();
     @FXML
     private Pane menu_profile;
@@ -108,13 +109,16 @@ public class HomeSocieteController implements Initializable {
     private PieChart statEventTot;
     @FXML
     private PieChart statEventTotS;
-
+    
+ 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        		// TODO Auto-generated method stub  
+         e=N_AdsView.getEngine();
+         e.load("https://www.profitablegatetocontent.com/d38ziwqqhm?key=833e83d5b619c6162602e331d6104cd1");
         OffreService of=new OffreService();
 
         sttOFF.getData().add(new PieChart.Data("Offres",of.totNbOffres(1)));

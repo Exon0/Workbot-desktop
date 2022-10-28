@@ -41,8 +41,13 @@ public class SuccesOffreController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Thread th = new Thread(() -> {
         Mail mail = new Mail();
-        mail.envoyer();
+        mail.envoyer();    
+        });
+        th.setDaemon(true);
+        th.start();  
+        
 
     }
 

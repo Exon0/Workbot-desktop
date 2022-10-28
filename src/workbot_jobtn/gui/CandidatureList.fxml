@@ -23,11 +23,11 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="517.0" prefWidth="666.0">
                            <children>
-                              <TableView fx:id="tableview2" layoutX="9.0" prefHeight="443.0" prefWidth="728.0">
+                              <TableView fx:id="tableview2" layoutX="3.0" prefHeight="443.0" prefWidth="734.0">
                                  <columns>
                                     <TableColumn fx:id="Domaine" prefWidth="257.0" text="Domaine" />
-                                    <TableColumn fx:id="titre" prefWidth="221.0" text="titre" />
-                                    <TableColumn fx:id="date" prefWidth="212.0" text="date d'inscription" />
+                                    <TableColumn fx:id="titre" prefWidth="142.39996337890625" text="titre" />
+                                    <TableColumn fx:id="date" prefWidth="291.20001220703125" text="date d'inscription" />
                                  </columns>
                               </TableView>
                               <Button fx:id="Modifier" layoutX="35.0" layoutY="467.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0;" text="Modifier" textFill="WHITE">

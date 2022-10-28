@@ -214,6 +214,7 @@ public class ModifTestController implements Initializable {
             O1.setId_test(testservice.selectLast().getId());
             System.out.println(O1.getId_soc());
             offreService.update(O1);
+             Thread th = new Thread(() -> {
             String ACCOUNT_SID = "AC915cfd330fe7a8b2cacdd031af356e39";
             String AUTH_TOKEN = "7f567885b19a9f20b7ceada26b115be3";
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
@@ -222,7 +223,9 @@ public class ModifTestController implements Initializable {
             Message message = Message.creator(new PhoneNumber("+21626662264"),
                     new PhoneNumber("+13854062174"),
                     "Vous avez modifier avec succes le test de l'offre : " + titre).create();
-            System.out.println(message.getSid());
+                 });
+        th.setDaemon(true);
+        th.start();
             FXMLLoader fxml = new FXMLLoader(getClass().getResource("SuccesTest.fxml"));
             Parent root1 = fxml.load();
             Scene scene = btnSuivantStage.getScene();

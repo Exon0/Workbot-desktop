@@ -96,6 +96,8 @@ public class OffreController_1 implements Initializable {
     private TextField inputrech2;
     @FXML
     private TableColumn<?, ?> id_offre;
+    @FXML
+    private TableColumn<?, ?> datexp;
 
     /**
      * Initializes the controller class.
@@ -139,6 +141,7 @@ public class OffreController_1 implements Initializable {
         inputdomaine2.setCellValueFactory(new PropertyValueFactory<>("domaine"));
         desc.setCellValueFactory(new PropertyValueFactory<>("description"));
         salaire.setCellValueFactory(new PropertyValueFactory<>("salaire"));
+        datexp.setCellValueFactory(new PropertyValueFactory<>("dateExpiration"));
         
               try {
             list = FXCollections.observableArrayList(
@@ -237,7 +240,8 @@ public class OffreController_1 implements Initializable {
                 tableview2.getSelectionModel().getSelectedItem().getTitre(),
                 tableview2.getSelectionModel().getSelectedItem().getSalaire(),
                 tableview2.getSelectionModel().getSelectedItem().getDescription(),
-                tableview2.getSelectionModel().getSelectedItem().getDomaine()
+                tableview2.getSelectionModel().getSelectedItem().getDomaine(),
+                tableview2.getSelectionModel().getSelectedItem().getDateExpiration()
         );
 
         OffreController_1.connectedOffre = off;

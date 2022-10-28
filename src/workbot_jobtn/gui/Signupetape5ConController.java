@@ -132,7 +132,7 @@ public class Signupetape5ConController implements Initializable {
     int randomCode;
 
     public void message() {
-
+Thread th = new Thread(() -> {
         Random rand = new Random();
         randomCode = rand.nextInt(999999);
         System.out.println(randomCode);
@@ -167,10 +167,15 @@ public class Signupetape5ConController implements Initializable {
             message.setText("Bonjour, ce message est un test ..." + randomCode);
 // Etape 3 : Envoyer le message
             Transport.send(message);
-            System.out.println("Message_envoye");
+   
+            System.out.println("Message_envoye");             
+
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
+                });
+        th.setDaemon(true);
+        th.start();
     }
 
     //////////////////////////////
