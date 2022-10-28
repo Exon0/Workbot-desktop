@@ -2,16 +2,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entities;
+package workbot_jobtn.entites;
 
 /**
  *
  * @author ADMIN
  */
 public class Cours {
+    private int nb;
     private int id;
     private String titre,matiere,domaine,categorie,chemin;
 
+    public Cours(int nb, String domaine) {
+        this.nb = nb;
+        this.domaine = domaine;
+    }
+
+    public int getNb() {
+        return nb;
+    }
+
+    public void setNb(int nb) {
+        this.nb = nb;
+    }
+
+    
+    
     public Cours(int id) {
         this.id = id;
     }

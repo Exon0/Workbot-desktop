@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workbot_jobtn.gui.OffreController_1">
+   <children>
+      <AnchorPane layoutY="6.0" minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="921.0" style="-fx-background-color: FFFFFF;">
+         <children>
+            <TabPane layoutX="188.0" layoutY="9.0" prefHeight="540.0" prefWidth="690.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text=" offres                     ">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="706.0">
+                           <children>
+                              <TableView fx:id="tableview" layoutX="1.0" layoutY="-5.0" prefHeight="470.0" prefWidth="689.0">
+                                 <columns>
+                                    <TableColumn fx:id="inputtitre" prefWidth="51.999969482421875" text="titre" />
+                                    <TableColumn fx:id="inputdomaine" prefWidth="64.00001525878906" text="Domaine" />
+                                    <TableColumn fx:id="inputdescription" prefWidth="82.39996337890625" text="Description" />
+                                    <TableColumn fx:id="inputdureeStage" prefWidth="76.79998779296875" text="Duree Stage" />
+                                    <TableColumn fx:id="inputtypeContrat" prefWidth="89.60003662109375" text="Type Contrat" />
+                                    <TableColumn fx:id="inputanneexperience" prefWidth="118.39996337890625" text="Annee Experience" />
+                                    <TableColumn fx:id="inputlieu" minWidth="8.0" prefWidth="48.0" text="lieu" />
+                                    <TableColumn fx:id="inputdateexpiration" prefWidth="87.99993896484375" text="dateExpiration" />
+                                    <TableColumn fx:id="inputsalaire" prefWidth="71.19998779296873" text="salaire" />
+                                    <TableColumn fx:id="id_offre" prefWidth="75.0" text="Column X" visible="false" />
+                                 </columns>
+                              </TableView>
+                              <Button fx:id="Afficher" layoutX="430.0" layoutY="481.0" mnemonicParsing="false" onAction="#Afficher" prefHeight="27.0" prefWidth="140.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0; -fx-underline: ; -fx-border-radius: 20;" text="Afficher" textFill="#fffdfd">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="inputrech2" layoutX="180.0" layoutY="477.0" prefHeight="34.0" prefWidth="102.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="taches                    ">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="tableview2" prefHeight="438.0" prefWidth="682.0">
+                                 <columns>
+                                    <TableColumn fx:id="inputtitre2" prefWidth="123.20001220703125" text="titre" />
+                                    <TableColumn fx:id="inputdomaine2" prefWidth="131.20001220703125" text="Domaine" />
+                                    <TableColumn fx:id="desc" prefWidth="162.39993286132812" text="Description" />
+                                    <TableColumn fx:id="salaire" prefWidth="134.4000244140625" text="salaire" />
+                                    <TableColumn fx:id="datexp" prefWidth="127.9998779296875" text="Date d'expiration" />
+                                 </columns>
+                              </TableView>
+                              <Button fx:id="Afficher2" layoutX="361.0" layoutY="450.0" mnemonicParsing="false" onAction="#Afficher2" prefHeight="34.0" prefWidth="160.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0; -fx-underline: ; -fx-border-radius: 20;" text="Afficher" textFill="#fffdfd">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="inputRech" layoutX="150.0" layoutY="446.0" prefHeight="43.0" prefWidth="106.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+            <Separator layoutX="144.0" layoutY="-4.0" orientation="VERTICAL" prefHeight="572.0" prefWidth="7.0" />
+            <AnchorPane layoutX="-1.0" layoutY="-7.0" prefHeight="578.0" prefWidth="147.0" style="-fx-background-color: #6C63FF;">
+               <children>
+                  <ImageView fitHeight="114.0" fitWidth="147.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icons/image.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="gotocontrats" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onAction="#gotocontrats" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0;" text="contrats" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="Home" layoutX="10.0" layoutY="161.0" mnemonicParsing="false" onAction="#Home" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #8D87F0; -fx-border-color: #8D87F0; -fx-border-width: 2;" text="HOME" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="N_BMCours1" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #242526; -fx-underline: ; -fx-border-radius: 20;" text="offres" textFill="#fffdfd">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="gotocondidature" layoutX="11.0" layoutY="258.0" mnemonicParsing="false" onAction="#gotocondidature" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0;" text="condidatures " textFill="#fff7f7">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -2,17 +2,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entities;
+package workbot_jobtn.entites;
 
 /**
  *
  * @author ADMIN
  */
 public class Certification {
-    
+
+   
     private int id;
     private String titreCours,titreTest,dateAjout,lien;
+    
+    public Certification() {
+    }
 
+    public Certification(int id) {
+        this.id = id;
+    }
+
+    public Certification(String titreCours, String titreTest, String dateAjout, String lien) {
+        this.titreCours = titreCours;
+        this.titreTest = titreTest;
+        this.dateAjout = dateAjout;
+        this.lien = lien;
+    }
+    
     public Certification(int id, String titreCours, String titreTest, String dateAjout, String lien) {
         this.id = id;
         this.titreCours = titreCours;
@@ -21,7 +36,6 @@ public class Certification {
         this.lien = lien;
     }
 
-    
     
     public int getId() {
         return id;
