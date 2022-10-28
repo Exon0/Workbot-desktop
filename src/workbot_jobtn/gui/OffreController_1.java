@@ -223,7 +223,7 @@ public class OffreController_1 implements Initializable {
         OffreController_1.connectedOffre = off;
 
         Parent page1 = FXMLLoader.load(getClass().getResource("AjouterCondidature.fxml"));
-        Scene scene = new Scene(page1, 1144, 741);
+        Scene scene = new Scene(page1);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

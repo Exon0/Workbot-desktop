@@ -104,11 +104,14 @@ private Label label;
         ArrayList<Candidature> c = new ArrayList<>();
         try {
             c = (ArrayList<Candidature>) pss.AfficherAllCandidature();
+                        System.out.println(c);
+
         } catch (SQLException ex) {
             System.out.println("erreur");
         }
         
           ArrayList<Candidature> c2 = new ArrayList<>();
+           System.out.println(c2);
         try {
             c2 = (ArrayList<Candidature>) pss.AfficherAllCandidatureTache();
         } catch (SQLException ex) {
@@ -117,8 +120,7 @@ private Label label;
         
         ObservableList<Candidature> obs2 = FXCollections.observableArrayList(c);
         ObservableList<Candidature> obs3 = FXCollections.observableArrayList(c2);
-        tableview2.setItems(obs2);
-  tableview3.setItems(obs3);
+   
       Domaine.setCellValueFactory(new PropertyValueFactory<>("Domaine"));
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         date.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
@@ -128,7 +130,8 @@ private Label label;
                 date1.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
 
         dateexpriration.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
-      
+           tableview2.setItems(obs2);
+         tableview3.setItems(obs3);
     }
 
 

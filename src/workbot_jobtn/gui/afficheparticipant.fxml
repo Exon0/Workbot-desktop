@@ -35,7 +35,7 @@
       </Button>
       <Button fx:id="H_homebtn" layoutX="5.0" layoutY="111.0" mnemonicParsing="false" onAction="#doclickhomebtnpartaff" prefHeight="40.0" prefWidth="138.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Tableau de board" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Button>
       <Text layoutX="394.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des participants" wrappingWidth="249.00000000000006">
@@ -43,14 +43,14 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Text>
-      <Button fx:id="refrechev" layoutX="6.0" layoutY="171.0" mnemonicParsing="false" onAction="#doclickrefrechev" prefHeight="40.0" prefWidth="138.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Liste Events" textFill="WHITE">
+      <Button fx:id="refrechev" layoutX="6.0" layoutY="171.0" mnemonicParsing="false" onAction="#doclickrefrechev" prefHeight="40.0" prefWidth="138.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Liste d'évènnements" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="16.0" />
+            <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnaddrefrech" layoutX="6.0" layoutY="228.0" mnemonicParsing="false" onAction="#doclickbtnaddrefrech" prefHeight="40.0" prefWidth="138.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="New Event" textFill="WHITE">
+      <Button fx:id="btnaddrefrech" layoutX="6.0" layoutY="228.0" mnemonicParsing="false" onAction="#doclickbtnaddrefrech" prefHeight="40.0" prefWidth="138.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Créer évènnement" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="15.0" />
+            <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
    </children>

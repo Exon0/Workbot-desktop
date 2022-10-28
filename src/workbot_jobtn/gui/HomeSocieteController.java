@@ -6,6 +6,7 @@ package workbot_jobtn.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -15,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -26,6 +29,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import workbot_jobtn.entites.StatCertif;
 import workbot_jobtn.services.OffreService;
 import workbot_jobtn.utils.SessionManager;
 
@@ -96,16 +100,58 @@ public class HomeSocieteController implements Initializable {
     private Button twitter;
     @FXML
     private Button fb;
+    @FXML
+    private PieChart sttOFF;
+    @FXML
+    private PieChart statOffSem;
+    @FXML
+    private PieChart statEventTot;
+    @FXML
+    private PieChart statEventTotS;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        int nbTot = offreservice.totNbOffres(1);
-        int nbSemaine = offreservice.totNbOffresParSemaine(1);
+        
+        OffreService of=new OffreService();
+
+        sttOFF.getData().add(new PieChart.Data("Offres",of.totNbOffres(1)));
+        sttOFF.getData().add(new PieChart.Data("Candidature ",of.totNbCandidature()));
+                   
+        statOffSem.getData().add(new PieChart.Data("Offres",of.totNbOffresParSemaine(1)));
+        statOffSem.getData().add(new PieChart.Data("Candidat",of.totNbCandidatureParSemaine()));
+        
+        statEventTot.getData().add(new PieChart.Data("Evenements ",of.totNbEvenement()));
+        statEventTot.getData().add(new PieChart.Data("Participation ",of.totNbParticipations()));
+        
+        statEventTotS.getData().add(new PieChart.Data("Evenement",of.totNbevennementParSemaine()));
+        statEventTotS.getData().add(new PieChart.Data("Participation",of.totNbParticipationsPrévu()));
+
+        
+        int nbTot = offreservice.totNbOffres(SessionManager.getId());
+        int nbSemaine = offreservice.totNbOffresParSemaine(SessionManager.getId());
+        int nbTotCand = offreservice.totNbCandidature();
+        int nbTotCandSemaine = offreservice.totNbCandidatureParSemaine();
+        int totEvenet = offreservice.totNbEvenement();
+        int eventaveneir =offreservice.totNbevennementParSemaine();
+        int totPart=offreservice.totNbParticipations();
+        int totPartPrevu=offreservice.totNbParticipations();
+
+
+
         tot_offre.setText(String.valueOf(nbTot));
         semaine_offre.setText(String.valueOf(nbSemaine));
+        tot_cand.setText(String.valueOf(nbTotCand));
+        semaine_cand.setText(String.valueOf(nbTotCandSemaine));
+        tot_event.setText(String.valueOf(totEvenet));
+        semaine_event.setText(String.valueOf(eventaveneir));
+        tot_part.setText(String.valueOf(totPart));
+        semaine_part.setText(String.valueOf(totPartPrevu));
+        
+        
+        
 
     }
 

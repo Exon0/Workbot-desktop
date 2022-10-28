@@ -35,19 +35,19 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="Toaddevent" layoutX="11.0" layoutY="195.0" mnemonicParsing="false" onAction="#doclickToaddevent" prefHeight="40.0" prefWidth="132.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="New Event" textFill="WHITE">
+      <Button fx:id="Toaddevent" layoutX="8.0" layoutY="258.0" mnemonicParsing="false" onAction="#doclickToaddevent" prefHeight="40.0" prefWidth="139.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Créer évènnement" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="14.0" />
+            <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="Toeventlist" layoutX="11.0" layoutY="249.0" mnemonicParsing="false" onAction="#doclickToeventlist" prefHeight="40.0" prefWidth="132.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Events List" textFill="WHITE">
+      <Button fx:id="Toeventlist" layoutX="9.0" layoutY="202.0" mnemonicParsing="false" onAction="#doclickToeventlist" prefHeight="40.0" prefWidth="139.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Liste d'évènnements" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="14.0" />
+            <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="HOMEfirstev" layoutX="11.0" layoutY="143.0" mnemonicParsing="false" onAction="#doclickHOMEfirstev" prefHeight="40.0" prefWidth="138.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Tableau de board" textFill="WHITE">
+      <Button fx:id="HOMEfirstev" layoutX="10.0" layoutY="151.0" mnemonicParsing="false" onAction="#doclickHOMEfirstev" prefHeight="40.0" prefWidth="139.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Tableau de board" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="14.0" />
+            <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
       <Label layoutX="221.0" layoutY="32.0" prefHeight="79.0" prefWidth="621.0" style="-fx-background-radius: 20;" text="Bienvenue dans l'espace des évènnements">

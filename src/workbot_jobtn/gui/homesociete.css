@@ -17,15 +17,16 @@
 
 }
 .btnDashboard,.btnMenuOffre,.btnMenuEntretien,.btnMenuEvent{
-    -fx-background-color: #4848e2;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
+    -fx-background-color:  #8D87F0;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
 }
 .dash_offre , .dash_cand , .dash_event ,.dash_part {
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
-    -fx-background-color: #4a4Be2;
+    -fx-background-color: #6c63ff;
     -fx-border-color: black;
+    -fx-text-font-style: regular;
 
 }
 .btnAjouter{

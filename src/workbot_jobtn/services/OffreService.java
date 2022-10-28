@@ -447,5 +447,123 @@ public class OffreService implements ICrud_Interface<Offre> {
         }
         return assu;
     }
+    
+     public boolean updateStatut(DTOCandidature_Offre dto) {
+        try {
+
+            PreparedStatement prep = connection.prepareStatement("UPDATE `candidature` SET `statut`=? WHERE id=?");
+              prep.setInt(2, dto.getId_cand());
+            prep.setString(1, dto.getStatut());
+          
+    
+            prep.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+
+        }
+        return false;
+    }
+
+         public int totNbCandidature() {
+        int nb = -1;
+        try {
+            Statement = connection.createStatement();
+            ResultSet r = Statement.executeQuery("SELECT count(*) from `candidature` c join offre o on c.id_offre=o.id where o.id_Soc=" + SessionManager.getId());
+            r.next();
+            nb = r.getInt(1);
+
+            return nb;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nb;
+
+    }
+
+    public int totNbCandidatureParSemaine() {
+        int nb = -1;
+        try {
+            Statement = connection.createStatement();
+            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `candidature` c join offre o on c.id_offre=o.id where o.id_Soc=" + SessionManager.getId() + " and DATEDIFF(CURRENT_DATE(),c.dateAjout)<7");
+            r.next();
+            nb = r.getInt(1);
+
+            return nb;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nb;
+
+    }
+     public int totNbEvenement() {
+        int nb = -1;
+        try {
+            Statement = connection.createStatement();
+            ResultSet r = Statement.executeQuery("SELECT count(*) from `evennement` where id_user=" + SessionManager.getId());
+            r.next();
+            nb = r.getInt(1);
+
+            return nb;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nb;
+
+    }
+
+    public int totNbevennementParSemaine() {
+        int nb = -1;
+        try {
+            Statement = connection.createStatement();
+            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `evennement` WHERE id_user=" + SessionManager.getId() + " and DATEDIFF(CURRENT_DATE(),dateDebut)>0");
+            r.next();
+            nb = r.getInt(1);
+
+            return nb;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nb;
+
+    }
+    
+    
+         public int totNbParticipations() {
+        int nb = -1;
+        try {
+            Statement = connection.createStatement();
+            ResultSet r = Statement.executeQuery("SELECT count(*) from `participation` where id_userP=" + SessionManager.getId());
+            r.next();
+            nb = r.getInt(1);
+
+            return nb;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nb;
+
+    }
+
+    public int totNbParticipationsPrévu() {
+        int nb = -1;
+        try {
+            Statement = connection.createStatement();
+            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `participation` p join evennement e on e.id=p.id_event WHERE id_userP=" + SessionManager.getId() + " and DATEDIFF(CURRENT_DATE(),e.dateAjout)>0");
+            r.next();
+            nb = r.getInt(1);
+
+            return nb;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OffreService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nb;
+
+    }
 
 }

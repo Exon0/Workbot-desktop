@@ -39,6 +39,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
+import static org.joda.time.format.ISODateTimeFormat.date;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -71,6 +72,14 @@ public class CandidatureModifierController implements Initializable {
     private ImageView imgajoutincours;
     @FXML
     private Label labelid;
+    @FXML
+    private Button Home;
+    @FXML
+    private Button gotooffre;
+    @FXML
+    private Button N_BMHome1;
+    @FXML
+    private Button gotocontrats;
 
     /**
      * Initializes the controller class.
@@ -106,8 +115,10 @@ public class CandidatureModifierController implements Initializable {
             a.showAndWait();
         } else {
 
-            Date date = new Date(System.currentTimeMillis());
-            java.sql.Date sqlDate2 = new java.sql.Date(date.getTime());
+           
+              Date date = new Date(System.currentTimeMillis());
+            java.sql.Date d2 = new java.sql.Date(date.getTime());
+            String sqlDate2=d2.toString();
 
             Candidature ccc = new Candidature(Integer.parseInt(labelid.getText()), null, inputmotivation.getText(), null, sqlDate2,SessionManager.getId(), CandidatureListController.connectedCondidature.getId_offre(), inputfrancais.getValue(),
                     inputanglais.getValue(), Timage.getText(),inputexperience.getText(),
@@ -181,6 +192,33 @@ public class CandidatureModifierController implements Initializable {
             Logger.getLogger("ss");
         }
         imgpathttt.setText(file.getAbsolutePath());
+    }
+
+     @FXML
+    private void Home(ActionEvent event) throws IOException {
+            Parent page1 = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();   
+        
+    }
+    @FXML
+    private void gotooffre(ActionEvent event) throws IOException {
+                   Parent page1 = FXMLLoader.load(getClass().getResource("Offre_1.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show(); 
+    }
+
+    @FXML
+    private void gotocontrats(ActionEvent event) throws IOException {
+                   Parent page1 = FXMLLoader.load(getClass().getResource("ContratList.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show(); 
     }
 
 }

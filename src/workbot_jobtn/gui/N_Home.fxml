@@ -120,10 +120,13 @@
             <Image url="@cours/1664023543357.png" />
          </image>
       </ImageView>
-      <Button id="BUTTON" fx:id="N_BMHome" layoutX="12.0" layoutY="149.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #242526; -fx-border-color: #FFFFFF; -fx-border-width: 1;" stylesheets="@Button.css" text="ACCEUILLE" textFill="WHITE">
+      <Button id="BUTTON" fx:id="N_BMHome" layoutX="12.0" layoutY="149.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #6c63ff; -fx-border-color: #FFFFFF; -fx-border-width: 1;" stylesheets="@Button.css" text="ACCUEIL" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
 
       </Button>
       <Separator layoutX="148.0" layoutY="-4.0" orientation="VERTICAL" prefHeight="543.0" prefWidth="7.0" />
@@ -147,7 +150,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="contacter" layoutX="155.0" layoutY="502.0" mnemonicParsing="false" onAction="#contacter" prefHeight="31.0" prefWidth="138.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF; -fx-border-radius: 20;" text="Contater nous" textFill="#287594" underline="true">
+      <Button fx:id="contacter" layoutX="740.0" layoutY="490.0" mnemonicParsing="false" onAction="#contacter" prefHeight="31.0" prefWidth="138.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF; -fx-border-radius: 20;" text="Contater nous" textFill="#287594" underline="true">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -162,5 +165,10 @@
             <Image url="@cours/icons/badge.png" />
          </image>
       </ImageView>
+      <Button id="BUTTON" layoutX="155.0" layoutY="489.0" mnemonicParsing="false" onAction="#retour" prefHeight="34.0" prefWidth="91.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #6c63ff; -fx-border-color: #FFFFFF; -fx-border-width: 1;" stylesheets="@Button.css" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

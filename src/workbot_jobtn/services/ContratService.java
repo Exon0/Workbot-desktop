@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import workbot_jobtn.utils.MyDB;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  *
@@ -63,7 +64,8 @@ public class ContratService {
 
     public List<Contrat> AfficherAllContrat() throws SQLException {
         List<Contrat> assu = new ArrayList<>();
-        String req = "select * from contrat";
+        String req = "select * from contrat c join candidature ca on c.id_candidature=ca.id where ca.idcondidat="+SessionManager.getId();
+                
         Statement stm = connexion.createStatement();
         ResultSet rst = stm.executeQuery(req);
         while (rst.next()) {
@@ -81,7 +83,7 @@ public class ContratService {
     }
    public List<Contrat> AfficherAllContratBySalaire() throws SQLException {
         List<Contrat> assu = new ArrayList<>();
-        String req = "select * from contrat order by salaire ";
+        String req = "select * from contrat c join candidature ca on c.id_candidature=ca.id where ca.idcondidat="+SessionManager.getId()+ " order by salaire";
         Statement stm = connexion.createStatement();
         ResultSet rst = stm.executeQuery(req);
         while (rst.next()) {

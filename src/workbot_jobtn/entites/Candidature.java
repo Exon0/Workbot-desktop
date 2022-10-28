@@ -14,7 +14,7 @@ public class Candidature {
     private String statut;
     private String lettreMotivation; 
     private String noteTest;
-    private Date dateAjout ;
+    private String dateAjout ;
 
     private int id_offre;
     private int idcondidat;
@@ -31,7 +31,7 @@ private String dateExpiration;
     public Candidature() {
     }
 
-    public Candidature(int id, String statut, String lettreMotivation, String noteTest, Date dateAjout, int id_offre, int idcondidat, String NiveauFrancais, String NiveauAnglais, String Cv, String Experience,String TypeCondidature, String diplome,String Domaine,String titre,String dateExpiration) {
+    public Candidature(int id, String statut, String lettreMotivation, String noteTest, String dateAjout, int id_offre, int idcondidat, String NiveauFrancais, String NiveauAnglais, String Cv, String Experience,String TypeCondidature, String diplome,String Domaine,String titre,String dateExpiration) {
         this.id = id;
         this.statut = statut;
         this.lettreMotivation = lettreMotivation;
@@ -52,7 +52,7 @@ private String dateExpiration;
         
     }
 
-    public Candidature(int id, String statut, String lettreMotivation, String noteTest, Date dateAjout, int id_offre, String NiveauFrancais, String NiveauAnglais, String Cv, String Experience,String TypeCondidature, String diplome,String Domaine,String titre,String dateExpiration) {
+    public Candidature(int id, String statut, String lettreMotivation, String noteTest, String dateAjout, int id_offre, String NiveauFrancais, String NiveauAnglais, String Cv, String Experience,String TypeCondidature, String diplome,String Domaine,String titre,String dateExpiration) {
         this.id = id;
         this.statut = statut;
         this.lettreMotivation = lettreMotivation;
@@ -70,7 +70,7 @@ private String dateExpiration;
            this.dateExpiration = dateExpiration;
     }
 
-    public Candidature(String statut, String lettreMotivation, String noteTest, Date dateAjout, int id_offre, String NiveauFrancais, String NiveauAnglais, String Cv, String Experience,String TypeCondidature, String diplome,String Domaine,String titre,String dateExpiration) {
+    public Candidature(String statut, String lettreMotivation, String noteTest,String dateAjout, int id_offre, String NiveauFrancais, String NiveauAnglais, String Cv, String Experience,String TypeCondidature, String diplome,String Domaine,String titre,String dateExpiration) {
         this.statut = statut;
         this.lettreMotivation = lettreMotivation;
         this.noteTest = noteTest;
@@ -89,7 +89,7 @@ private String dateExpiration;
 
   
     
-    public Candidature(String statut, String lettreMotivation, String noteTest, Date dateAjout, int id_offre, int idcondidat, String NiveauFrancais, String NiveauAnglais, String Cv, String Experience,String TypeCondidature, String diplome,String Domaine,String titre,String dateExpiration) {
+    public Candidature(String statut, String lettreMotivation, String noteTest, String dateAjout, int id_offre, int idcondidat, String NiveauFrancais, String NiveauAnglais, String Cv, String Experience,String TypeCondidature, String diplome,String Domaine,String titre,String dateExpiration) {
         this.statut = statut;
         this.lettreMotivation = lettreMotivation;
         this.noteTest = noteTest;
@@ -165,11 +165,11 @@ private String dateExpiration;
         this.noteTest = noteTest;
     }
 
-    public Date getDateAjout() {
+    public String getDateAjout() {
         return dateAjout;
     }
 
-    public void setDateAjout(Date dateAjout) {
+    public void setDateAjout(String dateAjout) {
         this.dateAjout = dateAjout;
     }
 

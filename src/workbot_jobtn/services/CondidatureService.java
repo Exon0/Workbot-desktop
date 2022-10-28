@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import workbot_jobtn.utils.MyDB;
+import workbot_jobtn.utils.SessionManager;
 /**
  *
  * @author Administrateur
@@ -36,7 +37,7 @@ public class CondidatureService {
                 + "statut ='"   +   u.getStatut()+"'"
                 + ", lettreMotivation='"+  u.getLettreMotivation()+"'"
                 + ", noteTest='"+u.getNoteTest()+"'"
-                + ", dateAjout='" + (java.sql.Date) (Date)u.getDateAjout()+"'"
+                + ", dateAjout='" + u.getDateAjout()+"'"
                 + ", id_offre='"+u.getId_offre()+"'"
          + ", idcondidat='"+u.getIdcondidat()+"'"
                 + ", NiveauFrancais='"+u.getNiveauFrancais()+"'"
@@ -73,7 +74,7 @@ public class CondidatureService {
         ps.setString(1, u.getStatut());
          ps.setString(2,  u.getLettreMotivation());
         ps.setString(3, u.getNoteTest());
-   ps.setDate(4, (java.sql.Date) (Date) u.getDateAjout());
+   ps.setString(4,  u.getDateAjout());
     ps.setInt(5, u.getId_offre());
       ps.setInt(6, u.getIdcondidat());
        ps.setString(7, u.getNiveauFrancais());
@@ -99,7 +100,7 @@ ps.setString(15,  u.getDateExpiration());
         List<Candidature> assu = new ArrayList<>();
          
        
-        String req = "select * from candidature where TypeCondidature != 'Freelancer'";
+        String req = "select * from candidature where TypeCondidature != 'Freelancer' and idcondidat="+SessionManager.getId();
         Statement stm = connexion.createStatement();
         ResultSet rst = stm.executeQuery(req);
 
@@ -108,9 +109,8 @@ ps.setString(15,  u.getDateExpiration());
                     , rst.getString("statut")
                     , rst.getString("lettreMotivation")
                     , rst.getString("noteTest")
-                    , rst.getDate("dateAjout")
-                     , rst.getInt("id_offre")
-                     
+                    , rst.getString("dateAjout")
+                     , rst.getInt("id_offre")                    
                      , rst.getInt("idcondidat")
                      , rst.getString("NiveauFrancais")
                      , rst.getString("NiveauAnglais")
@@ -118,7 +118,7 @@ ps.setString(15,  u.getDateExpiration());
                      , rst.getString("Experience")
                      , rst.getString("TypeCondidature")
                     , rst.getString("diplome")
-             , rst.getString("Domaine")
+                     , rst.getString("Domaine")
                      , rst.getString("titre")
                      , rst.getString("dateExpiration")
             
@@ -133,7 +133,7 @@ ps.setString(15,  u.getDateExpiration());
         List<Candidature> assu = new ArrayList<>();
          
        
-        String req = "select * from candidature where TypeCondidature ='Freelancer'";
+        String req = "select * from candidature where TypeCondidature ='Freelancer' and idcondidat="+SessionManager.getId();
         Statement stm = connexion.createStatement();
         ResultSet rst = stm.executeQuery(req);
 
@@ -142,7 +142,7 @@ ps.setString(15,  u.getDateExpiration());
                     , rst.getString("statut")
                     , rst.getString("lettreMotivation")
                     , rst.getString("noteTest")
-                    , rst.getDate("dateAjout")
+                    , rst.getString("dateAjout")
                      , rst.getInt("id_offre")
                      , rst.getInt("idcondidat")
                      , rst.getString("NiveauFrancais")
@@ -153,10 +153,9 @@ ps.setString(15,  u.getDateExpiration());
                     , rst.getString("diplome")
              , rst.getString("Domaine")
                      , rst.getString("titre"),
-                     rst.getString("dateExpiration")
-                    
+                     rst.getString("dateExpiration"));
             
-            );
+            System.out.println("ffffff   "+u);
             assu.add(u);
         }
         return assu;

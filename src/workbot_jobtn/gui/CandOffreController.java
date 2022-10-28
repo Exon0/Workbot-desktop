@@ -329,11 +329,11 @@ public class CandOffreController implements Initializable {
 
     @FXML
     private void OnClicked_menuEvent(ActionEvent event) throws IOException {
-          Parent fXMLLoader = FXMLLoader.load(getClass().getResource("firstevent.fxml"));
-            Scene stage = new Scene(fXMLLoader);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(stage);
-            window.show();
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("firstevent.fxml"));
+        Scene stage = new Scene(fXMLLoader);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
     }
 
     @FXML
@@ -360,87 +360,37 @@ public class CandOffreController implements Initializable {
     @FXML
     private void OnClick_settings(ActionEvent event) {
     }
+    
+    public static DTOCandidature_Offre dto=new DTOCandidature_Offre();
 
     @FXML
-    private void AjouterOffre(ActionEvent event) {
+    private void AjouterOffre(ActionEvent event) throws IOException {
 
-        ObservableList<DTOCandidature_Offre> offreSelected = table.getSelectionModel().getSelectedItems();
+         ObservableList<DTOCandidature_Offre> offreSelected = table.getSelectionModel().getSelectedItems();
         if (!offreSelected.isEmpty()) {
+            dto=offreSelected.get(0);
+             if(dto.getStatut().equals("Acceptée")){
+                  Alert alert2 = new Alert(Alert.AlertType.WARNING);
+            alert2.setHeaderText("Erreur");
+            alert2.setContentText("Vous avez deja accepté ce candidat");
+            alert2.showAndWait();return;
+                  }
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Confirmation");
             alert.setContentText("Vous êtes sur le point d'embaucher ce candidat! Confirmer?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                DTOCandidature_Offre candOffre = offreService.candidatures_Offre(offreSelected.get(0).getId_off()).get(0);
-                Document doc = new Document();
-                try {
-                    PdfWriter.getInstance(doc, new FileOutputStream("C:\\PDFapi\\" + candOffre.getNomCandidat()+".pdf"));
-                    doc.open();
- 
-                    doc.add(new Header("Contrat", "Contrat"));
-                    doc.add(new Paragraph("Contrat"));
-                   Image image1 = Image.getInstance(getClass().getResource("temp.png"));
-                      image1.scaleToFit(2000,840);
-                     image1.setAbsolutePosition(0f, 450f);
-                     doc.add(image1);
-                    PdfPTable table1 = new PdfPTable(4);
-                    table1.setWidthPercentage(100);
-                    /////////////////////////////
-                    PdfPCell cell;
-
-                    ////////////
-                    cell = new PdfPCell(new Phrase("Nom", FontFactory.getFont("arial")));
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cell.setBackgroundColor(BaseColor.GRAY);
-                    table1.addCell(cell);
-
-                    cell = new PdfPCell(new Phrase("Email", FontFactory.getFont("arial")));
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cell.setBackgroundColor(BaseColor.GRAY);
-                    table1.addCell(cell);
-
-                    cell = new PdfPCell(new Phrase("Poste", FontFactory.getFont("arial")));
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cell.setBackgroundColor(BaseColor.GRAY);
-                    table1.addCell(cell);
-
-                    cell = new PdfPCell(new Phrase("Salaire", FontFactory.getFont("arial")));
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    cell.setBackgroundColor(BaseColor.GRAY);
-                    table1.addCell(cell);
-
-                    cell = new PdfPCell(new Phrase(candOffre.getNomCandidat(), FontFactory.getFont("arial")));
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-
-                    table1.addCell(cell);
-
-                    cell = new PdfPCell(new Phrase(candOffre.getEmail(), FontFactory.getFont("arial")));
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-
-                    table1.addCell(cell);
-
-                    cell = new PdfPCell(new Phrase(candOffre.getTitreOffre(), FontFactory.getFont("arial")));
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-
-                    table1.addCell(cell);
-
-                    cell = new PdfPCell(new Phrase(candOffre.getSalaire(), FontFactory.getFont("arial")));
-                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-
-                    table1.addCell(cell);
-
-                    doc.add(table1);
-
-                    doc.close();
-                    Desktop.getDesktop().open(new File("C:\\PDFapi\\" + candOffre.getNomCandidat()+".pdf"));
-
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(CandOffreController.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (DocumentException ex) {
-                    Logger.getLogger(CandOffreController.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(CandOffreController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+       
+       
+            FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("ContratCreation.fxml"));
+                                Parent root = fXMLLoader.load();
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                     stage.setScene(scene);
+                                stage.show();
+        
+                
+              
             } else {
                 alert.close();
             }

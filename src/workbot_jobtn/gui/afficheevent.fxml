@@ -96,9 +96,9 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="homeevntaff" layoutX="6.0" layoutY="120.0" mnemonicParsing="false" onAction="#homeevntaffich" prefHeight="40.0" prefWidth="142.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Tableau de board" textFill="WHITE">
+      <Button fx:id="homeevntaff" layoutX="3.0" layoutY="120.0" mnemonicParsing="false" onAction="#homeevntaffich" prefHeight="40.0" prefWidth="142.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Tableau de board" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Button>
       <Label fx:id="alertaffev" layoutX="344.0" layoutY="500.0" prefHeight="20.0" prefWidth="345.0">
@@ -126,9 +126,9 @@
             <Image url="@308181173_3429967987279219_7821870094501611281_n.png" />
          </image>
       </ImageView>
-      <Button fx:id="refrechev" layoutX="9.0" layoutY="178.0" mnemonicParsing="false" onAction="#doclickrefrechev" prefHeight="40.0" prefWidth="132.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Liste Events" textFill="WHITE">
+      <Button fx:id="refrechev" layoutX="3.0" layoutY="178.0" mnemonicParsing="false" onAction="#doclickrefrechev" prefHeight="40.0" prefWidth="142.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Liste d'évènnements" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="14.0" />
+            <Font name="System Bold Italic" size="12.0" />
          </font>
          <effect>
             <DropShadow />
@@ -140,9 +140,9 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnaddrefrech" layoutX="9.0" layoutY="235.0" mnemonicParsing="false" onAction="#doclickbtnaddrefrech" prefHeight="40.0" prefWidth="132.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="New Event" textFill="WHITE">
+      <Button fx:id="btnaddrefrech" layoutX="3.0" layoutY="235.0" mnemonicParsing="false" onAction="#doclickbtnaddrefrech" prefHeight="40.0" prefWidth="142.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Créer évènnement" textFill="WHITE">
          <font>
-            <Font name="System Bold Italic" size="14.0" />
+            <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
    </children>

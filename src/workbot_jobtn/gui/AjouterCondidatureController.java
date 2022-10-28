@@ -156,7 +156,8 @@ private Label label;
         else {
 
             Date date = new Date(System.currentTimeMillis());
-            java.sql.Date sqlDate2 = new java.sql.Date(date.getTime());
+            java.sql.Date d2 = new java.sql.Date(date.getTime());
+            String sqlDate2=d2.toString();
 
             Candidature ccc = new Candidature("non traité", inputmotivation.getText()," ", sqlDate2,SessionManager.getId(), OffreController_1.connectedOffre.getId(), inputfrancais.getValue(),
                      inputanglais.getValue(), Timage.getText(), inputexperience.getText(),

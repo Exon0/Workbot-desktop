@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 13 oct. 2022 à 02:32
--- Version du serveur : 10.4.24-MariaDB
--- Version de PHP : 8.1.6
+-- Généré le : jeu. 27 oct. 2022 à 21:11
+-- Version du serveur : 10.4.25-MariaDB
+-- Version de PHP : 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,13 +40,55 @@ CREATE TABLE `badge` (
 
 CREATE TABLE `candidature` (
   `id` int(11) NOT NULL,
-  `statut` varchar(50) NOT NULL,
-  `lettreMotivation` varchar(300) NOT NULL,
-  `noteTest` varchar(10) DEFAULT NULL,
-  `dateAjout` varchar(50) NOT NULL,
-  `id_offre` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL
+  `id_offre` int(11) DEFAULT NULL,
+  `idcondidat` int(11) DEFAULT NULL,
+  `statut` varchar(255) NOT NULL,
+  `lettreMotivation` varchar(255) NOT NULL,
+  `noteTest` varchar(10) NOT NULL,
+  `dateAjout` varchar(250) NOT NULL,
+  `Cv` varchar(255) NOT NULL,
+  `NiveauFrancais` varchar(255) NOT NULL,
+  `NiveauAnglais` varchar(255) NOT NULL,
+  `diplome` varchar(255) NOT NULL,
+  `dateExpiration` varchar(255) NOT NULL,
+  `titre` varchar(255) NOT NULL,
+  `TypeCondidature` varchar(255) NOT NULL,
+  `Experience` varchar(25) NOT NULL,
+  `Domaine` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `candidature`
+--
+
+INSERT INTO `candidature` (`id`, `id_offre`, `idcondidat`, `statut`, `lettreMotivation`, `noteTest`, `dateAjout`, `Cv`, `NiveauFrancais`, `NiveauAnglais`, `diplome`, `dateExpiration`, `titre`, `TypeCondidature`, `Experience`, `Domaine`) VALUES
+(34, NULL, 1, 'hhh', 'ggg', 'yyy', 'nnn', '', '', '', '', '', '', '', '', ''),
+(35, NULL, 1, 'hh', 'hhh', 'tt', '[value-6]', 'xnxx', '', '', '', '', '', '', '', ''),
+(36, NULL, 1, 'hh', 'hhh', 'tt', '[value-6]', 'xnxx', '[value-10]', '[value-10]', '', '', '', '', '', ''),
+(38, NULL, 1, '[value-4]', '[value-5]', '[value-6]', '[value-7]', '[value-8]', '[value-9]', '[value-10]', '[value-11]', '', '', '', '', ''),
+(39, NULL, 1, '[value-4]', '[value-5]', '[value-6]', '[value-7]', '[value-8]', '[value-9]', '[value-10]', '[value-11]', '', '', '', '', ''),
+(40, NULL, 1, '[value-4]', '[value-5]', '[value-6]', '[value-7]', '[value-8]', '[value-9]', '[value-10]', '[value-11]', '', '', '', '', ''),
+(41, NULL, 1, '[value-4]', '[value-5]', '[value-6]', '[value-7]', '[value-8]', '[value-9]', '[value-10]', '[value-11]', '[value-12]', '[value-13]', '', '', ''),
+(42, NULL, 1, '[value-4]', '[value-5]', '[value-6]', '[value-7]', '[value-8]', '[value-9]', '[value-10]', '[value-11]', '[value-12]', '[value-13]', '[value-14]', '[value-15]', '[value-16]'),
+(43, 3, 3, 'non traité', 'fhch', ' ', '2022-10-27', 'Browse', 'Notions', 'Notions', 'Electrique', 'gs', 'jgchvjkl', 'offre', 'fch', 'zfe');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `captcha`
+--
+
+CREATE TABLE `captcha` (
+  `id` int(11) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `captcha`
+--
+
+INSERT INTO `captcha` (`id`, `status`) VALUES
+(0, 0);
 
 -- --------------------------------------------------------
 
@@ -80,9 +122,9 @@ CREATE TABLE `certification` (
 --
 
 CREATE TABLE `certif_badge` (
-  `id_user` int(11) NOT NULL,
-  `id_certif` int(11) NOT NULL,
-  `id_badge` int(11) NOT NULL
+  `id_user` int(11) DEFAULT NULL,
+  `id_certif` int(11) DEFAULT NULL,
+  `id_badge` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -93,12 +135,13 @@ CREATE TABLE `certif_badge` (
 
 CREATE TABLE `contrat` (
   `id` int(11) NOT NULL,
-  `typeContrat` varchar(100) NOT NULL,
-  `dateDebut` varchar(100) NOT NULL,
-  `salaire` varchar(30) NOT NULL,
-  `dateFin` varchar(100) NOT NULL,
-  `lien` varchar(300) NOT NULL,
-  `id_candidature` int(11) NOT NULL
+  `typeContrat` varchar(100) DEFAULT NULL,
+  `dateDebut` date DEFAULT NULL,
+  `salaire` varchar(30) DEFAULT NULL,
+  `dateFin` date DEFAULT NULL,
+  `lien` varchar(300) DEFAULT NULL,
+  `id_candidature` int(11) DEFAULT NULL,
+  `dateCreation` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -124,9 +167,10 @@ CREATE TABLE `cours` (
 
 CREATE TABLE `entretien` (
   `id` int(11) NOT NULL,
-  `date` int(11) NOT NULL,
-  `lienMeet` int(11) NOT NULL,
-  `id_candidature` int(11) NOT NULL
+  `date` varchar(55) NOT NULL,
+  `lienMeet` varchar(350) NOT NULL,
+  `id_candidature` int(11) NOT NULL,
+  `heure` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -149,6 +193,13 @@ CREATE TABLE `evennement` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `evennement`
+--
+
+INSERT INTO `evennement` (`id`, `dateDebut`, `dateFin`, `libelle`, `heureDebut`, `heureFin`, `nbPlaces`, `prix`, `flyer`, `video`, `id_user`) VALUES
+(1, '2hfxcgvjnk,', 'datefin', 'dfgh', 'hn', 'b,n;,', 5, 'gfgh', '', '', 4);
+
 -- --------------------------------------------------------
 
 --
@@ -157,22 +208,30 @@ CREATE TABLE `evennement` (
 
 CREATE TABLE `offre` (
   `id` int(11) NOT NULL,
-  `titre` varchar(300) NOT NULL,
+  `titre` varchar(300) DEFAULT NULL,
   `salaire` varchar(255) DEFAULT NULL,
-  `description` varchar(250) NOT NULL,
-  `domaine` varchar(200) NOT NULL,
-  `dateExpiration` varchar(200) NOT NULL,
+  `description` varchar(250) DEFAULT NULL,
+  `domaine` varchar(200) DEFAULT NULL,
+  `dateExpiration` varchar(200) DEFAULT NULL,
   `dureeStage` varchar(200) DEFAULT NULL,
   `typeStage` varchar(20) DEFAULT NULL,
   `dureeContrat` varchar(30) DEFAULT NULL,
   `typeContrat` varchar(30) DEFAULT NULL,
   `anneeExperience` varchar(30) DEFAULT NULL,
-  `id_Soc` int(11) NOT NULL,
-  `modeTravail` varchar(25) NOT NULL,
+  `id_Soc` int(11) DEFAULT NULL,
+  `modeTravail` varchar(25) DEFAULT NULL,
   `lieu` varchar(250) DEFAULT NULL,
   `id_test` int(11) DEFAULT NULL,
-  `typeOffre` varchar(15) NOT NULL
+  `typeOffre` varchar(15) DEFAULT NULL,
+  `dateAjout` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `offre`
+--
+
+INSERT INTO `offre` (`id`, `titre`, `salaire`, `description`, `domaine`, `dateExpiration`, `dureeStage`, `typeStage`, `dureeContrat`, `typeContrat`, `anneeExperience`, `id_Soc`, `modeTravail`, `lieu`, `id_test`, `typeOffre`, `dateAjout`) VALUES
+(3, 'jgchvjkl', 'zqefdz', 'zef', 'zfe', 'gs', 'sgs', NULL, NULL, NULL, NULL, 4, NULL, NULL, NULL, 'Stage', '2022-34-44');
 
 -- --------------------------------------------------------
 
@@ -229,10 +288,11 @@ CREATE TABLE `sponsor` (
 CREATE TABLE `test` (
   `id` int(11) NOT NULL,
   `titre` varchar(300) NOT NULL,
-  `domaine` varchar(50) NOT NULL,
-  `description` varchar(350) NOT NULL,
+  `domaine` varchar(50) DEFAULT NULL,
+  `description` varchar(350) DEFAULT NULL,
   `lien` varchar(350) NOT NULL,
-  `categorie` varchar(100) NOT NULL
+  `categorie` varchar(100) DEFAULT NULL,
+  `id_soc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -243,13 +303,13 @@ CREATE TABLE `test` (
 
 CREATE TABLE `utilisateur` (
   `id` int(11) NOT NULL,
-  `nom` varchar(25) NOT NULL,
-  `prenom` varchar(25) NOT NULL,
-  `tel` varchar(30) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `mdp` varchar(30) NOT NULL,
-  `adresse` varchar(30) NOT NULL,
-  `photo` varchar(300) NOT NULL,
+  `nom` varchar(25) DEFAULT NULL,
+  `prenom` varchar(25) DEFAULT NULL,
+  `tel` varchar(30) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `mdp` varchar(30) DEFAULT NULL,
+  `adresse` varchar(30) DEFAULT NULL,
+  `photo` varchar(300) DEFAULT NULL,
   `questionSecu` varchar(300) DEFAULT NULL,
   `reponseSecu` varchar(300) DEFAULT NULL,
   `methode` varchar(200) DEFAULT NULL,
@@ -272,6 +332,16 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='user mohsen';
 
 --
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `tel`, `email`, `mdp`, `adresse`, `photo`, `questionSecu`, `reponseSecu`, `methode`, `formeJuridique`, `raisonSociale`, `domaine`, `pattente`, `nomSociete`, `diplome`, `experience`, `niveauFr`, `niveauAng`, `competance`, `cv`, `portfolio`, `bio`, `typeCandidat`, `note`, `role`) VALUES
+(1, 'nader', 'jardak', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sociéte'),
+(3, 'ilyes', 'bettaieb', '90446128', 'ilyes.bettaieb@esprit.tn', '12345678', 'nabeul', NULL, 'Quel est votre animal préféré?', 'mohsen', NULL, NULL, NULL, 'info', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'candidat'),
+(4, 'nader', ' ', '90446128', 'jardak.nader@esprit.tn', '12345678', 'sfax', NULL, 'Quel est votre animal préféré?', 'mohsen', NULL, NULL, NULL, 'tech', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sociéte');
+
+--
 -- Index pour les tables déchargées
 --
 
@@ -286,8 +356,14 @@ ALTER TABLE `badge`
 --
 ALTER TABLE `candidature`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_candidature_offre` (`id_offre`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `idcondidat` (`idcondidat`),
+  ADD KEY `id_offre` (`id_offre`);
+
+--
+-- Index pour la table `captcha`
+--
+ALTER TABLE `captcha`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `categorie`
@@ -306,8 +382,8 @@ ALTER TABLE `certification`
 --
 ALTER TABLE `certif_badge`
   ADD KEY `fk_certif` (`id_certif`),
-  ADD KEY `fk_badge` (`id_badge`),
-  ADD KEY `fk_user` (`id_user`);
+  ADD KEY `fk_user` (`id_user`),
+  ADD KEY `fb_badge` (`id_badge`);
 
 --
 -- Index pour la table `contrat`
@@ -327,7 +403,7 @@ ALTER TABLE `cours`
 --
 ALTER TABLE `entretien`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_candidature_entretien` (`id_candidature`);
+  ADD KEY `id_candidature` (`id_candidature`);
 
 --
 -- Index pour la table `evennement`
@@ -341,7 +417,7 @@ ALTER TABLE `evennement`
 --
 ALTER TABLE `offre`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_offre_soc` (`id_Soc`),
+  ADD KEY `id_Soc` (`id_Soc`),
   ADD KEY `id_test` (`id_test`);
 
 --
@@ -373,7 +449,8 @@ ALTER TABLE `sponsor`
 -- Index pour la table `test`
 --
 ALTER TABLE `test`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_soc` (`id_soc`);
 
 --
 -- Index pour la table `utilisateur`
@@ -395,7 +472,13 @@ ALTER TABLE `badge`
 -- AUTO_INCREMENT pour la table `candidature`
 --
 ALTER TABLE `candidature`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT pour la table `captcha`
+--
+ALTER TABLE `captcha`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `categorie`
@@ -416,16 +499,22 @@ ALTER TABLE `cours`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `entretien`
+--
+ALTER TABLE `entretien`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `evennement`
 --
 ALTER TABLE `evennement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `offre`
 --
 ALTER TABLE `offre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `participation`
@@ -455,7 +544,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées
@@ -465,64 +554,29 @@ ALTER TABLE `utilisateur`
 -- Contraintes pour la table `candidature`
 --
 ALTER TABLE `candidature`
-  ADD CONSTRAINT `candidature_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id`),
-  ADD CONSTRAINT `fk_candidature_offre` FOREIGN KEY (`id_offre`) REFERENCES `offre` (`id`);
+  ADD CONSTRAINT `candidature_ibfk_1` FOREIGN KEY (`idcondidat`) REFERENCES `utilisateur` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `candidature_ibfk_2` FOREIGN KEY (`id_offre`) REFERENCES `offre` (`id`) ON DELETE SET NULL;
 
 --
 -- Contraintes pour la table `certif_badge`
 --
 ALTER TABLE `certif_badge`
-  ADD CONSTRAINT `fk_badge` FOREIGN KEY (`id_badge`) REFERENCES `badge` (`id`),
-  ADD CONSTRAINT `fk_certif` FOREIGN KEY (`id_certif`) REFERENCES `certification` (`id`),
-  ADD CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id`);
-
---
--- Contraintes pour la table `contrat`
---
-ALTER TABLE `contrat`
-  ADD CONSTRAINT `contrat_ibfk_1` FOREIGN KEY (`id_candidature`) REFERENCES `candidature` (`id`),
-  ADD CONSTRAINT `fk_contrat_candidature` FOREIGN KEY (`id`) REFERENCES `candidature` (`id`);
+  ADD CONSTRAINT `fb_badge` FOREIGN KEY (`id_badge`) REFERENCES `badge` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_certif` FOREIGN KEY (`id_certif`) REFERENCES `certification` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id`) ON DELETE SET NULL;
 
 --
 -- Contraintes pour la table `entretien`
 --
 ALTER TABLE `entretien`
-  ADD CONSTRAINT `fk_candidature_entretien` FOREIGN KEY (`id_candidature`) REFERENCES `candidature` (`id`);
-
---
--- Contraintes pour la table `evennement`
---
-ALTER TABLE `evennement`
-  ADD CONSTRAINT `evennement_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id`);
+  ADD CONSTRAINT `entretien_ibfk_1` FOREIGN KEY (`id_candidature`) REFERENCES `candidature` (`id`);
 
 --
 -- Contraintes pour la table `offre`
 --
 ALTER TABLE `offre`
-  ADD CONSTRAINT `fk_offre_soc` FOREIGN KEY (`id_Soc`) REFERENCES `utilisateur` (`id`),
-  ADD CONSTRAINT `offre_ibfk_1` FOREIGN KEY (`id_test`) REFERENCES `test` (`id`);
-
---
--- Contraintes pour la table `participation`
---
-ALTER TABLE `participation`
-  ADD CONSTRAINT `fk_participation_event` FOREIGN KEY (`id_event`) REFERENCES `evennement` (`id`),
-  ADD CONSTRAINT `fk_participation_user` FOREIGN KEY (`id_userP`) REFERENCES `utilisateur` (`id`);
-
---
--- Contraintes pour la table `reclamation_avis`
---
-ALTER TABLE `reclamation_avis`
-  ADD CONSTRAINT `fk_avis_categorie` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id`),
-  ADD CONSTRAINT `fk_avis_user` FOREIGN KEY (`id_compte`) REFERENCES `utilisateur` (`id`),
-  ADD CONSTRAINT `reclamation_avis_ibfk_1` FOREIGN KEY (`id_offre`) REFERENCES `offre` (`id`),
-  ADD CONSTRAINT `reclamation_avis_ibfk_2` FOREIGN KEY (`id_societe`) REFERENCES `utilisateur` (`id`);
-
---
--- Contraintes pour la table `sponsor`
---
-ALTER TABLE `sponsor`
-  ADD CONSTRAINT `fk_sponsor_evennement` FOREIGN KEY (`id_evenement`) REFERENCES `evennement` (`id`);
+  ADD CONSTRAINT `offre_ibfk_1` FOREIGN KEY (`id_Soc`) REFERENCES `utilisateur` (`id`),
+  ADD CONSTRAINT `offre_ibfk_2` FOREIGN KEY (`id_test`) REFERENCES `test` (`id`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

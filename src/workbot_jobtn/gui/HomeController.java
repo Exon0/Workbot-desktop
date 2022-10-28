@@ -98,4 +98,13 @@ public class HomeController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void Cours_window(ActionEvent event) throws IOException {
+        Parent page1 = FXMLLoader.load(getClass().getResource("N_Home.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 }

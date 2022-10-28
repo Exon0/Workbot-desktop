@@ -106,8 +106,9 @@ public class TacheDetailController implements Initializable {
     private void Contacter(ActionEvent event) throws SQLException, IOException, MessagingException {
         CondidatureService productService = new CondidatureService();
 
-        Date date = new Date(System.currentTimeMillis());
-        java.sql.Date sqlDate2 = new java.sql.Date(date.getTime());
+          Date date = new Date(System.currentTimeMillis());
+            java.sql.Date d2 = new java.sql.Date(date.getTime());
+            String sqlDate2=d2.toString();
 
         Candidature ccc = new Candidature(null, null, null, sqlDate2,SessionManager.getId(), OffreController_1.connectedOffre.getId(), null,
                  null, null, null, "tache", null,OffreController_1.connectedOffre.getDomaine()

@@ -5,6 +5,8 @@
  */
 package workbot_jobtn.gui;
 
+import java.awt.Desktop;
+import java.io.File;
 import workbot_jobtn.services.CondidatureService;
 import workbot_jobtn.services.ContratService;
 import workbot_jobtn.entites.Candidature;
@@ -48,8 +50,6 @@ public class ContratListController implements Initializable {
 private Label label;
     @FXML
     private Button gotooffre;
-    @FXML
-    private Button N_BMHome1;
     @FXML
     private TableView<Contrat> tableview2;
     @FXML
@@ -120,7 +120,6 @@ public static  Contrat connectedContrat;
         
     }
 
-    @FXML
     private void AjouterContrat(ActionEvent event) throws IOException {
              Parent page1 = FXMLLoader.load(getClass().getResource("ContratCreation.fxml"));
         Scene scene = new Scene(page1);
@@ -222,5 +221,20 @@ public void AfficherParSalaire() throws SQLDataException, SQLException {
         AfficherParSalaire();
         
         
+    }
+
+    @FXML
+    private void AfficherContrat(ActionEvent event) throws IOException {
+                            Desktop.getDesktop().open(new File("C:\\PDFapi\\" +tableview2.getSelectionModel().getSelectedItem().getId_candidature() + ".pdf"));
+
+    }
+
+    @FXML
+    private void onclickCandidature(ActionEvent event) throws IOException {
+                Parent page1 = FXMLLoader.load(getClass().getResource("CandidatureList.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }
