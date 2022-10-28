@@ -4,6 +4,8 @@
  */
 package workbot_jobtn.gui;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -61,9 +63,12 @@ public class NewPassRparSmsController implements Initializable {
     }
 
     private void updateRecord() {
-        System.out.println(SmSReponseL.getText());
+       System.out.println(SmSReponseL.getText());
         System.out.println(SmsNewPass.getText());
-        String query = "UPDATE  utilisateur SET  mdp = '" + SmsNewPass.getText() + "' WHERE email = '" + SmSReponseL.getText() + "'  ";
+        String password=SmsNewPass.getText();
+         Argon2 argon2 = Argon2Factory.create();
+        password = argon2.hash(4, 65536, 1, password);
+        String query = "UPDATE  utilisateur SET  mdp = '" + password + "' WHERE email = '" + SmSReponseL.getText() + "'  ";
 
         executeQuery(query);
         System.out.println(SmsNewPass.getText());

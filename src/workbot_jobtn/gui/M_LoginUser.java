@@ -5,6 +5,8 @@
  */
 package workbot_jobtn.gui;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -128,8 +130,35 @@ public class M_LoginUser implements Initializable {
                 e.printStackTrace();
             }
 
-        } ///////////////ken el email wel password mawjoud fel data base y7elo el interface mmt3h 7aseb e role
+        }
+        
+        ///////////////ken el email wel password mawjoud fel data base y7elo el interface mmt3h 7aseb e role
+        
+        
+        
         else {
+            
+            String  PASS= M_password.getText();
+          String  PASS1= passwordText_M.getText();
+                  Argon2 argon2 = Argon2Factory.create();            
+        on = MyDB.getInstance().getConnection();
+        String query1 = "select mdp from utilisateur where email='" + M_Mail.getText()+"'";
+                    PreparedStatement smt1 = on.prepareStatement(query1);
+            ResultSet rs1 = smt1.executeQuery();
+                   String PASS_base="";
+                while (rs1.next()) {
+                PASS_base = rs1.getString("mdp");
+                }
+        if(! argon2.verify(PASS_base,PASS)&&
+           ! argon2.verify(PASS_base,PASS1))
+      {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Job TN:: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Verifier Email et Password");
+                alert.showAndWait();
+            }
+        else{
             //
             on = MyDB.getInstance().getConnection();
             String query = "select id,role,nom,prenom,tel,photo,domaine from utilisateur where email='" + M_Mail.getText() + "' and mdp='" + M_password.getText() + "'or mdp='" + passwordText_M.getText() + "'";
@@ -220,7 +249,7 @@ public class M_LoginUser implements Initializable {
                 alert.showAndWait();
             }
 
-        }
+        }}
         System.out.println(SessionManager.getRole());
         
  

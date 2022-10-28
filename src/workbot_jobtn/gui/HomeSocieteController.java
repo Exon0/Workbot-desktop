@@ -4,10 +4,15 @@
  */
 package workbot_jobtn.gui;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -230,7 +235,14 @@ public class HomeSocieteController implements Initializable {
     }
 
     @FXML
-    private void onfacebook(ActionEvent event) {
+    private void onfacebook(ActionEvent event) throws IOException {
+        try {
+            Desktop browser=Desktop.getDesktop();
+            
+            browser.browse(new URI("https://www.facebook.com/Job-TN-102084759380863"));
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(HomeSocieteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

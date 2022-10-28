@@ -5,6 +5,8 @@
 package workbot_jobtn.gui;
 
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -214,7 +216,7 @@ Thread th = new Thread(() -> {
 
     private void insertuser() {
 
-        String roleV1;
+       String roleV1;
         String prenomV1;
         String mailV1;
         String nomV1;
@@ -235,15 +237,21 @@ Thread th = new Thread(() -> {
         adresseV1 = Rec_adresse.getText();
         numeroV1 = Rec_numero.getText();
 
-        char[] chars = passwordV1.toCharArray();
+        /*char[] chars = passwordV1.toCharArray();
 
         for (char c : chars) {
             c += 5;
 
             System.out.println(c);
-        }
-
-        String query = "INSERT INTO utilisateur (role,nom,prenom,email,mdp,questionSecu,reponseSecu,domaine,adresse,tel) VALUES ('" + roleV1 + "','" + nomV1 + "','" + prenomV1 + "','" + mailV1 + "','" + passwordV1 + "','" + quesecV1 + "','" + responseV1 + "','" + domaineV1 + "','" + adresseV1 + "','" + numeroV1 + "')";
+        }*/
+        /*
+        Argon2 argon2 = Argon2Factory.create();
+        passwordV1 = argon2.hash(4, 65536, 1, passwordV1);
+*/
+          Argon2 argon2 = Argon2Factory.create();
+        passwordV1 = argon2.hash(4, 65536, 1, passwordV1);
+System.out.println(passwordV1) ;
+String query = "INSERT INTO utilisateur (role,nom,prenom,email,mdp,questionSecu,reponseSecu,domaine,adresse,tel) VALUES ('" + roleV1 + "','" + nomV1 + "','" + prenomV1 + "','" + mailV1 + "','" + passwordV1 + "','" + quesecV1 + "','" + responseV1 + "','" + domaineV1 + "','" + adresseV1 + "','" + numeroV1 + "')";
 
         executeQuery(query);
 

@@ -4,6 +4,8 @@
  */
 package workbot_jobtn.gui;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -61,8 +63,14 @@ public class PasswordapiSmsMController implements Initializable {
         String a = SmSReponseL.getText();
         String b = a.substring(4, 12);
         System.out.println(SmSReponseL.getText());
-        System.out.println(SmsNewPass.getText());
-        String query = "UPDATE  utilisateur SET  mdp = '" + SmsNewPass.getText() + "' WHERE tel = '" + b + "'   ";
+        System.out.println(SmsNewPass.getText()); 
+        String password = SmsNewPass.getText();
+        /////////   Password
+       
+        Argon2 argon2 = Argon2Factory.create();
+        password = argon2.hash(4, 65536, 1, password);
+
+        String query = "UPDATE  utilisateur SET  mdp = '" + password + "' WHERE tel = '" + b + "'   ";
         System.out.println(b);
         executeQuery(query);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -83,6 +91,7 @@ public class PasswordapiSmsMController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
     }
     //////////////////////////////////////////////////////////////
