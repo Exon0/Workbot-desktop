@@ -22,9 +22,24 @@ public class User {
     private String questionSecu;
     private String reponseSecu;
     private String methode;
+    private String domaine;
+    private String note;
 
     public String getDomaine() {
         return domaine;
+    }
+
+    public User(String nom, String note) {
+        this.nom = nom;
+        this.note = note;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public User(int id, String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode, String domaine) {
@@ -46,7 +61,7 @@ public class User {
     public void setDomaine(String domaine) {
         this.domaine = domaine;
     }
-    private String domaine;
+    
 
     public int getId() {
         return id;

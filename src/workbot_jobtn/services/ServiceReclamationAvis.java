@@ -5,6 +5,7 @@
 package workbot_jobtn.services;
 
 import java.io.File;
+import static java.lang.Math.round;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -92,7 +93,7 @@ public class ServiceReclamationAvis implements InterfaceServiceReclamationAvis<R
          String date=(r.getDate("dateAjout")).toString();
          String description=r.getString("description");
          String image=r.getString("image");
-         int note=r.getInt("note");
+         String note=r.getString("note");
          int id_categorie=r.getInt("id_categorie");
          ServiceCategorie serv1=new ServiceCategorie();
          Categorie categorie= serv1.afficher(id_categorie);
@@ -114,7 +115,7 @@ public class ServiceReclamationAvis implements InterfaceServiceReclamationAvis<R
          String date=(r.getDate("dateAjout")).toString();
          String description=r.getString("description");
          String image=r.getString("image");
-         int note=r.getInt("note");
+         String note=r.getString("note");
          int id_categorie=r.getInt("id_categorie");
          ServiceCategorie serv1=new ServiceCategorie();
          Categorie categorie= serv1.afficher(id_categorie);
@@ -144,17 +145,17 @@ public class ServiceReclamationAvis implements InterfaceServiceReclamationAvis<R
      }
      return l;
     }
-    public DTOavis_societe afficherAvisSociete(String n, int id) throws SQLException {
+    
+    public ReclamationAvis afficherAvisSociete(String n, int id) throws SQLException {
          //To change body of generated methods, choose Tools | Templates.
-        DTOavis_societe l=new DTOavis_societe();
+        ReclamationAvis l=new ReclamationAvis();
+        l=null;
      statement = connection.createStatement();
-     ResultSet r= statement.executeQuery("select u.nom, u.note, a.note, a.description from utilisateur u join reclamation_avis a on u.id=a.id_societe where a.id_utilisateur= "+id+" and u.nom ='"+n+"';");
+     ResultSet r= statement.executeQuery("select a.note, a.description from utilisateur u join reclamation_avis a on u.id=a.id_societe where a.id_utilisateur= "+id+" and u.nom ='"+n+"';");
      while (r.next()){
-         String nom=r.getString("u.nom");
-         int note_moy=r.getInt("u.note");;
-         int note=r.getInt("a.note");
+         String note=r.getString("a.note");
          String desc=r.getString("a.description");
-         l=new DTOavis_societe(nom,note_moy,note,desc);
+         l=new ReclamationAvis(desc,note);
          
      }
      return l;
@@ -162,7 +163,7 @@ public class ServiceReclamationAvis implements InterfaceServiceReclamationAvis<R
     public User afficheruser2(String n) throws SQLException {
         User l=new User();
      statement = connection.createStatement();
-     ResultSet r= statement.executeQuery("select * from reclamation_avis where nom="+n+";");
+     ResultSet r= statement.executeQuery("select * from Utilisateur where nom='"+n+"';");
      while (r.next()){
          int id=r.getInt("id");
          String nom=r.getString("nom");
@@ -186,7 +187,7 @@ public class ServiceReclamationAvis implements InterfaceServiceReclamationAvis<R
     public User afficheruser1(int n) throws SQLException {
         User l=new User();
      statement = connection.createStatement();
-     ResultSet r= statement.executeQuery("select * from reclamation_avis where id="+n+";");
+     ResultSet r= statement.executeQuery("select * from Utilisateur where id="+n+";");
      while (r.next()){
          int id=r.getInt("id");
          String nom=r.getString("nom");
@@ -210,10 +211,45 @@ public class ServiceReclamationAvis implements InterfaceServiceReclamationAvis<R
     public void ajouterAvis(ReclamationAvis t) throws SQLException {
         statement=connection.createStatement();
         String req;
-        req = null;
+        String req1;
+        String nouvelle = "";
         
-        req="INSERT INTO reclamation_avis(id_categorie,description,note,id_societe,id_utilisateur) VALUES ('"+t.getCategorie().getId()+",'"+t.getDescription()+",'"+t.getNote()+",'"+ t.getSociete().getId()+",'"+t.getUser().getId()+"');";
+        req="INSERT INTO reclamation_avis(id_categorie,description,note,id_societe,id_utilisateur) VALUES ("+t.getCategorie().getId()+",'"+t.getDescription()+"','"+t.getNote()+"',"+ t.getSociete().getId()+","+t.getUser().getId()+");";
         statement.executeUpdate(req);
+        int x;
+        //x=t.getSociete().getNote().length();
+        //if(t.getSociete().getNote().equals("*") || t.getSociete().getNote().equals("**")|| t.getSociete().getNote().equals("***")|| t.getSociete().getNote().equals("****")|| t.getSociete().getNote().equals("*****")){x=t.getSociete().getNote().length();}
+       // if(afficherAvisSociete(t.getSociete().getNom()).size()==0){x=0;}
+        //else if(t.getSociete().getNote().compareTo("*")==0|| t.getSociete().getNote().compareTo("**")==0|| t.getSociete().getNote().compareTo("***")==0|| t.getSociete().getNote().compareTo("****")==0|| t.getSociete().getNote().compareTo("*****")==0){x=t.getSociete().getNote().length();}
+        if(t.getSociete().getNote()==null) {x=0;}
+        else {x=t.getSociete().getNote().length();}
+        int y = t.getNote().length();
+        System.out.println(" y = "+y );
+        int z = round(((x*countavis(t.getSociete().getId()))+y)/(countavis(t.getSociete().getId())+1));
+        System.out.println(" z = "+z );
+        System.out.println(" x = "+x );
+        System.out.println(" count = "+countavis(t.getSociete().getId() ));
+        switch(z) {
+  case 1:
+    nouvelle ="*";
+    break;
+  case 2:
+    nouvelle ="**";
+    break;
+  case 3:
+      nouvelle ="***";
+      break;
+  case 4:
+      nouvelle ="****";
+      break;
+  case 5:
+      nouvelle ="*****";
+      break;
+     
+}
+      req1="update utilisateur set note='"+nouvelle+"' where id ="+t.getSociete().getId()+";";
+      statement.executeUpdate(req1);
+        
         
     }
     
@@ -242,7 +278,77 @@ public class ServiceReclamationAvis implements InterfaceServiceReclamationAvis<R
         }
        return true;
     }
-
+public ObservableList<User> afficherToutSociete() throws SQLException {
+        
+        ObservableList<User> l=FXCollections.observableArrayList();
+     statement = connection.createStatement();
+     ResultSet r= statement.executeQuery("select nom, note from utilisateur where role='sociéte';");
+     while (r.next()){
+         String nom=r.getString("nom");
+         
+         String note=r.getString("note");
+         
+         User user=new User(nom,note);
+         
+         l.add(user);
+      
+      
+     }
+     return l;
     
-
+    }
+    
+public User afficherSociete(String n) throws SQLException {
+        
+        User l= new User();
+     statement = connection.createStatement();
+     ResultSet r= statement.executeQuery("select nom, note from utilisateur where role='sociéte' and utilisateur.nom = '"+n+"';");
+     while (r.next()){
+         String nom=r.getString("nom");
+         
+         String note=r.getString("note");
+         
+         l=new User(nom,note);
+         
+         
+      
+      
+     }
+     return l;
+    
+    }
+   public List<ReclamationAvis> afficherAvisSociete(String n) throws SQLException {
+         //To change body of generated methods, choose Tools | Templates.
+        List<ReclamationAvis> l=new ArrayList();
+        
+        ArrayList m=new ArrayList(0);
+        
+     statement = connection.createStatement();
+     ResultSet r= statement.executeQuery("select a.note, a.description from utilisateur u join reclamation_avis a on u.id=a.id_societe where u.nom ='"+n+"';");
+     ReclamationAvis rec=new ReclamationAvis();
+     rec=null;
+     while (r.next()){
+         String note=r.getString("a.note");
+         String desc=r.getString("a.description");
+         ReclamationAvis rec1=new ReclamationAvis(desc,note);
+         rec=rec1;
+         l.add(rec1);
+     }
+     if(rec==null) {return m;}
+     else {
+     return l;}
+    }
+   public int countavis(int id) throws SQLException {
+        int nb=0;
+        //User l= new User();
+     statement = connection.createStatement();
+     ResultSet r= statement.executeQuery("select count(*) nb from reclamation_avis where id_societe = "+id+";");
+     while (r.next()){
+         nb=r.getInt("nb");
+         
+     }
+     return nb;
+    
+    }
+   
 }

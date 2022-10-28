@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,6 +45,8 @@ import workbot_jobtn.services.ServiceReclamationAvis;
 public class Y_avissocieteController implements Initializable {
     ServiceCategorie serv=new ServiceCategorie();
     ServiceReclamationAvis serv2=new ServiceReclamationAvis();
+    User user = new User();
+    User user1 = new User();
     DTOavis_societe dtoavis= new DTOavis_societe();
     DTOavis_societe dtoavis1=new DTOavis_societe();
     ReclamationAvis avis= new ReclamationAvis();
@@ -56,7 +59,8 @@ public class Y_avissocieteController implements Initializable {
     @FXML
     private TextArea tf_avis;
     @FXML
-    private TextField tf_note;
+    private ChoiceBox<String> tf_note;
+    private String[] etoiles = {"*","**","***","****","*****"};
     @FXML
     private Label tf_societe;
     @FXML
@@ -68,16 +72,13 @@ public class Y_avissocieteController implements Initializable {
     @FXML
     private ImageView retour1icon;
     @FXML
-    private TableColumn<DTOavis_societe, String> col_societe;
+    private TableColumn<User, String> col_societe;
     @FXML
-    private TableColumn<DTOavis_societe, Integer> col_notmoy;
+    private TableColumn<User, String> col_notmoy;
+
     @FXML
-    private TableColumn<DTOavis_societe, Integer> col_note;
-    @FXML
-    private TableColumn<DTOavis_societe, String> col_avis;
-    @FXML
-    private TableView<DTOavis_societe> table_avis;
-    private final ObservableList<DTOavis_societe> list = FXCollections.observableArrayList();
+    private TableView<User> table_avis;
+    private final ObservableList<User> list = FXCollections.observableArrayList();
     @FXML
     private Button envoyer;
     @FXML
@@ -111,6 +112,7 @@ public class Y_avissocieteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        tf_note.getItems().addAll(etoiles);
         showReclamations();
     }    
     
@@ -118,14 +120,12 @@ public class Y_avissocieteController implements Initializable {
         
         try {
             list.clear();
-            ObservableList<DTOavis_societe> liste = serv2.afficherToutAvisSociete(id);//we statically set the client id to just show his reclamations
+            ObservableList<User> liste = serv2.afficherToutSociete();//we statically set the client id to just show his reclamations
             list.setAll(liste);
             
             
-            col_societe.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, String>("nom"));
-            col_notmoy.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, Integer>("note_moy"));
-            col_note.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, Integer>("note"));
-            col_avis.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, String>("desc"));
+            col_societe.setCellValueFactory(new PropertyValueFactory<User, String>("nom"));
+            col_notmoy.setCellValueFactory(new PropertyValueFactory<User, String>("note"));
             
             table_avis.setItems(list);
         } catch (SQLException ex) {
@@ -145,10 +145,10 @@ public class Y_avissocieteController implements Initializable {
         Categorie av=serv.afficher(11);        
         avis1.setCategorie(av);
         avis1.setDescription(tf_avis.getText());
-        avis1.setNote(Integer.parseInt(tf_note.getText()));
+        avis1.setNote(tf_note.getValue());
         avis1.setSociete(serv2.afficheruser2(tf_societe.getText()));
         avis1.setUser(serv2.afficheruser1(id));
-        if(tf_note.getText().equals("")){
+        if(avis1.getNote()==null){
             note_obligatoire.setVisible(true);
             champ_obligatoire.setVisible(true);
         }
@@ -168,10 +168,10 @@ public class Y_avissocieteController implements Initializable {
         Categorie av=serv.afficher(11);        
         avis.setCategorie(av);
         avis.setDescription(tf_avis.getText());
-        avis.setNote(Integer.parseInt(tf_note.getText()));
+        avis.setNote(tf_note.getValue());
         avis.setSociete(serv2.afficheruser2(tf_societe.getText()));
         avis.setUser(serv2.afficheruser1(id));
-        if(tf_note.getText().equals("")){
+        if(tf_note.getValue().equals("")){
             note_obligatoire.setVisible(true);
             champ_obligatoire.setVisible(true);
         }
@@ -188,7 +188,7 @@ public class Y_avissocieteController implements Initializable {
     private void anuler_edit(ActionEvent event) {
         tf_societe.setText("");
         tf_avis.setText("");
-        tf_note.setText("");
+        tf_note.setValue("");
         modifier.setVisible(false);
         annuler.setVisible(false);
         supprimer.setVisible(false);
@@ -198,41 +198,37 @@ public class Y_avissocieteController implements Initializable {
     @FXML
     private void rechercher(ActionEvent event) throws SQLException {
         list.clear();
-            dtoavis= serv2.afficherAvisSociete(tf_recherche.getText(),id);//we statically set the client id to just show his reclamations
-            list.setAll(dtoavis);
+            User liste = serv2.afficherSociete(tf_recherche.getText());//we statically set the client id to just show his reclamations
+            list.setAll(liste);
             
             
-            col_societe.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, String>("nom"));
-            col_notmoy.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, Integer>("note_moy"));
-            col_note.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, Integer>("note"));
-            col_avis.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, String>("desc"));
+            col_societe.setCellValueFactory(new PropertyValueFactory<User, String>("nom"));
+            col_notmoy.setCellValueFactory(new PropertyValueFactory<User, String>("note"));
             
             table_avis.setItems(list);
             retouricon.setVisible(true);
             dtoavis=null;
             tf_societe.setText("");
             tf_avis.setText("");
-            tf_note.setText("");
+            tf_note.setValue("");
     }
 
     @FXML
     private void recherchericon(MouseEvent event) throws SQLException {
         list.clear();
-            dtoavis= serv2.afficherAvisSociete(tf_recherche.getText(),id);//we statically set the client id to just show his reclamations
-            list.setAll(dtoavis);
+            User liste = serv2.afficherSociete(tf_recherche.getText());//we statically set the client id to just show his reclamations
+            list.setAll(liste);
             
             
-            col_societe.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, String>("nom"));
-            col_notmoy.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, Integer>("note_moy"));
-            col_note.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, Integer>("note"));
-            col_avis.setCellValueFactory(new PropertyValueFactory<DTOavis_societe, String>("desc"));
+            col_societe.setCellValueFactory(new PropertyValueFactory<User, String>("nom"));
+            col_notmoy.setCellValueFactory(new PropertyValueFactory<User, String>("note"));
             
             table_avis.setItems(list);
             retouricon.setVisible(true);
             dtoavis=null;
             tf_societe.setText("");
             tf_avis.setText("");
-            tf_note.setText("");
+            tf_note.setValue("");
     }
 
     @FXML
@@ -247,7 +243,7 @@ public class Y_avissocieteController implements Initializable {
         Categorie av=serv.afficher(11);        
         avis.setCategorie(av);
         avis.setDescription(tf_avis.getText());
-        avis.setNote(Integer.parseInt(tf_note.getText()));
+        avis.setNote(tf_note.getValue());
         avis.setSociete(serv2.afficheruser2(tf_societe.getText()));
         avis.setUser(serv2.afficheruser1(id));
         lb_confirmer_supprimer.setVisible(true);
@@ -263,19 +259,35 @@ public class Y_avissocieteController implements Initializable {
     }
 
     @FXML
-    private void lineselected(MouseEvent event) {
+    private void lineselected(MouseEvent event) throws SQLException {
+        user=null;
+        avis=null;
         if(table_avis.getSelectionModel().getSelectedIndex()>=0){
-        dtoavis = table_avis.getItems().get(table_avis.getSelectionModel().getSelectedIndex());
-        tf_societe.setText(dtoavis.getNom());
-        tf_avis.setText(dtoavis.getDesc());
-        tf_note.setText(String.valueOf(dtoavis.getNote()));
-        
-        if(dtoavis.getNote()!=0){
-            modifier.setVisible(true);
-        annuler.setVisible(true);
-        supprimer.setVisible(true);
+        user = table_avis.getItems().get(table_avis.getSelectionModel().getSelectedIndex());
+        tf_societe.setText(user.getNom());
+        avis=serv2.afficherAvisSociete(user.getNom(),id);
+        if( avis!=null){
+                tf_avis.setText(avis.getDescription());
+                tf_note.setValue(avis.getNote());
+                modifier.setVisible(true);
+                annuler.setVisible(true);
+                supprimer.setVisible(true);
+            
+            
+                
+            }
+         else {
+            tf_avis.setText("");
+                tf_note.setValue(null);
+                modifier.setVisible(false);
+                annuler.setVisible(false);
+                supprimer.setVisible(false);
+                user=null;
+                avis=null;
         }
+        
         } 
+        
     }
 
     @FXML
@@ -284,7 +296,7 @@ public class Y_avissocieteController implements Initializable {
         showReclamations();
         tf_societe.setText("");
         tf_avis.setText("");
-        tf_note.setText("");
+        tf_note.setValue(null);
         lb_confirmer_envoyer.setVisible(false);
         envoyer_confirmation.setVisible(true);
     }
@@ -306,7 +318,7 @@ public class Y_avissocieteController implements Initializable {
         avis=null;
         tf_societe.setText("");
         tf_avis.setText("");
-        tf_note.setText("");
+        tf_note.setValue("");
         modifier.setVisible(false);
         annuler.setVisible(false);
         supprimer.setVisible(false);
@@ -326,7 +338,7 @@ public class Y_avissocieteController implements Initializable {
         avis=null;
         tf_societe.setText("");
         tf_avis.setText("");
-        tf_note.setText("");
+        tf_note.setValue("");
         lb_confirmer_supprimer.setVisible(false);
         supprimer_confirmation.setVisible(true);
     }
