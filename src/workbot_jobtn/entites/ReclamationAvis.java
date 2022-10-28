@@ -5,8 +5,10 @@
 package workbot_jobtn.entites;
 
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -15,20 +17,47 @@ import java.util.Objects;
 public class ReclamationAvis {
     private int id;
     private String objet;
-    private Date date;      
+    private String date;      
     private String description;
     private String image;
-    private int note;
+    private String note;
     private Categorie categorie;      
     private User user;
-    private Societe societe;
+    private User societe;
     private Offre offre;
-    private Evennement evennement;
+
+    private ImageView img;
+
+    public ReclamationAvis(String description, String note) {
+        this.description = description;
+        this.note = note;
+    }
+
+    
+    public ReclamationAvis(int id, String objet, String date, String description, Categorie categorie, String image) {
+        this.id = id;
+        this.objet = objet;
+        this.date = date;
+        this.description = description;
+        this.categorie = categorie;
+        this.image = image;
+        
+    }
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
 
     public ReclamationAvis() {
     }
 
-    public ReclamationAvis(int id, String objet, Date date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evennement evennement) {
+    public ReclamationAvis(int id, String objet, String date, String description, String image, String note, Categorie categorie, User user, Societe societe, Offre offre, Evenement evennement) {
+
+
         this.id = id;
         this.objet = objet;
         this.date = date;
@@ -42,7 +71,6 @@ public class ReclamationAvis {
         this.evennement = evennement;
     }
 
-    public ReclamationAvis(String objet, Date date, String description, String image, int note, Categorie categorie, User user, Societe societe, Offre offre, Evennement evennement) {
         this.objet = objet;
         this.date = date;
         this.description = description;
@@ -53,6 +81,14 @@ public class ReclamationAvis {
         this.societe = societe;
         this.offre = offre;
         this.evennement = evennement;
+    }
+
+    public ReclamationAvis(int id, String objet, String date, String description,Categorie categorie) {
+        this.id = id;
+        this.objet = objet;
+        this.date = date;
+        this.description = description;
+        this.categorie = categorie;
     }
 
     public int getId() {
@@ -71,11 +107,11 @@ public class ReclamationAvis {
         this.objet = objet;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -95,11 +131,11 @@ public class ReclamationAvis {
         this.image = image;
     }
 
-    public int getNote() {
+    public String getNote() {
         return note;
     }
 
-    public void setNote(int note) {
+    public void setNote(String note) {
         this.note = note;
     }
 
@@ -119,11 +155,11 @@ public class ReclamationAvis {
         this.user = user;
     }
 
-    public Societe getSociete() {
+    public User getSociete() {
         return societe;
     }
 
-    public void setSociete(Societe societe) {
+    public void setSociete(User societe) {
         this.societe = societe;
     }
 
@@ -145,18 +181,19 @@ public class ReclamationAvis {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + this.id;
-        hash = 47 * hash + Objects.hashCode(this.objet);
-        hash = 47 * hash + Objects.hashCode(this.date);
-        hash = 47 * hash + Objects.hashCode(this.description);
-        hash = 47 * hash + Objects.hashCode(this.image);
-        hash = 47 * hash + this.note;
-        hash = 47 * hash + Objects.hashCode(this.categorie);
-        hash = 47 * hash + Objects.hashCode(this.user);
-        hash = 47 * hash + Objects.hashCode(this.societe);
-        hash = 47 * hash + Objects.hashCode(this.offre);
-        hash = 47 * hash + Objects.hashCode(this.evennement);
+        int hash = 7;
+        hash = 61 * hash + this.id;
+        hash = 61 * hash + Objects.hashCode(this.objet);
+        hash = 61 * hash + Objects.hashCode(this.date);
+        hash = 61 * hash + Objects.hashCode(this.description);
+        hash = 61 * hash + Objects.hashCode(this.image);
+        hash = 61 * hash + Objects.hashCode(this.note);
+        hash = 61 * hash + Objects.hashCode(this.categorie);
+        hash = 61 * hash + Objects.hashCode(this.user);
+        hash = 61 * hash + Objects.hashCode(this.societe);
+        hash = 61 * hash + Objects.hashCode(this.offre);
+        hash = 61 * hash + Objects.hashCode(this.evennement);
+        hash = 61 * hash + Objects.hashCode(this.img);
         return hash;
     }
 
@@ -175,10 +212,10 @@ public class ReclamationAvis {
         if (this.id != other.id) {
             return false;
         }
-        if (this.note != other.note) {
+        if (!Objects.equals(this.objet, other.objet)) {
             return false;
         }
-        if (!Objects.equals(this.objet, other.objet)) {
+        if (!Objects.equals(this.date, other.date)) {
             return false;
         }
         if (!Objects.equals(this.description, other.description)) {
@@ -187,7 +224,7 @@ public class ReclamationAvis {
         if (!Objects.equals(this.image, other.image)) {
             return false;
         }
-        if (!Objects.equals(this.date, other.date)) {
+        if (!Objects.equals(this.note, other.note)) {
             return false;
         }
         if (!Objects.equals(this.categorie, other.categorie)) {
@@ -202,13 +239,14 @@ public class ReclamationAvis {
         if (!Objects.equals(this.offre, other.offre)) {
             return false;
         }
-        return Objects.equals(this.evennement, other.evennement);
+        if (!Objects.equals(this.evennement, other.evennement)) {
+            return false;
+        }
+        if (!Objects.equals(this.img, other.img)) {
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public String toString() {
-        return "ReclamationAvis{" + "id=" + id + ", objet=" + objet + ", date=" + date + ", description=" + description + ", image=" + image + ", note=" + note + ", categorie=" + categorie + ", user=" + user + ", societe=" + societe + ", offre=" + offre + ", evennement=" + evennement + '}';
-    }
     
-
 }
