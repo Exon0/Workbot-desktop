@@ -40,6 +40,7 @@ import workbot_jobtn.services.N_Services_Cours;
  */
 public class N_modifier_Cours implements Initializable {
    
+public static String path1="";
 
 @FXML
     private WebView N_AdsView;
@@ -91,7 +92,7 @@ public class N_modifier_Cours implements Initializable {
         //N_Afficher_Cours_Liste.co.getId();
         N_add_cours_titre.setText(N_Afficher_Cours_Liste.co.getTitre().toString());
         N_add_cours_matiere.setText(N_Afficher_Cours_Liste.co.getMatiere().toString());
-        path=(N_Afficher_Cours_Liste.co.getChemin().toString());       
+        path1=(N_Afficher_Cours_Liste.co.getChemin().toString());       
         String categorie=N_Afficher_Cours_Liste.co.getCategorie();          
         N_add_cours_categorie.setValue(categorie);
         
@@ -120,7 +121,6 @@ public class N_modifier_Cours implements Initializable {
     public void Modifier_Cours_Button_Clicked(ActionEvent event) throws SQLException {
            String titre=N_add_cours_titre.getText();
             String matiere=N_add_cours_matiere.getText();           
-            String chemin=N_add_cours_chemin.getText();
             
             String domaine="";
             if(N_B_info_Ajout.isSelected())
@@ -133,6 +133,7 @@ public class N_modifier_Cours implements Initializable {
                 domaine=(domaine+" resau");
  
             String categorie=N_add_cours_categorie.getValue().toString();   
+            System.out.println("hi :" +path1);
           if(titre.length()==0 || matiere.length()==0  || domaine.length()==0 || categorie.equals(" ") || path1.equals(""))
             {
             Alert Atc=new Alert(Alert.AlertType.WARNING);
@@ -192,7 +193,6 @@ public class N_modifier_Cours implements Initializable {
         N_add_cours_chemin.setText(""); 
         path1="";
     }
-public static String path1="";
     @FXML
     private void path_cours(ActionEvent event) {   
         

@@ -158,14 +158,12 @@ private Label label;
             Date date = new Date(System.currentTimeMillis());
             java.sql.Date d2 = new java.sql.Date(date.getTime());
             String sqlDate2=d2.toString();
+            System.out.println("111111  "+SessionManager.getId());
+                        System.out.println(OffreController_1.connectedOffre.getId());
 
-            Candidature ccc = new Candidature("non traité", inputmotivation.getText()," ", sqlDate2,SessionManager.getId(), OffreController_1.connectedOffre.getId(), inputfrancais.getValue(),
-                     inputanglais.getValue(), Timage.getText(), inputexperience.getText(),
-                    
-                    "offre", inputdiplome.getValue()
-            , OffreController_1.connectedOffre.getDomaine(), OffreController_1.connectedOffre.getTitre(),
-            OffreController_1.connectedOffre.getDateExpiration()
-            );
+            Candidature ccc = new Candidature("non traité", " ", " ", sqlDate2, OffreController_1.connectedOffre.getId(),SessionManager.getId(), " ",
+                 " ", " ", " ", OffreController_1.connectedOffre.getTypeOffre().toString(), " ",OffreController_1.connectedOffre.getDomaine()
+                ,OffreController_1.connectedOffre.getTitre(),OffreController_1.connectedOffre.getDateExpiration());
 
    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
       alert.setTitle("Confirmer ");

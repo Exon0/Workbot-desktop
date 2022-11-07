@@ -48,7 +48,7 @@ public class OffreService implements ICrud_Interface<Offre> {
                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
         prep.setString(1, O.getTitre());
         prep.setString(2, O.getDescription());
-        prep.setString(3, O.getDomaine());
+        prep.setString(3, SessionManager.getDomaine());
         prep.setString(4, O.getDateExpiration());
         prep.setInt(5, O.getId_soc());
         prep.setString(6, O.getModeTravail());
@@ -388,7 +388,7 @@ public class OffreService implements ICrud_Interface<Offre> {
                 TypeOffre tp = TypeOffre.valueOf(typeOffre);*/
 
         List<Offre> assu = new ArrayList<>();
-        String req = "select * from offre where typeOffre != 'Freelancer'";
+        String req = "select * from offre ";
         // String req = "select * from offre ";
         Statement stm = connection.createStatement();
         ResultSet rst = stm.executeQuery(req);
@@ -404,7 +404,7 @@ public class OffreService implements ICrud_Interface<Offre> {
                     rst.getString("typeStage"),
                     rst.getString("dureeContrat"),
                     rst.getString("typeContrat"),
-                    rst.getString("anneeExperience"),
+                    rst.getString("typeOffre"),
                     rst.getInt("id_Soc"),
                     rst.getString("modeTravail"),
                     rst.getString("lieu"),
@@ -416,38 +416,7 @@ public class OffreService implements ICrud_Interface<Offre> {
         return assu;
     }
 
-    public List<Offre> AfficherAllTaches() throws SQLException {
 
-        List<Offre> assu = new ArrayList<>();
-
-        String req = "select * from offre where typeOffre = 'Freelancer'";
-        // String req = "select * from offre ";
-        Statement stm = connection.createStatement();
-        ResultSet rst = stm.executeQuery(req);
-
-        while (rst.next()) {
-            Offre u = new Offre(rst.getInt("id"),
-                    rst.getString("titre"),
-                    rst.getString("salaire"),
-                    rst.getString("description"),
-                    rst.getString("domaine"),
-                    rst.getString("dateExpiration"),
-                    rst.getString("dureeStage"),
-                    rst.getString("typeStage"),
-                    rst.getString("dureeContrat"),
-                    rst.getString("typeContrat"),
-                    rst.getString("anneeExperience"),
-                    rst.getInt("id_Soc"),
-                    rst.getString("modeTravail"),
-                    rst.getString("lieu"),
-                    rst.getInt("id_test"),
-                    TypeOffre.valueOf(rst.getString(16))
-            );
-            assu.add(u);
-        }
-        return assu;
-    }
-    
      public boolean updateStatut(DTOCandidature_Offre dto) {
         try {
 
@@ -569,7 +538,7 @@ public class OffreService implements ICrud_Interface<Offre> {
         int nb = -1;
         try {
             Statement = connection.createStatement();
-            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `candidature` WHERE idcondidat=" + SessionManager.getId()+" TypeCondidature ='Freelancer'");
+            ResultSet r = Statement.executeQuery("SELECT COUNT(*) FROM `candidature` WHERE idcondidat=" + SessionManager.getId()+" and TypeCondidature ='Freelancer'");
             r.next();
             nb = r.getInt(1);
 

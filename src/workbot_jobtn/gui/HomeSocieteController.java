@@ -103,8 +103,6 @@ public class HomeSocieteController implements Initializable {
     @FXML
     private Button N_BDeconnecter;
     @FXML
-    private Button twitter;
-    @FXML
     private Button fb;
     @FXML
     private PieChart sttOFF;
@@ -230,9 +228,6 @@ public class HomeSocieteController implements Initializable {
             window.show();
     }
 
-    @FXML
-    private void ontwitter(ActionEvent event) {
-    }
 
     @FXML
     private void onfacebook(ActionEvent event) throws IOException {
@@ -243,6 +238,15 @@ public class HomeSocieteController implements Initializable {
         } catch (URISyntaxException ex) {
             Logger.getLogger(HomeSocieteController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void reclam(ActionEvent event) throws IOException {
+            Parent root = FXMLLoader.load(getClass().getResource("Y_categorie.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
     }
 
 }

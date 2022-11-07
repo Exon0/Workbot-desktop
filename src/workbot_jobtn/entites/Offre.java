@@ -112,6 +112,37 @@ public class Offre {
         this.typeOffre = TypeOffre.valueOf(tp);
     }
 
+    public Offre(Integer id, String titre, String salaire, String description, String domaine, String dateExpiration, String typeContrat, String typeOffre, Integer id_soc, String modeTravail, String lieu, Integer id_test) {
+     this.id = id;
+        this.titre = titre;
+        this.Salaire = salaire;
+        this.description = description;
+        this.domaine = domaine;
+        this.dateExpiration = dateExpiration;
+        this.typeContrat = typeContrat;
+        this.modeTravail = modeTravail;
+        this.id_soc = id_soc;
+        this.id_test = id_test;
+        this.lieu = lieu;
+        this.dateAjout = dateAjout;
+        this.typeOffre = TypeOffre.valueOf(typeOffre);
+    }
+
+    public Offre(String titre, String duree, String desc, String domaine, String dateExp, String renumeration, String modeTravail, String lieu, int id_soc, TypeOffre typeOffre, String ty) {
+        this.titre = titre;
+        this.Salaire = "0";
+        this.description = desc;
+        this.domaine = domaine;
+        this.dateExpiration = dateExp;
+        this.modeTravail = modeTravail;
+        this.id_soc = id_soc;
+        this.lieu = lieu;
+        this.typeOffre = typeOffre;
+        this.typeContrat=ty;
+    }
+
+  
+
     public int getBtn() {
         return btn;
     }

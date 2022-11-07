@@ -117,16 +117,16 @@
             </Glow>
          </effect>
       </Pane>
-      <Pane layoutX="-2.0" prefHeight="550.0" prefWidth="95.0" style="-fx-background-color: #6c63ff;">
+      <Pane layoutX="-2.0" prefHeight="550.0" prefWidth="149.0" style="-fx-background-color: #6c63ff;">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="64.0" layoutX="20.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="139.0" fitWidth="141.0" layoutX="9.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/logo.png" />
+                  <Image url="@308181173_3429967987279219_7821870094501611281_n.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <ImageView fx:id="retour1icon" fitHeight="26.0" fitWidth="28.0" layoutX="102.0" layoutY="510.0" onMouseClicked="#retour1icon" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="retour1icon" fitHeight="26.0" fitWidth="28.0" layoutX="152.0" layoutY="506.0" onMouseClicked="#retour1icon" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/iconretour1.png" />
          </image>
@@ -292,6 +292,5 @@
             </Glow>
          </effect>
       </Pane>
-      <Pane prefHeight="18.0" prefWidth="900.0" style="-fx-background-color: #6c63ff;" />
    </children>
 </AnchorPane>

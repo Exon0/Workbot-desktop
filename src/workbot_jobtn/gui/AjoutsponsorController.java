@@ -186,7 +186,7 @@ static public int idsp=0;
                 stage.close();
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("ajoutsponsor.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
-                stage.setScene(new Scene(root1,895,535)); 
+                stage.setScene(new Scene(root1)); 
                 stage.show();
         }
        
@@ -216,7 +216,7 @@ static public int idsp=0;
                 stage.close();
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("ajoutsponsor.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
-                stage.setScene(new Scene(root1,895,535)); 
+                stage.setScene(new Scene(root1)); 
                 stage.show();
     //}
     }
@@ -228,7 +228,7 @@ static public int idsp=0;
                 stage.close();
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("afficheevent.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
-                stage.setScene(new Scene(root1,900,550)); 
+                stage.setScene(new Scene(root1)); 
                 stage.show();
     }
 static public String lg="";
@@ -264,7 +264,7 @@ static public String lg="";
                 stage.close();
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("HomeSociete.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
-                stage.setScene(new Scene(root1,895,535)); 
+                stage.setScene(new Scene(root1)); 
                 stage.show();
     }
 
@@ -274,7 +274,7 @@ static public String lg="";
                 stage.close();
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("newhomeevent.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
-                stage.setScene(new Scene(root1,895,535)); 
+                stage.setScene(new Scene(root1)); 
                 stage.show();
     }
 
@@ -284,7 +284,7 @@ static public String lg="";
                 stage.close();
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("afficheevent.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
-                stage.setScene(new Scene(root1,895,535)); 
+                stage.setScene(new Scene(root1)); 
                 stage.show();
     }
 

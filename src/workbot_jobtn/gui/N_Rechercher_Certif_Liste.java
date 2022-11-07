@@ -1,6 +1,7 @@
 package workbot_jobtn.gui;
 
 import java.awt.Desktop;
+import java.io.File;
 import workbot_jobtn.entites.Certification;
 import java.io.IOException;
 import java.net.URI;
@@ -80,80 +81,7 @@ public class N_Rechercher_Certif_Liste implements Initializable{
     private TableColumn<Certification, String> titret;
 
     static public Certification co1=new Certification();
-    @FXML
-    void Afficher_certif_a_consulter(ActionEvent event) throws IOException, URISyntaxException {
-       int index;
-       index =  N_Tab_aff_certif.getSelectionModel().getSelectedIndex();
-       
-       if(index <= -1){
-          
-            return;
-       }
-    co1.setId(id.getCellData(index).intValue());
-    co1.setTitreCours(titrec.getCellData(index).toString());
-    co1.setTitreTest(titret.getCellData(index).toString());
-    co1.setDateAjout(datea.getCellData(index).toString());
-    co1.setLien(lien.getCellData(index).toString());
-    
  
-        System.out.println(co1.getLien());
-        Desktop.getDesktop().browse(new URI(co1.getLien()));
-
-    }
-
-    void B_badge(ActionEvent event) throws IOException {
-               /* Stage stage = (Stage) N_C_consulter.getScene().getWindow();
-                stage.close();
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(".fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                stage = new Stage();
-                stage.setScene(new Scene(root1,895,525)); 
-                stage.resizableProperty().setValue(false);
-                stage.show();
-                */
-    }
-
-    @FXML
-    void B_cours(ActionEvent event) throws IOException {
-        
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Affiche.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-              
-    }
-
-    @FXML
-    void B_home(ActionEvent event) throws IOException {
-                        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Home.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-        
-        
-    }
-
-    @FXML
-    void N_W_CertifRetour(ActionEvent event) throws IOException {
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Home.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();
-    }
-
-    @FXML
-    void N_W_Certif_actualiser(ActionEvent event) throws IOException {
-        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Rechercher_Certif_Liste.fxml"));
-        Scene stage=new Scene(fXMLLoader);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(stage);
-        window.show();       
-        
-
-    }
  private final ObservableList<Certification> dataList = FXCollections.observableArrayList();
 
     @Override
@@ -218,7 +146,94 @@ public class N_Rechercher_Certif_Liste implements Initializable{
           }  
     }
     
-      
+         @FXML
+    void Afficher_certif_a_consulter(ActionEvent event) throws IOException, URISyntaxException {
+       int index;
+       index =  N_Tab_aff_certif.getSelectionModel().getSelectedIndex();
+       
+       if(index <= -1){
+          
+            return;
+       }
+    co1.setId(id.getCellData(index).intValue());
+    co1.setTitreCours(titrec.getCellData(index).toString());
+    co1.setTitreTest(titret.getCellData(index).toString());
+    co1.setDateAjout(datea.getCellData(index).toString());
+    co1.setLien(lien.getCellData(index).toString());
+    
+ 
+    File file = new File(co1.getLien());
+        
+        //Vérifier si le système prend en charge la classe Desktop ou non
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop n'est pas prise en charge");
+            return;
+        }
+        
+       Desktop d = Desktop.getDesktop();
+        if(file.exists()) 
+            d.open(file);
+    
+    
+    
+        //System.out.println(co1.getLien());
+        //Desktop.getDesktop().browse(new URI("file:///"+co1.getLien()));
+
+    }
+
+    void B_badge(ActionEvent event) throws IOException {
+               /* Stage stage = (Stage) N_C_consulter.getScene().getWindow();
+                stage.close();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(".fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                stage = new Stage();
+                stage.setScene(new Scene(root1,895,525)); 
+                stage.resizableProperty().setValue(false);
+                stage.show();
+                */
+    }
+
+    @FXML
+    void B_cours(ActionEvent event) throws IOException {
+        
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Affiche.fxml"));
+        Scene stage=new Scene(fXMLLoader);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+              
+    }
+
+    @FXML
+    void B_home(ActionEvent event) throws IOException {
+                        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Home.fxml"));
+        Scene stage=new Scene(fXMLLoader);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+        
+        
+    }
+
+    @FXML
+    void N_W_CertifRetour(ActionEvent event) throws IOException {
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Home.fxml"));
+        Scene stage=new Scene(fXMLLoader);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+    }
+
+    @FXML
+    void N_W_Certif_actualiser(ActionEvent event) throws IOException {
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Rechercher_Certif_Liste.fxml"));
+        Scene stage=new Scene(fXMLLoader);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();       
+        
+
+    }
 
        void passerTest(ActionEvent event) throws IOException {
       

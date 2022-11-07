@@ -6,9 +6,7 @@
 package workbot_jobtn.gui;
 
 import workbot_jobtn.services.CondidatureService;
-import workbot_jobtn.services.ContratService;
 import workbot_jobtn.entites.Candidature;
-import workbot_jobtn.entites.Contrat;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLDataException;
@@ -67,8 +65,6 @@ private Label label;
     private Button Supprimer;
     private TableColumn<?, ?> TypeCondidature;
     @FXML
-    private Button gotocontact;
-    @FXML
     private Button Home;
     @FXML
     private TableColumn<?, ?> Domaine;
@@ -89,11 +85,7 @@ private Label label;
     @FXML
     private Button Modifier1;
     @FXML
-    private Button gotocontact1;
-    @FXML
     private Button Supprimer2;
-    @FXML
-    private TableColumn<?, ?> dateexp;
 
     /**
      * Initializes the controller class.
@@ -242,7 +234,6 @@ public void resetTableData2() throws SQLDataException, SQLException {
         ObservableList<Candidature> data = FXCollections.observableArrayList(listrec);
         tableview3.setItems(data);
     }
-    @FXML
     private void gotocontact(ActionEvent event) throws IOException {
             Parent page1 = FXMLLoader.load(getClass().getResource("ContratCreation.fxml"));
         Scene scene = new Scene(page1);

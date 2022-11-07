@@ -25,6 +25,7 @@ public class ReclamationAvis {
     private User user;
     private User societe;
     private Offre offre;
+    private Evennement evennement;
 
     private ImageView img;
 
@@ -55,7 +56,7 @@ public class ReclamationAvis {
     public ReclamationAvis() {
     }
 
-    public ReclamationAvis(int id, String objet, String date, String description, String image, String note, Categorie categorie, User user, Societe societe, Offre offre, Evenement evennement) {
+    public ReclamationAvis(int id, String objet, String date, String description, String image, String note, Categorie categorie, User user, Societe societe, Offre offre, Evennement evennement) {
 
 
         this.id = id;
@@ -70,6 +71,7 @@ public class ReclamationAvis {
         this.offre = offre;
         this.evennement = evennement;
     }
+    public ReclamationAvis( String objet, String date, String description, String image, String note, Categorie categorie, User user, Societe societe, Offre offre, Evennement evennement) {
 
         this.objet = objet;
         this.date = date;

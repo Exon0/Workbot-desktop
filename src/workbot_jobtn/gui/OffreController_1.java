@@ -35,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import workbot_jobtn.entites.Offre;
+import workbot_jobtn.entites.TypeOffre;
 
 /**
  * FXML Controller class
@@ -58,8 +59,6 @@ public class OffreController_1 implements Initializable {
     @FXML
     private TableColumn<?, ?> inputdescription;
     @FXML
-    private TableColumn<?, ?> inputdureeStage;
-    @FXML
     private TableColumn<?, ?> inputtypeContrat;
     @FXML
     private TableColumn<?, ?> inputlieu;
@@ -70,20 +69,9 @@ public class OffreController_1 implements Initializable {
     public ObservableList<Offre> list;
     @FXML
     private TableColumn<?, ?> inputsalaire;
-    @FXML
-    private TableColumn<?, ?> inputtitre2;
-    @FXML
-    private TableColumn<?, ?> inputdomaine2;
-    @FXML
-    private TableColumn<?, ?> salaire;
-    @FXML
-    private TableView<Offre> tableview2;
-    @FXML
-    private TableColumn<?, ?> desc;
+
     @FXML
     private Button Afficher;
-    @FXML
-    private Button Afficher2;
     @FXML
     private Button gotocondidature;
     @FXML
@@ -91,13 +79,9 @@ public class OffreController_1 implements Initializable {
     @FXML
     private Button Home;
     @FXML
-    private TextField inputRech;
-    @FXML
     private TextField inputrech2;
     @FXML
     private TableColumn<?, ?> id_offre;
-    @FXML
-    private TableColumn<?, ?> datexp;
 
     /**
      * Initializes the controller class.
@@ -113,14 +97,25 @@ public class OffreController_1 implements Initializable {
             System.out.println("erreur");
         }
         ObservableList<Offre> obs2 = FXCollections.observableArrayList(c);
+        int i=0;
+        for(Offre k : obs2)
+        {
+            System.out.println(" for ------------");
+            if(k.getTypeOffre().toString().equals("Stage"))
+            {
+                System.out.println(" hi ------------");
+                obs2.get(i).setTypeContrat(k.getTypeStage());
+            }
+            i++;
+        }
         tableview.setItems(obs2);
         id_offre.setCellValueFactory(new PropertyValueFactory<>("id"));
         inputtitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         inputdomaine.setCellValueFactory(new PropertyValueFactory<>("domaine"));
         inputdescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-        inputdureeStage.setCellValueFactory(new PropertyValueFactory<>("dureeStage"));
+        
         inputtypeContrat.setCellValueFactory(new PropertyValueFactory<>("typeContrat"));
-        inputanneexperience.setCellValueFactory(new PropertyValueFactory<>("anneeExperience"));
+        inputanneexperience.setCellValueFactory(new PropertyValueFactory<>("typeOffre"));
         inputlieu.setCellValueFactory(new PropertyValueFactory<>("lieu"));
         inputdateexpiration.setCellValueFactory(new PropertyValueFactory<>("dateExpiration"));
         inputsalaire.setCellValueFactory(new PropertyValueFactory<>("salaire"));
@@ -128,20 +123,9 @@ public class OffreController_1 implements Initializable {
         
         
         ArrayList<Offre> c2 = new ArrayList<>();
-        try {
-            c2 = (ArrayList<Offre>) pss.AfficherAllTaches();
-        } catch (SQLException ex) {
-            System.out.println("erreur");
-        }
+  
         ObservableList<Offre> obs22 = FXCollections.observableArrayList(c2);
-        tableview2.setItems(obs22);
-
-        inputtitre2.setCellValueFactory(new PropertyValueFactory<>("titre"));
-
-        inputdomaine2.setCellValueFactory(new PropertyValueFactory<>("domaine"));
-        desc.setCellValueFactory(new PropertyValueFactory<>("description"));
-        salaire.setCellValueFactory(new PropertyValueFactory<>("salaire"));
-        datexp.setCellValueFactory(new PropertyValueFactory<>("dateExpiration"));
+   
         
               try {
             list = FXCollections.observableArrayList(
@@ -170,32 +154,7 @@ public class OffreController_1 implements Initializable {
             System.out.println(e.getMessage());
         }
         
-          try {
-            list = FXCollections.observableArrayList(
-                    pss.AfficherAllTaches()
-            );      
-            FilteredList<Offre> filteredData = new FilteredList<>(list, e -> true);
-            inputRech.setOnKeyReleased(e -> {
-                inputRech.textProperty().addListener((ObservableValue, oldValue, newValue) -> {
-                    filteredData.setPredicate((Predicate<? super Offre>) Offres -> {
-                        if (newValue == null || newValue.isEmpty()) {
-                            return true;
-                        }
-                        String lower = newValue.toLowerCase();
-                        if (Offres.getTitre().toLowerCase().contains(lower)) {
-                            return true;
-                        }
-
-                        return false;
-                    });
-                });
-                SortedList<Offre> sortedData = new SortedList<>(filteredData);
-                sortedData.comparatorProperty().bind(tableview2.comparatorProperty());
-                tableview2.setItems(sortedData);
-            });
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } 
+         
         
 
     }
@@ -210,16 +169,12 @@ public class OffreController_1 implements Initializable {
                 tableview.getSelectionModel().getSelectedItem().getDescription(),
                 tableview.getSelectionModel().getSelectedItem().getDomaine(),
                 tableview.getSelectionModel().getSelectedItem().getDateExpiration(),
-                tableview.getSelectionModel().getSelectedItem().getDureeStage(),
-                tableview.getSelectionModel().getSelectedItem().getTypeStage(),
-                tableview.getSelectionModel().getSelectedItem().getDureeContrat(),
                 tableview.getSelectionModel().getSelectedItem().getTypeContrat(),
-                tableview.getSelectionModel().getSelectedItem().getAnneeExperience(),
+                tableview.getSelectionModel().getSelectedItem().getTypeOffre().toString(),
                 tableview.getSelectionModel().getSelectedItem().getId_soc(),
                 tableview.getSelectionModel().getSelectedItem().getModeTravail(),
                 tableview.getSelectionModel().getSelectedItem().getLieu(),
-                tableview.getSelectionModel().getSelectedItem().getId_test(),
-                tableview.getSelectionModel().getSelectedItem().getTypeOffre());
+                tableview.getSelectionModel().getSelectedItem().getId_test());
        
     
         System.out.println(" --- "+off.getId());
@@ -232,27 +187,7 @@ public class OffreController_1 implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void Afficher2(ActionEvent event) throws IOException {
-
-        OffreService ps = new OffreService();
-        Offre off = new Offre(tableview2.getSelectionModel().getSelectedItem().getId(),
-                tableview2.getSelectionModel().getSelectedItem().getTitre(),
-                tableview2.getSelectionModel().getSelectedItem().getSalaire(),
-                tableview2.getSelectionModel().getSelectedItem().getDescription(),
-                tableview2.getSelectionModel().getSelectedItem().getDomaine(),
-                tableview2.getSelectionModel().getSelectedItem().getDateExpiration()
-        );
-
-        OffreController_1.connectedOffre = off;
-
-        Parent page1 = FXMLLoader.load(getClass().getResource("TacheDetail.fxml"));
-        Scene scene = new Scene(page1);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-
-    }
+   
 
     @FXML
     private void gotocondidature(ActionEvent event) throws IOException {

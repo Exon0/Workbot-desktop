@@ -122,4 +122,13 @@ public class HomeController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void reclam(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("Y_categorie.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+    }
 }

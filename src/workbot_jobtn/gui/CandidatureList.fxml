@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -40,11 +41,6 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="gotocontact" layoutX="478.0" layoutY="467.0" mnemonicParsing="false" onAction="#gotocontact" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0;" text="Créer un Contrat" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
                            </children>
                         </AnchorPane>
                      </content>
@@ -62,11 +58,6 @@
                                  </columns>
                               </TableView>
                               <Button fx:id="Modifier1" layoutX="136.0" layoutY="450.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0;" text="Modifier" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="gotocontact1" layoutX="506.0" layoutY="450.0" mnemonicParsing="false" onAction="#gotocontact" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0;" text="Créer un Contrat" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -99,13 +90,16 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="N_BMHome1" layoutX="11.0" layoutY="248.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #242526; -fx-border-color: #242526; -fx-border-width: 2;" text="candidatures" textFill="WHITE">
+                  <Button fx:id="N_BMHome1" layoutX="11.0" layoutY="248.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="candidatures" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </Button>
                   <Button fx:id="gotocontrats" layoutX="11.0" layoutY="298.0" mnemonicParsing="false" onAction="#gotocontrats" prefHeight="34.0" prefWidth="126.0" style="-fx-background-radius: 20; -fx-background-color: #8D87F0;" text="contrats" textFill="WHITE">
                      <font>

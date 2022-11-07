@@ -25,15 +25,15 @@
          </toggleGroup></RadioButton>
       <RadioButton fx:id="reclamation" layoutX="424.0" layoutY="213.0" mnemonicParsing="false" onAction="#getcategorie" text="Reclamation" toggleGroup="$categorie" />
       <Button layoutX="321.0" layoutY="281.0" mnemonicParsing="false" onAction="#continuer" text="continuer" />
-      <Pane prefHeight="550.0" prefWidth="95.0" style="-fx-background-color: #6c63ff;">
+      <Pane prefHeight="550.0" prefWidth="144.0" style="-fx-background-color: #6c63ff;">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="64.0" layoutX="20.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="131.0" fitWidth="133.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/logo.png" />
+                  <Image url="@308181173_3429967987279219_7821870094501611281_n.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane prefHeight="18.0" prefWidth="900.0" style="-fx-background-color: #6c63ff;" />
+      <Button layoutX="177.0" layoutY="500.0" mnemonicParsing="false" onAction="#onretour" prefHeight="38.0" prefWidth="87.0" styleClass="btnAjouter" stylesheets="@homesociete.css" text="Retour" />
    </children>
 </AnchorPane>

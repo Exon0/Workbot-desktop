@@ -42,6 +42,7 @@ import workbot_jobtn.entites.Offre;
 import workbot_jobtn.entites.Test;
 import workbot_jobtn.services.OffreService;
 import workbot_jobtn.services.TestService;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  * FXML Controller class
@@ -216,7 +217,7 @@ public class AjouterTestController implements Initializable {
         try {
             Offre O1 = offreService.readLast();
             Test t = new Test(O1.getTitre(), path);
-            t.setId_soc(1);
+            t.setId_soc(SessionManager.getId());
             testservice.ajouter(t);
             O1.setId_test(testservice.selectLast().getId());
             offreService.update(O1);

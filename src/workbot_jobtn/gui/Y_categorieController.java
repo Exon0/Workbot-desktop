@@ -27,6 +27,8 @@ import static workbot_jobtn.entites.NomCategorie.Avis;
 import static workbot_jobtn.entites.NomCategorie.Reclamation;
 import workbot_jobtn.entites.ReclamationAvis;
 import workbot_jobtn.services.ServiceReclamationAvis;
+import workbot_jobtn.utils.SessionManager;
+ 
 
 
 
@@ -88,6 +90,25 @@ public class Y_categorieController implements Initializable {
  
         }
 
+    @FXML
+    private void onretour(ActionEvent event) throws IOException {
+        if(SessionManager.getRole()=="sociéte")
+        {
+                  Parent root = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        }
+        else{
+             Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+        }
+    }
+    
     
         
     }

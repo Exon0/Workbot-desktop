@@ -102,7 +102,6 @@ public class M_LoginUser implements Initializable {
     @FXML
     private void M_loginidb(ActionEvent event) throws SQLException, IOException {
 
-            
         ////////////5dhena 2 string w gatina fiha el textfuild
         String umail = M_Mail.getText();
         String password = M_password.getText();
@@ -130,15 +129,9 @@ public class M_LoginUser implements Initializable {
                 e.printStackTrace();
             }
 
-        }
-        
-        ///////////////ken el email wel password mawjoud fel data base y7elo el interface mmt3h 7aseb e role
-        
-        
-        
+        } ///////////////ken el email wel password mawjoud fel data base y7elo el interface mmt3h 7aseb e role
         else {
-            
-            String  PASS= M_password.getText();
+          String  PASS= M_password.getText();
           String  PASS1= passwordText_M.getText();
                   Argon2 argon2 = Argon2Factory.create();            
         on = MyDB.getInstance().getConnection();
@@ -158,10 +151,11 @@ public class M_LoginUser implements Initializable {
                 alert.setContentText("Verifier Email et Password");
                 alert.showAndWait();
             }
-        else{
-            //
+        else
+        { 
+            
             on = MyDB.getInstance().getConnection();
-            String query = "select id,role,nom,prenom,tel,photo,domaine from utilisateur where email='" + M_Mail.getText() + "' and mdp='" + M_password.getText() + "'or mdp='" + passwordText_M.getText() + "'";
+            String query = "select id,role,nom,prenom,tel,photo,domaine from utilisateur where email='" + M_Mail.getText() +"'";
             System.out.println(query);
             PreparedStatement smt = on.prepareStatement(query);
             ResultSet rs = smt.executeQuery();
@@ -187,13 +181,14 @@ public class M_LoginUser implements Initializable {
             SessionManager.setTel(tels);
             SessionManager.setPrenom(prenoms);
             SessionManager.setDomaine(domaine);
+          
 
             System.out.println(SessionManager.getId() + " "
                     + SessionManager.getNom() + " "
                     + SessionManager.getPhoto() + " "
                     + SessionManager.getTel() + " "
                     + SessionManager.getPrenom()+" "
-                    + SessionManager.getDomaine());
+                    );
 
             if (role.equals("candidat")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -202,12 +197,12 @@ public class M_LoginUser implements Initializable {
                 alert.setContentText("Vous etes connecté condidat");
                 alert.showAndWait();
                 SessionManager.setRole("candidat");
-   
-                    Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-                    Scene stage = new Scene(root);
-                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    window.setScene(stage);
-                    window.show();
+    Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+                   
                     
             } else if (role.equals("sociéte")) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -216,11 +211,12 @@ public class M_LoginUser implements Initializable {
                 alert.setContentText("Vous etes connecté societe");
                 alert.showAndWait();
                 SessionManager.setRole("sociéte");
-                    Parent root = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-                    Scene stage = new Scene(root);
-                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    window.setScene(stage);
-                    window.show();
+                 Parent root = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+            Scene stage = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(stage);
+            window.show();
+                    
             } else if (role.equals("Admin")) {
                 SessionManager.setRole("Admin");
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -228,6 +224,7 @@ public class M_LoginUser implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Vous etes connecté Administrateur");
                 alert.showAndWait();
+                
 
                 try {
 
@@ -241,18 +238,11 @@ public class M_LoginUser implements Initializable {
                     e.printStackTrace();
                 }
 
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Job TN:: Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Verifier Email et Password");
-                alert.showAndWait();
+            } 
             }
 
-        }}
+        }
         System.out.println(SessionManager.getRole());
-        
- 
     }
 
     @FXML

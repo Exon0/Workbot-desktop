@@ -118,21 +118,7 @@ public class User {
     }
 
 
-    public User(int id, String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode, String domaine) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.role = role;
-        this.tel = tel;
-        this.email = email;
-        this.mdp = mdp;
-        this.adresse = adresse;
-        this.photo = photo;
-        this.questionSecu = questionSecu;
-        this.reponseSecu = reponseSecu;
-        this.methode = methode;
-        this.domaine = domaine;
-    }
+   
 
     public User() {
     }

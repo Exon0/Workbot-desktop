@@ -19,16 +19,15 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workbot_jobtn.gui.Y_avissocieteController">
    <children>
       <ImageView fitHeight="550.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" />
-      <Pane prefHeight="550.0" prefWidth="95.0" style="-fx-background-color: #6c63ff;">
+      <Pane prefHeight="550.0" prefWidth="151.0" style="-fx-background-color: #6c63ff;">
          <children>
-            <ImageView fitHeight="52.0" fitWidth="64.0" layoutX="20.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="130.0" fitWidth="141.0" layoutX="9.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/logo.png" />
+                  <Image url="@308181173_3429967987279219_7821870094501611281_n.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane prefHeight="18.0" prefWidth="900.0" style="-fx-background-color: #6c63ff;" />
       <Label layoutX="385.0" layoutY="51.0" text="Avis société">
          <font>
             <Font size="25.0" />
@@ -89,7 +88,7 @@
       </ImageView>
       <Label layoutX="726.0" layoutY="437.0" opacity="0.42" text="selectionnez un item pour editer" underline="true" />
       <Button fx:id="supprimer" layoutX="544.0" layoutY="433.0" mnemonicParsing="false" onAction="#supprimer_avis" text="supprimer" visible="false" />
-      <ImageView fx:id="retour1icon" fitHeight="26.0" fitWidth="28.0" layoutX="112.0" layoutY="520.0" onMouseClicked="#retour1icon" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="retour1icon" fitHeight="26.0" fitWidth="28.0" layoutX="166.0" layoutY="510.0" onMouseClicked="#retour1icon" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/iconretour1.png" />
          </image>
