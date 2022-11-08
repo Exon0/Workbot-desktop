@@ -193,7 +193,8 @@ public class CandOffreController implements Initializable {
                                 DTOCandidature_Offre Offre = getTableView().getItems().get(getIndex());
                                 // ObservableList<DTOCandidature_Offre> offreSelected=table.getSelectionModel().getSelectedItems();
                                 //  DTOCandidature_Offre candOffre=offreService.candidatures_Offre(offreSelected.get(0).getId_off()).get(0);
-
+                              dto=Offre;
+                                System.out.println(dto.getId_cand()+"entrein!!!!!!!!!!!!!!!!!!!!!!!");
                                 //ouvrir une nouv interface pour proposer une date d'entretien(datepicker)
                                 FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("Entretien.fxml"));
                                 Parent root = fXMLLoader.load();
