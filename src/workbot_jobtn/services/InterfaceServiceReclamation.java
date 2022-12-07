@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
  * @author youcef
  * @param <T>
  */
-public interface InterfaceServiceReclamationAvis<T> {
+public interface InterfaceServiceReclamation<T> {
     void ajouter(T t) throws SQLException;
     boolean modifier(T t) throws SQLException;
     boolean supprimer(T t) throws SQLException;

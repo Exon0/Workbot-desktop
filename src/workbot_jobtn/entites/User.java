@@ -11,6 +11,11 @@ package workbot_jobtn.entites;
  */
 public class User {
  private int id;
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", role=" + role + ", tel=" + tel + ", email=" + email + ", mdp=" + mdp + ", adresse=" + adresse + ", photo=" + photo + ", questionSecu=" + questionSecu + ", reponseSecu=" + reponseSecu + ", methode=" + methode + ", domaine=" + domaine + ", note=" + note + '}';
+    }
     private String nom;
     private String prenom;
     private String role;
@@ -29,9 +34,8 @@ public class User {
         return domaine;
     }
 
-    public User(String nom, String note) {
-        this.nom = nom;
-        this.note = note;
+    public User(int id) {
+        this.id = id;
     }
 
     public String getNote() {

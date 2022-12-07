@@ -6,7 +6,6 @@ package workbot_jobtn.entites;
 
 import java.util.Objects;
 import workbot_jobtn.entites.*;
-import static workbot_jobtn.entites.NomCategorie.*;
 
 
 /**
@@ -17,27 +16,18 @@ public class Categorie {
 
     private int id;
     
-    private NomCategorie nomCategorie;
+    private String nomCategorie;
 
     public Categorie() {
     }
 
-    
-    public Categorie(int id, NomCategorie nomCategorie) {
-        this.id = id;
-        this.nomCategorie = nomCategorie;
-    }
-
-    public Categorie(NomCategorie nomCategorie) {
+    public Categorie(String nomCategorie) {
         this.nomCategorie = nomCategorie;
     }
 
     public Categorie(int id, String nomCategorie) {
-        
         this.id = id;
-        if (nomCategorie.equals("Reclamation")){this.nomCategorie = Reclamation;}
-        else if (nomCategorie.equals("Avis")){this.nomCategorie = Avis;}
-        
+        this.nomCategorie = nomCategorie;
     }
 
     public int getId() {
@@ -48,19 +38,19 @@ public class Categorie {
         this.id = id;
     }
 
-    public NomCategorie getNomCategorie() {
+    public String getNomCategorie() {
         return nomCategorie;
     }
 
-    public void setNomCategorie(NomCategorie nomCategorie) {
+    public void setNomCategorie(String nomCategorie) {
         this.nomCategorie = nomCategorie;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 73 * hash + this.id;
-        hash = 73 * hash + Objects.hashCode(this.nomCategorie);
+        hash = 71 * hash + this.id;
+        hash = 71 * hash + Objects.hashCode(this.nomCategorie);
         return hash;
     }
 
@@ -79,18 +69,15 @@ public class Categorie {
         if (this.id != other.id) {
             return false;
         }
-        return this.nomCategorie == other.nomCategorie;
+        if (!Objects.equals(this.nomCategorie, other.nomCategorie)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
         return "Categorie{" + "id=" + id + ", nomCategorie=" + nomCategorie + '}';
     }
-
-    public void setNomCategorie(String reclamation) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    
     
 }

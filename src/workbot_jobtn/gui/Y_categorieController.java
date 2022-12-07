@@ -22,11 +22,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import workbot_jobtn.entites.Categorie;
-import workbot_jobtn.entites.NomCategorie;
-import static workbot_jobtn.entites.NomCategorie.Avis;
-import static workbot_jobtn.entites.NomCategorie.Reclamation;
-import workbot_jobtn.entites.ReclamationAvis;
-import workbot_jobtn.services.ServiceReclamationAvis;
+import workbot_jobtn.entites.Reclamation;
+import workbot_jobtn.services.ServiceReclamation;
 
 
 
