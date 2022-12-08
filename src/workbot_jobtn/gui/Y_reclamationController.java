@@ -118,6 +118,8 @@ public class Y_reclamationController  implements Initializable {
     private Pane envoyer_confirmation;
     @FXML
     private Pane modifier_confirmation;
+    @FXML
+    private ImageView refreshicon;
     /**
      * Initializes the controller class.
      */
@@ -143,7 +145,7 @@ public class Y_reclamationController  implements Initializable {
             col_objet.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("objet"));
             col_description.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("description"));
             col_image.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("image"));
-            col_categorie.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("categorie"));
+            col_categorie.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("nomCat"));
             col_etat.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("etat"));
             
             table_reclamation.setItems(list);
@@ -390,6 +392,36 @@ public class Y_reclamationController  implements Initializable {
     @FXML
     private void fermer_confirmation_modifier(ActionEvent event) {
         modifier_confirmation.setVisible(false);
+    }
+
+    @FXML
+    private void refreshricon(MouseEvent event) {
+        try {
+            list.clear();
+            ObservableList<Reclamation> liste = serv2.afficherTout();//we statically set the client id to just show his reclamations
+            list.setAll(liste);
+            
+            
+            col_date.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("date"));
+            col_id.setCellValueFactory(new PropertyValueFactory<Reclamation, Integer>("id"));
+            col_objet.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("objet"));
+            col_description.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("description"));
+            col_image.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("image"));
+            col_categorie.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("nomCat"));
+            col_etat.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("etat"));
+            
+            table_reclamation.setItems(list);
+        } catch (SQLException ex) {
+        }
+        objet.setText("");
+        description.setText("");
+        tf_image.setText("");
+        iv_image.setImage(null);
+        modifier.setVisible(false);
+        annuler.setVisible(false);
+        supprimer.setVisible(false);
+        rec=null;
+        iv_image.setImage(null);
     }
 }
 

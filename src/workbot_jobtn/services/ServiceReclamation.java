@@ -96,7 +96,8 @@ public class ServiceReclamation implements InterfaceServiceReclamation<Reclamati
          int id_categorie=r.getInt("id_categorie");
          ServiceCategorie serv1=new ServiceCategorie();
          Categorie categorie= serv1.afficher(id_categorie);
-         Reclamation reclamation=new Reclamation(id, objet, date, description,image,categorie,etat);
+         String nomCat=categorie.getNomCategorie();
+         Reclamation reclamation=new Reclamation(id, objet, date, description,image,categorie,etat,nomCat);
          
          l.add(reclamation);
      }
@@ -118,7 +119,8 @@ public class ServiceReclamation implements InterfaceServiceReclamation<Reclamati
          int id_categorie=r.getInt("id_categorie");
          ServiceCategorie serv1=new ServiceCategorie();
          Categorie categorie= serv1.afficher(id_categorie);
-         l=new Reclamation(id, objet, date, description,image,categorie,etat);
+         String nomCat=categorie.getNomCategorie();
+         l=new Reclamation(id, objet, date, description,image,categorie,etat,nomCat);
          }
      return l;
         

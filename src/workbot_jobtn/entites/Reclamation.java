@@ -25,8 +25,7 @@ public class Reclamation {
     private Offre offre;
     private ImageView img;
     private String etat;
-
-
+    private String nomCat=null;
      public Reclamation() {
     }
 
@@ -55,7 +54,7 @@ public class Reclamation {
         this.etat = etat;
     }
 
-    public Reclamation(int id, String objet, String date, String description, String image, Categorie categorie, String etat) {
+    public Reclamation(int id, String objet, String date, String description, String image, Categorie categorie, String etat, String nomCat) {
         this.id = id;
         this.objet = objet;
         this.date = date;
@@ -63,6 +62,7 @@ public class Reclamation {
         this.image = image;
         this.categorie = categorie;
         this.etat = etat;
+        this.nomCat=nomCat;
     }
     
     
@@ -148,6 +148,14 @@ public class Reclamation {
 
     public void setOffre(Offre offre) {
         this.offre = offre;
+    }
+
+    public String getNomCat() {
+        return nomCat;
+    }
+
+    public void setNomCat(String nomCat) {
+        this.nomCat = nomCat;
     }
     
 }

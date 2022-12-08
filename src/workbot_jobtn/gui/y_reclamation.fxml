@@ -290,5 +290,10 @@
          </effect>
       </Pane>
       <Pane prefHeight="18.0" prefWidth="900.0" style="-fx-background-color: #6c63ff;" />
+      <ImageView fx:id="refreshicon" fitHeight="30.0" fitWidth="20.0" layoutX="457.0" layoutY="95.0" onMouseClicked="#refreshricon" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/refresh.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
