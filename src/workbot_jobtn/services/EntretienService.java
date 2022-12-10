@@ -85,8 +85,8 @@ public class EntretienService implements ICrud_Interface<Entretien> {
                 int id = r.getInt(1);
                 String date = r.getString(2);
                 String lien = r.getString(3);
-                int id_candidature = r.getInt(4);
-                Integer heure = r.getInt(5);
+                int id_candidature = r.getInt(5);
+                Integer heure = r.getInt(4);
 
                 Entretien entretien = new Entretien(id, date, lien, id_candidature, heure);
                 listEntretiens.add(entretien);

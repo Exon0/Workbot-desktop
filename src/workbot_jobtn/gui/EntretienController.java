@@ -32,6 +32,8 @@ import workbot_jobtn.entites.Entretien;
 import workbot_jobtn.services.EntretienService;
 import workbot_jobtn.services.OffreService;
 import workbot_jobtn.utils.Mail;
+import static workbot_jobtn.gui.CandOffreController.dto;
+
 
 /**
  * FXML Controller class
@@ -107,7 +109,7 @@ public class EntretienController implements Initializable {
         }
 
         Entretien e1 = new Entretien(date, meet, idCand1, heure);
-        System.out.println("!!!!!! : " + idOffre);
+        System.out.println("!!!!!2222222! : " + idCand1);
         List<Entretien> listE = es.readAll();
         for (Entretien e : listE) {
             if (e.getId_Candidature() == idCand1) {
@@ -132,6 +134,8 @@ public class EntretienController implements Initializable {
         if (result.get() == ButtonType.OK) {
             System.out.println("1-"+e1.getLienMeet());
             es.ajouter(e1);
+             dto.setStatut("Entretien");
+            System.out.println(dto.getId_cand()+" jjjjjjjjjjjjjjjjjjjj");
             System.out.println("!!!!!!!!!!!!lol  " + Dfinal.getEmail());
             Thread th = new Thread(() -> {
             Mail mail = new Mail();
@@ -139,7 +143,8 @@ public class EntretienController implements Initializable {
                   });
         th.setDaemon(true);
         th.start();  
-
+           
+            OffreService.updateStatut(dto);
             String title = "Entretien";
             String message = "Votre renuion avec " + Dfinal.getNomCandidat() + " est fixé pour le " + date + " a " + heure + "h";
             // Notification notification = Notifications.SUCCESS;
