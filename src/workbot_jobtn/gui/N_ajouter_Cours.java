@@ -193,6 +193,8 @@ public class N_ajouter_Cours implements Initializable {
         File SelectedFile = fc.showOpenDialog(null);
         if (SelectedFile != null ){
             path=SelectedFile.getAbsolutePath();
+            path = path.replace('\\', '/');
+ 
     }
         System.out.println(path);
     }

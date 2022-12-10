@@ -161,23 +161,7 @@ public class N_Rechercher_Certif_Liste implements Initializable{
     co1.setDateAjout(datea.getCellData(index).toString());
     co1.setLien(lien.getCellData(index).toString());
     
- 
-    File file = new File(co1.getLien());
-        
-        //Vérifier si le système prend en charge la classe Desktop ou non
-        if(!Desktop.isDesktopSupported()){
-            System.out.println("Desktop n'est pas prise en charge");
-            return;
-        }
-        
-       Desktop d = Desktop.getDesktop();
-        if(file.exists()) 
-            d.open(file);
-    
-    
-    
-        //System.out.println(co1.getLien());
-        //Desktop.getDesktop().browse(new URI("file:///"+co1.getLien()));
+        Desktop.getDesktop().browse(new URI("http://127.0.0.1:8000/question/reponse/"+co1.getId()+"/testQuiz"));
 
     }
 

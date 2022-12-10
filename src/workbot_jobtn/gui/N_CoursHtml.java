@@ -43,7 +43,10 @@ public class N_CoursHtml implements Initializable{
                 String link =null;
                 //link=Services_Afficher_Cours_Liste.co.getChemin().toString();
                 link=N_AfficheController.co.getChemin().toString();
-                e1.load(link);              	
+                System.out.println(link);
+                
+                e1.load("file:\\"+link);
+                //e1.load("https://www.profitablegatetocontent.com/d38ziwqqhm?key=833e83d5b619c6162602e331d6104cd1");
 	}
    
     
