@@ -254,7 +254,7 @@ public class OffreFreelancerController implements Initializable {
             error.showAndWait();
             return;
         }
-String ty="Tache";
+String ty="Fraalance";
         Offre o = new Offre(titre, duree, desc, domaine, dateExp, renumeration, modeTravail, lieu, id_soc, TypeOffre.Freelancer,ty);
 
         List<Offre> listOffre = offerservice.readAll();

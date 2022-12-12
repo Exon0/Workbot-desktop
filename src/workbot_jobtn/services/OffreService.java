@@ -210,20 +210,20 @@ public class OffreService implements ICrud_Interface<Offre> {
         List<Offre> listeOffre = new ArrayList<>();
         try {
             Statement = connection.createStatement();
-
-            ResultSet r = Statement.executeQuery("SELECT * from `offre`");
+               System.out.println(SessionManager.getId()+" iddddddddddddddd");
+            ResultSet r = Statement.executeQuery("SELECT * from `offre` where id_soc="+SessionManager.getId());
             while (r.next()) {
                 int id = r.getInt("id");
                 int nbCand = nbCandidature(id);
-                String titre = r.getString(2);
-                String desc = r.getString(4);
-                String domaine = r.getString(5);
-                String dateExp = r.getString(6);
+                String titre = r.getString(3);
+                String desc = r.getString(5);
+                String domaine = r.getString(6);
+                String dateExp = r.getString(7);
                 int id_soc = r.getInt(12);
-                String modeTravail = r.getString(13);
-                String typeOffre = r.getString(16);
+                String modeTravail = r.getString(14);
+                String typeOffre = r.getString(17);
                 TypeOffre tp = TypeOffre.valueOf(typeOffre);
-                String dateAjout = r.getString(17);
+                String dateAjout = r.getString(18);
                 // Button bt=new Button("test");
                 Offre O = new Offre(id, titre, desc, domaine, dateExp, modeTravail, id_soc, tp, dateAjout, nbCand);
 
@@ -278,13 +278,13 @@ public class OffreService implements ICrud_Interface<Offre> {
             ResultSet r = Statement.executeQuery("SELECT * from `offre` where id_soc=" + SessionManager.getId() + " ORDER BY id DESC LIMIT 1");
             while (r.next()) {
                 int id = r.getInt("id");
-                String titre = r.getString(2);
-                String desc = r.getString(4);
-                String domaine = r.getString(5);
-                String dateExp = r.getString(6);
-                int id_soc = r.getInt(12);
-                String modeTravail = r.getString(13);
-                String typeOffre = r.getString(16);
+                String titre = r.getString("titre");
+                String desc = r.getString("description");
+                String domaine = r.getString("domaine");
+                String dateExp = r.getString("dateExpiration");
+                int id_soc = r.getInt("id_Soc");
+                String modeTravail = r.getString("modeTravail");
+                String typeOffre = r.getString("typeOffre");
                 TypeOffre tp = TypeOffre.valueOf(typeOffre);
                 //String dateAjout=r.getString(17);
                 //Button bt=new Button("test");

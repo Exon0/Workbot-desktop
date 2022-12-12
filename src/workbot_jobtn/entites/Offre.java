@@ -124,13 +124,12 @@ public class Offre {
         this.id_soc = id_soc;
         this.id_test = id_test;
         this.lieu = lieu;
-        this.dateAjout = dateAjout;
         this.typeOffre = TypeOffre.valueOf(typeOffre);
     }
 
     public Offre(String titre, String duree, String desc, String domaine, String dateExp, String renumeration, String modeTravail, String lieu, int id_soc, TypeOffre typeOffre, String ty) {
         this.titre = titre;
-        this.Salaire = "0";
+        this.Salaire = renumeration;
         this.description = desc;
         this.domaine = domaine;
         this.dateExpiration = dateExp;
@@ -139,6 +138,7 @@ public class Offre {
         this.lieu = lieu;
         this.typeOffre = typeOffre;
         this.typeContrat=ty;
+        this.dureeStage=duree;
     }
 
   
