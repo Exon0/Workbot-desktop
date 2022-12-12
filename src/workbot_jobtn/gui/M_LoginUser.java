@@ -5,6 +5,7 @@
  */
 package workbot_jobtn.gui;
 
+
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import java.io.IOException;
@@ -33,6 +34,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.mindrot.jbcrypt.BCrypt;
+
 import workbot_jobtn.utils.MyDB;
 import workbot_jobtn.utils.SessionManager;
 
@@ -79,7 +82,7 @@ public class M_LoginUser implements Initializable {
 
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("Captcha.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("M_Signup.fxml"));
 
             Scene stage = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -102,6 +105,7 @@ public class M_LoginUser implements Initializable {
     @FXML
     private void M_loginidb(ActionEvent event) throws SQLException, IOException {
 
+            
         ////////////5dhena 2 string w gatina fiha el textfuild
         String umail = M_Mail.getText();
         String password = M_password.getText();
@@ -135,16 +139,49 @@ public class M_LoginUser implements Initializable {
           String  PASS1= passwordText_M.getText();
                   Argon2 argon2 = Argon2Factory.create();            
         on = MyDB.getInstance().getConnection();
-        String query1 = "select mdp from utilisateur where email='" + M_Mail.getText()+"'";
+        String query1 = "select mdpsymfony from utilisateur where email='" + M_Mail.getText()+"'";
                     PreparedStatement smt1 = on.prepareStatement(query1);
             ResultSet rs1 = smt1.executeQuery();
+            
+                    
                    String PASS_base="";
                 while (rs1.next()) {
-                PASS_base = rs1.getString("mdp");
+                PASS_base = rs1.getString("mdpsymfony");
                 }
-        if(! argon2.verify(PASS_base,PASS)&&
-           ! argon2.verify(PASS_base,PASS1))
+        //if(! argon2.verify(PASS_base,PASS)&&
+         //  ! argon2.verify(PASS_base,PASS1))
+         //    String hash_php = PASS_base.replaceFirst("2y", "2a");
+    
+   
+    String dd=BCrypt.hashpw(PASS, BCrypt.gensalt())  ; 
+    
+    String dd1=BCrypt.hashpw(PASS_base, BCrypt.gensalt())  ;
+    //System.out.println(dd1);
+    String cc=BCrypt.hashpw(PASS1, BCrypt.gensalt())  ;  
+    String cc1=BCrypt.hashpw(PASS_base, BCrypt.gensalt())  ;  
+    //System.out.println(dd);
+            
+            boolean bcrypt=BCrypt.checkpw(PASS_base,  BCrypt.gensalt());
+            // System.out.println(BCrypt.checkpw(dd, PASS_base));
+         //    System.out.println(BCrypt.checkpw(dd, dd1));
+            //bcryp. verify(PASS, 4)
+          //  boolean bcryp=BCrypt.checkpw(PASS_base, PASS);
+          //  System.out.println(bcryp);
+          int result = PASS_base.compareToIgnoreCase(PASS1);
+          int result1 = PASS_base.compareTo(PASS);
+           System.out.println(PASS1 == PASS_base);
+     //   System.out.println(result1 );
+    //    System.out.println(result );
+   //       System.out.println(PASS_base);
+ //   System.out.println(PASS1);
+        //  System.out.println(!(PASS1 == PASS_base));
+          System.out.println(PASS1.equals(PASS_base));
+         if(  !(PASS.equals(PASS_base))&&!(PASS1.equals(PASS_base)))
+            /* if( !BCrypt.checkpw(dd, dd1)&& 
+          !BCrypt.checkpw(dd1, cc))*/
       {
+          // System.out.println(!BCrypt.checkpw(dd, dd1)&& 
+        //  !BCrypt.checkpw(dd1, cc));
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Job TN:: Error Message");
                 alert.setHeaderText(null);
@@ -180,7 +217,6 @@ public class M_LoginUser implements Initializable {
             SessionManager.setPhoto(photos);
             SessionManager.setTel(tels);
             SessionManager.setPrenom(prenoms);
-            SessionManager.setDomaine(domaine);
           
 
             System.out.println(SessionManager.getId() + " "
@@ -197,11 +233,11 @@ public class M_LoginUser implements Initializable {
                 alert.setContentText("Vous etes connecté condidat");
                 alert.showAndWait();
                 SessionManager.setRole("candidat");
-    Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-            Scene stage = new Scene(root);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(stage);
-            window.show();
+                Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+                Scene stage = new Scene(root);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(stage);
+                window.show();
                    
                     
             } else if (role.equals("sociéte")) {
@@ -211,11 +247,11 @@ public class M_LoginUser implements Initializable {
                 alert.setContentText("Vous etes connecté societe");
                 alert.showAndWait();
                 SessionManager.setRole("sociéte");
-                 Parent root = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
-            Scene stage = new Scene(root);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(stage);
-            window.show();
+                Parent root = FXMLLoader.load(getClass().getResource("HomeSociete.fxml"));
+                Scene stage = new Scene(root);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(stage);
+                window.show();
                     
             } else if (role.equals("Admin")) {
                 SessionManager.setRole("Admin");
@@ -224,7 +260,17 @@ public class M_LoginUser implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Vous etes connecté Administrateur");
                 alert.showAndWait();
-                
+                try {
+
+                    Parent root = FXMLLoader.load(getClass().getResource("M_ListAdmin.fxml"));
+
+                    Scene stage = new Scene(root);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(stage);
+                    window.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 try {
 
@@ -243,7 +289,10 @@ public class M_LoginUser implements Initializable {
 
         }
         System.out.println(SessionManager.getRole());
+        
+ 
     }
+
 
     @FXML
     private void MonterPassword(ActionEvent event) {
@@ -365,9 +414,11 @@ public class M_LoginUser implements Initializable {
     @FXML
     private void m_map(ActionEvent event) {
         try {
-            Stage stage=new Stage();
+            Stage stage = (Stage) M_Mail.getScene().getWindow();
+            stage.close();
+
             Parent root = FXMLLoader.load(getClass().getResource("mappa.fxml"));
-            Scene scene = new Scene(root, 900, 550);
+            Scene scene = new Scene(root, 840, 600);
 
             stage.setScene(scene);
             stage.show();

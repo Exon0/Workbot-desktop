@@ -50,6 +50,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 import workbot_jobtn.entites.User;
 
 import workbot_jobtn.utils.MyDB;
@@ -306,9 +307,10 @@ public class M_Listadmin implements Initializable {
  /*
           description.setText(r.getDescriptionR());
              */
-
-            String query = "INSERT INTO utilisateur (prenom,nom,email,mdp,role) VALUES ('" + M_prenomLCtextfuild.getText() + "','" + M_nomLCtextfuild.getText() + "','" + M_mailLCtextfuild.getText() + "','"
-                    + M_passwordLCtextfuild.getText() + "','" + role + "')";
+String rolea ="[\"ROLE_a\"]";
+String i = BCrypt.hashpw(M_passwordLCtextfuild.getText(), BCrypt.gensalt());
+            String query = "INSERT INTO utilisateur (prenom,nom,email,mdp,role,roles) VALUES ('" + M_prenomLCtextfuild.getText() + "','" + M_nomLCtextfuild.getText() + "','" + M_mailLCtextfuild.getText() + "','"
+                    + i + "','" + role + "','" + rolea + "')";
 
             executeQuery(query);
             showAdmin();;

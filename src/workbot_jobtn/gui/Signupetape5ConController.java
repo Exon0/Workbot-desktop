@@ -5,8 +5,7 @@
 package workbot_jobtn.gui;
 
 
-import de.mkammerer.argon2.Argon2;
-import de.mkammerer.argon2.Argon2Factory;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -31,6 +30,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import workbot_jobtn.utils.MyDB;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+import java.util.Scanner;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 /**
  * FXML Controller class
@@ -94,6 +98,17 @@ public class Signupetape5ConController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Check votre email ");
         alert.showAndWait();
+      //  String passwordV1 = Rec_Password.getText();
+      //   String mpasswordV1 = BCrypt.with(BCrypt.Version.VERSION_2Y).hashToString(6, passwordV1.toCharArray());
+      //   System.out.println(mpasswordV1) ;
+        
+      //  String passwordV1 = Rec_Password.getText();
+      //   String mpasswordV1 = BCrypt.hashpw(passwordV1, BCrypt.gensalt());
+     // mpasswordV1 = "$2y$13" + mpasswordV1.substring(6);
+      // String mdpBcrypt = BCrypt.hashpw(passwordV1, BCrypt.gensalt());
+        //  Argon2 argon2 = Argon2Factory.create();
+       // passwordV1 = argon2.hash(4, 65536, 1, passwordV1);
+    // System.out.println(mpasswordV1) ;
 
     }
 
@@ -134,7 +149,7 @@ public class Signupetape5ConController implements Initializable {
     int randomCode;
 
     public void message() {
-Thread th = new Thread(() -> {
+
         Random rand = new Random();
         randomCode = rand.nextInt(999999);
         System.out.println(randomCode);
@@ -169,15 +184,10 @@ Thread th = new Thread(() -> {
             message.setText("Bonjour, ce message est un test ..." + randomCode);
 // Etape 3 : Envoyer le message
             Transport.send(message);
-   
-            System.out.println("Message_envoye");             
-
-        } catch (MessagingException e) {
+            System.out.println("Message_envoye");
+        } catch ( MessagingException e) {
             throw new RuntimeException(e);
         }
-                });
-        th.setDaemon(true);
-        th.start();
     }
 
     //////////////////////////////
@@ -216,7 +226,7 @@ Thread th = new Thread(() -> {
 
     private void insertuser() {
 
-       String roleV1;
+        String roleV1;
         String prenomV1;
         String mailV1;
         String nomV1;
@@ -236,7 +246,7 @@ Thread th = new Thread(() -> {
         domaineV1 = Rec_domaine.getText();
         adresseV1 = Rec_adresse.getText();
         numeroV1 = Rec_numero.getText();
-
+        String mdpsymfony=Rec_Password.getText();
         /*char[] chars = passwordV1.toCharArray();
 
         for (char c : chars) {
@@ -244,17 +254,35 @@ Thread th = new Thread(() -> {
 
             System.out.println(c);
         }*/
-        /*
-        Argon2 argon2 = Argon2Factory.create();
-        passwordV1 = argon2.hash(4, 65536, 1, passwordV1);
-*/
-          Argon2 argon2 = Argon2Factory.create();
-        passwordV1 = argon2.hash(4, 65536, 1, passwordV1);
-System.out.println(passwordV1) ;
-String query = "INSERT INTO utilisateur (role,nom,prenom,email,mdp,questionSecu,reponseSecu,domaine,adresse,tel) VALUES ('" + roleV1 + "','" + nomV1 + "','" + prenomV1 + "','" + mailV1 + "','" + passwordV1 + "','" + quesecV1 + "','" + responseV1 + "','" + domaineV1 + "','" + adresseV1 + "','" + numeroV1 + "')";
+        
+       // Argon2 argon2 = Argon2Factory.create();
+      //  passwordV1 = argon2.hash(4, 65536, 1, passwordV1);
+        
+   //  String i= BCrypt.hashpw(passwordV1,BCrypt.gensalt()t);
+       String i = BCrypt.hashpw(passwordV1, BCrypt.gensalt());
+//       String mpasswordV1 = BCrypt.with(BCrypt.Version.VERSION_2Y).hashToString(6, passwordV1.toCharArray());
+if(  !(roleV1.equals("candidat"))){
+    String roles ="[\"ROLE_s\"]";
+
+
+        //mpasswordV1 = "$2y$13" + mpasswordV1.substring(6);
+String query = "INSERT INTO utilisateur (role,nom,prenom,email,mdp,questionSecu,reponseSecu,domaine,adresse,tel,mdpsymfony,roles) VALUES ('" + roleV1 + "','" + nomV1 + "','" + prenomV1 + "','" + mailV1 + "','" + i + "','" + quesecV1 + "','" + responseV1 + "','" + domaineV1 + "','" + adresseV1 + "','" + numeroV1 + "','" + mdpsymfony + "','" + roles + "')";
+
+        executeQuery(query);
+}
+else {
+
+     String roles ="[\"ROLE_c\"]";
+
+
+        //mpasswordV1 = "$2y$13" + mpasswordV1.substring(6);
+String query = "INSERT INTO utilisateur (role,nom,prenom,email,mdp,questionSecu,reponseSecu,domaine,adresse,tel,mdpsymfony,roles) VALUES ('" + roleV1 + "','" + nomV1 + "','" + prenomV1 + "','" + mailV1 + "','" + i + "','" + quesecV1 + "','" + responseV1 + "','" + domaineV1 + "','" + adresseV1 + "','" + numeroV1 + "','" + mdpsymfony + "','" + roles + "')";
 
         executeQuery(query);
 
+
+}
+    
     }
 
     private void insertRoleee(String rolee) {

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" stylesheets="@homesociete.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workbot_jobtn.gui.OffreController">
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" stylesheets="@homesociete.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="workbot_jobtn.gui.OffreController">
    <children>
       <VBox fx:id="menu" prefHeight="572.0" prefWidth="192.0">
          <children>
@@ -34,9 +34,6 @@
                      <effect>
                         <Blend />
                      </effect>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </Button>
                   <ImageView fitHeight="18.0" fitWidth="21.0" layoutX="23.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
                      <image>
