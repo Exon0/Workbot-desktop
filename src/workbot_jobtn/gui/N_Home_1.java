@@ -85,7 +85,7 @@ public class N_Home_1 implements Initializable{
             e.load("https://www.profitablegatetocontent.com/d38ziwqqhm?key=833e83d5b619c6162602e331d6104cd1");
         }
         
-        @FXML
+    @FXML
     void handleButtonAction(ActionEvent event) throws IOException {
 
        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Affiche.fxml"));

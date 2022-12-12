@@ -24,7 +24,12 @@
             <Button fx:id="M_listclientLS" layoutX="138.0" layoutY="212.0" mnemonicParsing="false" onAction="#M_listclientLS" prefHeight="33.0" prefWidth="101.0" style="-fx-background-color: #ffffff; -fx-border-color: #6c63ff; -fx-border-radius: 5;" text="List Client" textFill="#6c63ff" />
             <Button layoutX="138.0" layoutY="284.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="101.0" style="-fx-background-color: #6c63ff; -fx-border-color: #6c63ff; -fx-border-radius: 5;" text="Statistique" textFill="WHITE" />
             <Button layoutX="138.0" layoutY="348.0" mnemonicParsing="false" onAction="#cours_open" prefHeight="33.0" prefWidth="101.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #6c63ff; -fx-border-radius: 5;" text="Cours" textFill="#6c63ff" />
-            <BarChart fx:id="batChart" layoutX="298.0" layoutY="117.0" title="Data User">
+            <Button fx:id="M_logoutLAid" layoutX="104.0" layoutY="14.0" mnemonicParsing="false" onAction="#M_logoutLAaction" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: #ffffff; -fx-border-color: #111111; -fx-border-radius: 6;" text="Logout">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <BarChart fx:id="batChart" layoutX="294.0" layoutY="148.0">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -32,11 +37,6 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-            <Button fx:id="M_logoutLAid" layoutX="99.0" layoutY="14.0" mnemonicParsing="false" onAction="#M_logoutLAaction" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: #ffffff; -fx-border-color: #111111; -fx-border-radius: 6;" text="Logout">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
          </children>
     </AnchorPane>
   </children>

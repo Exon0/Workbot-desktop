@@ -138,32 +138,32 @@
       </ButtonBar>
       <Separator layoutX="149.0" layoutY="-4.0" orientation="VERTICAL" prefHeight="543.0" prefWidth="6.0" />
       <WebView fx:id="N_AdsView" layoutX="6.0" layoutY="320.0" onMousePressed="#Browser" prefHeight="212.0" prefWidth="138.0" />
-      <Button id="BUTTON" fx:id="vider" alignment="CENTER" contentDisplay="BOTTOM" layoutX="169.0" layoutY="409.0" mnemonicParsing="false" onAction="#vider" prefHeight="34.0" prefWidth="102.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Vider" textFill="#fffdfd">
+      <Button id="BUTTON" fx:id="vider" alignment="CENTER" contentDisplay="BOTTOM" layoutX="241.0" layoutY="409.0" mnemonicParsing="false" onAction="#vider" prefHeight="34.0" prefWidth="102.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Vider" textFill="#fffdfd">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button id="BUTTON" fx:id="N_Certif_Supprimer" alignment="CENTER" contentDisplay="BOTTOM" layoutX="281.3999938964844" layoutY="409.79998779296875" mnemonicParsing="false" onAction="#N_Certif_Supp" prefHeight="3.0" prefWidth="98.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Supprimer" textFill="#fffdfd">
+      <Button id="BUTTON" fx:id="N_Certif_Supprimer" alignment="CENTER" contentDisplay="BOTTOM" layoutX="353.3999938964844" layoutY="409.79998779296875" mnemonicParsing="false" onAction="#N_Certif_Supp" prefHeight="3.0" prefWidth="98.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Supprimer" textFill="#fffdfd">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button id="BUTTON" fx:id="N_Certif_modifier" alignment="CENTER" contentDisplay="BOTTOM" layoutX="390.6000061035156" layoutY="409.79998779296875" mnemonicParsing="false" onAction="#N_Certif_Modifier" prefHeight="23.0" prefWidth="98.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Modifier" textFill="#fffdfd">
+      <Button id="BUTTON" fx:id="N_Certif_modifier" alignment="CENTER" contentDisplay="BOTTOM" layoutX="462.6000061035156" layoutY="409.79998779296875" mnemonicParsing="false" onAction="#N_Certif_Modifier" prefHeight="23.0" prefWidth="98.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Modifier" textFill="#fffdfd">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button id="BUTTON" fx:id="bu_Ajouter_certif" alignment="CENTER" contentDisplay="BOTTOM" layoutX="499.79998779296875" layoutY="409.79998779296875" mnemonicParsing="false" onAction="#Ajouter_certif" prefHeight="14.0" prefWidth="98.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Ajouter" textFill="#fffdfd">
+      <Button id="BUTTON" fx:id="bu_Ajouter_certif" alignment="CENTER" contentDisplay="BOTTOM" layoutX="571.7999877929688" layoutY="409.79998779296875" mnemonicParsing="false" onAction="#Ajouter_certif" prefHeight="14.0" prefWidth="98.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Ajouter" textFill="#fffdfd">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button id="BUTTON" fx:id="pdf_b" alignment="CENTER" contentDisplay="BOTTOM" layoutX="609.0" layoutY="409.0" minWidth="42.0" mnemonicParsing="false" onAction="#pdfGeneration" prefHeight="34.0" prefWidth="98.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="PDF" textFill="#fffdfd">
+      <Button id="BUTTON" fx:id="pdf_b" alignment="CENTER" contentDisplay="BOTTOM" layoutX="681.0" layoutY="409.0" minWidth="42.0" mnemonicParsing="false" onAction="#pdfGeneration" prefHeight="34.0" prefWidth="98.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="PDF" textFill="#fffdfd">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button id="BUTTON" fx:id="affecter" alignment="CENTER" contentDisplay="BOTTOM" layoutX="718.0" layoutY="409.0" mnemonicParsing="false" onAction="#affecter_certif" prefHeight="34.0" prefWidth="159.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Affecter Cerification" textFill="#fffdfd">
+      <Button id="BUTTON" fx:id="affecter" alignment="CENTER" contentDisplay="BOTTOM" disable="true" layoutX="718.0" layoutY="409.0" mnemonicParsing="false" onAction="#affecter_certif" prefHeight="34.0" prefWidth="159.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Affecter Cerification" textFill="#fffdfd" visible="false">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

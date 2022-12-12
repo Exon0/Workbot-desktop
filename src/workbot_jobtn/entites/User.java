@@ -23,28 +23,17 @@ public class User {
     private String reponseSecu;
     private String methode;
     private String domaine;
+    private String mdpsymfony;
+    private String roles;
     private String note;
 
-
-    public String getDomaine() {
-        return domaine;
-    }
 
     public User(String nom, String note) {
         this.nom = nom;
         this.note = note;
     }
 
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public User(int id, String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode, String domaine) {
-        this.id = id;
+    public User(String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode) {
         this.nom = nom;
         this.prenom = prenom;
         this.role = role;
@@ -56,21 +45,44 @@ public class User {
         this.questionSecu = questionSecu;
         this.reponseSecu = reponseSecu;
         this.methode = methode;
-        this.domaine = domaine;
+    }
+
+
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+    
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    public String getMdpsymfony() {
+        return mdpsymfony;
+    }
+
+    public void setMdpsymfony(String mdpsymfony) {
+        this.mdpsymfony = mdpsymfony;
+    }
+    public String getDomaine() {
+        return domaine;
     }
 
     public void setDomaine(String domaine) {
         this.domaine = domaine;
     }
 
-
     public int getId() {
         return id;
-    }
-
-    public User(int id, String email) {
-        this.id = id;
-        this.email = email;
     }
 
     public String getNom() {
@@ -117,13 +129,13 @@ public class User {
         return methode;
     }
 
-
-   
-
-    public User() {
+    public User(int id, String email) {
+        this.id = id;
+        this.email = email;
     }
 
-    public User(String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode) {
+    public User(int id, String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode, String domaine) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.role = role;
@@ -135,6 +147,27 @@ public class User {
         this.questionSecu = questionSecu;
         this.reponseSecu = reponseSecu;
         this.methode = methode;
+        this.domaine = domaine;
+    }
+
+    public User() {
+    }
+
+    public User(String nom, String prenom, String role, String tel, String email, String mdp, String adresse, String photo, String questionSecu, String reponseSecu, String methode,String mdpsymfony,String roles) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.role = role;
+        this.tel = tel;
+        this.email = email;
+        this.mdp = mdp;
+        this.adresse = adresse;
+        this.photo = photo;
+        this.questionSecu = questionSecu;
+        this.reponseSecu = reponseSecu;
+        this.methode = methode;
+        this.mdpsymfony = mdpsymfony;
+        this.roles = roles;
+        
     }
 
     public User(int id, String nom, String prenom, String email, String mdp) {
@@ -163,5 +196,6 @@ public class User {
         this.email = email;
         this.adresse = adresse;
     }
+
     
 }

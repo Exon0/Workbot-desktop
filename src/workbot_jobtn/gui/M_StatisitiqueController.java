@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -83,7 +84,7 @@ public class M_StatisitiqueController implements Initializable {
 
     public void chart() {
 
-        String query = "select role ,count(id)    from utilisateur GROUP BY role ORDER BY ROLE";
+        String query = "select role ,count(id) from utilisateur GROUP BY role ";
 
         try {
             XYChart.Series chartData = new XYChart.Series();
@@ -93,6 +94,7 @@ public class M_StatisitiqueController implements Initializable {
                 chartData.getData().add(new XYChart.Data(rs.getString(1), rs.getInt(2)));
             }
             batChart.getData().add(chartData);
+            
 
         } catch (Exception e) {
 
@@ -167,7 +169,7 @@ public class M_StatisitiqueController implements Initializable {
         }
     }
 
-    @FXML
+@FXML
     private void cours_open(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("N_Home_Admin.fxml"));
 
@@ -177,4 +179,5 @@ public class M_StatisitiqueController implements Initializable {
             window.show();
 
     }
+
 }

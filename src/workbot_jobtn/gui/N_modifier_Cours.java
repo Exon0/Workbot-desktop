@@ -200,6 +200,7 @@ public static String path1="";
         File SelectedFile = fc.showOpenDialog(null);
         if (SelectedFile != null ){
             path1=SelectedFile.getAbsolutePath();
+            path1 = path1.replace('\\', '/');
     }
         System.out.println(path1);
     }

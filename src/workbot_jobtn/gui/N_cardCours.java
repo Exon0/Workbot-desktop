@@ -4,6 +4,9 @@
  */
 package workbot_jobtn.gui;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,14 +40,12 @@ public class N_cardCours  {
      * Initializes the controller class.
      */
     Cours c=new Cours();
-    public void setData(Cours cours) {
-        System.out.println("hello");
-                Image image = new Image(getClass().getResourceAsStream("cours\\"+cours.getTitre()+".png"));
+    public void setData(Cours cours) throws FileNotFoundException {
+                Image image = new Image(new FileInputStream("C://Workbot-web//public//assets//img//cours//htmlcours//"+cours.getTitre()+".png"));
+                System.out.println("hello");
                 coursImage.setImage(image);
                 CoursName.setText(cours.getTitre());
-                c.setChemin(cours.getChemin());
-                
-
+                c.setChemin("C:\\Workbot-web\\public\\Upload\\chem\\"+cours.getChemin());                
     }    
 
     @FXML
@@ -53,6 +54,7 @@ public class N_cardCours  {
                 
                 
         co.setChemin(c.getChemin());
+        System.out.println(co.getChemin());
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_CoursHtml.fxml"));
         Scene stage=new Scene(fXMLLoader);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
