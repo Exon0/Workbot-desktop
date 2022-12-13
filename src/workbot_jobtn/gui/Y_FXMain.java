@@ -27,7 +27,7 @@ public class Y_FXMain extends Application {
     @Override
             public void start(Stage stage) throws Exception {
         stage.setTitle("Reclamations");
-        Parent root = FXMLLoader.load(getClass().getResource("y_reclamation.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("yadmin_reclamation.fxml"));
         
         Scene scene = new Scene(root);
         

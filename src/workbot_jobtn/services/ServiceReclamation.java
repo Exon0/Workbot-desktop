@@ -85,7 +85,7 @@ public class ServiceReclamation implements InterfaceServiceReclamation<Reclamati
         
         ObservableList<Reclamation> l=FXCollections.observableArrayList();
      statement = connection.createStatement();
-     ResultSet r= statement.executeQuery("select * from reclamation where id_categorie = 11");
+     ResultSet r= statement.executeQuery("select * from reclamation");
      while (r.next()){
          int id=r.getInt("id");
          String objet=r.getString("objet");
@@ -135,6 +135,79 @@ public class ServiceReclamation implements InterfaceServiceReclamation<Reclamati
          l=new User(id);
          }
      return l;
+        
+    }
+    public int countEnvoyer() throws SQLException{
+        int total = 0;
+        statement = connection.createStatement();
+        ResultSet r= statement.executeQuery("select count(*)as total from reclamation where etat='envoyée';");
+        while (r.next()){
+            total=r.getInt("total");
+        }
+        return total;
+    }
+    public int countEnCour() throws SQLException{
+        int total = 0;
+        statement = connection.createStatement();
+        ResultSet r= statement.executeQuery("select count(*)as total from reclamation where etat='en cours de traitement';");
+        while (r.next()){
+            total=r.getInt("total");
+        }
+        return total;
+    }
+    public int countTraitee() throws SQLException{
+        int total = 0;
+        statement = connection.createStatement();
+        ResultSet r= statement.executeQuery("select count(*)as total from reclamation where etat='traitée';");
+        while (r.next()){
+            total=r.getInt("total");
+        }
+        return total;
+    }
+    public int countTechnique() throws SQLException{
+        int total = 0;
+        statement = connection.createStatement();
+        ResultSet r= statement.executeQuery("select count(*)as total from reclamation where id_categorie=11;");
+        while (r.next()){
+            total=r.getInt("total");
+        }
+        return total;
+    }
+    public int countOffre() throws SQLException{
+        int total = 0;
+        statement = connection.createStatement();
+        ResultSet r= statement.executeQuery("select count(*)as total from reclamation where id_categorie=17;");
+        while (r.next()){
+            total=r.getInt("total");
+        }
+        return total;
+    }
+    public boolean modifier_etat_enCour(Reclamation t) throws SQLException {
+        String req;
+        
+        req="update reclamation set etat = 'en cours de traitement' where id ="+t.getId()+";";
+        
+        try {
+            statement=connection.createStatement();
+            statement.executeUpdate(req);
+
+        } catch (SQLException ex) {                                
+        }
+       return true;
+        
+    }
+    public boolean modifier_etat_traitee(Reclamation t) throws SQLException {
+        String req;
+        
+        req="update reclamation set etat = 'traitée' where id ="+t.getId()+";";
+        
+        try {
+            statement=connection.createStatement();
+            statement.executeUpdate(req);
+
+        } catch (SQLException ex) {                                
+        }
+       return true;
         
     }
 }

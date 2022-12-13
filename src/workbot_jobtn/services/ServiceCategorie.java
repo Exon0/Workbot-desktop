@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import workbot_jobtn.entites.*;
 import workbot_jobtn.utils.MyDB;
 
@@ -61,8 +63,9 @@ public class ServiceCategorie implements InterfaceServiceCategorie<Categorie>{
     }
 
     @Override
-    public List<Categorie> afficherTout() throws SQLException {
-     List<Categorie> l=new ArrayList<>();
+    public ObservableList<Categorie> afficherTout() throws SQLException {
+        
+        ObservableList<Categorie> l=FXCollections.observableArrayList();
      statement = connection.createStatement();
      ResultSet r= statement.executeQuery("select * from Categorie");
      while (r.next()){

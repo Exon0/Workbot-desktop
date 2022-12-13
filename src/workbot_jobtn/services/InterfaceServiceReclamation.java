@@ -4,7 +4,6 @@
  */
 package workbot_jobtn.services;
 import java.sql.SQLException;
-import java.util.List;
 import javafx.collections.ObservableList;
 /**
  *

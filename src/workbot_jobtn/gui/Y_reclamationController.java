@@ -36,6 +36,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -55,17 +56,12 @@ public class Y_reclamationController  implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    
-
-            
-            
-            
-    
+    private final ObservableList<Reclamation> list = FXCollections.observableArrayList();
+       
     @FXML
     private TextField objet;
     @FXML
     private TextArea description;
-    private final ObservableList<Reclamation> list = FXCollections.observableArrayList();
     @FXML
     private TableView<Reclamation> table_reclamation;
     @FXML
@@ -80,6 +76,8 @@ public class Y_reclamationController  implements Initializable {
     private TableColumn<Reclamation, String> col_categorie;
     @FXML
     private TableColumn<Reclamation, String> col_etat;
+    @FXML
+    private TableColumn<Reclamation, String> col_image;
     @FXML
     private TextField tf_recherche;
     @FXML
@@ -98,8 +96,6 @@ public class Y_reclamationController  implements Initializable {
     private ImageView iv_image;
     @FXML
     private Button button_upload;
-    @FXML
-    private TableColumn<Reclamation, String> col_image;
     @FXML
     private Label champ_obligatoire;
     @FXML
@@ -120,6 +116,12 @@ public class Y_reclamationController  implements Initializable {
     private Pane modifier_confirmation;
     @FXML
     private ImageView refreshicon;
+    @FXML
+    private AnchorPane side_anchor;
+    @FXML
+    private Button fb;
+    @FXML
+    private Button twitter;
     /**
      * Initializes the controller class.
      */
@@ -189,16 +191,14 @@ public class Y_reclamationController  implements Initializable {
         
     }
 
-   
-
     @FXML
     private void supprimer(ActionEvent event) throws SQLException {
         lb_confirmer_supprimer.setVisible(true);
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
     }
     
-
-   
-
     @FXML
     private void modifier(ActionEvent event) throws SQLException {
         
@@ -211,7 +211,22 @@ public class Y_reclamationController  implements Initializable {
             File file = new File(tf_image.getText());
             rec.setImage(file.toURI().toString());
         }
-        lb_confirmer_modifier.setVisible(true);
+        if(objet.getText().equals("")){
+            objet_obligatoire.setVisible(true);
+        }
+        else{objet_obligatoire.setVisible(false);}
+        
+        if(description.getText().equals("")){
+            description_obligatoire.setVisible(true);
+        }
+        else{description_obligatoire.setVisible(false);}
+        if(objet.getText().equals("") || description.getText().equals("")){
+            champ_obligatoire.setVisible(true);
+        }
+        else{
+            champ_obligatoire.setVisible(false);
+            lb_confirmer_modifier.setVisible(true);
+        }
         
     }
 
@@ -225,26 +240,26 @@ public class Y_reclamationController  implements Initializable {
         annuler.setVisible(true);
         supprimer.setVisible(true);
         tf_image.setText(rec.getImage());
-        if(rec.getImage()!=null && !rec.getImage().equals(""))
+        if(rec.getImage()!=null && !rec.getImage().equals("") && rec.getImage().startsWith("f"))
         {
-        Image image = new Image(rec.getImage());
+        Image image = new Image(tf_image.getText());
         iv_image.setImage(image);
         }
         else{
             iv_image.setImage(null);
             }
+        
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
         }
     }
-
-   
 
     @FXML
     private void rechercher(ActionEvent event) throws SQLException {
         list.clear();
             rec = serv2.afficher(Integer.parseInt(tf_recherche.getText()));//we statically set the client id to just show his reclamations
-            list.setAll(rec);
-            
-            
+            list.setAll(rec);  
             col_date.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("date"));
             col_id.setCellValueFactory(new PropertyValueFactory<Reclamation, Integer>("id"));
             col_objet.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("objet"));
@@ -255,21 +270,21 @@ public class Y_reclamationController  implements Initializable {
             objet.setText("");
             description.setText("");
             tf_image.setText("");
-            iv_image.setImage(null);
+            iv_image.setImage(null);   
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
     }
 
     @FXML
     private void recherchericon(MouseEvent event) throws SQLException {
         list.clear();
             rec = serv2.afficher(Integer.parseInt(tf_recherche.getText()));//we statically set the client id to just show his reclamations
-            list.setAll(rec);
-            
-            
+            list.setAll(rec);   
             col_date.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("date"));
             col_id.setCellValueFactory(new PropertyValueFactory<Reclamation, Integer>("id"));
             col_objet.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("objet"));
-            col_description.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("description"));
-            
+            col_description.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("description"));            
             table_reclamation.setItems(list);
             retouricon.setVisible(true);
             rec=null;
@@ -277,6 +292,9 @@ public class Y_reclamationController  implements Initializable {
             description.setText("");
             tf_image.setText("");
             iv_image.setImage(null);
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
     }
 
     @FXML
@@ -284,10 +302,9 @@ public class Y_reclamationController  implements Initializable {
         showReclamations();
         retouricon.setVisible(false);
         tf_recherche.setText("");
-    }
-
-
-     {
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
     }
 
     @FXML
@@ -301,15 +318,16 @@ public class Y_reclamationController  implements Initializable {
         supprimer.setVisible(false);
         rec=null;
         iv_image.setImage(null);
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
     }
 
     @FXML
-    private void upload(ActionEvent event) {
-        
+    private void upload(ActionEvent event) {  
         FileChooser fc = new FileChooser();
         try{
-        String path = fc.showOpenDialog(button_upload.getScene().getWindow()).getPath();
-        
+        String path = fc.showOpenDialog(button_upload.getScene().getWindow()).getPath();        
         tf_image.setText(path);
         File file = new File(tf_image.getText());
         Image image = new Image(file.toURI().toString());
@@ -327,8 +345,7 @@ public class Y_reclamationController  implements Initializable {
         tf_image.setText("");
         iv_image.setImage(null);
         lb_confirmer_envoyer.setVisible(false);
-        envoyer_confirmation.setVisible(true);
-        
+        envoyer_confirmation.setVisible(true);        
     }
 
     @FXML
@@ -354,8 +371,7 @@ public class Y_reclamationController  implements Initializable {
 
     @FXML
     private void non_supprimer(ActionEvent event) {
-        lb_confirmer_supprimer.setVisible(false);
-        
+        lb_confirmer_supprimer.setVisible(false);        
     }
 
     @FXML
@@ -399,9 +415,7 @@ public class Y_reclamationController  implements Initializable {
         try {
             list.clear();
             ObservableList<Reclamation> liste = serv2.afficherTout();//we statically set the client id to just show his reclamations
-            list.setAll(liste);
-            
-            
+            list.setAll(liste);                        
             col_date.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("date"));
             col_id.setCellValueFactory(new PropertyValueFactory<Reclamation, Integer>("id"));
             col_objet.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("objet"));
@@ -422,6 +436,17 @@ public class Y_reclamationController  implements Initializable {
         supprimer.setVisible(false);
         rec=null;
         iv_image.setImage(null);
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
+    }
+
+    @FXML
+    private void Onclicked_fb(ActionEvent event) {
+    }
+
+    @FXML
+    private void Onclicked_twitter(ActionEvent event) {
     }
 }
 
