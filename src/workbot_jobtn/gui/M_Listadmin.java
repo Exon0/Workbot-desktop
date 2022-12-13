@@ -515,4 +515,13 @@ String i = BCrypt.hashpw(M_passwordLCtextfuild.getText(), BCrypt.gensalt());
         window.show();
     }
 
+    @FXML
+    private void On_reclamtion(ActionEvent event) throws IOException {
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("yadmin_reclamation.fxml"));
+        Scene stage=new Scene(fXMLLoader);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+    }
+
 }

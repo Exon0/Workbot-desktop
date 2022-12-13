@@ -12,9 +12,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import workbot_jobtn.entites.*;
-import workbot_jobtn.entites.NomCategorie;
-import static workbot_jobtn.entites.NomCategorie.Reclamation;
 import workbot_jobtn.utils.MyDB;
 
 /**
@@ -63,8 +63,9 @@ public class ServiceCategorie implements InterfaceServiceCategorie<Categorie>{
     }
 
     @Override
-    public List<Categorie> afficherTout() throws SQLException {
-     List<Categorie> l=new ArrayList<>();
+    public ObservableList<Categorie> afficherTout() throws SQLException {
+        
+        ObservableList<Categorie> l=FXCollections.observableArrayList();
      statement = connection.createStatement();
      ResultSet r= statement.executeQuery("select * from Categorie");
      while (r.next()){
@@ -78,16 +79,15 @@ public class ServiceCategorie implements InterfaceServiceCategorie<Categorie>{
 
     @Override
     public Categorie afficher(int i) throws SQLException {
-        List<Categorie> l=new ArrayList<>();
+        Categorie l=new Categorie();
      statement = connection.createStatement();
      ResultSet r= statement.executeQuery("select * from Categorie where id="+i+";");
      while (r.next()){
          int id=r.getInt("id");
          String nomCategorie=r.getString("nomCategorie");
-         Categorie categorie=new Categorie(id,nomCategorie);
-         l.add(categorie);
+         l=new Categorie(id,nomCategorie);
      }
-     return  l.get(0);
+     return  l;
     }
 
     

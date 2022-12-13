@@ -1,30 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workbot_jobtn.gui.Y_reclamationtechniqueController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workbot_jobtn.gui.Y_reclamationController">
    <children>
       <ImageView fitHeight="550.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" />
-      <Pane layoutX="165.0" layoutY="97.0" prefHeight="406.0" prefWidth="274.0">
+      <Pane layoutX="174.0" layoutY="97.0" prefHeight="406.0" prefWidth="274.0">
          <children>
-            <Label layoutX="27.0" layoutY="22.0" text="Objet:" />
+            <Label layoutX="27.0" layoutY="22.0" text="Titre:" />
             <Label layoutX="28.0" layoutY="101.0" text="Description:" />
             <TextField fx:id="objet" layoutX="30.0" layoutY="45.0" prefHeight="26.0" prefWidth="158.0" />
             <TextArea fx:id="description" layoutX="29.0" layoutY="124.0" prefHeight="95.0" prefWidth="200.0" />
-            <Button layoutX="28.0" layoutY="361.0" mnemonicParsing="false" onAction="#envoyer" text="envoyer" />
+            <Button layoutX="29.0" layoutY="361.0" mnemonicParsing="false" onAction="#envoyer" text="envoyer" />
             <Button fx:id="modifier" layoutX="28.0" layoutY="361.0" mnemonicParsing="false" onAction="#modifier" text="modifier" visible="false" />
             <Button fx:id="annuler" layoutX="159.0" layoutY="361.0" mnemonicParsing="false" onAction="#annuler" text="annuler" visible="false" />
             <Label layoutX="30.0" layoutY="233.0" text="Image:" />
@@ -43,7 +36,7 @@
             </Label>
          </children>
       </Pane>
-      <Label layoutX="312.0" layoutY="40.0" text="Reclamation technique">
+      <Label layoutX="450.0" layoutY="40.0" text="Votre liste de réclamations:">
          <font>
             <Font size="25.0" />
          </font>
@@ -51,11 +44,13 @@
       <Button fx:id="supprimer" layoutX="450.0" layoutY="458.0" mnemonicParsing="false" onAction="#supprimer" text="supprimer" visible="false" />
       <TableView fx:id="table_reclamation" layoutX="449.0" layoutY="130.0" onMouseClicked="#lineselected" prefHeight="322.0" prefWidth="446.0">
         <columns>
-            <TableColumn fx:id="col_id" prefWidth="75.0" text="Id" />
-          <TableColumn fx:id="col_objet" prefWidth="75.0" text="Objet" />
-            <TableColumn fx:id="col_description" prefWidth="75.0" text="Description" />
-            <TableColumn fx:id="col_image" prefWidth="75.0" text="Image(URI)" />
-          <TableColumn fx:id="col_date" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="col_id" prefWidth="62.4000244140625" text="Référence" />
+          <TableColumn fx:id="col_objet" prefWidth="48.0" text="Titre" />
+          <TableColumn fx:id="col_date" prefWidth="56.0" text="Date" />
+            <TableColumn fx:id="col_description" prefWidth="74.39990234375" text="Description" />
+            <TableColumn fx:id="col_categorie" prefWidth="72.0" text="Catégorie" />
+            <TableColumn fx:id="col_image" prefWidth="72.7999267578125" text="Image" />
+            <TableColumn fx:id="col_etat" prefWidth="59.199951171875" text="Etat" />
         </columns>
       </TableView>
       <TextField fx:id="tf_recherche" layoutX="767.0" layoutY="84.0" onAction="#rechercher" prefHeight="26.0" prefWidth="95.0" promptText="rechercher" />
@@ -69,8 +64,8 @@
             <Image url="@../images/retouricon.png" />
          </image>
       </ImageView>
-      <Label layoutX="709.0" layoutY="449.0" opacity="0.42" text="selectionnez un item pour editer" underline="true" />
-      <Label fx:id="champ_obligatoire" layoutX="192.0" layoutY="501.0" text="( * ) champ obligatoire" textFill="RED" visible="false" />
+      <Label layoutX="709.0" layoutY="449.0" opacity="0.42" text="selectionnez un item pour éditer" underline="true" />
+      <Label fx:id="champ_obligatoire" layoutX="201.0" layoutY="501.0" text="( * ) champ obligatoire" textFill="RED" visible="false" />
       <Pane fx:id="supprimer_confirmation" layoutX="372.0" layoutY="166.0" prefHeight="162.0" prefWidth="190.0" style="-fx-background-color: #acacac;" visible="false">
          <children>
             <Label layoutX="19.0" layoutY="47.0" text="réclamation supprimée" textFill="#990000">
@@ -117,20 +112,6 @@
             </Glow>
          </effect>
       </Pane>
-      <Pane layoutX="-2.0" prefHeight="550.0" prefWidth="149.0" style="-fx-background-color: #6c63ff;">
-         <children>
-            <ImageView fitHeight="139.0" fitWidth="141.0" layoutX="9.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@308181173_3429967987279219_7821870094501611281_n.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <ImageView fx:id="retour1icon" fitHeight="26.0" fitWidth="28.0" layoutX="152.0" layoutY="506.0" onMouseClicked="#retour1icon" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/iconretour1.png" />
-         </image>
-      </ImageView>
       <Pane fx:id="lb_confirmer_envoyer" layoutX="372.0" layoutY="166.0" prefHeight="162.0" prefWidth="190.0" style="-fx-background-color: #acacac;" visible="false">
          <children>
             <Label layoutX="51.0" layoutY="36.0" text="confirmer:">
@@ -292,5 +273,53 @@
             </Glow>
          </effect>
       </Pane>
+      <ImageView fx:id="refreshicon" fitHeight="30.0" fitWidth="20.0" layoutX="457.0" layoutY="95.0" onMouseClicked="#refreshricon" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/refresh.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="side_anchor" layoutY="-11.0" prefHeight="572.0" prefWidth="190.0" style="-fx-background-color: #6c63ff;">
+         <children>
+            <ImageView fitHeight="90.0" fitWidth="113.0" layoutX="41.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/image.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="29.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/facebook-4-24.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="141.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/twitter-24.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="8.0" layoutY="127.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="172.0" style="-fx-background-color: #8D87F0; -fx-background-radius: 20px; -fx-border-radius: 20px;" text="Réclamations" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button fx:id="fb" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="508.0" mnemonicParsing="false" onAction="#Onclicked_fb" opacity="0.0" prefHeight="35.0" prefWidth="41.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="twitter" alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="508.0" mnemonicParsing="false" onAction="#Onclicked_twitter" opacity="0.0" prefHeight="35.0" prefWidth="41.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="90.0" fitWidth="113.0" layoutX="50.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../icons/image.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Button layoutX="201.0" layoutY="510.0" mnemonicParsing="false" onAction="#on_retour" prefHeight="35.0" prefWidth="75.0" styleClass="btnMenuEntretien" stylesheets="@homesociete.css" text="Retour" />
    </children>
 </AnchorPane>

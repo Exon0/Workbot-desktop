@@ -47,6 +47,10 @@ public class User {
         this.methode = methode;
     }
 
+    public User(int id) {
+        this.id=id;
+    }
+
 
 
     public String getNote() {

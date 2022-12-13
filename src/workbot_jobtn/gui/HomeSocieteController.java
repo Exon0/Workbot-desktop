@@ -242,7 +242,7 @@ public class HomeSocieteController implements Initializable {
 
     @FXML
     private void reclam(ActionEvent event) throws IOException {
-            Parent root = FXMLLoader.load(getClass().getResource("Y_categorie.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("y_reclamation.fxml"));
             Scene stage = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(stage);

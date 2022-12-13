@@ -36,46 +36,49 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import workbot_jobtn.entites.*;
 import workbot_jobtn.services.*;
+import workbot_jobtn.utils.SessionManager;
 
 /**
  * FXML Controller class
  *
  * @author youcef
  */
-public class Y_reclamationtechniqueController  implements Initializable {
+public class Y_reclamationController  implements Initializable {
     ServiceCategorie serv=new ServiceCategorie();
-    ServiceReclamationAvis serv2=new ServiceReclamationAvis();
-    ReclamationAvis rec= new ReclamationAvis();
-    ReclamationAvis rec1=new ReclamationAvis();
+    ServiceReclamation serv2=new ServiceReclamation();
+    Reclamation rec= new Reclamation();
+    Reclamation rec1=new Reclamation();
     private Stage stage;
     private Scene scene;
     private Parent root;
-    
-
-            
-            
-            
-    
+    private final ObservableList<Reclamation> list = FXCollections.observableArrayList();
+       
     @FXML
     private TextField objet;
     @FXML
     private TextArea description;
-    private final ObservableList<ReclamationAvis> list = FXCollections.observableArrayList();
     @FXML
-    private TableView<ReclamationAvis> table_reclamation;
+    private TableView<Reclamation> table_reclamation;
     @FXML
-    private TableColumn<ReclamationAvis, String> col_objet;
+    private TableColumn<Reclamation, String> col_objet;
     @FXML
-    private TableColumn<ReclamationAvis, String> col_date;
+    private TableColumn<Reclamation, String> col_date;
     @FXML
-    private TableColumn<ReclamationAvis, String> col_description;
+    private TableColumn<Reclamation, String> col_description;
     @FXML
-    private TableColumn<ReclamationAvis, Integer> col_id;
+    private TableColumn<Reclamation, Integer> col_id;
+    @FXML
+    private TableColumn<Reclamation, String> col_categorie;
+    @FXML
+    private TableColumn<Reclamation, String> col_etat;
+    @FXML
+    private TableColumn<Reclamation, String> col_image;
     @FXML
     private TextField tf_recherche;
     @FXML
@@ -89,15 +92,11 @@ public class Y_reclamationtechniqueController  implements Initializable {
     @FXML
     private Button supprimer;
     @FXML
-    private ImageView retour1icon;
-    @FXML
     private TextField tf_image;
     @FXML
     private ImageView iv_image;
     @FXML
     private Button button_upload;
-    @FXML
-    private TableColumn<ReclamationAvis, String> col_image;
     @FXML
     private Label champ_obligatoire;
     @FXML
@@ -116,13 +115,14 @@ public class Y_reclamationtechniqueController  implements Initializable {
     private Pane envoyer_confirmation;
     @FXML
     private Pane modifier_confirmation;
-    
-    
-   
-    
-   
-
-
+    @FXML
+    private ImageView refreshicon;
+    @FXML
+    private AnchorPane side_anchor;
+    @FXML
+    private Button fb;
+    @FXML
+    private Button twitter;
     /**
      * Initializes the controller class.
      */
@@ -139,15 +139,17 @@ public class Y_reclamationtechniqueController  implements Initializable {
         
         try {
             list.clear();
-            ObservableList<ReclamationAvis> liste = serv2.afficherTout();//we statically set the client id to just show his reclamations
+            ObservableList<Reclamation> liste = serv2.afficherTout();//we statically set the client id to just show his reclamations
             list.setAll(liste);
             
             
-            col_date.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, String>("date"));
-            col_id.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, Integer>("id"));
-            col_objet.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, String>("objet"));
-            col_description.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, String>("description"));
-            col_image.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, String>("image"));
+            col_date.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("date"));
+            col_id.setCellValueFactory(new PropertyValueFactory<Reclamation, Integer>("id"));
+            col_objet.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("objet"));
+            col_description.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("description"));
+            col_image.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("image"));
+            col_categorie.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("nomCat"));
+            col_etat.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("etat"));
             
             table_reclamation.setItems(list);
         } catch (SQLException ex) {
@@ -157,9 +159,9 @@ public class Y_reclamationtechniqueController  implements Initializable {
 
     @FXML
     private void envoyer(ActionEvent event) throws SQLException {
-        Categorie reclamation=serv.afficher(14);        
-        
-
+        Categorie reclamation=serv.afficher(1);        
+        User client=serv2.afficherUser(SessionManager.getId());
+        rec1.setUser(client);
         rec1.setCategorie(reclamation);
         rec1.setObjet(objet.getText());
         rec1.setDescription(description.getText());
@@ -190,16 +192,14 @@ public class Y_reclamationtechniqueController  implements Initializable {
         
     }
 
-   
-
     @FXML
     private void supprimer(ActionEvent event) throws SQLException {
         lb_confirmer_supprimer.setVisible(true);
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
     }
     
-
-   
-
     @FXML
     private void modifier(ActionEvent event) throws SQLException {
         
@@ -212,7 +212,22 @@ public class Y_reclamationtechniqueController  implements Initializable {
             File file = new File(tf_image.getText());
             rec.setImage(file.toURI().toString());
         }
-        lb_confirmer_modifier.setVisible(true);
+        if(objet.getText().equals("")){
+            objet_obligatoire.setVisible(true);
+        }
+        else{objet_obligatoire.setVisible(false);}
+        
+        if(description.getText().equals("")){
+            description_obligatoire.setVisible(true);
+        }
+        else{description_obligatoire.setVisible(false);}
+        if(objet.getText().equals("") || description.getText().equals("")){
+            champ_obligatoire.setVisible(true);
+        }
+        else{
+            champ_obligatoire.setVisible(false);
+            lb_confirmer_modifier.setVisible(true);
+        }
         
     }
 
@@ -226,51 +241,51 @@ public class Y_reclamationtechniqueController  implements Initializable {
         annuler.setVisible(true);
         supprimer.setVisible(true);
         tf_image.setText(rec.getImage());
-        if(rec.getImage()!=null && !rec.getImage().equals(""))
+        if(rec.getImage()!=null && !rec.getImage().equals("") && rec.getImage().startsWith("f"))
         {
-        Image image = new Image(rec.getImage());
+        Image image = new Image(tf_image.getText());
         iv_image.setImage(image);
         }
         else{
             iv_image.setImage(null);
             }
+        
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
         }
     }
-
-   
 
     @FXML
     private void rechercher(ActionEvent event) throws SQLException {
         list.clear();
             rec = serv2.afficher(Integer.parseInt(tf_recherche.getText()));//we statically set the client id to just show his reclamations
-            list.setAll(rec);
-            
-            
-            col_date.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, String>("date"));
-            col_id.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, Integer>("id"));
-            col_objet.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, String>("objet"));
-            col_description.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, String>("description"));
+            list.setAll(rec);  
+            col_date.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("date"));
+            col_id.setCellValueFactory(new PropertyValueFactory<Reclamation, Integer>("id"));
+            col_objet.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("objet"));
+            col_description.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("description"));
             table_reclamation.setItems(list);
             retouricon.setVisible(true);
             rec=null;
             objet.setText("");
             description.setText("");
             tf_image.setText("");
-            iv_image.setImage(null);
+            iv_image.setImage(null);   
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
     }
 
     @FXML
     private void recherchericon(MouseEvent event) throws SQLException {
         list.clear();
             rec = serv2.afficher(Integer.parseInt(tf_recherche.getText()));//we statically set the client id to just show his reclamations
-            list.setAll(rec);
-            
-            
-            col_date.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, String>("date"));
-            col_id.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, Integer>("id"));
-            col_objet.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, String>("objet"));
-            col_description.setCellValueFactory(new PropertyValueFactory<ReclamationAvis, String>("description"));
-            
+            list.setAll(rec);   
+            col_date.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("date"));
+            col_id.setCellValueFactory(new PropertyValueFactory<Reclamation, Integer>("id"));
+            col_objet.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("objet"));
+            col_description.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("description"));            
             table_reclamation.setItems(list);
             retouricon.setVisible(true);
             rec=null;
@@ -278,6 +293,9 @@ public class Y_reclamationtechniqueController  implements Initializable {
             description.setText("");
             tf_image.setText("");
             iv_image.setImage(null);
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
     }
 
     @FXML
@@ -285,10 +303,9 @@ public class Y_reclamationtechniqueController  implements Initializable {
         showReclamations();
         retouricon.setVisible(false);
         tf_recherche.setText("");
-    }
-
-
-     {
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
     }
 
     @FXML
@@ -302,24 +319,16 @@ public class Y_reclamationtechniqueController  implements Initializable {
         supprimer.setVisible(false);
         rec=null;
         iv_image.setImage(null);
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
     }
 
     @FXML
-    private void retour1icon(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("y_categorie.fxml"));
-  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-  scene = new Scene(root);
-  stage.setScene(scene);
-  stage.show();
-    }
-
-    @FXML
-    private void upload(ActionEvent event) {
-        
+    private void upload(ActionEvent event) {  
         FileChooser fc = new FileChooser();
         try{
-        String path = fc.showOpenDialog(button_upload.getScene().getWindow()).getPath();
-        
+        String path = fc.showOpenDialog(button_upload.getScene().getWindow()).getPath();        
         tf_image.setText(path);
         File file = new File(tf_image.getText());
         Image image = new Image(file.toURI().toString());
@@ -337,8 +346,7 @@ public class Y_reclamationtechniqueController  implements Initializable {
         tf_image.setText("");
         iv_image.setImage(null);
         lb_confirmer_envoyer.setVisible(false);
-        envoyer_confirmation.setVisible(true);
-        
+        envoyer_confirmation.setVisible(true);        
     }
 
     @FXML
@@ -364,8 +372,7 @@ public class Y_reclamationtechniqueController  implements Initializable {
 
     @FXML
     private void non_supprimer(ActionEvent event) {
-        lb_confirmer_supprimer.setVisible(false);
-        
+        lb_confirmer_supprimer.setVisible(false);        
     }
 
     @FXML
@@ -402,6 +409,65 @@ public class Y_reclamationtechniqueController  implements Initializable {
     @FXML
     private void fermer_confirmation_modifier(ActionEvent event) {
         modifier_confirmation.setVisible(false);
+    }
+
+    @FXML
+    private void refreshricon(MouseEvent event) {
+        try {
+            list.clear();
+            ObservableList<Reclamation> liste = serv2.afficherTout();//we statically set the client id to just show his reclamations
+            list.setAll(liste);                        
+            col_date.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("date"));
+            col_id.setCellValueFactory(new PropertyValueFactory<Reclamation, Integer>("id"));
+            col_objet.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("objet"));
+            col_description.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("description"));
+            col_image.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("image"));
+            col_categorie.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("nomCat"));
+            col_etat.setCellValueFactory(new PropertyValueFactory<Reclamation, String>("etat"));
+            
+            table_reclamation.setItems(list);
+        } catch (SQLException ex) {
+        }
+        objet.setText("");
+        description.setText("");
+        tf_image.setText("");
+        iv_image.setImage(null);
+        modifier.setVisible(false);
+        annuler.setVisible(false);
+        supprimer.setVisible(false);
+        rec=null;
+        iv_image.setImage(null);
+        objet_obligatoire.setVisible(false);
+        description_obligatoire.setVisible(false);
+        champ_obligatoire.setVisible(false);
+    }
+
+    @FXML
+    private void Onclicked_fb(ActionEvent event) {
+    }
+
+    @FXML
+    private void Onclicked_twitter(ActionEvent event) {
+    }
+
+    @FXML
+    private void on_retour(ActionEvent event) throws IOException {
+        if(SessionManager.getRole().equals("candidat")){
+                 Parent page1 = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+        
+        }
+        if(SessionManager.getRole().equals("sociéte")){
+                 Parent page1 = FXMLLoader.load(getClass().getResource("homesociete.fxml"));
+        Scene scene = new Scene(page1);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+        
+        }
     }
 }
 
