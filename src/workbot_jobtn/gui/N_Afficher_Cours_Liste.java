@@ -248,6 +248,13 @@ public class N_Afficher_Cours_Liste implements Initializable {
                  N_W_CAjouter_actualiser(null);
              }
      
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Afficher_Certif_Liste.fxml"));
+        Scene stage=new Scene(fXMLLoader);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
+
+     
     }
     
     @FXML

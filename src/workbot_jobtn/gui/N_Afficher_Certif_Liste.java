@@ -287,6 +287,12 @@ public class N_Afficher_Certif_Liste implements Initializable {
     sc.supprimerCertif(co);
     N_W_Certif_actualiser(null);
     }
+     
+        Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Afficher_Cours_Liste.fxml"));
+        Scene stage=new Scene(fXMLLoader);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(stage);
+        window.show();
 
     }
     

@@ -34,6 +34,8 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.codehaus.plexus.util.FileUtils;
+import static workbot_jobtn.gui.N_ajouter_Cours.SelectedFile;
 import workbot_jobtn.services.N_Services_Certification;
 
 public class N_ajouter_Certification implements Initializable {
@@ -99,6 +101,21 @@ public class N_ajouter_Certification implements Initializable {
             N_add_certif_test.setText("");
             
             }
+             
+             
+            File srcFile = SelectedFile1;
+            File destDir = new File("C:\\Workbot-web\\public\\Upload\\cert");
+            
+            try {
+
+            FileUtils.copyFileToDirectory(srcFile, destDir);
+
+            System.out.println("File successfully copied in Java");
+
+            } catch (IOException e) {
+
+            e.printStackTrace();
+            }
       
     }
 
@@ -151,14 +168,15 @@ public class N_ajouter_Certification implements Initializable {
                 Desktop.getDesktop().browse(new URI("https://www.profitablegatetocontent.com/d38ziwqqhm?key=833e83d5b619c6162602e331d6104cd1"));
 
     }
-
+     
+     static public File SelectedFile1;
      static public String path="";
     @FXML
     private void path_cours(ActionEvent event) {
         FileChooser fc = new FileChooser();
-        File SelectedFile = fc.showOpenDialog(null);
-        if (SelectedFile != null ){
-            path=SelectedFile.getAbsolutePath();
+        SelectedFile1 = fc.showOpenDialog(null);
+        if (SelectedFile1 != null ){
+            path=SelectedFile1.getName();
     }
         System.out.println(path);
     }

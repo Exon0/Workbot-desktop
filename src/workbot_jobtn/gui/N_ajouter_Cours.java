@@ -5,6 +5,8 @@
  */
 package workbot_jobtn.gui;
 
+import com.google.common.io.Files;
+import com.itextpdf.text.pdf.parser.Path;
 import java.awt.Desktop;
 import java.io.File;
 import workbot_jobtn.entites.Cours;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -34,6 +37,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.codehaus.plexus.util.FileUtils;
 import workbot_jobtn.services.N_Services_Cours;
 
 
@@ -135,8 +139,22 @@ public class N_ajouter_Cours implements Initializable {
         }
                     System.out.println(chemin+ " "+matiere+" "+titre+" "+domaine+" "+categorie);
        
-            
-                    
+            File srcFile = SelectedFile;
+            File destDir = new File("C:\\Workbot-web\\public\\Upload\\chem");
+            File destDir1 = new File("C:\\cloned proj\\Workbot\\src\\workbot_jobtn\\gui\\cours");
+            try {
+
+            FileUtils.copyFileToDirectory(srcFile, destDir);
+            FileUtils.copyFileToDirectory(srcFile, destDir1);
+
+            System.out.println("File successfully copied in Java");
+
+            } catch (IOException e) {
+
+            e.printStackTrace();
+
+}
+        
         Parent fXMLLoader = FXMLLoader.load(getClass().getResource("N_Afficher_Cours_Liste.fxml"));
         Scene stage=new Scene(fXMLLoader);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -187,14 +205,14 @@ public class N_ajouter_Cours implements Initializable {
     }
 
     static public String path="";
+    static public File SelectedFile;
     @FXML
     private void path_cours(ActionEvent event) {
         FileChooser fc = new FileChooser();
-        File SelectedFile = fc.showOpenDialog(null);
+        SelectedFile = fc.showOpenDialog(null);
         if (SelectedFile != null ){
-            path=SelectedFile.getAbsolutePath();
-            path = path.replace('\\', '/');
- 
+            path=SelectedFile.getName();
+            
     }
         System.out.println(path);
     }
