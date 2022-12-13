@@ -12,7 +12,31 @@ public class Cours {
     private int nb;
     private int id;
     private String titre,matiere,domaine,categorie,chemin;
+    private String logo;
 
+    public Cours( int id, String titre, String matiere, String domaine, String categorie, String chemin, String logo) {
+        this.id = id;
+        this.titre = titre;
+        this.matiere = matiere;
+        this.domaine = domaine;
+        this.categorie = categorie;
+        this.chemin = chemin;
+        this.logo = logo;
+    }
+
+    
+    
+    public Cours(String titre, String matiere, String domaine, String categorie, String chemin, String logo) {
+        this.titre = titre;
+        this.matiere = matiere;
+        this.domaine = domaine;
+        this.categorie = categorie;
+        this.chemin = chemin;
+        this.logo = logo;
+    }
+    
+    
+    
     public Cours(int nb, String domaine) {
         this.nb = nb;
         this.domaine = domaine;
@@ -114,6 +138,16 @@ public class Cours {
     public void setChemin(String chemin) {
         this.chemin = chemin;
     }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+    
+    
 
     @Override
     public String toString() {

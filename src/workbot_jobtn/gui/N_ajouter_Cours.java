@@ -103,6 +103,7 @@ public class N_ajouter_Cours implements Initializable {
             String titre=N_add_cours_titre.getText();
             String matiere=N_add_cours_matiere.getText();           
             String chemin=path;
+            String logo=path2;
             
             
             String domaine="";
@@ -127,27 +128,41 @@ public class N_ajouter_Cours implements Initializable {
             else
             {
             N_Services_Cours sc=new N_Services_Cours();
-            Cours cr=new Cours(titre,matiere,domaine,categorie,chemin);
+            Cours cr=new Cours(titre,matiere,domaine,categorie,chemin,logo);
         try {
             sc.ajouterCours(cr);
             erreur_msg.setText("Ajout effectué avec succés !! ");
             N_add_cours_titre.setText("");
             N_add_cours_matiere.setText("");           
             path="";
+            path2="";
             
         } catch (SQLException ex) {
         }
-                    System.out.println(chemin+ " "+matiere+" "+titre+" "+domaine+" "+categorie);
+                    System.out.println(chemin+ " "+matiere+" "+titre+" "+domaine+" "+categorie+" "+logo);
        
             File srcFile = SelectedFile;
             File destDir = new File("C:\\Workbot-web\\public\\Upload\\chem");
-            File destDir1 = new File("C:\\cloned proj\\Workbot\\src\\workbot_jobtn\\gui\\cours");
             try {
 
             FileUtils.copyFileToDirectory(srcFile, destDir);
-            FileUtils.copyFileToDirectory(srcFile, destDir1);
 
             System.out.println("File successfully copied in Java");
+
+            } catch (IOException e) {
+
+            e.printStackTrace();
+
+}
+            
+            
+            File srcFile4 = SelectedFile2;
+            File destDir4 = new File("C:\\Workbot-web\\public\\Upload\\chem");
+            try {
+
+            FileUtils.copyFileToDirectory(srcFile4, destDir4);
+
+            System.out.println("Logo File successfully copied in Java");
 
             } catch (IOException e) {
 
@@ -224,4 +239,18 @@ public class N_ajouter_Cours implements Initializable {
             path="";
     }
     
+    
+    static public File SelectedFile2;
+    static public String path2="";
+    @FXML
+    private void logo_cours(ActionEvent event) {
+        FileChooser fc1 = new FileChooser();
+         SelectedFile2 = fc1.showOpenDialog(null);
+        if (SelectedFile2 != null ){
+            path2=SelectedFile2.getName();
+            
+    }
+        System.out.println(path2);
+    }
+        
 }

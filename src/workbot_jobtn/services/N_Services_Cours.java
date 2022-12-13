@@ -30,8 +30,8 @@ public class N_Services_Cours implements N_interfaces_services_Cours<Cours> {
 
     @Override
     public void ajouterCours(Cours c) throws SQLException {
-        String req = "INSERT INTO `cours` (`titre`,`matiere`,`domaine`,`categorie`,`chemin`) VALUES ( '"
-                +c.getTitre()+"', '"+c.getMatiere()+"', '" +c.getDomaine()+"', '" + c.getCategorie()+"', '"+c.getChemin() +"') ";
+        String req = "INSERT INTO `cours` (`titre`,`matiere`,`domaine`,`categorie`,`chemin`,`logo`) VALUES ( '"
+                +c.getTitre()+"', '"+c.getMatiere()+"', '" +c.getDomaine()+"', '" + c.getCategorie()+"', '"+c.getChemin() +"','"+c.getLogo() +"') ";
         Statement stm = connexion.createStatement();
         stm.executeUpdate(req);
     }
@@ -96,7 +96,8 @@ i+=1;
                     , r.getString("matiere")
                     , r.getString("domaine")
                     , r.getString("categorie")
-                    , r.getString("chemin"));
+                    , r.getString("chemin")
+                    , r.getString("logo"));
             arr.add(c);
         }
         
@@ -141,7 +142,8 @@ i+=1;
                     , r.getString("matiere")
                     , r.getString("domaine")
                     , r.getString("categorie")
-                    , r.getString("chemin"));
+                    , r.getString("chemin")
+                    , r.getString("logo"));
             arr.add(c);
         }
         

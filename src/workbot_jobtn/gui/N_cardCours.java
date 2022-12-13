@@ -41,7 +41,7 @@ public class N_cardCours  {
      */
     Cours c=new Cours();
     public void setData(Cours cours) throws FileNotFoundException {
-                Image image = new Image(new FileInputStream("C://Workbot-web//public//assets//img//cours//htmlcours//"+cours.getTitre()+".png"));
+                Image image = new Image(new FileInputStream("C:\\Workbot-web\\public\\Upload\\chem\\"+cours.getLogo()));
                 System.out.println("hello");
                 coursImage.setImage(image);
                 CoursName.setText(cours.getTitre());

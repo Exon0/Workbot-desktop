@@ -54,12 +54,12 @@
             <Image url="@cours/Rectangle%2016.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="252.0" fitWidth="381.0" layoutX="463.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="269.0" fitWidth="415.0" layoutX="463.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@cours/Rectangle%209.png" />
          </image>
       </ImageView>
-      <ButtonBar layoutX="596.0" layoutY="435.0" prefHeight="18.0" prefWidth="245.0">
+      <ButtonBar layoutX="608.0" layoutY="461.0" prefHeight="18.0" prefWidth="245.0">
          <buttons>
             <Button id="BUTTON" fx:id="N_add_cours_Bajouter" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#Ajouter_Cours_Button_Clicked" prefHeight="38.0" prefWidth="106.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #6C63FF; -fx-border-color: #242526; -fx-border-width: 2;" stylesheets="@Button.css" text="Ajouter" textFill="#fffdfd">
                <font>
@@ -148,7 +148,7 @@
          </font>
       </Text>
       <CheckBox fx:id="N_B_info_Ajout" layoutX="245.0" layoutY="232.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Informatique" />
-      <Text layoutX="530.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matiére :">
+      <Text layoutX="530.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matiére :">
          <font>
             <Font size="14.0" />
          </font>
@@ -156,18 +156,18 @@
       <CheckBox fx:id="N_B_reseau_Ajout" layoutX="245.0" layoutY="303.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Réseau" />
       <CheckBox fx:id="N_B_electro_Ajout" layoutX="245.0" layoutY="256.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Eléctronique" />
       <CheckBox fx:id="N_B_meca_Ajout" layoutX="245.0" layoutY="280.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Mécanique" />
-      <Text layoutX="530.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emplacement :">
+      <Text layoutX="529.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emplacement :">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="N_add_cours_matiere" layoutX="524.0" layoutY="294.0" prefHeight="26.0" prefWidth="269.0" style="-fx-background-radius: 20;" />
+      <TextField fx:id="N_add_cours_matiere" layoutX="524.0" layoutY="285.0" prefHeight="26.0" prefWidth="318.0" style="-fx-background-radius: 20;" />
       <Text layoutX="528.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre :">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="N_add_cours_titre" layoutX="522.0" layoutY="223.0" prefHeight="26.0" prefWidth="269.0" style="-fx-background-radius: 20;" />
+      <TextField fx:id="N_add_cours_titre" layoutX="522.0" layoutY="223.0" prefHeight="26.0" prefWidth="318.0" style="-fx-background-radius: 20;" />
       <Separator layoutX="149.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="543.0" prefWidth="7.0" />
       <WebView fx:id="N_AdsView" layoutX="6.0" layoutY="323.0" onMousePressed="#Browser" prefHeight="209.0" prefWidth="138.0" />
       <Label fx:id="erreur_msg" layoutX="627.0" layoutY="481.0" prefHeight="18.0" prefWidth="208.0" textFill="#2b9c02">
@@ -180,7 +180,21 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button id="BUTTON" layoutX="638.0" layoutY="335.0" mnemonicParsing="false" onAction="#path_cours" prefHeight="70.0" prefWidth="63.0" style="-fx-background-color: #FFFFF; -fx-border-radius: 80; -fx-background-radius: 80; -fx-border-color: #242526; -fx-border-width: 1;" stylesheets="@Button.css">
+      <Button id="BUTTON" layoutX="538.0" layoutY="351.0" mnemonicParsing="false" onAction="#path_cours" prefHeight="70.0" prefWidth="73.0" style="-fx-background-color: #FFFFF; -fx-border-radius: 80; -fx-background-radius: 80; -fx-border-color: #242526; -fx-border-width: 1;" stylesheets="@Button.css">
+         <graphic>
+            <ImageView fitHeight="62.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@cours/icons/telecharger%20(2).png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Text layoutX="711.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logo :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button id="BUTTON" layoutX="713.0" layoutY="353.0" mnemonicParsing="false" onAction="#logo_cours" prefHeight="70.0" prefWidth="73.0" style="-fx-background-color: #FFFFF; -fx-border-radius: 80; -fx-background-radius: 80; -fx-border-color: #242526; -fx-border-width: 1;" stylesheets="@Button.css">
          <graphic>
             <ImageView fitHeight="62.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                <image>
