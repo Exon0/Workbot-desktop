@@ -22,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.codehaus.plexus.util.FileUtils;
+import static workbot_jobtn.gui.N_ajouter_Cours.SelectedFile;
 import workbot_jobtn.services.EventService;
 import workbot_jobtn.utils.SessionManager;
 
@@ -114,6 +116,23 @@ static public int id=0;
                 labelwar.setText("completer les champs svp");
                    
                 else{
+                    
+            File srcFile = selectedFileVideo;
+            File destDir = new File("C:\\Workbot-web\\public\\Upload\\video");
+            
+            File srcFile1 = selectedFileFlyer;
+            File destDir1 = new File("C:\\Workbot-web\\public\\Upload\\flyer");
+            try {
+
+            FileUtils.copyFileToDirectory(srcFile, destDir);
+            FileUtils.copyFileToDirectory(srcFile1, destDir1);
+
+            System.out.println("File successfully copied in Java");
+
+            } catch (IOException eq) {
+
+            eq.printStackTrace();
+            }
          es.ajouter(e);
       //id= es.affid();
       //System.out.println(id);
@@ -145,12 +164,13 @@ static public int id=0;
     }
 static public String f="";
 static public String v="";
+static public File selectedFileFlyer;
     @FXML
     private void doClickflyerchooser1(ActionEvent event) {
         FileChooser fc= new FileChooser();
-        File selectedFile=fc.showOpenDialog(null);
-        if (selectedFile !=null){
-           f=selectedFile.getName();
+        selectedFileFlyer=fc.showOpenDialog(null);
+        if (selectedFileFlyer !=null){
+           f=selectedFileFlyer.getName();
            flyer.setText(f);
         }
         else
@@ -164,12 +184,13 @@ static public String v="";
         
     }
 
+    static public File selectedFileVideo;
     @FXML
     private void doClickvidchoose(ActionEvent event) {
         FileChooser fc= new FileChooser();
-        File selectedFile=fc.showOpenDialog(null);
-        if (selectedFile !=null){
-           v=selectedFile.getName();
+        selectedFileVideo=fc.showOpenDialog(null);
+        if (selectedFileVideo !=null){
+           v=selectedFileVideo.getName();
            evideo.setText(v);
         }
         else

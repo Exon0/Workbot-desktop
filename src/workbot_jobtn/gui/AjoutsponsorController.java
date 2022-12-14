@@ -31,6 +31,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.codehaus.plexus.util.FileUtils;
+import static workbot_jobtn.gui.N_ajouter_Certification.SelectedFile1;
 import workbot_jobtn.services.EventService;
 import workbot_jobtn.services.Sponservice;
 import workbot_jobtn.utils.SessionManager;
@@ -82,6 +84,20 @@ ObservableList<Sponsor> list = FXCollections.observableArrayList();
              alertajspon.setText("Completer les champs svp");
                 else{
          sp.ajouterspon(s);
+         
+                     File srcFile = selectedFilehous;
+            File destDir = new File("C:\\Workbot-web\\public\\Upload\\logo");
+            
+            try {
+
+            FileUtils.copyFileToDirectory(srcFile, destDir);
+
+            System.out.println("File successfully copied in Java");
+
+            } catch (IOException e) {
+
+            e.printStackTrace();
+            }
          
          Stage stage = (Stage) aj_logo.getScene().getWindow();
                 stage.close();
@@ -232,14 +248,15 @@ static public int idsp=0;
                 stage.show();
     }
 static public String lg="";
+static public File selectedFilehous;
     @FXML
     private void doclicklogochoose(ActionEvent event) {
         
         
         FileChooser fc= new FileChooser();
-        File selectedFile=fc.showOpenDialog(null);
-        if (selectedFile !=null){
-           lg=selectedFile.getName();
+         selectedFilehous=fc.showOpenDialog(null);
+        if (selectedFilehous !=null){
+           lg=selectedFilehous.getName();
            aj_logo.setText(lg);
         }
         else
